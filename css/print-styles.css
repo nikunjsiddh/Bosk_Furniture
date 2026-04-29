@@ -1,0 +1,8 @@
+/* print.css */
+@media print {
+    /* Add your print-specific styles here */
+    body {
+        background-color: black !important;
+    }
+    /* Add other styles as needed */
+}

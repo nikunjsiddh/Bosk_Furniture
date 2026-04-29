@@ -1,0 +1,247 @@
+body.blue-layout {
+    background: #19223b;
+}
+.blue-layout .choosing {
+    background: url(../images/bg/blue-bg.jpg) 0 0 repeat;
+}
+.blue-layout .choosing .section-title h2 {
+    color: #fff !important;
+}
+.blue-layout .choosing .title-icon:before {
+    background: #fff;
+}
+.blue-layout .choosing .title-icon:after {
+    background: #fff;
+}
+.blue-layout .choosing .title-icon i {
+    color: #fff;
+}
+.blue-layout section.portfolio {
+    background: #19223b;
+}
+.blue-layout .portfolio .section-title h2 {
+    color: #fff !important;
+}
+.blue-layout .portfolio .title-icon:before {
+    background: #fff;
+}
+.blue-layout .portfolio .title-icon:after {
+    background: #fff;
+}
+.blue-layout .portfolio .title-icon i {
+    color: #fff;
+}
+.blue-layout .portfolio .filters-group ul li {
+    color: #fff;
+}
+.blue-layout .portfolio .filters-group ul li:hover {
+    background: #fff;
+    color: #000;
+}
+.blue-layout .portfolio .filters-group .active {
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+}
+.blue-layout .bg-3 .button {
+    color: #fff;
+    border-color: #fff;
+    margin-left: 1px;
+}
+.blue-layout .button--wayra:hover {
+    color: #fff;
+    border-color: #000;
+}
+.blue-layout main.services {
+    background: linear-gradient(rgba(25, 34, 59, 0.8), rgba(25, 34, 59, 0.8)), url(../images/bg/b-2.jpg) no-repeat center center;
+    background-size: cover;
+}
+.blue-layout .services .section-title h2 {
+    color: #fff !important;
+}
+.blue-layout .services .section-title p {
+    color: #fff;
+}
+.blue-layout .services .title-icon:before {
+    background: #fff;
+}
+.blue-layout .services .title-icon:after {
+    background: #fff;
+}
+.blue-layout .services .title-icon i {
+    color: #fff;
+}
+.blue-layout .services .art-1 {
+    background: url(../images/bg/blue-bg.jpg) 0 0 repeat;
+    color: #fff;
+    border: 1px solid #fff;
+}
+.blue-layout .services .art-1 p {
+    color: #fff;
+}
+.blue-layout .services .art-1:hover p,
+.blue-layout .services .art-1:hover h3 {
+    color: #fff;
+}
+.blue-layout .testimonials {
+	background: url(../images/bg/blue-bg.jpg) 0 0 repeat;
+	color: #000;
+}
+.blue-layout .testimonials .section-title h2 {
+    color: #fff !important;
+}
+.blue-layout .testimonials .title-icon:before {
+    background: #fff;
+}
+.blue-layout .testimonials .title-icon:after {
+    background: #fff;
+}
+.blue-layout .testimonials .title-icon i {
+    color: #fff;
+}
+.blue-layout .testimonials .section-title {
+    padding-bottom: 3rem;
+}
+.blue-layout .testimonials .top-headings-section h2::after {
+    background: #fff;
+}
+.blue-layout .testimonials .test-1 p {
+	color: #fff;
+	font-weight: 400;
+}
+.blue-layout .testimonials .test-1 p::before {
+	color: #fff;
+}
+.blue-layout .testimonials .test-1 p::after {
+	color: #fff;
+}
+.blue-layout .testimonials .test-1 h3 {
+	color: #fff;
+}
+.blue-layout .testimonials .test-1 h6 {
+	font-weight: 400;
+    color: #fff;
+}
+.blue-layout section.blog {
+    background: #19223b;
+}
+.blue-layout .blog .section-title h2 {
+    color: #fff !important;
+}
+.blue-layout .blog .section-title p {
+    color: #fff;
+}
+.blue-layout .blog .title-icon:before {
+    background: #fff;
+}
+.blue-layout .blog .title-icon:after {
+    background: #fff;
+}
+.blue-layout .blog .title-icon i {
+    color: #fff;
+}
+.blue-layout .blog .blog-info {
+    background: #f4f4f4;
+}
+.blue-layout .first-footer .top-footer {
+    background: url(../images/bg/blue-bg.jpg) 0 0 repeat;
+	color: #fff;
+}
+.blue-layout .first-footer .netabout h3 {
+    color: #fff;
+}
+.blue-layout .first-footer .netabout h3::after,
+.blue-layout .first-footer .contactus h3::after,
+.blue-layout .first-footer .widget h3::after,
+.blue-layout .first-footer .newsletters h3::after {
+    background-color: #ffff;
+}
+.blue-layout .first-footer .netabout p,
+.blue-layout .first-footer .contactus .info p,
+.blue-layout .navigation ul li a,
+.blue-layout .newsletters p {
+    color: #fff;
+    font-weight: 400;
+}
+.blue-layout .first-footer .contactus ul li .fa {
+    color: #fff;
+}
+.blue-layout .first-footer .netsocials a .fa-facebook {
+    background: #3b5998;
+}
+.blue-layout .first-footer .netsocials a .fa-twitter {
+    background: #1da1f2;
+}
+.blue-layout .first-footer .netsocials a .fa-google-plus {
+    background: #dd4b39;
+}
+.blue-layout .first-footer .netsocials a .fa-youtube {
+    background: #cd201f;
+}
+.blue-layout .navigation ul li a:hover {
+    color: #1da1f2;
+}
+.first-footer .bloq-email .email input[type="submit"] {
+    background: #19223b;
+}
+.blue-layout .first-footer .bloq-email .email input[type="text"] {
+    border: 1px solid #000;
+}
+.blue-layout div.partners {
+    background: url(../images/bg/blue-bg.jpg) 0 0 repeat;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+body.inner-page {
+    background: #fff;
+}
+.blue-layout .section-title {
+    text-align: center;
+    padding-bottom: 4.5rem;
+}
+.blue-layout .section-title .title-style {
+    position: relative;
+    display: inline-block;
+}
+.blue-layout .section-title .title-style h2 {
+    color: #000;
+    margin-bottom: 1rem;
+}
+.blue-layout .title-icon {
+    width: 80px;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.blue-layout .title-icon:before {
+    content: "";
+    width: 100px;
+    height: 2px;
+    background: #000;
+    position: absolute;
+    top: 18px;
+    left: -85px;
+}
+.blue-layout .title-icon:after {
+    content: "";
+    width: 100px;
+    height: 2px;
+    background: #000;
+    position: absolute;
+    top: 18px;
+    right: -85px;
+}
+.blue-layout .title-icon i {
+    color: #000;
+    font-size: 1.8rem;
+    margin-top: 1px;
+}
+.blue-layout .section-title p {
+    margin-top: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+    color: #000;
+    max-width: 550px;
+}
