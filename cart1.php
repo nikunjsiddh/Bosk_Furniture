@@ -1,5 +1,12 @@
+<?php
+$page_title       = 'Cart | Bosk Furniture';
+$page_description = 'View your selected furniture items at Bosk Furniture India.';
+$page_keywords    = 'cart, bosk furniture';
+$page_canonical   = '/cart1.php';
+$page_robots      = 'noindex, follow';
+?>
 <!DOCTYPE HTML>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-IN">
 
 <head>
     <?php include_once"design/header.php"?>

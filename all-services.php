@@ -1,5 +1,11 @@
+<?php
+$page_title       = 'Our Services | Custom Furniture & Interior Design - Bosk Furniture';
+$page_description = 'Explore Bosk Furniture services - modular kitchen design, custom wardrobes, home interior design, office furniture and complete interior solutions across India.';
+$page_keywords    = 'furniture services, interior design services, modular kitchen design, custom wardrobe india, home interior services, bosk furniture services';
+$page_canonical   = '/all-services.php';
+?>
 <!DOCTYPE HTML>
-<html lang="zxx">
+<html lang="en-IN">
 
 <head>
     <?php include_once"design/header.php";?>

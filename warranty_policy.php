@@ -1,9 +1,14 @@
+<?php
+$page_title       = 'Warranty Policy | Bosk Furniture India';
+$page_description = 'Read the Bosk Furniture warranty policy covering modular furniture, wardrobes, kitchens and hardware. Full terms and conditions for customers across India.';
+$page_keywords    = 'warranty policy, furniture warranty terms, bosk furniture policy, warranty conditions india';
+$page_canonical   = '/warranty_policy.php';
+?>
 <!DOCTYPE HTML>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-IN">
 
 <head>
     <?php include_once"design/header.php";?>
-
 </head>
 
 <body class="inner-page">

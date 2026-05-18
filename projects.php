@@ -1,9 +1,14 @@
+<?php
+$page_title       = 'Our Projects | Bosk Furniture Interior Design Portfolio India';
+$page_description = 'Explore completed Bosk Furniture interior design projects - modular kitchens, residential interiors and custom furniture installations across India.';
+$page_keywords    = 'bosk furniture projects, interior design portfolio, modular kitchen projects, home interior projects india';
+$page_canonical   = '/projects.php';
+?>
 <!DOCTYPE HTML>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-IN">
 
 <head>
     <?php include_once"design/header.php";?>
-
 </head>
 
 <body class="inner-page">

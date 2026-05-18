@@ -1,25 +1,62 @@
 <?php
+// Guarded session_start so it never collides and never triggers
+// "headers already sent" warnings from included partials.
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include_once("connect.php");
-if(isset($_GET['astringdata']))
-	{
-	    $blogid = mysqli_real_escape_string($con,$_GET['astringdata']);
-	   // $encodeblogid = base64_decode($blogid);
-	    
-	    $cmd3="select * from blog where id='$encodeblogid'";
-        $result3=mysqli_query($con,$cmd3) or die(mysqli_error($con));
-        while($row3=mysqli_fetch_array($result3))
-        {
-            $blog_title=$row3['blog_title'];
-           
-        }
 
+// Safe defaults so the rest of the page never sees undefined variables.
+$blog_title = '';
+$blogid     = 0;
+
+if (isset($_GET['astringdata'])) {
+
+    $raw = $_GET['astringdata'];
+
+    // The site links to this page in TWO styles:
+    //   1) plain numeric id   -> details.php?astringdata=1           (blog-full-list.php, related sidebar)
+    //   2) base64-encoded id  -> details.php?astringdata=MQ==        (homepage block in index.php)
+    // Accept both without breaking existing links.
+    if (ctype_digit($raw)) {
+        $blogid = (int) $raw;
+    } else {
+        $decoded = base64_decode($raw, true);
+        $blogid  = ($decoded !== false && ctype_digit($decoded)) ? (int) $decoded : 0;
+    }
+
+    if ($blogid > 0) {
+        $cmd3    = "select * from blog where id='" . $blogid . "'";
+        $result3 = mysqli_query($con, $cmd3) or die(mysqli_error($con));
+        while ($row3 = mysqli_fetch_array($result3)) {
+            $blog_title = $row3['blog_title'];
+        }
+    }
+
+// ---- Dynamic SEO for blog post ----
+$_seo_blog        = isset($blog_title) && $blog_title !== '' ? $blog_title : 'Blog Article';
+$page_title       = $_seo_blog . ' | Bosk Furniture Blog India';
+$page_description = 'Read "' . $_seo_blog . '" on the Bosk Furniture blog - expert furniture tips, interior design ideas and home decor inspiration for Indian homes.';
+$page_keywords    = $_seo_blog . ', furniture blog, interior design tips, bosk furniture blog india';
+$page_canonical   = '/details.php?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '');
+$page_schema = '
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ' . json_encode($_seo_blog) . ',
+  "author": {"@type":"Organization","name":"Bosk Furniture"},
+  "publisher": {"@type":"Organization","name":"Bosk Furniture","logo":{"@type":"ImageObject","url":"https://www.boskfurniture.com/images/fevicon.png"}},
+  "mainEntityOfPage": "' . htmlspecialchars($page_canonical, ENT_QUOTES, 'UTF-8') . '",
+  "inLanguage": "en-IN"
+}
+</script>';
 ?>
 <!DOCTYPE HTML>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-IN">
 
 <head>
     <?php include_once"design/header.php";?>
-
 </head>
 
 <body class="inner-page">
@@ -47,15 +84,24 @@ if(isset($_GET['astringdata']))
         </div>
         <!-- END SECTION HEADINGS -->
      <?php
-        $cmd="select * from blog where id='$blogid'";
-        $result=mysqli_query($con,$cmd) or die(mysqli_error($con));
-        $row=mysqli_fetch_array($result);
-            // $id = $row['id'];
-            $blog_title=$row['blog_title'];
-            $blog_description=$row['blog_description'];
-            $blog_date=$row['blog_date'];
-            $img=$row['img'];
-                 
+        // Safe defaults so the page still renders if the blog id is missing/invalid.
+        $blog_title       = '';
+        $blog_description = '';
+        $blog_date        = '';
+        $img              = '';
+
+        if (!empty($blogid) && $blogid > 0) {
+            $cmd    = "select * from blog where id='" . (int)$blogid . "'";
+            $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
+            $row    = mysqli_fetch_array($result);
+
+            if ($row) {
+                $blog_title       = $row['blog_title'];
+                $blog_description = $row['blog_description'];
+                $blog_date        = $row['blog_date'];
+                $img              = $row['img'];
+            }
+        }
         ?>
        
         

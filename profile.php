@@ -1,14 +1,20 @@
-<?php 
-session_start();
+<?php
+// Guarded session_start so it never collides and never triggers
+// "headers already sent" warnings from included partials.
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$page_title       = 'My Profile | Bosk Furniture Account';
+$page_description = 'View and manage your Bosk Furniture profile - update details, track orders and manage your account preferences.';
+$page_keywords    = 'my profile, account, bosk furniture account';
+$page_canonical   = '/profile.php';
+$page_robots      = 'noindex, follow';
 ?>
 <!DOCTYPE HTML>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-IN">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>BOSK FURNITURE</title>
+    <?php include_once "design/seo-meta.php"; ?>
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600,700%7COpen+Sans:300,400" rel="stylesheet">
     <!-- FONT AWESOME -->
@@ -19,136 +25,137 @@ session_start();
     <link href="css/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/lightcase.css">
     <link rel="stylesheet" href="css/styles.css">
-     <link rel="stylesheet" href="toastr/toastr.css">
-    
+    <link rel="stylesheet" href="toastr/toastr.css">
+
 
     <style>
-    body{
-        background-color:white;
-    }
-      .myaccount-tab-menu {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-}
+        body {
+            background-color: white;
+        }
 
-.myaccount-tab-menu a {
-    border: 1px solid #ccc;
-    border-bottom: none;
-    color: #252525;
-    font-weight: 400;
-    font-size: 15px;
-    display: block;
-    padding: 10px 15px;
-    text-transform: uppercase;
-}
+        .myaccount-tab-menu {
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
 
-.myaccount-tab-menu a:last-child {
-    border-bottom: 1px solid #ccc;
-}
+        .myaccount-tab-menu a {
+            border: 1px solid #ccc;
+            border-bottom: none;
+            color: #252525;
+            font-weight: 400;
+            font-size: 15px;
+            display: block;
+            padding: 10px 15px;
+            text-transform: uppercase;
+        }
 
-.myaccount-tab-menu a:hover,
-.myaccount-tab-menu a.active {
-    background-color: #532A1A;
-    border-color: #532A1A;
-    color: #fff;
-}
+        .myaccount-tab-menu a:last-child {
+            border-bottom: 1px solid #ccc;
+        }
 
-.myaccount-tab-menu a i.fa {
-    font-size: 14px;
-    text-align: center;
-    width: 25px;
-}
+        .myaccount-tab-menu a:hover,
+        .myaccount-tab-menu a.active {
+            background-color: #532A1A;
+            border-color: #532A1A;
+            color: #fff;
+        }
 
-@media only screen and (max-width: 767.98px) {
-    #myaccountContent {
-        margin-top: 30px;
-    }
-}
+        .myaccount-tab-menu a i.fa {
+            font-size: 14px;
+            text-align: center;
+            width: 25px;
+        }
 
-.myaccount-content {
-    border: 1px solid #eeeeee;
-    padding: 30px;
-}
+        @media only screen and (max-width: 767.98px) {
+            #myaccountContent {
+                margin-top: 30px;
+            }
+        }
 
-@media only screen and (max-width: 575.98px) {
-    .myaccount-content {
-        padding: 20px 15px;
-    }
-}
+        .myaccount-content {
+            border: 1px solid #eeeeee;
+            padding: 30px;
+        }
 
-.myaccount-content form {
-    margin-top: -20px;
-}
+        @media only screen and (max-width: 575.98px) {
+            .myaccount-content {
+                padding: 20px 15px;
+            }
+        }
 
-.myaccount-content h3 {
-    font-size: 20px;
-    border-bottom: 1px dashed #ccc;
-    padding-bottom: 10px;
-    margin-bottom: 25px;
-    font-weight: 400;
-}
+        .myaccount-content form {
+            margin-top: -20px;
+        }
 
-.myaccount-content .welcome a {
-    color: #252525;
-}
+        .myaccount-content h3 {
+            font-size: 20px;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
 
-.myaccount-content .welcome a:hover {
-    color: #532A1A;
-}
+        .myaccount-content .welcome a {
+            color: #252525;
+        }
 
-.myaccount-content .welcome strong {
-    font-weight: 500;
-    color: #532A1A;
-}
+        .myaccount-content .welcome a:hover {
+            color: #532A1A;
+        }
 
-.myaccount-content fieldset {
-    margin-top: 20px;
-}
+        .myaccount-content .welcome strong {
+            font-weight: 500;
+            color: #532A1A;
+        }
 
-.myaccount-content fieldset legend {
-    color: #252525;
-    font-size: 20px;
-    margin-top: 20px;
-    font-weight: 400;
-    border-bottom: 1px dashed #ccc;
-}
+        .myaccount-content fieldset {
+            margin-top: 20px;
+        }
 
-.myaccount-table {
-    white-space: nowrap;
-    font-size: 14px;
-}
+        .myaccount-content fieldset legend {
+            color: #252525;
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: 400;
+            border-bottom: 1px dashed #ccc;
+        }
 
-.myaccount-table table th,
-.myaccount-table .table th {
-    color: #252525;
-    padding: 10px;
-    font-weight: 400;
-    background-color: #f8f8f8;
-    border-color: #ccc;
-    border-bottom: 0;
-}
+        .myaccount-table {
+            white-space: nowrap;
+            font-size: 14px;
+        }
 
-.myaccount-table table td,
-.myaccount-table .table td {
-    padding: 10px;
-    vertical-align: middle;
-    border-color: #ccc;
-}
+        .myaccount-table table th,
+        .myaccount-table .table th {
+            color: #252525;
+            padding: 10px;
+            font-weight: 400;
+            background-color: #f8f8f8;
+            border-color: #ccc;
+            border-bottom: 0;
+        }
 
-.saved-message {
-    background-color: #f4f5f7;
-    border-top: 3px solid #532A1A;
-    border-radius: 5px 5px 0 0;
-    font-weight: 400;
-    font-size: 15px;
-    color: #555;
-    padding: 20px;
-}
+        .myaccount-table table td,
+        .myaccount-table .table td {
+            padding: 10px;
+            vertical-align: middle;
+            border-color: #ccc;
+        }
 
-/*-------- Start My Account Page Wrapper --------*/
+        .saved-message {
+            background-color: #f4f5f7;
+            border-top: 3px solid #532A1A;
+            border-radius: 5px 5px 0 0;
+            font-weight: 400;
+            font-size: 15px;
+            color: #555;
+            padding: 20px;
+        }
+
+        /*-------- Start My Account Page Wrapper --------*/
     </style>
 </head>
 
@@ -170,7 +177,7 @@ session_start();
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="index.html">Home</a><span>»</span><span>PROFILE</span>
+                        <a href="index.php">Home</a><span>»</span><span>PROFILE</span>
                     </div>
                 </div>
             </div>
@@ -178,30 +185,40 @@ session_start();
         <?php
 include_once"connect.php";
  if (isset($_SESSION['email'])) {
-    $userEmail = $_SESSION['email'];
-    //  echo 'User Email: ' . $_SESSION['email'];                                    
-$cmd="select * from user where email='$userEmail'";
-$result=mysqli_query($con,$cmd) or die(mysqli_error($con));
-$row=mysqli_fetch_array($result);
-   
-    $id = $row['id'];
-    $encode_user_id=base64_encode($id);
-    $email=$row['email'];
-    $firstname=$row['firstname'];
-    $lastname=$row['lastname'];
-    $dob=$row['dob'];
-    $password=$row['password'];
-    $addressline1=$row['addressline1'];
-    $addressline2=$row['addressline2'];
-    $pincode=$row['pincode'];
-    $country=$row['country'];
-    $state=$row['state'];
-    $city=$row['city'];
-    $phone=$row['phone'];
-    $img=$row['img'];
-   
+    $userEmail = mysqli_real_escape_string($con, $_SESSION['email']);
+
+    $cmd    = "select * from user where email='$userEmail'";
+    $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
+    $row    = mysqli_fetch_array($result);
+
+    // Session has an email, but no matching user in DB (deleted/stale session).
+    // Clear the session and send the visitor to log in again instead of
+    // rendering a profile with all-null fields.
+    if (!$row) {
+        session_unset();
+        session_destroy();
+        echo "<script>window.location='login.php';</script>";
+        exit;
+    }
+
+    $id              = $row['id'];
+    $encode_user_id  = base64_encode($id);
+    $email           = $row['email'];
+    $firstname       = $row['firstname'];
+    $lastname        = $row['lastname'];
+    $dob             = $row['dob'];
+    $password        = $row['password'];
+    $addressline1    = $row['addressline1'];
+    $addressline2    = $row['addressline2'];
+    $pincode         = $row['pincode'];
+    $country         = $row['country'];
+    $state           = $row['state'];
+    $city            = $row['city'];
+    $phone           = $row['phone'];
+    $img             = $row['img'];
+
 ?>
-      <!-- my account wrapper start -->
+        <!-- my account wrapper start -->
         <div class="my-account-wrapper mt-5 pt-50 pb-50">
             <div class="container">
                 <div class="section-bg-color">
@@ -213,22 +230,26 @@ $row=mysqli_fetch_array($result);
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4">
                                         <div class="myaccount-tab-menu nav" role="tablist">
-                                            <a href="#dashboad" class="active" data-bs-toggle="tab"><i class="fa fa-dashboard"></i>
+                                            <a href="#dashboad" class="active" data-bs-toggle="tab"><i
+                                                    class="fa fa-dashboard"></i>
                                                 Dashboard</a>
                                             <a href="#orders" data-bs-toggle="tab"><i class="fa fa-cart-arrow-down"></i>
                                                 Orders</a>
-                                                <a href="#return" data-bs-toggle="tab"><i class="fa fa-cloud-download"></i>
-                                            Return Request</a>
+                                            <a href="#return" data-bs-toggle="tab"><i class="fa fa-cloud-download"></i>
+                                                Return Request</a>
                                             <!--<a href="#download" data-bs-toggle="tab"><i class="fa fa-cloud-download"></i>-->
                                             <!--    Download</a>-->
                                             <!--<a href="#payment-method" data-bs-toggle="tab"><i class="fa fa-credit-card"></i>-->
                                             <!--    Payment-->
                                             <!--    Method</a>-->
-                                            <a href="#address-edit" data-bs-toggle="tab"><i class="fa fa-map-marker"></i>
+                                            <a href="#address-edit" data-bs-toggle="tab"><i
+                                                    class="fa fa-map-marker"></i>
                                                 address</a>
-                                            <a href="#account-info" data-bs-toggle="tab"><i class="fa fa-user"></i> Account
+                                            <a href="#account-info" data-bs-toggle="tab"><i class="fa fa-user"></i>
+                                                Account
                                                 Details</a>
-                                                <a href="#password-edit" data-bs-toggle="tab"><i class="fa fa-pencil"></i> Change Password</a>
+                                            <a href="#password-edit" data-bs-toggle="tab"><i class="fa fa-pencil"></i>
+                                                Change Password</a>
                                             <a href="logout.php"><i class="fa fa-sign-out"></i>Logout</a>
                                         </div>
                                     </div>
@@ -242,11 +263,15 @@ $row=mysqli_fetch_array($result);
                                                 <div class="myaccount-content">
                                                     <h3>Dashboard</h3>
                                                     <div class="welcome">
-                                                        <p>Hello, <strong><?php echo$firstname.' '.$lastname;?></strong> (If Not <strong>You
-                                                            !</strong><a href="logout.php" class="logout"> Logout</a>)</p>
+                                                        <p>Hello, <strong>
+                                                                <?php echo$firstname.' '.$lastname;?>
+                                                            </strong> (If Not <strong>You
+                                                                !</strong><a href="logout.php" class="logout">
+                                                                Logout</a>)</p>
                                                     </div>
                                                     <p class="mb-0">From your account dashboard. you can easily check &
-                                                        view your recent orders, manage your shipping and billing addresses
+                                                        view your recent orders, manage your shipping and billing
+                                                        addresses
                                                         and edit your password and account details.</p>
                                                 </div>
                                             </div>
@@ -261,12 +286,15 @@ $row=mysqli_fetch_array($result);
                                                             <thead class="thead-light">
                                                                 <tr>
                                                                     <th style="text-align:center !important;">Index</th>
-                                                                    <th style="text-align:center !important;">Order Id</th>
+                                                                    <th style="text-align:center !important;">Order Id
+                                                                    </th>
                                                                     <th style="text-align:center !important;">Date</th>
                                                                     <!--<th>Status</th>-->
                                                                     <th style="text-align:center !important;">Total</th>
-                                                                    <th style="text-align:center !important;">Order Detail</th>
-                                                                    <th style="text-align:center !important;">Download Invoice</th>
+                                                                    <th style="text-align:center !important;">Order
+                                                                        Detail</th>
+                                                                    <th style="text-align:center !important;">Download
+                                                                        Invoice</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -288,27 +316,37 @@ $row=mysqli_fetch_array($result);
                                                  
                                             ?>
                                                                 <tr>
-                                                                    <td><?php echo $count;?></td>
-                                                                    <td><b><?php echo $order_id;?></b></td>
-                                                                    <td><?php echo $date_time;?></td>
+                                                                    <td>
+                                                                        <?php echo $count;?>
+                                                                    </td>
+                                                                    <td><b>
+                                                                            <?php echo $order_id;?>
+                                                                        </b></td>
+                                                                    <td>
+                                                                        <?php echo $date_time;?>
+                                                                    </td>
                                                                     <!--<td>Pending</td>-->
                                                                     <td>$3000</td>
-                                                                    <td><a href="order_details.php?astringdata=<?php echo $order_id;?>&astringdata1=<?php echo $encode_user_id;?>" style="background-color:#532A1A;color:white;" class="btn btn__bg">View</a>
+                                                                    <td><a href="order_details.php?astringdata=<?php echo $order_id;?>&astringdata1=<?php echo $encode_user_id;?>"
+                                                                            style="background-color:#532A1A;color:white;"
+                                                                            class="btn btn__bg">View</a>
                                                                     </td>
-                                                                    <td><a href="invoice.php?astringdata=<?php echo $order_id;?>&astringdata1=<?php echo $encode_user_id;?>" style="background-color:#532A1A;color:white;" class="btn btn__bg">Download</a>
+                                                                    <td><a href="invoice.php?astringdata=<?php echo $order_id;?>&astringdata1=<?php echo $encode_user_id;?>"
+                                                                            style="background-color:#532A1A;color:white;"
+                                                                            class="btn btn__bg">Download</a>
                                                                     </td>
                                                                 </tr>
                                                                 <?php
                                               }
                                                                 ?>
-                                                                
+
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- Single Tab Content End -->
-                                            
+
                                             <!-- Single Tab Content Start -->
                                             <div class="tab-pane fade" id="return" role="tabpanel">
                                                 <div class="myaccount-content">
@@ -346,10 +384,18 @@ $row=mysqli_fetch_array($result);
                                                                       $quantity=$row43['quantity'];      
                                                             ?>
                                                                 <tr>
-                                                                    <td><?php echo $order_id;?></td>
-                                                                    <td><?php echo $product_name;?></td>
-                                                                    <td><?php echo $quantity;?></td>
-                                                                    <td><?php echo $date_time;?></td>
+                                                                    <td>
+                                                                        <?php echo $order_id;?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $product_name;?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $quantity;?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $date_time;?>
+                                                                    </td>
                                                                     <td>YES</td>
                                                                 </tr>
                                                                 <?php
@@ -363,7 +409,7 @@ $row=mysqli_fetch_array($result);
                                                 </div>
                                             </div>
                                             <!-- Single Tab Content End -->
-                                            
+
                                             <!-- Single Tab Content Start -->
                                             <!--<div class="tab-pane fade" id="download" role="tabpanel">-->
                                             <!--    <div class="myaccount-content">-->
@@ -416,161 +462,227 @@ $row=mysqli_fetch_array($result);
                                                 <div class="myaccount-content">
                                                     <h3>Billing Address</h3>
                                                     <address>
-                                                        <p><strong><?php echo$firstname.' '.$lastname;?></strong></p><br/>
+                                                        <p><strong>
+                                                                <?php echo$firstname.' '.$lastname;?>
+                                                            </strong></p><br />
                                                         <form id="MyForm" method="post">
-                                                            <input type="hidden" id="id" name="id" value="<?php echo$id;?>">
+                                                            <input type="hidden" id="id" name="id"
+                                                                value="<?php echo$id;?>">
                                                             <div class="row">
                                                                 <div class="col-lg-6">
                                                                     <div class="form-group">
-                                                                        <label for="First Name">Addressline1<span style="color:red">*</span></label><br>
-                                                                        <input type="text"  class="form-control input-custom input-full" id="addressline1" name="addressline1" value="<?php echo $addressline1;?>" placeholder="First Name">
+                                                                        <label for="First Name">Addressline1<span
+                                                                                style="color:red">*</span></label><br>
+                                                                        <input type="text"
+                                                                            class="form-control input-custom input-full"
+                                                                            id="addressline1" name="addressline1"
+                                                                            value="<?php echo $addressline1;?>"
+                                                                            placeholder="First Name">
                                                                     </div>
-                           
+
                                                                 </div>
                                                                 <div class="col-lg-6">
-                                                                     <div class="form-group">
-                                                                         <label for="Last Name">Addressline2<span style="color:red">*</span></label><br>
-                                                                        <input type="text"  class="form-control input-custom input-full" id="addressline2" name="addressline2" value="<?php echo $addressline2;?>" placeholder="Last Name">
+                                                                    <div class="form-group">
+                                                                        <label for="Last Name">Addressline2<span
+                                                                                style="color:red">*</span></label><br>
+                                                                        <input type="text"
+                                                                            class="form-control input-custom input-full"
+                                                                            id="addressline2" name="addressline2"
+                                                                            value="<?php echo $addressline2;?>"
+                                                                            placeholder="Last Name">
                                                                     </div>
-                            
+
                                                                 </div>
                                                             </div>
-                                                           
-                                                           <div class="form-group">
-                                                               <label for="Email">Pincode<span style="color:red">*</span></label><br>
-                                                                <input type="text" class="form-control input-custom input-full" id="pincode" name="pincode" value="<?php echo$pincode;?>" placeholder="Email">
-                                                            </div>
-                                                            
+
                                                             <div class="form-group">
-                                                               <label for="Email">Country<span style="color:red">*</span></label><br>
-                                                                <input type="text" class="form-control input-custom input-full" id="country" name="country" value="<?php echo$country;?>" placeholder="Date Of Birth">
+                                                                <label for="Email">Pincode<span
+                                                                        style="color:red">*</span></label><br>
+                                                                <input type="text"
+                                                                    class="form-control input-custom input-full"
+                                                                    id="pincode" name="pincode"
+                                                                    value="<?php echo$pincode;?>" placeholder="Email">
                                                             </div>
-                                                            
+
                                                             <div class="form-group">
-                                                               <label for="Email">State<span style="color:red">*</span></label><br>
-                                                                <input type="text" class="form-control input-custom input-full" id="state" name="state" value="<?php echo$state;?>" placeholder="Mobile Number">
+                                                                <label for="Email">Country<span
+                                                                        style="color:red">*</span></label><br>
+                                                                <input type="text"
+                                                                    class="form-control input-custom input-full"
+                                                                    id="country" name="country"
+                                                                    value="<?php echo$country;?>"
+                                                                    placeholder="Date Of Birth">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="Email">State<span
+                                                                        style="color:red">*</span></label><br>
+                                                                <input type="text"
+                                                                    class="form-control input-custom input-full"
+                                                                    id="state" name="state" value="<?php echo$state;?>"
+                                                                    placeholder="Mobile Number">
                                                             </div>
                                                             <div class="form-group">
-                                                               <label for="Email">City<span style="color:red">*</span></label><br>
-                                                                <input type="text" class="form-control input-custom input-full" id="city" name="city" value="<?php echo$city;?>" placeholder="No file Choosen">
+                                                                <label for="Email">City<span
+                                                                        style="color:red">*</span></label><br>
+                                                                <input type="text"
+                                                                    class="form-control input-custom input-full"
+                                                                    id="city" name="city" value="<?php echo$city;?>"
+                                                                    placeholder="No file Choosen">
                                                             </div>
-                            
-                                                           
+
+
                                                             <div class="single-input-item">
-                                                                <button style="background-color:#532A1A;color:white;" name="submit" id="submit" type="submit" class="btn btn__bg">Save Changes</button>
+                                                                <button style="background-color:#532A1A;color:white;"
+                                                                    name="submit" id="submit" type="submit"
+                                                                    class="btn btn__bg">Save Changes</button>
                                                             </div>
                                                         </form>
                                                         <div id="return"></div>
                                                     </address>
-                                                    
+
                                                 </div>
                                             </div>
                                             <!-- Single Tab Content End -->
-                                            
-                                        <!--    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-                                        <!--  <div class="modal-dialog" role="document">-->
-                                        <!--    <div class="modal-content">-->
-                                        <!--      <div class="modal-header">-->
-                                        <!--        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
-                                        <!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-                                        <!--          <span aria-hidden="true">&times;</span>-->
-                                        <!--        </button>-->
-                                        <!--      </div>-->
-                                        <!--      <div class="modal-body">-->
-                                        <!--        ...-->
-                                        <!--      </div>-->
-                                        <!--      <div class="modal-footer">-->
-                                        <!--        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                                        <!--        <button type="button" class="btn btn-primary">Save changes</button>-->
-                                        <!--      </div>-->
-                                        <!--    </div>-->
-                                        <!--  </div>-->
-                                        <!--</div>-->
-                                            
+
+                                            <!--    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+                                            <!--  <div class="modal-dialog" role="document">-->
+                                            <!--    <div class="modal-content">-->
+                                            <!--      <div class="modal-header">-->
+                                            <!--        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
+                                            <!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                                            <!--          <span aria-hidden="true">&times;</span>-->
+                                            <!--        </button>-->
+                                            <!--      </div>-->
+                                            <!--      <div class="modal-body">-->
+                                            <!--        ...-->
+                                            <!--      </div>-->
+                                            <!--      <div class="modal-footer">-->
+                                            <!--        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                                            <!--        <button type="button" class="btn btn-primary">Save changes</button>-->
+                                            <!--      </div>-->
+                                            <!--    </div>-->
+                                            <!--  </div>-->
+                                            <!--</div>-->
+
                                             <!-- Single Tab Content Start -->
                                             <div class="tab-pane fade" id="account-info" role="tabpanel">
                                                 <div class="myaccount-content">
-                                                    <h3>Account Details</h3><br/>
+                                                    <h3>Account Details</h3><br />
                                                     <div class="account-details-form">
                                                         <form id="MyForm1" method="post">
-                                                            <input type="hidden" id="id" name="id" value="<?php echo$id;?>">
+                                                            <input type="hidden" id="id" name="id"
+                                                                value="<?php echo$id;?>">
                                                             <div class="row">
                                                                 <div class="col-lg-6">
                                                                     <div class="form-group">
-                                                                        <label for="First Name">First Name<span style="color:red">*</span></label><br>
-                                                                        <input type="text"  class="form-control input-custom input-full" id="firstname" name="firstname" value="<?php echo$firstname?>" placeholder="First Name">
+                                                                        <label for="First Name">First Name<span
+                                                                                style="color:red">*</span></label><br>
+                                                                        <input type="text"
+                                                                            class="form-control input-custom input-full"
+                                                                            id="firstname" name="firstname"
+                                                                            value="<?php echo$firstname?>"
+                                                                            placeholder="First Name">
                                                                     </div>
-                           
+
                                                                 </div>
                                                                 <div class="col-lg-6">
-                                                                     <div class="form-group">
-                                                                         <label for="Last Name">Last Name<span style="color:red">*</span></label><br>
-                                                                        <input type="text"  class="form-control input-custom input-full" id="lastname" name="lastname" value="<?php echo$lastname?>" placeholder="Last Name">
+                                                                    <div class="form-group">
+                                                                        <label for="Last Name">Last Name<span
+                                                                                style="color:red">*</span></label><br>
+                                                                        <input type="text"
+                                                                            class="form-control input-custom input-full"
+                                                                            id="lastname" name="lastname"
+                                                                            value="<?php echo$lastname?>"
+                                                                            placeholder="Last Name">
                                                                     </div>
-                            
+
                                                                 </div>
                                                             </div>
-                                                           
-                                                           
-                                                            
+
+
+
                                                             <div class="form-group">
-                                                               <label for="Email">Date Of Birth<span style="color:red">*</span></label><br>
-                                                                <input type="date" class="form-control input-custom input-full" id="dob" value="<?php echo$dob;?>" name="dob" placeholder="Date Of Birth">
+                                                                <label for="Email">Date Of Birth<span
+                                                                        style="color:red">*</span></label><br>
+                                                                <input type="date"
+                                                                    class="form-control input-custom input-full"
+                                                                    id="dob" value="<?php echo$dob;?>" name="dob"
+                                                                    placeholder="Date Of Birth">
                                                             </div>
-                                                            
+
                                                             <div class="form-group">
-                                                               <label for="Email">Mobile Number<span style="color:red">*</span></label><br>
-                                                                <input type="text" class="form-control input-custom input-full" id="phone" value="<?php echo$phone;?>" name="phone" placeholder="Mobile Number">
+                                                                <label for="Email">Mobile Number<span
+                                                                        style="color:red">*</span></label><br>
+                                                                <input type="text"
+                                                                    class="form-control input-custom input-full"
+                                                                    id="phone" value="<?php echo$phone;?>" name="phone"
+                                                                    placeholder="Mobile Number">
                                                             </div>
                                                             <!--<div class="form-group">-->
                                                             <!--   <label for="Email">Image<span style="color:red">*</span></label><br>-->
                                                             <!--    <input type="file" class="form-control input-custom input-full" id="img" name="img"  placeholder="No file Choosen">-->
                                                             <!--</div>-->
-                            
-                                                           
+
+
                                                             <div class="single-input-item">
-                                                                <button style="background-color:#532A1A;color:white;" name="a_submit" id="a_submit" type="submit" class="btn btn__bg">Save Changes</button>
+                                                                <button style="background-color:#532A1A;color:white;"
+                                                                    name="a_submit" id="a_submit" type="submit"
+                                                                    class="btn btn__bg">Save Changes</button>
                                                             </div>
                                                         </form>
                                                         <div id="return1"></div>
                                                     </div>
                                                 </div>
                                             </div> <!-- Single Tab Content End -->
-                                            
+
                                             <!--Single Tab Content Start-->
-                                             <div class="tab-pane fade" id="password-edit" role="tabpanel">
-                                                 <form id="MyForm2" method="post">
-                                                     <input type="hidden" id="id" name="id" value="<?php echo$id;?>">
-                                                 <fieldset>
-                                                                <legend>Password change</legend><br/>
-                                                                  <div class="form-group">
-                                                                      <label for="Current Password">Current Password<span style="color:red">*</span></label><br>
-                                                                        <input type="text" class="form-control input-custom input-full" name="oldpassword" placeholder="Current Password">
-                                                                    </div>
-                                                                <div class="row">
-                                                                    <div class="col-lg-6">
-                                                                          <div class="form-group">
-                                                                              <label for="New Password">New Password<span style="color:red">*</span></label><br>
-                                                                            <input type="password" class="form-control input-custom input-full" id="newpassword" name="newpassword" placeholder="New Password">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6">
-                                                                          <div class="form-group">
-                                                                              <label for="Confirm Password">Confirm Password<span style="color:red">*</span></label><br>
-                                                                            <input type="password" class="form-control input-custom input-full" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password">
-                                                                        </div>
-                                                                    </div>
+                                            <div class="tab-pane fade" id="password-edit" role="tabpanel">
+                                                <form id="MyForm2" method="post">
+                                                    <input type="hidden" id="id" name="id" value="<?php echo$id;?>">
+                                                    <fieldset>
+                                                        <legend>Password change</legend><br />
+                                                        <div class="form-group">
+                                                            <label for="Current Password">Current Password<span
+                                                                    style="color:red">*</span></label><br>
+                                                            <input type="text"
+                                                                class="form-control input-custom input-full"
+                                                                name="oldpassword" placeholder="Current Password">
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <div class="form-group">
+                                                                    <label for="New Password">New Password<span
+                                                                            style="color:red">*</span></label><br>
+                                                                    <input type="password"
+                                                                        class="form-control input-custom input-full"
+                                                                        id="newpassword" name="newpassword"
+                                                                        placeholder="New Password">
                                                                 </div>
-                                                                <div  id="CheckPasswordMatch"></div>
-                                                            </fieldset>
-                                                            <div class="single-input-item">
-                                                                <button style="background-color:#532A1A;color:white;" name="c_submit" id="c_submit" type="submit" class="btn btn__bg">Save Changes</button>
                                                             </div>
-                                                        </form>
-                                                        <div id="return2"></div>
+                                                            <div class="col-lg-6">
+                                                                <div class="form-group">
+                                                                    <label for="Confirm Password">Confirm Password<span
+                                                                            style="color:red">*</span></label><br>
+                                                                    <input type="password"
+                                                                        class="form-control input-custom input-full"
+                                                                        id="confirmpassword" name="confirmpassword"
+                                                                        placeholder="Confirm Password">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="CheckPasswordMatch"></div>
+                                                    </fieldset>
+                                                    <div class="single-input-item">
+                                                        <button style="background-color:#532A1A;color:white;"
+                                                            name="c_submit" id="c_submit" type="submit"
+                                                            class="btn btn__bg">Save Changes</button>
+                                                    </div>
+                                                </form>
+                                                <div id="return2"></div>
                                             </div>
                                             <!--Single Tab Content End-->
-                                            
+
                                         </div>
                                     </div> <!-- My Account Tab Content End -->
                                 </div>
@@ -579,13 +691,17 @@ $row=mysqli_fetch_array($result);
                     </div>
                 </div>
             </div>
-        </div><br/><br/>
+        </div><br /><br />
         <?php
  }
  else{
-     ?> 
-     <center><p style="font-size:1.6rem;" class="mt-5 mb-1">Hello User,Please Login / Register First To View Profile..</p><br/><button class=" mb-5" type="submit" class="btn btn-primary" style="background-color:#532A1A;"><a style="color:white;" href="login.php">Login / Register</a></button></center>
-     <?php
+     ?>
+        <center>
+            <p style="font-size:1.6rem;" class="mt-5 mb-1">Hello User,Please Login / Register First To View Profile..
+            </p><br /><button class=" mb-5" type="submit" class="btn btn-primary" style="background-color:#532A1A;"><a
+                    style="color:white;" href="login.php">Login / Register</a></button>
+        </center>
+        <?php
  }
         ?>
         <!-- my account wrapper end -->
@@ -596,7 +712,7 @@ $row=mysqli_fetch_array($result);
         <!-- END FOOTER -->
 
         <?php include_once"design/pre_loader.php";?>
-       <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.min.js"></script>
         <script src="js/tether.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/mmenu.min.js"></script>
@@ -609,48 +725,48 @@ $row=mysqli_fetch_array($result);
         <script src="js/jquery.counterup.min.js"></script>
         <script src="js/inner-script.js"></script>
         <script>
-            $(window).on('scroll load', function() {
+            $(window).on('scroll load', function () {
                 $("#header.cloned #logo img").attr("src", $('#header #logo img').attr('data-sticky-logo'));
             });
 
         </script>
         <script>
-    $(document).ready(function() {
-        $('.myaccount-tab-menu a').on('click', function(e) {
-            e.preventDefault();
-            var targetTab = $(this).attr("href");
+            $(document).ready(function () {
+                $('.myaccount-tab-menu a').on('click', function (e) {
+                    e.preventDefault();
+                    var targetTab = $(this).attr("href");
 
-            // Check if the clicked tab is not the currently active one
-            if (!$(this).hasClass("active")) {
-                // Deactivate the currently active tab
-                $('.myaccount-tab-menu a.active').removeClass("active");
-                $('.tab-pane.active').removeClass("show active");
+                    // Check if the clicked tab is not the currently active one
+                    if (!$(this).hasClass("active")) {
+                        // Deactivate the currently active tab
+                        $('.myaccount-tab-menu a.active').removeClass("active");
+                        $('.tab-pane.active').removeClass("show active");
 
-                // Activate the newly clicked tab
-                $(this).addClass("active");
-                $(targetTab).addClass("show active");
-            }
-        });
-    });
-</script>
-<script src="js/add/profile.js"></script>
-<script src="js/add/account.js"></script>
-<script src="js/add/change_password.js"></script>
-<script src="toastr/toastr.min.js"></script>
+                        // Activate the newly clicked tab
+                        $(this).addClass("active");
+                        $(targetTab).addClass("show active");
+                    }
+                });
+            });
+        </script>
+        <script src="js/add/profile.js"></script>
+        <script src="js/add/account.js"></script>
+        <script src="js/add/change_password.js"></script>
+        <script src="toastr/toastr.min.js"></script>
         <!--<script src="js/vendor.js"></script>-->
         <!--<script src="js/active.js"></script>-->
         <script>
-$(document).ready(function () {
-   $("#confirmpassword").on('keyup', function(){
-    var password = $("#newpassword").val();
-    var confirmPassword = $("#confirmpassword").val();
-    if (password != confirmPassword)
-        $("#CheckPasswordMatch").html("Password does not match !").css("color","red");
-    else
-        $("#CheckPasswordMatch").html("Password match !").css("color","green");
-   });
-});
-</script>
+            $(document).ready(function () {
+                $("#confirmpassword").on('keyup', function () {
+                    var password = $("#newpassword").val();
+                    var confirmPassword = $("#confirmpassword").val();
+                    if (password != confirmPassword)
+                        $("#CheckPasswordMatch").html("Password does not match !").css("color", "red");
+                    else
+                        $("#CheckPasswordMatch").html("Password match !").css("color", "green");
+                });
+            });
+        </script>
 
     </div>
     <!-- Wrapper / End -->

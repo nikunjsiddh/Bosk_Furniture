@@ -1,0 +1,47 @@
+# ============================================================
+# Bosk Furniture - robots.txt
+# Site: https://www.boskfurniture.com
+# ============================================================
+
+User-agent: *
+
+# Allow all public pages
+Allow: /
+
+# Disallow admin & backend areas
+Disallow: /Admin/
+Disallow: /admin/
+Disallow: /back/
+Disallow: /form/
+Disallow: /revolution/php/
+Disallow: /design/
+Disallow: /connect.php
+
+# Disallow user account / transactional pages (no SEO value)
+Disallow: /cart.php
+Disallow: /cart1.php
+Disallow: /checkout.php
+Disallow: /wishlist.php
+Disallow: /login.php
+Disallow: /register.php
+Disallow: /logout.php
+Disallow: /profile.php
+Disallow: /order_details.php
+Disallow: /invoice.php
+Disallow: /return_request.php
+
+# Disallow query-parameter URLs that create duplicate content
+Disallow: /*?astringdata1=
+Disallow: /*&astringdata1=
+
+# Allow important resource files for proper rendering (mobile-friendly test)
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /fonts/
+
+# Crawl-delay (optional - polite crawling)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://www.boskfurniture.com/sitemap.xml

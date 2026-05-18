@@ -1,6 +1,10 @@
-<?php 
+<?php
+// Guarded session_start so it never collides and never triggers
+// "headers already sent" warnings from included partials.
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include_once("connect.php");
-session_start();
 if(isset($_GET['astringdata']) && isset($_GET['astringdata1']))
 	{
 	    $order_id = mysqli_real_escape_string($con,$_GET['astringdata']);
@@ -8,10 +12,16 @@ if(isset($_GET['astringdata']) && isset($_GET['astringdata1']))
 	     $decode_user_id =base64_decode($user_id);
 	   
 ?>
-<html>
+<!DOCTYPE HTML>
+<html lang="en-IN">
     <head>
-        <title>Bosk Furniture - Admin</title>   
-        <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Invoice | Bosk Furniture Order</title>
+        <meta name="description" content="View your Bosk Furniture order invoice.">
+        <meta name="robots" content="noindex, nofollow">
+        <link rel="canonical" href="https://www.boskfurniture.com/invoice.php">
+        <link rel="icon" href="images/fevicon.png" type="image/png"> <!-- Favicon-->
         <style>
             @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700|Rubik:400,500,700');
 /* 

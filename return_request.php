@@ -1,16 +1,25 @@
-<?php 
+<?php
+// Guarded session_start so it never collides and never triggers
+// "headers already sent" warnings from included partials.
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include_once("connect.php");
-session_start();
-if(isset($_GET['astringdata']) && $_GET['astringdata1']&& $_GET['astringdata2'])
+if(isset($_GET['astringdata']) && isset($_GET['astringdata1']) && isset($_GET['astringdata2']))
 	{
 	    $product_id = mysqli_real_escape_string($con,$_GET['astringdata']);
 	    $decode_product_id = base64_decode($product_id);
 	    $user_id = mysqli_real_escape_string($con,$_GET['astringdata1']);
 	    $order_id = mysqli_real_escape_string($con,$_GET['astringdata2']);
 	   //echo $decoded_user_id;
+$page_title       = 'Return Request | Bosk Furniture Returns India';
+$page_description = 'Submit a return request for your Bosk Furniture order. Quick, easy and customer-friendly returns process across India.';
+$page_keywords    = 'furniture return, return request, bosk furniture returns, return policy india';
+$page_canonical   = '/return_request.php';
+$page_robots      = 'noindex, follow';
 ?>
 <!DOCTYPE HTML>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-IN">
 
 <head>
     <?php include_once"design/header.php";?>

@@ -1,9 +1,14 @@
+<?php
+$page_title       = 'Furniture Blog | Tips, Trends & Interior Design Ideas - Bosk Furniture';
+$page_description = 'Explore the Bosk Furniture blog for the latest furniture trends, interior design tips, modular kitchen ideas and home decor inspiration in India.';
+$page_keywords    = 'furniture blog, interior design blog india, modular kitchen ideas, home decor tips, bosk furniture blog';
+$page_canonical   = '/blog-full-list.php';
+?>
 <!DOCTYPE HTML>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-IN">
 
 <head>
     <?php include_once"design/header.php";?>
-
 </head>
 
 <body class="inner-page">
@@ -36,7 +41,7 @@
             <div class="container">
                 <div class="news-wrap">
                     <div class="row">
-                         <?php
+                        <?php
                         include_once"connect.php";
                                          
                         $cmd="select * from blog";
@@ -53,11 +58,16 @@
                             <div class="news-item news-item-sm">
                                 <a href="details.php?astringdata=<?php echo $id; ?>" class="news-img-link">
                                     <div class="news-item-img">
-                                        <img class="resp-img" src="Admin/blog_image/<?php echo $img;?>" alt="blog image">
+                                        <img class="resp-img" src="Admin/blog_image/<?php echo $img;?>"
+                                            alt="blog image">
                                     </div>
                                 </a>
                                 <div class="news-item-text">
-                                    <a href="details.php?astringdata=<?php echo $id; ?>"><h3><?php echo $blog_title;?></h3></a>
+                                    <a href="details.php?astringdata=<?php echo $id; ?>">
+                                        <h3>
+                                            <?php echo $blog_title;?>
+                                        </h3>
+                                    </a>
                                     <!--<div class="dates">-->
                                     <!--    <span class="date"><?php echo $blog_date;?></span>-->
                                     <!--    <ul class="action-list pl-0">-->
@@ -67,10 +77,13 @@
                                     <!--    </ul>-->
                                     <!--</div>-->
                                     <div class="news-item-descr">
-                                        <p><?php echo $blog_description;?></p>
+                                        <p>
+                                            <?php echo $blog_description;?>
+                                        </p>
                                     </div>
                                     <div class="news-item-bottom">
-                                        <a href="details.php?astringdata=<?php echo $id; ?>" class="news-link">Read more...</a>
+                                        <a href="details.php?astringdata=<?php echo $id; ?>" class="news-link">Read
+                                            more...</a>
                                         <!--<div class="admin">-->
                                         <!--    <p>By, Karl Smith</p>-->
                                         <!--    <img src="images/testimonials/ts-1.jpg" alt="">-->
@@ -78,23 +91,23 @@
                                     </div>
                                 </div>
                             </div>
-                           
-                        </div><br/><br/>
-                       <?php
+
+                        </div><br /><br />
+                        <?php
                         }
                        ?>
                     </div>
-                    
-                    
-                    
-                   
+
+
+
+
                 </div>
-               
+
             </div>
         </section>
         <!-- END SECTION BLOG -->
 
-       <?php include_once"design/footer.php";?>
+        <?php include_once"design/footer.php";?>
 
         <a data-scroll href="#wrapper" class="go-up"><i class="fa fa-angle-double-up" aria-hidden="true"></i></a>
         <!-- END FOOTER -->

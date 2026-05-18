@@ -1,21 +1,99 @@
-<?php 
+<?php
+// Guarded session_start so it never collides with another include's session_start.
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include_once("connect.php");
-session_start();
-if(isset($_GET['astringdata']))
-	{
-	    $product_post_id = mysqli_real_escape_string($con,$_GET['astringdata']);
-	    $decoded_id = base64_decode($product_post_id);
-	    
-	    $cmd3="select * from products where id='$decoded_id'";
-        $result3=mysqli_query($con,$cmd3) or die(mysqli_error($con));
-        while($row=mysqli_fetch_array($result3))
-        {
-            $pname=$row['pname'];
-           
+
+// Safe defaults so the rest of the page never sees undefined variables.
+$pname      = '';
+$decoded_id = 0;
+
+if (isset($_GET['astringdata'])) {
+
+    $raw = $_GET['astringdata'];
+
+    // The site links to this page in TWO styles:
+    //   1) plain numeric id   -> product.php?astringdata=5     (related-products block, one shop.php button)
+    //   2) base64-encoded id  -> product.php?astringdata=NQ==  (most pages: all_products / shop / order_details)
+    // Accept both without breaking existing links.
+    if (ctype_digit($raw)) {
+        $decoded_id = (int) $raw;
+    } else {
+        $maybe = base64_decode($raw, true);
+        $decoded_id = ($maybe !== false && ctype_digit($maybe)) ? (int) $maybe : 0;
+    }
+
+    if ($decoded_id > 0) {
+        $cmd3    = "select * from products where id='" . $decoded_id . "'";
+        $result3 = mysqli_query($con, $cmd3) or die(mysqli_error($con));
+        while ($row = mysqli_fetch_array($result3)) {
+            $pname           = $row['pname'];
+            $seo_pcategory   = isset($row['pcategory'])   ? $row['pcategory']   : '';
+            $seo_description = isset($row['description']) ? strip_tags($row['description']) : '';
+            $seo_new_price   = isset($row['new_price'])   ? $row['new_price']   : '';
+            $seo_img1        = isset($row['img1'])        ? $row['img1']        : '';
+            $seo_sku         = isset($row['sku'])         ? $row['sku']         : '';
+            $seo_stock       = isset($row['stock'])       ? $row['stock']       : 0;
         }
+    }
+}
+
+// ---- Dynamic SEO meta from product data ----
+$_seo_pname = isset($pname) && $pname !== '' ? $pname : 'Product';
+$_seo_short = isset($seo_description) ? substr(trim(preg_replace('/\s+/', ' ', $seo_description)), 0, 155) : '';
+if ($_seo_short === '') {
+    $_seo_short = 'Buy ' . $_seo_pname . ' online at Bosk Furniture - premium quality furniture with free shipping across India.';
+}
+$page_title       = $_seo_pname . ' | Buy Online at Bosk Furniture India';
+$page_description = $_seo_short;
+$page_keywords    = $_seo_pname . ', buy ' . $_seo_pname . ' online, ' . (isset($seo_pcategory) ? $seo_pcategory . ', ' : '') . 'furniture india, bosk furniture';
+$page_canonical   = '/product.php?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '');
+if (!empty($seo_img1)) {
+    $og_image = 'https://www.boskfurniture.com/Admin/product_image/' . $seo_img1;
+}
+
+// Build Product JSON-LD schema
+$_seo_avail = (isset($seo_stock) && $seo_stock > 0) ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock';
+$page_schema = '
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": ' . json_encode($_seo_pname) . ',
+  "image": ' . json_encode(!empty($seo_img1) ? 'https://www.boskfurniture.com/Admin/product_image/' . $seo_img1 : 'https://www.boskfurniture.com/images/og-default.jpg') . ',
+  "description": ' . json_encode($_seo_short) . ',
+  "sku": ' . json_encode(isset($seo_sku) ? $seo_sku : '') . ',
+  "brand": {"@type":"Brand","name":"Bosk Furniture"},
+  "category": ' . json_encode(isset($seo_pcategory) ? $seo_pcategory : 'Furniture') . ',
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.boskfurniture.com/product.php?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '') . '",
+    "priceCurrency": "INR",
+    "price": ' . json_encode(isset($seo_new_price) ? (string)$seo_new_price : '0') . ',
+    "availability": "' . $_seo_avail . '",
+    "itemCondition": "https://schema.org/NewCondition",
+    "seller": {"@type":"Organization","name":"Bosk Furniture"}
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.boskfurniture.com/"},
+    {"@type":"ListItem","position":2,"name":"Shop","item":"https://www.boskfurniture.com/all_products.php"},
+    {"@type":"ListItem","position":3,"name":' . json_encode($_seo_pname) . ',"item":"https://www.boskfurniture.com/product.php?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '') . '"}
+  ]
+}
+</script>';
+
+// Re-open the original guard so the HTML only renders when astringdata was supplied
+if (isset($_GET['astringdata'])) {
 ?>
 <!DOCTYPE HTML>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-IN">
 
 <head>
     <?php include_once"design/header.php";?>
@@ -399,24 +477,44 @@ button[disabled]{
         </div>
         <!-- END SECTION HEADINGS -->
         <?php
-        $cmd="select * from products where id='$decoded_id'";
-        $result=mysqli_query($con,$cmd) or die(mysqli_error($con));
-        $row=mysqli_fetch_array($result);
-            $product_id = $row['id'];
-            $pname=$row['pname'];
-            $pcategory=$row['pcategory'];
-            $img1=$row['img1'];
-            $img2=$row['img2'];
-            $img3=$row['img3'];
-            $img4=$row['img4'];
-            $img5=$row['img5'];
-            $description=$row['description'];
-            $stock=$row['stock'];
-            $old_price=$row['old_price'];
-            $new_price=$row['new_price'];
-            $tags=$row['tags'];
-            $sku=$row['sku'];
-                                   
+        // Safe defaults so the page still renders if the product id is missing/invalid.
+        $product_id  = 0;
+        $pname       = '';
+        $pcategory   = '';
+        $img1        = '';
+        $img2        = '';
+        $img3        = '';
+        $img4        = '';
+        $img5        = '';
+        $description = '';
+        $stock       = 0;
+        $old_price   = '';
+        $new_price   = '';
+        $tags        = '';
+        $sku         = '';
+
+        if (!empty($decoded_id) && $decoded_id > 0) {
+            $cmd    = "select * from products where id='" . (int)$decoded_id . "'";
+            $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
+            $row    = mysqli_fetch_array($result);
+
+            if ($row) {
+                $product_id  = $row['id'];
+                $pname       = $row['pname'];
+                $pcategory   = $row['pcategory'];
+                $img1        = $row['img1'];
+                $img2        = $row['img2'];
+                $img3        = $row['img3'];
+                $img4        = $row['img4'];
+                $img5        = $row['img5'];
+                $description = $row['description'];
+                $stock       = $row['stock'];
+                $old_price   = $row['old_price'];
+                $new_price   = $row['new_price'];
+                $tags        = $row['tags'];
+                $sku         = $row['sku'];
+            }
+        }
         ?>
         <!-- START SECTION BLOG -->
         <section class="shop blog">
@@ -432,37 +530,37 @@ button[disabled]{
     <div class = "product-imgs">
       <div class = "img-display">
         <div class = "img-showcase">
-          <img height="300px" width="300px" src = "Admin/product_image/<?php echo $img1;?>" alt = "shoe image">
-          <img src = "Admin/product_image/<?php echo $img2;?>" alt = "shoe image">
-          <img src = "Admin/product_image/<?php echo $img3;?>" alt = "shoe image">
-          <img src = "Admin/product_image/<?php echo $img4;?>" alt = "shoe image">
-          <!--<img src = "Admin/product_image/<?php echo $img5;?>" alt = "shoe image">-->
+          <img height="300px" width="300px" src = "Admin/product_image/<?php echo $img1;?>" alt = "<?php echo htmlspecialchars($pname, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture">
+          <img src = "Admin/product_image/<?php echo $img2;?>" alt = "<?php echo htmlspecialchars($pname, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture">
+          <img src = "Admin/product_image/<?php echo $img3;?>" alt = "<?php echo htmlspecialchars($pname, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture">
+          <img src = "Admin/product_image/<?php echo $img4;?>" alt = "<?php echo htmlspecialchars($pname, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture">
+          <!--<img src = "Admin/product_image/<?php echo $img5;?>" alt = "<?php echo htmlspecialchars($pname, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture">-->
         </div>
       </div>
       <div class = "img-select">
         <div class = "img-item">
           <a href = "#" data-id = "1">
-            <img height="300px" width="300px" src = "Admin/product_image/<?php echo $img1;?>" alt = "shoe image">
+            <img height="300px" width="300px" src = "Admin/product_image/<?php echo $img1;?>" alt = "<?php echo htmlspecialchars($pname, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture">
           </a>
         </div>
         <div class = "img-item">
           <a href = "#" data-id = "2">
-            <img src = "Admin/product_image/<?php echo $img2;?>" alt = "shoe image">
+            <img src = "Admin/product_image/<?php echo $img2;?>" alt = "<?php echo htmlspecialchars($pname, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture">
           </a>
         </div>
         <div class = "img-item">
           <a href = "#" data-id = "3">
-            <img src = "Admin/product_image/<?php echo $img3;?>" alt = "shoe image">
+            <img src = "Admin/product_image/<?php echo $img3;?>" alt = "<?php echo htmlspecialchars($pname, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture">
           </a>
         </div>
         <div class = "img-item">
           <a href = "#" data-id = "4">
-            <img src = "Admin/product_image/<?php echo $img4;?>" alt = "shoe image">
+            <img src = "Admin/product_image/<?php echo $img4;?>" alt = "<?php echo htmlspecialchars($pname, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture">
           </a>
         </div>
         <!--<div class = "img-item">-->
         <!--  <a href = "#" data-id = "5">-->
-        <!--    <img src = "Admin/product_image/<?php echo $img5;?>" alt = "shoe image">-->
+        <!--    <img src = "Admin/product_image/<?php echo $img5;?>" alt = "<?php echo htmlspecialchars($pname, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture">-->
         <!--  </a>-->
         <!--</div>-->
       </div>

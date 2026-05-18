@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- HOMEPAGE -->
+  <url>
+    <loc>https://www.boskfurniture.com/</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/images/og-default.jpg</image:loc>
+      <image:title>Bosk Furniture - Premium Modular Furniture India</image:title>
+    </image:image>
+  </url>
+
+  <!-- ABOUT -->
+  <url>
+    <loc>https://www.boskfurniture.com/about-us.php</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- CONTACT -->
+  <url>
+    <loc>https://www.boskfurniture.com/contact.php</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ALL PRODUCTS / SHOP LANDING -->
+  <url>
+    <loc>https://www.boskfurniture.com/all_products.php</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- SERVICES -->
+  <url>
+    <loc>https://www.boskfurniture.com/all-services.php</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- PROJECTS -->
+  <url>
+    <loc>https://www.boskfurniture.com/projects.php</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- BLOG LIST -->
+  <url>
+    <loc>https://www.boskfurniture.com/blog-full-list.php</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- TESTIMONIALS -->
+  <url>
+    <loc>https://www.boskfurniture.com/testimonial.php</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- CUSTOMIZE FURNITURE -->
+  <url>
+    <loc>https://www.boskfurniture.com/ex-customize_furniture.php</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- DESIGN & ORDER PROCESS -->
+  <url>
+    <loc>https://www.boskfurniture.com/design-order-process.php</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- WARRANTY -->
+  <url>
+    <loc>https://www.boskfurniture.com/warranty.php</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- WARRANTY POLICY -->
+  <url>
+    <loc>https://www.boskfurniture.com/warranty_policy.php</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- HARDWARE WARRANTY -->
+  <url>
+    <loc>https://www.boskfurniture.com/hardware_warranty.php</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- CARE & MAINTENANCE POLICY -->
+  <url>
+    <loc>https://www.boskfurniture.com/care_and_maintenance_policy.php</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!--
+    NOTE: Dynamic product, category and project URLs (product.php?astringdata=...,
+    shop.php?astringdata2=..., project-details.php?astringdata=..., details.php?astringdata=...)
+    should be appended programmatically by a sitemap-generator script that iterates over
+    the products / categories / projects / blog tables in the database.
+    A starter script is included at /sitemap-generator.php (run it via CLI or admin to refresh).
+  -->
+
+</urlset>

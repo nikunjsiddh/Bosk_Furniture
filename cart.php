@@ -1,11 +1,20 @@
-<?php 
+<?php
+// Guarded session_start so it never collides and never triggers
+// "headers already sent" warnings from included partials.
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include_once("connect.php");
-session_start();
 
     
+$page_title       = 'Your Shopping Cart | Bosk Furniture';
+$page_description = 'Review the furniture items in your shopping cart and proceed to secure checkout at Bosk Furniture India.';
+$page_keywords    = 'shopping cart, bosk furniture cart, checkout furniture';
+$page_canonical   = '/cart.php';
+$page_robots      = 'noindex, follow';
 ?>
 <!DOCTYPE HTML>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-IN">
 
 <head>
     <?php include_once"design/header.php"?>

@@ -1,5 +1,16 @@
+<?php
+// Session must start before ANY output (HTML, whitespace, BOM, etc.).
+// nav.php also tries to start a session — we guard it there to avoid a duplicate call.
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$page_title       = 'Shop All Furniture Online | Bosk Furniture India';
+$page_description = 'Browse the complete Bosk Furniture collection - modular kitchens, wardrobes, sofas, beds, dining sets and more. Premium furniture online across India with free shipping.';
+$page_keywords    = 'all furniture, shop furniture online india, modular furniture, sofa, bed, wardrobe, dining table, bosk furniture catalogue';
+$page_canonical   = '/all_products.php';
+?>
 <!DOCTYPE HTML>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-IN">
 
 <head>
     <?php include_once"design/header.php";?>

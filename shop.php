@@ -1,4 +1,10 @@
-<?php 
+<?php
+// Session must start before ANY output (HTML, whitespace, BOM, etc.).
+// nav.php also tries to start a session — it's guarded there to avoid a duplicate call.
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 include_once("connect.php");
 if(isset($_GET['astringdata2']))
 {
@@ -6,11 +12,35 @@ $categoryname = mysqli_real_escape_string($con,$_GET['astringdata2']);
 $encodedData = str_replace('+', ' ', $_GET['astringdata2']);
 $decodedcategoryname = urldecode($encodedData);
 // echo $decodedcategoryname;
-	    
-	   
+
+// ---- Dynamic SEO meta for this category ----
+$_seo_cat         = htmlspecialchars($decodedcategoryname, ENT_QUOTES, 'UTF-8');
+$page_title       = $_seo_cat . ' - Buy Online at Bosk Furniture India';
+$page_description = 'Shop premium ' . $_seo_cat . ' online at Bosk Furniture. Wide range of designs, guaranteed quality and free shipping across India. Best prices on ' . $_seo_cat . '.';
+$page_keywords    = $_seo_cat . ', buy ' . $_seo_cat . ' online, ' . $_seo_cat . ' india, ' . $_seo_cat . ' price, modular ' . $_seo_cat . ', bosk furniture';
+$page_canonical   = '/shop.php?astringdata2=' . urlencode($_GET['astringdata2']);
+$page_schema = '
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": ' . json_encode($decodedcategoryname . ' - Bosk Furniture') . ',
+  "url": "https://www.boskfurniture.com/shop.php?astringdata2=' . urlencode($_GET['astringdata2']) . '",
+  "description": ' . json_encode('Browse ' . $decodedcategoryname . ' collection at Bosk Furniture India.') . ',
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.boskfurniture.com/"},
+      {"@type":"ListItem","position":2,"name":"Shop","item":"https://www.boskfurniture.com/all_products.php"},
+      {"@type":"ListItem","position":3,"name":' . json_encode($decodedcategoryname) . ',"item":"https://www.boskfurniture.com/shop.php?astringdata2=' . urlencode($_GET['astringdata2']) . '"}
+    ]
+  }
+}
+</script>';
+
 ?>
 <!DOCTYPE HTML>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-IN">
 
 <head>
     <?php include_once"design/header.php";?>

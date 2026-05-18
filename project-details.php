@@ -1,6 +1,10 @@
-<?php 
+<?php
+// Guarded session_start so it never collides and never triggers
+// "headers already sent" warnings from included partials.
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include_once("connect.php");
-session_start();
 if(isset($_GET['astringdata']))
 	{
 	    $project_post_id = mysqli_real_escape_string($con,$_GET['astringdata']);
@@ -12,17 +16,22 @@ if(isset($_GET['astringdata']))
         {
             $project_name=$row['project_name'];
             // echo $project_name;
-           
+
         }
+
+// ---- Dynamic SEO for project ----
+$_seo_proj        = isset($project_name) && $project_name !== '' ? $project_name : 'Project';
+$page_title       = $_seo_proj . ' | Bosk Furniture Interior Design Projects India';
+$page_description = 'Explore the ' . $_seo_proj . ' interior design project by Bosk Furniture - showcasing modular furniture, custom interiors and quality craftsmanship across India.';
+$page_keywords    = $_seo_proj . ', interior design project, modular furniture project, bosk furniture portfolio india';
+$page_canonical   = '/project-details.php?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '');
 ?>
 <!DOCTYPE HTML>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-IN">
 
 <head>
     <?php include_once"design/header.php";?>
     <link rel="stylesheet" href="css/owl.carousel.min.css">
-   
-
 </head>
 
 <body class="inner-page">

@@ -1,12 +1,21 @@
-<?php 
+<?php
+// Guarded session_start so it never collides and never triggers
+// "headers already sent" warnings from included partials.
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include_once("connect.php");
-session_start();
 if (isset($_SESSION['email'])) {
     $userEmail = $_SESSION['email'];
     
+$page_title       = 'Secure Checkout | Bosk Furniture';
+$page_description = 'Complete your secure furniture order at Bosk Furniture India with safe payment options and free shipping on eligible items.';
+$page_keywords    = 'checkout, secure payment, furniture order, bosk furniture';
+$page_canonical   = '/checkout.php';
+$page_robots      = 'noindex, follow';
 ?>
 <!DOCTYPE HTML>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-IN">
 
 <head>
     <?php
@@ -19,7 +28,7 @@ if (isset($_SESSION['email'])) {
 /* ---------24.Checkout-Page-Start ---------*/
 .coupon-area{}
 .coupon-accordion{}
-.coupon-accordion h3 {p
+.coupon-accordion h3 {
 	background-color: #f7f6f7;
 	border-top: 3px solid #1e85be;
 	color: #515151;
@@ -390,31 +399,55 @@ button.disabled {
       	
         <?php
             include_once"connect.php";
-            $cmd="select * from user where email='$userEmail'";
-            $result=mysqli_query($con,$cmd) or die(mysqli_error($con));
-            $row=mysqli_fetch_array($result);
-       
-            $user_id = $row['id'];
-            $email=$row['email'];
-            
-            $cmd1="select * from user where email='$userEmail'";
-            $result1=mysqli_query($con,$cmd1) or die(mysqli_error($con));
-            $row1=mysqli_fetch_array($result1);
-           
-            $id = $row1['id'];
-            $email=$row1['email'];
-            $firstname=$row1['firstname'];
-            $lastname=$row1['lastname'];
-            $dob=$row1['dob'];
-            $password=$row1['password'];
-            $addressline1=$row1['addressline1'];
-            $addressline2=$row1['addressline2'];
-            $pincode=$row1['pincode'];
-            $country=$row1['country'];
-            $state=$row1['state'];
-            $city=$row1['city'];
-            $phone=$row1['phone'];
-            $img=$row1['img'];
+
+            // ---- Safe defaults so the page never sees undefined variables ----
+            $user_id      = 0;
+            $id           = 0;
+            $email        = '';
+            $firstname    = '';
+            $lastname     = '';
+            $dob          = '';
+            $password     = '';
+            $addressline1 = 'NA';
+            $addressline2 = '';
+            $pincode      = '';
+            $country      = '';
+            $state        = '';
+            $city         = '';
+            $phone        = '';
+            $img          = '';
+
+            // Initialize totals used by the order summary loop below.
+            $totalPrice   = 0;
+            $subTotal     = 0;
+            $tax          = 0;
+            $shipping     = 0;
+            $total1       = 0;
+            $total_price  = 0;
+            $quantity     = 0;
+            $new_price    = 0;
+
+            // Safely look up the logged-in user.
+            $safeEmail = mysqli_real_escape_string($con, $userEmail);
+            $cmd1   = "select * from user where email='$safeEmail' limit 1";
+            $result1 = mysqli_query($con, $cmd1) or die(mysqli_error($con));
+            if ($row1 = mysqli_fetch_array($result1)) {
+                $user_id      = $row1['id'];
+                $id           = $row1['id'];
+                $email        = $row1['email'];
+                $firstname    = $row1['firstname'];
+                $lastname     = $row1['lastname'];
+                $dob          = $row1['dob'];
+                $password     = $row1['password'];
+                $addressline1 = !empty($row1['addressline1']) ? $row1['addressline1'] : 'NA';
+                $addressline2 = $row1['addressline2'];
+                $pincode      = $row1['pincode'];
+                $country      = $row1['country'];
+                $state        = $row1['state'];
+                $city         = $row1['city'];
+                $phone        = $row1['phone'];
+                $img          = $row1['img'];
+            }
                 ?>
        <!-- checkout-area start -->
 		<div class="checkout-area pb-50">

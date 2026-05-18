@@ -1,12 +1,20 @@
+<?php
+// Start the session BEFORE any output so nav1.php's session_start() doesn't trigger
+// a "headers already sent" warning.
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$page_title       = 'Customize Your Furniture | Bespoke Furniture Design - Bosk Furniture';
+$page_description = 'Customize your dream furniture with Bosk Furniture - bespoke modular kitchens, wardrobes, sofas and complete home interiors tailored to your space across India.';
+$page_keywords    = 'customize furniture india, bespoke furniture, custom modular furniture, made to order furniture, bosk furniture customization';
+$page_canonical   = '/ex-customize_furniture.php';
+?>
 <!DOCTYPE HTML>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-IN">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>BOSK FURNITURE</title>
-     <link rel="icon" type="image/x-icon" href="images/fevicon.png">
+    <?php include_once "design/seo-meta.php"; ?>
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600,700%7COpen+Sans:300,400" rel="stylesheet">
     <!-- FONT AWESOME -->

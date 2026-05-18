@@ -1,7 +1,10 @@
-<?php 
-
-session_start();
-
+<?php
+// Only start a session if one isn't already active.
+// This prevents "session already started" notices and "headers already sent"
+// warnings when this nav is included from pages that have already output HTML.
+if (session_status() === PHP_SESSION_NONE) {
+    @session_start();
+}
 ?>
 <style>
  .table-image {
@@ -67,6 +70,42 @@ session_start();
     margin-right: 71% !important;
   }
 }
+
+/* ------------------------------------------------------------
+   Extra spacing between the logo and the menu items so the
+   hover highlight on the first item (Home) does not visually
+   blend into the logo. Applies in BOTH the normal header and
+   the scrolled / sticky (`.cloned`) header.
+   Mirrors the same fix in design/nav.php so the home page nav
+   (nav1.php) and inner-page nav (nav.php) match.
+   ------------------------------------------------------------ */
+#header #logo,
+#header.cloned #logo {
+    margin-right: 55px;
+}
+#header #navigation ul#responsive,
+#header.cloned #navigation ul#responsive {
+    padding-left: 20px;
+}
+#header #navigation ul#responsive > li:first-child,
+#header.cloned #navigation ul#responsive > li:first-child {
+    margin-left: 6px;
+}
+@media (max-width: 991px) {
+    #header #logo,
+    #header.cloned #logo {
+        margin-right: 20px;
+    }
+    #header #navigation ul#responsive,
+    #header.cloned #navigation ul#responsive {
+        padding-left: 0;
+    }
+    #header #navigation ul#responsive > li:first-child,
+    #header.cloned #navigation ul#responsive > li:first-child {
+        margin-left: 0;
+    }
+}
+
 </style>
 
 <header id="header-container" >
@@ -128,18 +167,23 @@ session_start();
                                 </li>
                                  <?php
                                                 include_once"connect.php";
+                                                $hi = 0;
+                                                $user_id = 0;
+                                                $email = '';
                                                 if (isset($_SESSION['email'])) {
-                                                $userEmail = $_SESSION['email'];
-                                                $cmd="select * from user where email='$userEmail'";
-                                                $result=mysqli_query($con,$cmd) or die(mysqli_error($con));
-                                                $row=mysqli_fetch_array($result);
-                                                   
-                                                    $user_id = $row['id'];
-                                                    $email=$row['email'];
-                                                                                      
-                                                    $cmd1="select * from cart where user_id='$user_id'";
-                                                    $result1=mysqli_query($con,$cmd1) or die(mysqli_error($con));
-                                                    $hi=mysqli_num_rows($result1);
+                                                    $userEmail = mysqli_real_escape_string($con, $_SESSION['email']);
+                                                    $cmd = "select * from user where email='$userEmail'";
+                                                    $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
+                                                    $row = mysqli_fetch_array($result);
+
+                                                    if ($row) {
+                                                        $user_id = $row['id'];
+                                                        $email   = $row['email'];
+
+                                                        $cmd1 = "select * from cart where user_id='$user_id'";
+                                                        $result1 = mysqli_query($con, $cmd1) or die(mysqli_error($con));
+                                                        $hi = mysqli_num_rows($result1);
+                                                    }
                                                     ?>
                                 <li><a href="cart.php"><div class="minicart-icon wishlist-icon">
                                                 Cart <i class="fa fa-shopping-cart"></i>

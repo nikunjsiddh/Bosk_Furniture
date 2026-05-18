@@ -1,5 +1,12 @@
+<?php
+$page_title       = 'Register | Create Your Bosk Furniture Account';
+$page_description = 'Create your free Bosk Furniture account to shop premium furniture online, save your favourites, track orders and get exclusive offers across India.';
+$page_keywords    = 'bosk furniture register, create account, furniture signup india, new customer';
+$page_canonical   = '/register.php';
+$page_robots      = 'noindex, follow';
+?>
 <!DOCTYPE HTML>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-IN">
 
 <head>
     <?php include_once"design/header.php";?>

@@ -1,12 +1,21 @@
+<?php
+// Start the session BEFORE any output so nav1.php's session_start() doesn't trigger
+// a "headers already sent" warning. Guarded so it never collides with a prior start.
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$page_title       = 'Bosk Furniture - Premium Modular Furniture & Interior Design in India';
+$page_description = 'Buy premium modular furniture online at Bosk Furniture - modular kitchens, wardrobes, sofas, beds, dining sets & custom interior solutions. Guaranteed quality across India.';
+$page_keywords    = 'bosk furniture, modular furniture india, online furniture store, modular kitchen, wardrobe, sofa, bed, dining set, custom furniture, interior design india';
+$page_canonical   = '/';
+$og_image         = 'https://www.boskfurniture.com/images/og-default.jpg';
+?>
 <!DOCTYPE HTML>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-IN">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>BOSK FURNITURE</title>
-     <link rel="icon" type="image/x-icon" href="images/fevicon.png">
+    <?php include_once "design/seo-meta.php"; ?>
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600,700%7COpen+Sans:300,400" rel="stylesheet">
     <!-- FONT AWESOME -->
@@ -28,6 +37,33 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link href="css/menu.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <!-- ===== HOMEPAGE LOCAL BUSINESS SCHEMA ===== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FurnitureStore",
+      "name": "Bosk Furniture",
+      "image": "https://www.boskfurniture.com/images/og-default.jpg",
+      "url": "https://www.boskfurniture.com",
+      "telephone": "+91-XXXXXXXXXX",
+      "priceRange": "₹₹",
+      "description": "Premium modular and custom furniture store in India offering modular kitchens, wardrobes, sofas, beds, dining sets and complete interior design solutions.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IN"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "10:00",
+        "closes": "20:00"
+      }
+    }
+    </script>
     
     <style>
         .recent-img16{

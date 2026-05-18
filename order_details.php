@@ -1,6 +1,10 @@
-<?php 
+<?php
+// Guarded session_start so it never collides and never triggers
+// "headers already sent" warnings from included partials.
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include_once("connect.php");
-session_start();
 if(isset($_GET['astringdata']) && isset($_GET['astringdata1']))
 	{
 	    $order_id = mysqli_real_escape_string($con,$_GET['astringdata']);
@@ -8,13 +12,16 @@ if(isset($_GET['astringdata']) && isset($_GET['astringdata1']))
 	   //  echo $user_id;
 	   $decoded_user_id = base64_decode($user_id);
 	   //echo $decoded_user_id;
+$page_title       = 'Order Details | Bosk Furniture';
+$page_description = 'View detailed information about your Bosk Furniture order including products, status and delivery information.';
+$page_canonical   = '/order_details.php';
+$page_robots      = 'noindex, nofollow';
 ?>
 <!DOCTYPE HTML>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-IN">
 
 <head>
     <?php include_once"design/header.php";?>
-   
    <link rel="stylesheet" type="text/css" href="css/print-styles.css" media="print">
     <style media="print">
     body {

@@ -1,9 +1,15 @@
+<?php
+$page_title       = 'Page Not Found (404) | Bosk Furniture';
+$page_description = 'The page you are looking for could not be found. Browse our furniture collection at Bosk Furniture India.';
+$page_canonical   = '/404.php';
+$page_robots      = 'noindex, follow';
+http_response_code(404);
+?>
 <!DOCTYPE HTML>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-IN">
 
 <head>
     <?php include_once"design/header.php";?>
-
 </head>
 
 <body class="inner-page">

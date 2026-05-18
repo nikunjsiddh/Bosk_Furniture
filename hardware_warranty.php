@@ -1,5 +1,11 @@
+<?php
+$page_title       = 'Hardware Warranty | Bosk Furniture Quality Hardware India';
+$page_description = 'Detailed hardware warranty information for Bosk Furniture products - hinges, drawer channels, soft-close mechanisms and more. Trusted quality for Indian homes.';
+$page_keywords    = 'hardware warranty, furniture hardware india, hinges warranty, drawer channel warranty, bosk furniture hardware';
+$page_canonical   = '/hardware_warranty.php';
+?>
 <!DOCTYPE HTML>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-IN">
 
 <head>
     <?php include_once"design/header.php";?>
