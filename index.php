@@ -146,6 +146,323 @@ $og_image         = 'https://www.boskfurniture.com/images/og-default.jpg';
             #hero-area.home-1 .hero-buttons { margin-top: 20px; }
             #hero-area.home-1 .hero-buttons .btn { margin: 6px !important; }
         }
+
+        /* ============ BLOG SECTION REDESIGN ============ */
+        .blog-section .blog-card {
+            position: relative;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+            transition: transform .45s cubic-bezier(.25,.8,.25,1),
+                        box-shadow .45s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-section .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+        }
+        .blog-section .blog-card-img {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 16 / 10;
+            background: #f2f2f2;
+        }
+        .blog-section .blog-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .8s ease, filter .5s ease;
+        }
+        .blog-section .blog-card:hover .blog-card-img img {
+            transform: scale(1.12);
+            filter: brightness(.85);
+        }
+        .blog-section .blog-card-img::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 55%);
+            opacity: 0;
+            transition: opacity .5s ease;
+        }
+        .blog-section .blog-card:hover .blog-card-img::after { opacity: 1; }
+
+        .blog-section .blog-date-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: #532A1A;
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .5px;
+            line-height: 1.2;
+            z-index: 2;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(0,0,0,.2);
+            transition: transform .4s ease;
+        }
+        .blog-section .blog-card:hover .blog-date-badge { transform: translateY(-3px); }
+
+        .blog-section .blog-card-body {
+            padding: 22px 24px 26px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .blog-section .blog-meta {
+            font-size: 12px;
+            color: #888;
+            letter-spacing: .4px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .blog-section .blog-meta i { color: #532A1A; margin-right: 5px; }
+        .blog-section .blog-card-body h3 {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 0 0 12px;
+            color: #222;
+            transition: color .35s ease;
+        }
+        .blog-section .blog-card-body h3 a { color: inherit; text-decoration: none; }
+        .blog-section .blog-card:hover .blog-card-body h3 { color: #532A1A; }
+
+        .blog-section .blog-card-body p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #666;
+            margin: 0 0 18px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .blog-section .blog-read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #532A1A;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            margin-top: auto;
+            position: relative;
+            width: fit-content;
+        }
+        .blog-section .blog-read-more::after {
+            content: "→";
+            display: inline-block;
+            transition: transform .35s ease;
+        }
+        .blog-section .blog-read-more:hover { color: #211610; }
+        .blog-section .blog-read-more:hover::after { transform: translateX(6px); }
+
+        @media (max-width: 575px) {
+            .blog-section .blog-card-body { padding: 18px 18px 22px; }
+            .blog-section .blog-card-body h3 { font-size: 17px; }
+        }
+
+        /* ============ RECENT PROJECTS REDESIGN ============ */
+        .recently .project-card {
+            position: relative;
+            display: block;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #111;
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.10);
+            transition: transform .5s cubic-bezier(.25,.8,.25,1),
+                        box-shadow .5s ease;
+            text-decoration: none;
+        }
+        .recently .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 24px 46px rgba(0, 0, 0, 0.22);
+        }
+        .recently .project-card-img {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 1s cubic-bezier(.25,.8,.25,1);
+        }
+        .recently .project-card:hover .project-card-img {
+            transform: scale(1.12);
+        }
+        .recently .project-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(0,0,0,0.85) 0%,
+                rgba(0,0,0,0.45) 50%,
+                rgba(0,0,0,0.10) 100%
+            );
+            opacity: 0.65;
+            transition: opacity .5s ease;
+            z-index: 1;
+        }
+        .recently .project-card:hover .project-card-overlay { opacity: 1; }
+
+        .recently .project-tag {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            z-index: 2;
+            background: #532A1A;
+            color: #fff;
+            padding: 6px 13px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+            transition: transform .4s ease;
+        }
+        .recently .project-card:hover .project-tag { transform: translateY(-3px); }
+
+        .recently .project-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 26px 22px 24px;
+            color: #fff;
+            z-index: 2;
+            transform: translateY(34px);
+            transition: transform .55s cubic-bezier(.25,.8,.25,1);
+        }
+        .recently .project-card:hover .project-card-content { transform: translateY(0); }
+
+        .recently .project-card-title {
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 0 0 14px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+        .recently .project-card-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+            padding: 8px 18px;
+            border: 1.5px solid rgba(255, 255, 255, 0.75);
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.08);
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: opacity .35s ease .12s,
+                        background .3s ease;
+        }
+        .recently .project-card:hover .project-card-cta { opacity: 1; }
+        .recently .project-card-cta:hover {
+            background: #532A1A;
+            border-color: #532A1A;
+        }
+        .recently .project-card-cta::after {
+            content: "→";
+            transition: transform .35s ease;
+        }
+        .recently .project-card-cta:hover::after { transform: translateX(5px); }
+
+        /* Touch devices: show content without hover */
+        @media (hover: none) {
+            .recently .project-card-content { transform: translateY(0); }
+            .recently .project-card-cta { opacity: 1; }
+            .recently .project-card-overlay { opacity: 1; }
+        }
+
+        @media (max-width: 575px) {
+            .recently .project-card { aspect-ratio: 4 / 4.5; }
+            .recently .project-card-title { font-size: 17px; }
+        }
+
+        /* ============ PARTNER LOGO MARQUEE ============ */
+        .partners .logo-marquee {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 10px 0;
+        }
+        .partners .logo-marquee-track {
+            display: flex !important;
+            flex-wrap: nowrap !important;
+            align-items: center;
+            width: max-content;
+            -webkit-animation: logoScroll 35s linear infinite !important;
+                    animation: logoScroll 35s linear infinite !important;
+            will-change: transform;
+        }
+        .partners .logo-set {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .partners .logo-set img {
+            flex-shrink: 0 !important;
+            height: 100px;
+            width: auto;
+            max-width: none;
+            object-fit: contain;
+            display: block;
+            margin: 0 45px;
+            cursor: pointer;
+            filter: grayscale(100%) opacity(.6);
+            -webkit-transition: filter .35s ease, -webkit-transform .35s ease;
+                    transition: filter .35s ease, transform .35s ease;
+            -webkit-user-drag: none;
+            user-select: none;
+            pointer-events: auto;
+        }
+        /* When the cursor enters the strip: pause + dim every logo slightly */
+        .partners .logo-marquee:hover .logo-marquee-track {
+            -webkit-animation-play-state: paused;
+                    animation-play-state: paused;
+        }
+        .partners .logo-marquee:hover .logo-set img {
+            filter: grayscale(100%) opacity(.3);
+        }
+        /* The one logo under the cursor pops to full color, scales up, glows */
+        .partners .logo-marquee .logo-set img:hover {
+            filter: grayscale(0%) opacity(1)
+                    drop-shadow(0 8px 18px rgba(0, 0, 0, 0.22)) !important;
+            -webkit-transform: scale(1.2);
+                    transform: scale(1.2);
+        }
+        @-webkit-keyframes logoScroll {
+            0%   { -webkit-transform: translateX(0); transform: translateX(0); }
+            100% { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+        }
+        @keyframes logoScroll {
+            0%   { -webkit-transform: translateX(0); transform: translateX(0); }
+            100% { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+        }
+        @media (max-width: 991px) {
+            .partners .logo-set img { height: 75px; margin: 0 32px; }
+            .partners .logo-marquee-track { animation-duration: 28s !important; -webkit-animation-duration: 28s !important; }
+        }
+        @media (max-width: 575px) {
+            .partners .logo-set img { height: 58px; margin: 0 24px; }
+            .partners .logo-marquee-track { animation-duration: 22s !important; -webkit-animation-duration: 22s !important; }
+        }
     </style>
 </head>
 
@@ -215,17 +532,14 @@ $og_image         = 'https://www.boskfurniture.com/images/og-default.jpg';
                                       $encode_project_id=base64_encode($project_id);
                         ?>
                         <div class="inner-box">
-                            <a href="project-details.php?astringdata=<?php echo $encode_project_id; ?>" class="recent-16" data-aos="fade-up">
-                                <div class="recent-img16 img-fluid img-center" style="background-image: url(Admin/project_image/<?php echo $img1;?>)">
-                                
+                            <a href="project-details.php?astringdata=<?php echo $encode_project_id; ?>" class="project-card" data-aos="fade-up">
+                                <div class="project-card-img" style="background-image: url(Admin/project_image/<?php echo $img1;?>)"></div>
+                                <span class="project-tag">Project</span>
+                                <div class="project-card-overlay"></div>
+                                <div class="project-card-content">
+                                    <h4 class="project-card-title"><?php echo $project_name;?></h4>
+                                    <span class="project-card-cta">View Details </span>
                                 </div>
-                                <div class="recent-content"></div>
-                                <div class="recent-details">
-                                    <div class="recent-title"><?php echo $project_name;?></div>
-                                    <!--<div class="recent-price">₹<?php echo $new_price;?></div>-->
-                                    <!--<div class="house-details"><?php echo $pcategory;?></div>-->
-                                </div>
-                                <div class="view-proper">View Details</div>
                             </a>
                         </div>
                         <?php
@@ -611,24 +925,21 @@ $og_image         = 'https://www.boskfurniture.com/images/og-default.jpg';
                             $blog_date=$row4['blog_date'];
                             $img=$row4['img'];
                         ?>
-                        <div class="col-xl-6 col-md-12 col-xs-12 mt-5" data-aos="fade-right">
-                            <div class="news-item news-item-sm">
-                                <a href="details.php?astringdata=<?php echo $encodeblog_id; ?>" class="news-img-link">
-                                    <div class="news-item-img">
-                                        <img class="resp-img" src="Admin/blog_image/<?php echo $img;?>" alt="blog image">
-                                    </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-12 mt-5" data-aos="fade-up">
+                            <article class="blog-card">
+                                <a href="details.php?astringdata=<?php echo $encodeblog_id; ?>" class="blog-card-img">
+                                    <img src="Admin/blog_image/<?php echo $img;?>" alt="<?php echo htmlspecialchars($blog_title); ?>">
+                                    <span class="blog-date-badge"><?php echo $blog_date;?></span>
                                 </a>
-                                <div class="news-item-text">
-                                    <a href="details.php?astringdata=<?php echo $encodeblog_id; ?>"><h3><?php echo $blog_title;?></h3></a>
-                                    <span class="date"><?php echo $blog_date;?> &nbsp;/&nbsp; By Admin&nbsp;/&nbsp;<a href="details.php?astringdata=<?php echo $encodeblog_id; ?>" class="news-link">Read more...</a></span>
-                                   
-                                    <div class="news-item-descr mb-2">
-                                        <p><?php echo $blog_description;?></p>
+                                <div class="blog-card-body">
+                                    <div class="blog-meta">
+                                        <i class="fa fa-user"></i> By Admin
                                     </div>
-                                    
+                                    <h3><a href="details.php?astringdata=<?php echo $encodeblog_id; ?>"><?php echo $blog_title;?></a></h3>
+                                    <p><?php echo strip_tags($blog_description);?></p>
+                                    <a href="details.php?astringdata=<?php echo $encodeblog_id; ?>" class="blog-read-more">Read more </a>
                                 </div>
-                            </div>
-                           
+                            </article>
                         </div>
                         
                         <?php
@@ -641,19 +952,19 @@ $og_image         = 'https://www.boskfurniture.com/images/og-default.jpg';
         <!-- END SECTION BLOG -->
 
         <!-- STAR SECTION PARTNERS -->
-        <div class="partners bg-white-3 border-0" data-aos="zoom-in">
-            <div class="container">
-                <div class="owl-carousel style2">
-                    <div class="owl-item"><img src="images/partners/1.png" alt=""></div>
-                    <div class="owl-item"><img src="images/partners/2.png" alt=""></div>
-                    <div class="owl-item"><img src="images/partners/3.png" alt=""></div>
-                    <div class="owl-item"><img src="images/partners/4.png" alt=""></div>
-                    <div class="owl-item"><img src="images/partners/5.png" alt=""></div>
-                    <div class="owl-item"><img src="images/partners/6.png" alt=""></div>
-                    <div class="owl-item"><img src="images/partners/7.png" alt=""></div>
-                    <div class="owl-item"><img src="images/partners/8.png" alt=""></div>
-                    <div class="owl-item"><img src="images/partners/9.png" alt=""></div>
-                    <div class="owl-item"><img src="images/partners/10.png" alt=""></div>
+        <div class="partners bg-white-3 border-0">
+            <div class="logo-marquee">
+                <div class="logo-marquee-track">
+                    <?php
+                    // Render the same set twice so translateX(-50%) loops seamlessly.
+                    for ($pass = 0; $pass < 2; $pass++) {
+                        echo '<div class="logo-set"' . ($pass === 1 ? ' aria-hidden="true"' : '') . '>';
+                        for ($i = 1; $i <= 10; $i++) {
+                            echo '<img src="images/partners/' . $i . '.png" alt="Partner ' . $i . '">';
+                        }
+                        echo '</div>';
+                    }
+                    ?>
                 </div>
             </div>
         </div>
