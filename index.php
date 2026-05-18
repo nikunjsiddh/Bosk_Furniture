@@ -91,6 +91,61 @@ $og_image         = 'https://www.boskfurniture.com/images/og-default.jpg';
             margin-top: -11.3vw;
           }
         }
+        /* Hero image dark overlay + soft gradient so heading/buttons stay readable */
+        #hero-area.home-1 {
+            position: relative;
+        }
+        #hero-area.home-1::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.65) 0%,
+                rgba(0, 0, 0, 0.45) 45%,
+                rgba(0, 0, 0, 0.55) 100%
+            );
+            z-index: 1;
+            pointer-events: none;
+        }
+        #hero-area.home-1 .hero-main,
+        #hero-area.home-1 .container {
+            position: relative;
+            z-index: 2;
+        }
+        #hero-area.home-1 .welcome-text h1,
+        #hero-area.home-1 .welcome-text p {
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.75);
+        }
+        #hero-area.home-1 .hero-buttons .btn {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+        }
+
+        /* Hero layout: heading, text and buttons all centered together in the middle of the image */
+        #hero-area.home-1 .hero-inner {
+            margin: 0 !important;
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        #hero-area.home-1 .welcome-text {
+            margin: 0;
+        }
+        #hero-area.home-1 .hero-buttons {
+            margin-top: 30px;
+            text-align: center;
+        }
+        #hero-area.home-1 .hero-buttons .btn {
+            margin: 0 8px !important;
+        }
+        @media (max-width: 767px) {
+            #hero-area.home-1 .hero-buttons { margin-top: 20px; }
+            #hero-area.home-1 .hero-buttons .btn { margin: 6px !important; }
+        }
     </style>
 </head>
 
@@ -120,7 +175,10 @@ $og_image         = 'https://www.boskfurniture.com/images/og-default.jpg';
                                     <p style="color:white !important;" class="mt-4"><b>Our experience ensures that your projects will be done right and with the upmost professionalism.</b></p>
                                 </div>
                                 <!--/ End Welcome Text -->
-                                <a href="about-us.php" class="btn btn-default btn-theme-colored2 btn-xl mt-5">Read More</a> <a href="contact.php" class="btn btn-dark btn-theme-colored btn-xl mt-5">Contact Us</a>
+                                <div class="hero-buttons">
+                                    <a href="about-us.php" class="btn btn-default btn-theme-colored2 btn-xl">Read More</a>
+                                    <a href="contact.php" class="btn btn-dark btn-theme-colored btn-xl">Contact Us</a>
+                                </div>
                             </div>
                         </div>
                     </div>
