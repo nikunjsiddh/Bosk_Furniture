@@ -30,6 +30,111 @@ $page_canonical   = '/about-us.php';
       }
     }
     </script>
+    <style>
+        /* ============ WHY BOSK FURNITURE CARDS ============ */
+        .all-services .item { perspective: 1000px; }
+        .all-services .service-box {
+            position: relative;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 28px 28px 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            transition: transform .45s cubic-bezier(.25,.8,.25,1),
+                        box-shadow .45s ease;
+            height: 100%;
+        }
+        /* Soft brand-tinted wash that fades in on hover */
+        .all-services .service-box::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                rgba(83, 42, 26, 0.07) 0%,
+                rgba(83, 42, 26, 0) 65%);
+            opacity: 0;
+            transition: opacity .4s ease;
+            pointer-events: none;
+        }
+        /* Left accent bar that slides in from 0 to 6px on hover */
+        .all-services .service-box::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: #532A1A;
+            transition: width .4s cubic-bezier(.25,.8,.25,1);
+        }
+        .all-services .item:hover .service-box {
+            transform: translateY(-10px);
+            box-shadow: 0 22px 42px rgba(83, 42, 26, 0.18);
+        }
+        .all-services .item:hover .service-box::before { opacity: 1; }
+        .all-services .item:hover .service-box::after { width: 6px; }
+
+        .all-services .service-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: .6px;
+            margin: 0 0 12px;
+            transition: color .35s ease, transform .35s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .all-services .service-box h3 a {
+            color: #222 !important;
+            text-decoration: none !important;
+            transition: color .35s ease;
+        }
+        .all-services .item:hover .service-box h3 {
+            transform: translateX(8px);
+        }
+        .all-services .item:hover .service-box h3 a {
+            color: #532A1A !important;
+        }
+        .all-services .service-box p {
+            margin: 0;
+            color: #666;
+            line-height: 1.65;
+            position: relative;
+            z-index: 1;
+            transition: color .3s ease, transform .35s ease;
+        }
+        .all-services .item:hover .service-box p {
+            color: #444;
+            transform: translateX(8px);
+        }
+
+        /* Subtle decorative number badge in the top-right */
+        .all-services .service-inner-box::before {
+            content: "✦";
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            font-size: 22px;
+            color: #ecdfd7;
+            opacity: 0;
+            transform: rotate(-25deg) scale(.6);
+            transition: opacity .45s ease, transform .55s cubic-bezier(.25,.8,.25,1);
+            pointer-events: none;
+            z-index: 1;
+        }
+        .all-services .service-inner-box {
+            position: relative;
+        }
+        .all-services .item:hover .service-inner-box::before {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+            color: #532A1A;
+        }
+
+        @media (max-width: 575px) {
+            .all-services .service-box { padding: 22px 22px 20px; }
+            .all-services .service-box h3 { font-size: 16px; }
+        }
+    </style>
 </head>
 
 <body class="inner-page">

@@ -463,6 +463,90 @@ $og_image         = 'https://www.boskfurniture.com/images/og-default.jpg';
             .partners .logo-set img { height: 58px; margin: 0 24px; }
             .partners .logo-marquee-track { animation-duration: 22s !important; -webkit-animation-duration: 22s !important; }
         }
+
+        /* ============ RECENT PROJECTS SLIDER ARROWS ============ */
+        .homepage-1 .home5-right-slider.owl-carousel { position: relative; }
+        .homepage-1 .home5-right-slider.owl-carousel .owl-stage-outer {
+            position: relative;
+            overflow: hidden !important;
+        }
+        /* Allow ancestors of the arrows to render outside their normal box so
+           absolutely-positioned arrows are never clipped */
+        .recently,
+        .recently .portfolio,
+        .recently .right-slider,
+        .homepage-1 .home5-right-slider.owl-carousel { overflow: visible !important; }
+
+        /* Overlay the nav exactly on the slide area, so top:50% = middle of cards */
+        .homepage-1 .home5-right-slider.owl-carousel .owl-nav {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            pointer-events: none !important;
+            height: auto !important;
+        }
+        .homepage-1 .home5-right-slider.owl-carousel .owl-prev,
+        .homepage-1 .home5-right-slider.owl-carousel .owl-next {
+            position: absolute !important;
+            top: 50% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            pointer-events: auto !important;
+            -webkit-transform: translateY(-50%) !important;
+                    transform: translateY(-50%) !important;
+            width: 42px !important;
+            height: 42px !important;
+            border-radius: 50% !important;
+            background: #ffffff !important;
+            color: #532A1A !important;
+            display: -webkit-box !important;
+            display: -ms-flexbox !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 16px !important;
+            line-height: 1 !important;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
+            border: none !important;
+            z-index: 20 !important;
+            opacity: 1 !important;
+            transition: background .3s ease, color .3s ease, transform .3s ease !important;
+        }
+        /* Push both arrows well inside the slider so neither edge can clip them */
+        .homepage-1 .home5-right-slider.owl-carousel .owl-prev {
+            left: 30px !important;
+            right: auto !important;
+        }
+        .homepage-1 .home5-right-slider.owl-carousel .owl-next {
+            right: 30px !important;
+            left: auto !important;
+        }
+        .homepage-1 .home5-right-slider.owl-carousel .owl-prev:hover,
+        .homepage-1 .home5-right-slider.owl-carousel .owl-next:hover {
+            background: #532A1A !important;
+            color: #ffffff !important;
+            -webkit-transform: translateY(-50%) scale(1.1) !important;
+                    transform: translateY(-50%) scale(1.1) !important;
+        }
+        .homepage-1 .home5-right-slider.owl-carousel .owl-prev i,
+        .homepage-1 .home5-right-slider.owl-carousel .owl-next i {
+            color: inherit !important;
+            font-size: 15px !important;
+            line-height: 1 !important;
+        }
+        @media (max-width: 991px) {
+            .homepage-1 .home5-right-slider.owl-carousel .owl-prev,
+            .homepage-1 .home5-right-slider.owl-carousel .owl-next {
+                width: 36px !important;
+                height: 36px !important;
+            }
+            .homepage-1 .home5-right-slider.owl-carousel .owl-prev { left: 14px !important; }
+            .homepage-1 .home5-right-slider.owl-carousel .owl-next { right: 14px !important; }
+        }
     </style>
 </head>
 
