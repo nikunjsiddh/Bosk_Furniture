@@ -23,6 +23,44 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.+)/$ /$1 [R=301,L]
 
+    # ============================================================
+    # /home alias  ->  index.php  (so http://.../bosk/home opens home page)
+    # Kept above the generic clean-URL rules so it matches first.
+    # ============================================================
+    RewriteRule ^home/?$ index.php [L]
+
+    # ============================================================
+    # CLEAN URLS — strip the .php extension everywhere
+    # /bosk/about-us.php   ->  /bosk/about-us         (browser redirect)
+    # /bosk/about-us       ->  /bosk/about-us.php     (internal rewrite)
+    # /bosk/index.php      ->  /bosk/                 (home canonical)
+    # ============================================================
+
+    # 1) Canonicalize the home page:
+    #    /index.php  or  /index  →  /  (works at any sub-folder depth)
+    #    Only on GET so AJAX POSTs aren't broken.
+    RewriteCond %{REQUEST_METHOD} =GET
+    RewriteCond %{THE_REQUEST} ^[A-Z]+\s(.*/)index(?:\.php)?[?\s] [NC]
+    RewriteRule ^ %1 [R=301,L]
+
+    # 2) Redirect /something.php → /something  (visitor address bar gets cleaned)
+    #    Skip the AJAX endpoint folder (back/) and the admin panel (Admin/)
+    #    because their forms POST directly to *.php and a 301 would drop the POST body.
+    RewriteCond %{REQUEST_METHOD} =GET
+    RewriteCond %{REQUEST_URI} !/back/   [NC]
+    RewriteCond %{REQUEST_URI} !/Admin/  [NC]
+    RewriteCond %{THE_REQUEST} ^[A-Z]+\s([^\s?]+)\.php[?\s] [NC]
+    RewriteRule ^ %1 [R=301,L]
+
+    # 3) Internally serve /something as /something.php when the .php file exists.
+    #    Skipped for /back/ and /Admin/ so those paths still resolve by their real names.
+    RewriteCond %{REQUEST_URI} !/back/   [NC]
+    RewriteCond %{REQUEST_URI} !/Admin/  [NC]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}\.php -f
+    RewriteRule ^(.+?)/?$ $1.php [L]
+
     # Custom 404 page
     ErrorDocument 404 /404.php
 </IfModule>
