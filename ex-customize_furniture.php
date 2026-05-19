@@ -58,7 +58,7 @@ $page_canonical   = '/ex-customize_furniture.php';
         <!-- START SECTION HEADINGS -->
         <!-- Header Container
         ================================================== -->
-        <?php include_once"design/nav1.php";?>
+        <?php include_once"design/nav.php";?>
         <div class="clearfix"></div>
         <!-- Header Container / End -->
 

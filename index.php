@@ -640,7 +640,7 @@ $og_image         = 'https://www.boskfurniture.com/images/og-default.jpg';
         <!-- START SECTION HEADINGS -->
         <!-- Header Container
         ================================================== -->
-        <?php include_once"design/nav1.php";?>
+        <?php include_once"design/nav.php";?>
         <div class="clearfix"></div>
         <!-- Header Container / End -->
 

@@ -7,92 +7,63 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 ?>
 <style>
- .table-image {
-  td, th {
-    vertical-align: middle;
-  }
-}
-.minicart-icon .item-count {
-  background: #532A1A;
-  color: #ffffff;
-  position: absolute;
-  bottom: 22px;
-  right: -2px;
-  width: 19px;
-  height: 19px;
-  line-height: 20px;
-  border-radius: 50%;
-  font-size: 12px;
-  text-align: center;
-}
-@media only screen and (max-width: 600px) {
-  .element {
-    display: none; /* Hide the element on smaller screens */
-  }
-}
+    .table-image {
 
-/* ------------------------------------------------------------
-   Extra spacing between the logo and the menu items so the
-   hover highlight on the first item (Home) does not visually
-   blend into the logo. Applies in BOTH the normal header and
-   the scrolled / sticky (`.cloned`) header.
-   ------------------------------------------------------------ */
-#header #logo,
-#header.cloned #logo {
-    margin-right: 55px;
-}
-#header #navigation ul#responsive,
-#header.cloned #navigation ul#responsive {
-    padding-left: 20px;
-}
-#header #navigation ul#responsive > li:first-child,
-#header.cloned #navigation ul#responsive > li:first-child {
-    margin-left: 6px;
-}
-@media (max-width: 991px) {
-    #header #logo,
-    #header.cloned #logo {
-        margin-right: 20px;
+        td,
+        th {
+            vertical-align: middle;
+        }
     }
-    #header #navigation ul#responsive,
-    #header.cloned #navigation ul#responsive {
-        padding-left: 0;
-    }
-    #header #navigation ul#responsive > li:first-child,
-    #header.cloned #navigation ul#responsive > li:first-child {
-        margin-left: 0;
-    }
-}
 
+    .minicart-icon .item-count {
+        background: #532A1A;
+        color: #ffffff;
+        position: absolute;
+        bottom: 22px;
+        right: -2px;
+        width: 19px;
+        height: 19px;
+        line-height: 20px;
+        border-radius: 50%;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .element {
+            display: none;
+            /* Hide the element on smaller screens */
+        }
+    }
 </style>
-<header id="header-container" >
-            <!-- Header -->
-             <div  id="header" class="head-tr bottom ">
-                <div  class="container-fluid int_content_wraapper" >
-                    <!-- Left Side Content -->
-                    <div class="left-side">
-                        <!-- Logo -->
-                        <div id="logo" class="col-lg-2 logo-white">
-                            <a href="index.php"><img src="images/logo-black.png" alt=""></a>
-                        </div>
-                        <!-- Mobile Navigation -->
-                        <div class="mmenu-trigger">
-                            <button class="hamburger hamburger--collapse" type="button">
-                                <span class="hamburger-box">
-							<span class="hamburger-inner"></span>
-                                </span>
-                            </button>
-                        </div>
-                        <!-- Main Navigation -->
-                        <nav id="navigation" class="style-1 white">
-                            <ul id="responsive">
-                               <li>
-                                    <a href="index.php">Home</a>
-                                </li>
-                                <li><a href="all_products.php">Shop</a>
-                               
-                                    <!--<ul>-->
-                                         <?php
+<header id="header-container">
+    <!-- Header -->
+    <div id="header" class="head-tr bottom ">
+        <div class="container-fluid int_content_wraapper">
+            <!-- Left Side Content -->
+            <div class="left-side">
+                <!-- Logo -->
+                <div id="logo" class="col-lg-2 logo-white">
+                    <a href="index.php"><img src="images/logo-black.png" alt=""></a>
+                </div>
+                <!-- Mobile Navigation -->
+                <div class="mmenu-trigger">
+                    <button class="hamburger hamburger--collapse" type="button">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </div>
+                <!-- Main Navigation -->
+                <nav id="navigation" class="style-1 white">
+                    <ul id="responsive">
+                        <li>
+                            <a href="index.php">Home</a>
+                        </li>
+                        <li><a href="all_products.php">Shop</a>
+
+                            <!--<ul>-->
+                            <?php
                                         //  include_once"connect.php";
                                          
                                         //   $cmd="select * from category";
@@ -103,27 +74,27 @@ if (session_status() === PHP_SESSION_NONE) {
                                         //       $name=$row['name'];
                                         //       $img=$row['img'];
                                           ?>
-                                        <!--<li><a href="shop.php?astringdata2=<?php echo $row['name'];?>"><?php echo $name;?></a>-->
-                                        <!--</li>-->
-                                        <?php
+                            <!--<li><a href="shop.php?astringdata2=<?php echo $row['name'];?>"><?php echo $name;?></a>-->
+                            <!--</li>-->
+                            <?php
                                         //   }
                                         ?>
-                                       
-                                    <!--</ul>-->
-                                </li>
-                                 <li>
-                                    <a href="about-us.php">About Us</a>
-                                </li>
-                                <li>
-                                    <a href="blog-full-list.php">Blog</a>
-                                </li>
-                               <li>
-                                    <a href="design-order-process.php">How We Works</a>
-                                </li> 
-                                <li>
-                                    <a href="contact.php">Contact Us</a>
-                                </li>
-                                <?php
+
+                            <!--</ul>-->
+                        </li>
+                        <li>
+                            <a href="about-us.php">About Us</a>
+                        </li>
+                        <li>
+                            <a href="blog-full-list.php">Blog</a>
+                        </li>
+                        <li>
+                            <a href="design-order-process.php">How We Works</a>
+                        </li>
+                        <li>
+                            <a href="contact.php">Contact Us</a>
+                        </li>
+                        <?php
 
                                                 include_once("connect.php");
 
@@ -147,81 +118,87 @@ if (session_status() === PHP_SESSION_NONE) {
                                                         $hi      = mysqli_num_rows($result1);
                                                     }
                                                     ?>
-                                <li><a href="cart.php"><div class="minicart-icon wishlist-icon">
-                                                Cart <i class="fa fa-shopping-cart"></i>
-                                                <span class="item-count element"><?php echo $hi;?></span>
-                                            </div></a>
-                                   
+                        <li><a href="cart.php">
+                                <div class="minicart-icon wishlist-icon">
+                                    Cart <i class="fa fa-shopping-cart"></i>
+                                    <span class="item-count element">
+                                        <?php echo $hi;?>
+                                    </span>
+                                </div>
+                            </a>
+
+                        </li>
+                        <li><a href="profile.php">Account <i class="fa fa-user"></i></a>
+                            <ul>
+                                <li><a href="profile.php">My Account</a>
                                 </li>
-                                <li><a href="profile.php">Account <i class="fa fa-user"></i></a>
-                                    <ul>
-                                        <li><a href="profile.php">My Account</a>
-                                        </li>
-                                        <li><a href="logout.php">logout</a>
-                                        </li>
-                                       
-                                    </ul>
-                                    <!--<ul>-->
-                                    <!--    <li><br/>-->
-                                    <!--    <center><img class="rounded-circle shadow-4-strong" src="images/1.jpg"  width="200" height="100"> </center><br/> -->
-                                    <!--   <center> <p><b>Welcome , Aayushi Vora</b></p></center>-->
-                                    <!--    <div class="row">-->
-                                    <!--            <div class="col-md-1"></div>-->
-                                    <!--            <div class="col-md-5"><a href="profile.php" style="text-align:center;color:white !important;" class="btn btn-dark btn-theme-colored btn-xl">View Profile</a></div>-->
-                                    <!--            <div class="col-md-5"><a href="profile.php" style="text-align:center;color:white !important;" class="btn btn-dark btn-theme-colored btn-xl">Edit Profile</a></div>-->
-                                    <!--            <div class="col-md-1"></div>-->
-                                    <!--        </div><br/>-->
-                                    <!--    </li>-->
-                                       
-                                    <!--</ul>-->
+                                <li><a href="logout.php">logout</a>
                                 </li>
-                               <?php
+
+                            </ul>
+                            <!--<ul>-->
+                            <!--    <li><br/>-->
+                            <!--    <center><img class="rounded-circle shadow-4-strong" src="images/1.jpg"  width="200" height="100"> </center><br/> -->
+                            <!--   <center> <p><b>Welcome , Aayushi Vora</b></p></center>-->
+                            <!--    <div class="row">-->
+                            <!--            <div class="col-md-1"></div>-->
+                            <!--            <div class="col-md-5"><a href="profile.php" style="text-align:center;color:white !important;" class="btn btn-dark btn-theme-colored btn-xl">View Profile</a></div>-->
+                            <!--            <div class="col-md-5"><a href="profile.php" style="text-align:center;color:white !important;" class="btn btn-dark btn-theme-colored btn-xl">Edit Profile</a></div>-->
+                            <!--            <div class="col-md-1"></div>-->
+                            <!--        </div><br/>-->
+                            <!--    </li>-->
+
+                            <!--</ul>-->
+                        </li>
+                        <?php
                                                 }else{
                                                     ?>
-                                                    <li><a href="cart.php"><div class="minicart-icon wishlist-icon">
-                                                Cart <i class="fa fa-shopping-cart"></i>
-                                                <span class="item-count element">0</span>
-                                            </div></a>
-                                   
+                        <li><a href="cart.php">
+                                <div class="minicart-icon wishlist-icon">
+                                    Cart <i class="fa fa-shopping-cart"></i>
+                                    <span class="item-count element">0</span>
+                                </div>
+                            </a>
+
+                        </li>
+                        <li><a href="profile.php">Account <i class="fa fa-user"></i></a>
+                            <ul>
+                                <li><a href="profile.php">My Account</a>
                                 </li>
-                                <li><a href="profile.php">Account <i class="fa fa-user"></i></a>
-                                    <ul>
-                                        <li><a href="profile.php">My Account</a>
-                                        </li>
-                                        <li><a href="login.php">Login/Register</a>
-                                        </li>
-                                    </ul>
-                                    <!--<ul>-->
-                                    <!--    <li><br/>-->
-                                    <!--    <center><img class="rounded-circle shadow-4-strong" src="images/1.jpg"  width="200" height="100"> </center><br/> -->
-                                    <!--   <center> <p><b>Welcome , Aayushi Vora</b></p></center>-->
-                                    <!--    <div class="row">-->
-                                    <!--            <div class="col-md-1"></div>-->
-                                    <!--            <div class="col-md-5"><a href="profile.php" style="text-align:center;color:white !important;" class="btn btn-dark btn-theme-colored btn-xl">View Profile</a></div>-->
-                                    <!--            <div class="col-md-5"><a href="profile.php" style="text-align:center;color:white !important;" class="btn btn-dark btn-theme-colored btn-xl">Edit Profile</a></div>-->
-                                    <!--            <div class="col-md-1"></div>-->
-                                    <!--        </div><br/>-->
-                                    <!--    </li>-->
-                                       
-                                    <!--</ul>-->
+                                <li><a href="login.php">Login/Register</a>
                                 </li>
-                                                    <?php
+                            </ul>
+                            <!--<ul>-->
+                            <!--    <li><br/>-->
+                            <!--    <center><img class="rounded-circle shadow-4-strong" src="images/1.jpg"  width="200" height="100"> </center><br/> -->
+                            <!--   <center> <p><b>Welcome , Aayushi Vora</b></p></center>-->
+                            <!--    <div class="row">-->
+                            <!--            <div class="col-md-1"></div>-->
+                            <!--            <div class="col-md-5"><a href="profile.php" style="text-align:center;color:white !important;" class="btn btn-dark btn-theme-colored btn-xl">View Profile</a></div>-->
+                            <!--            <div class="col-md-5"><a href="profile.php" style="text-align:center;color:white !important;" class="btn btn-dark btn-theme-colored btn-xl">Edit Profile</a></div>-->
+                            <!--            <div class="col-md-1"></div>-->
+                            <!--        </div><br/>-->
+                            <!--    </li>-->
+
+                            <!--</ul>-->
+                        </li>
+                        <?php
                                                 }
                                                 ?>
-                                
-                                
-                            </ul>
-                        </nav>
-                        <div class="clearfix"></div>
-                        <!-- Main Navigation / End -->
-                    </div>
-                    <!-- Left Side Content / End -->
 
-                </div>
+
+                    </ul>
+                </nav>
+                <div class="clearfix"></div>
+                <!-- Main Navigation / End -->
             </div>
-            <!-- Header / End -->
+            <!-- Left Side Content / End -->
 
-        </header>
+        </div>
+    </div>
+    <!-- Header / End -->
+
+</header>
 
 <!--<style>-->
 <!-- .table-image {-->
@@ -232,16 +209,16 @@ if (session_status() === PHP_SESSION_NONE) {
 <!--.-->
 <!--</style>-->
 <!--<header id="header-container" class="header head-tr">-->
-            <!-- Header -->
+<!-- Header -->
 <!--            <div id="header" class="head-tr bottom">-->
 <!--                <div class="container">-->
-                    <!-- Left Side Content -->
+<!-- Left Side Content -->
 <!--                    <div class="left-side">-->
-                        <!-- Logo -->
+<!-- Logo -->
 <!--                        <div id="logo" class="col-lg-2 logo-white">-->
 <!--                            <a href="index.php"><img src="images/logo-white-1.png" data-sticky-logo="images/logo-black.png" alt=""></a>-->
 <!--                        </div>-->
-                        <!-- Mobile Navigation -->
+<!-- Mobile Navigation -->
 <!--                        <div class="mmenu-trigger">-->
 <!--                            <button class="hamburger hamburger--collapse" type="button">-->
 <!--                                <span class="hamburger-box">-->
@@ -249,13 +226,13 @@ if (session_status() === PHP_SESSION_NONE) {
 <!--                                </span>-->
 <!--                            </button>-->
 <!--                        </div>-->
-                        <!-- Main Navigation -->
+<!-- Main Navigation -->
 <!--                        <nav id="navigation" class="style-1 head-tr">-->
 <!--                            <ul id="responsive">-->
 <!--                                <li>-->
 <!--                                    <a href="index.php">Home</a>-->
 <!--                                </li>-->
-                                
+
 <!--                                <li><a href="shop.php">Products</a>-->
 <!--                                    <ul>-->
 <!--                                        <li><a href="shop.php">All Products</a>-->
@@ -272,14 +249,14 @@ if (session_status() === PHP_SESSION_NONE) {
 <!--                                        </li>-->
 <!--                                    </ul>-->
 <!--                                </li>-->
-                               
+
 <!--                                <li>-->
 <!--                                    <a href="about-us.php">About Us</a>-->
 <!--                                </li>-->
 <!--                                <li>-->
 <!--                                    <a href="blog-full-list.php">Blog</a>-->
 <!--                                </li>-->
-                               
+
 <!--                                <li>-->
 <!--                                    <a href="contact.php">Contact Us</a>-->
 <!--                                </li>-->
@@ -293,7 +270,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <!--                                		      <th scope="col">Image</th>-->
 <!--                                		      <th scope="col">Name</th>-->
 <!--                                		      <th scope="col">Price</th>-->
-                                		      
+
 <!--                                		    </tr>-->
 <!--                                		  </thead>-->
 <!--                                		  <tbody>-->
@@ -304,7 +281,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <!--                                		      </td>-->
 <!--                                		      <td>Product 1</td>-->
 <!--                                		      <td>200</td>-->
-                                		      
+
 <!--                                		    </tr>-->
 <!--                                		    <tr>-->
 <!--                                		      <th scope="row">2</th>-->
@@ -313,7 +290,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <!--                                		      </td>-->
 <!--                                		      <td>Product 2</td>-->
 <!--                                		      <td>300</td>-->
-                                		      
+
 <!--                                		    </tr>-->
 <!--                                		  </tbody>-->
 <!--                                		</table>   -->
@@ -331,7 +308,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <!--                                         <li>-->
 <!--                                            <a style="color:#532A1A !important;" href="residental-interior.php">Total - 2050</a>-->
 <!--                                        </li>-->
-                                        
+
 <!--                                        <li style="disply:inline;">-->
 <!--                                            <div class="row">-->
 <!--                                                <div class="col-md-1"></div>-->
@@ -339,12 +316,12 @@ if (session_status() === PHP_SESSION_NONE) {
 <!--                                                <div class="col-md-5"><a href="checkout.php" style="text-align:center;color:white !important;" class="btn btn-dark btn-theme-colored btn-xl">Checkout</a></div>-->
 <!--                                                <div class="col-md-1"></div>-->
 <!--                                            </div><br/>-->
-                                            
-                                            
+
+
 <!--                                        </li>-->
 <!--                                        </center>-->
-                                        <!--<li><button class="btn btn-primary"><a href="checkout.php">Checkout</a></button>-->
-                                        <!--</li>-->
+<!--<li><button class="btn btn-primary"><a href="checkout.php">Checkout</a></button>-->
+<!--</li>-->
 <!--                                    </ul>-->
 <!--                                </li>-->
 <!--                                <li><a href="profile.php"><i class="fa fa-user"></i></a>-->
@@ -355,40 +332,35 @@ if (session_status() === PHP_SESSION_NONE) {
 <!--                                        </li>-->
 <!--                                        <li><a href="login.php">logout <i class="fa fa-sign-out"></i></a>-->
 <!--                                        </li>-->
-                                       
+
 <!--                                    </ul>-->
-                                    <!--<ul>-->
-                                    <!--    <li><br/>-->
-                                    <!--    <center><img class="rounded-circle shadow-4-strong" src="images/1.jpg"  width="200" height="100"> </center><br/> -->
-                                    <!--   <center> <p><b>Welcome , Aayushi Vora</b></p></center>-->
-                                    <!--    <div class="row">-->
-                                    <!--            <div class="col-md-1"></div>-->
-                                    <!--            <div class="col-md-5"><a href="profile.php" style="text-align:center;color:white !important;" class="btn btn-dark btn-theme-colored btn-xl">View Profile</a></div>-->
-                                    <!--            <div class="col-md-5"><a href="profile.php" style="text-align:center;color:white !important;" class="btn btn-dark btn-theme-colored btn-xl">Edit Profile</a></div>-->
-                                    <!--            <div class="col-md-1"></div>-->
-                                    <!--        </div><br/>-->
-                                    <!--    </li>-->
-                                       
-                                    <!--</ul>-->
+<!--<ul>-->
+<!--    <li><br/>-->
+<!--    <center><img class="rounded-circle shadow-4-strong" src="images/1.jpg"  width="200" height="100"> </center><br/> -->
+<!--   <center> <p><b>Welcome , Aayushi Vora</b></p></center>-->
+<!--    <div class="row">-->
+<!--            <div class="col-md-1"></div>-->
+<!--            <div class="col-md-5"><a href="profile.php" style="text-align:center;color:white !important;" class="btn btn-dark btn-theme-colored btn-xl">View Profile</a></div>-->
+<!--            <div class="col-md-5"><a href="profile.php" style="text-align:center;color:white !important;" class="btn btn-dark btn-theme-colored btn-xl">Edit Profile</a></div>-->
+<!--            <div class="col-md-1"></div>-->
+<!--        </div><br/>-->
+<!--    </li>-->
+
+<!--</ul>-->
 <!--                                </li>-->
 <!--                                <li>-->
 <!--                                    <a href="wishlist.php"><i class="fa fa-heart"></i></a>-->
 <!--                                </li>-->
 <!--                            </ul>-->
 <!--                        </nav>-->
-                        
+
 <!--                        <div class="clearfix"></div>-->
-                        <!-- Main Navigation / End -->
+<!-- Main Navigation / End -->
 <!--                    </div>-->
-                    <!-- Left Side Content / End -->
+<!-- Left Side Content / End -->
 
 <!--                </div>-->
 <!--            </div>-->
-            <!-- Header / End -->
+<!-- Header / End -->
 
 <!--        </header>-->
-
-
-
-
-
