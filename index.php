@@ -498,54 +498,138 @@ $og_image         = 'https://www.boskfurniture.com/images/og-default.jpg';
             pointer-events: auto !important;
             -webkit-transform: translateY(-50%) !important;
                     transform: translateY(-50%) !important;
-            width: 42px !important;
-            height: 42px !important;
+            width: 54px !important;
+            height: 54px !important;
             border-radius: 50% !important;
-            background: #ffffff !important;
-            color: #532A1A !important;
+            background: linear-gradient(135deg, #6b3823 0%, #532A1A 60%, #3a1c10 100%) !important;
+            color: #ffffff !important;
             display: -webkit-box !important;
             display: -ms-flexbox !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-            font-size: 16px !important;
+            font-size: 18px !important;
             line-height: 1 !important;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
+            box-shadow:
+                0 8px 22px rgba(83, 42, 26, 0.35),
+                inset 0 0 0 2px rgba(255, 255, 255, 0.18) !important;
             border: none !important;
             z-index: 20 !important;
             opacity: 1 !important;
-            transition: background .3s ease, color .3s ease, transform .3s ease !important;
+            overflow: visible !important;
+            transition: transform .45s cubic-bezier(.25,.8,.25,1),
+                        box-shadow .45s ease,
+                        background .45s ease !important;
         }
-        /* Push both arrows well inside the slider so neither edge can clip them */
+        /* Soft glowing ring that expands on hover */
+        .homepage-1 .home5-right-slider.owl-carousel .owl-prev::before,
+        .homepage-1 .home5-right-slider.owl-carousel .owl-next::before {
+            content: "";
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid rgba(83, 42, 26, 0.35);
+            opacity: 0;
+            transform: scale(.85);
+            transition: opacity .45s ease, transform .55s cubic-bezier(.25,.8,.25,1);
+            pointer-events: none;
+        }
+        /* Subtle resting pulse to draw the eye */
+        .homepage-1 .home5-right-slider.owl-carousel .owl-prev::after,
+        .homepage-1 .home5-right-slider.owl-carousel .owl-next::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(83, 42, 26, 0.55);
+            animation: arrowPulse 2.4s ease-out infinite;
+            pointer-events: none;
+        }
+        @keyframes arrowPulse {
+            0%   { box-shadow: 0 0 0 0   rgba(83, 42, 26, 0.5); }
+            70%  { box-shadow: 0 0 0 16px rgba(83, 42, 26, 0); }
+            100% { box-shadow: 0 0 0 0   rgba(83, 42, 26, 0); }
+        }
+
+        /* Push both arrows inside the slider so neither edge can clip them */
         .homepage-1 .home5-right-slider.owl-carousel .owl-prev {
-            left: 30px !important;
+            left: 28px !important;
             right: auto !important;
         }
         .homepage-1 .home5-right-slider.owl-carousel .owl-next {
-            right: 30px !important;
+            right: 28px !important;
             left: auto !important;
         }
+
+        /* Hover state */
         .homepage-1 .home5-right-slider.owl-carousel .owl-prev:hover,
         .homepage-1 .home5-right-slider.owl-carousel .owl-next:hover {
-            background: #532A1A !important;
-            color: #ffffff !important;
-            -webkit-transform: translateY(-50%) scale(1.1) !important;
-                    transform: translateY(-50%) scale(1.1) !important;
+            background: linear-gradient(135deg, #7a4128 0%, #532A1A 60%, #2a1208 100%) !important;
+            box-shadow:
+                0 14px 30px rgba(83, 42, 26, 0.45),
+                inset 0 0 0 2px rgba(255, 255, 255, 0.28) !important;
+            -webkit-transform: translateY(-50%) scale(1.12) !important;
+                    transform: translateY(-50%) scale(1.12) !important;
         }
+        .homepage-1 .home5-right-slider.owl-carousel .owl-prev:hover::before,
+        .homepage-1 .home5-right-slider.owl-carousel .owl-next:hover::before {
+            opacity: 1;
+            transform: scale(1.15);
+            border-color: rgba(83, 42, 26, 0.55);
+        }
+        /* Pause the resting pulse on hover for a clean focused look */
+        .homepage-1 .home5-right-slider.owl-carousel .owl-prev:hover::after,
+        .homepage-1 .home5-right-slider.owl-carousel .owl-next:hover::after {
+            animation-play-state: paused;
+        }
+
+        /* Arrow icon — perfectly centered inside the circle */
         .homepage-1 .home5-right-slider.owl-carousel .owl-prev i,
         .homepage-1 .home5-right-slider.owl-carousel .owl-next i {
             color: inherit !important;
-            font-size: 15px !important;
+            font-size: 16px !important;
             line-height: 1 !important;
+            display: -webkit-inline-box !important;
+            display: -ms-inline-flexbox !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 1em;
+            height: 1em;
+            margin: 0 !important;
+            padding: 0 !important;
+            text-align: center;
+            vertical-align: middle;
+            transition: transform .35s cubic-bezier(.25,.8,.25,1) !important;
         }
+        .homepage-1 .home5-right-slider.owl-carousel .owl-prev:hover i {
+            transform: translateX(-4px);
+        }
+        .homepage-1 .home5-right-slider.owl-carousel .owl-next:hover i {
+            transform: translateX(4px);
+        }
+        /* Click press feedback */
+        .homepage-1 .home5-right-slider.owl-carousel .owl-prev:active,
+        .homepage-1 .home5-right-slider.owl-carousel .owl-next:active {
+            -webkit-transform: translateY(-50%) scale(1.02) !important;
+                    transform: translateY(-50%) scale(1.02) !important;
+        }
+
         @media (max-width: 991px) {
             .homepage-1 .home5-right-slider.owl-carousel .owl-prev,
             .homepage-1 .home5-right-slider.owl-carousel .owl-next {
-                width: 36px !important;
-                height: 36px !important;
+                width: 44px !important;
+                height: 44px !important;
+                font-size: 15px !important;
             }
             .homepage-1 .home5-right-slider.owl-carousel .owl-prev { left: 14px !important; }
             .homepage-1 .home5-right-slider.owl-carousel .owl-next { right: 14px !important; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .homepage-1 .home5-right-slider.owl-carousel .owl-prev::after,
+            .homepage-1 .home5-right-slider.owl-carousel .owl-next::after {
+                animation: none;
+            }
         }
     </style>
 </head>
@@ -1208,7 +1292,7 @@ $og_image         = 'https://www.boskfurniture.com/images/og-default.jpg';
                 autoplay: false,
                 singleItem: true,
                 smartSpeed: 1200,
-                navText: ["<i class='fas fa-long-arrow-alt-left'></i>", "<i class='fas fa-long-arrow-alt-right'></i>"],
+                navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
                 responsive: {
                     0: {
                         items: 1,

@@ -746,7 +746,7 @@ hr {
             <div class="container">
                 <div class="filters-group">
                     <ul>
-                        <li style="background-color:#521A2A;color:white;" class="active" data-filter="*"><a class="hi2" style="color:#ffffff;" href="">Show All</a></li>
+                        <li class="active" data-filter="*"><a class="hi2" href="all_products.php">Show All</a></li>
                           
                         <?php
                         include_once"connect.php";

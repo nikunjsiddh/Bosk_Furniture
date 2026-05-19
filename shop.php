@@ -386,7 +386,346 @@ hr {
  .qty .button1.qtyplus {
 	 margin-left: 0.3rem;
 }
- 
+
+   /* ============ FILTER PILLS — single-row, defeats inline styles ============ */
+   .featured-area.portfolio .filters-group {
+       position: relative;
+       margin-left: -15px;
+       margin-right: -15px;
+       margin-bottom: 14px;
+       overflow-x: auto;
+       overflow-y: hidden;
+       padding: 6px 24px 14px;
+       -webkit-overflow-scrolling: touch;
+       scrollbar-width: none;
+   }
+   .featured-area.portfolio .filters-group::-webkit-scrollbar { display: none; }
+   .featured-area.portfolio .filters-group ul {
+       list-style: none !important;
+       padding: 0 24px 0 24px !important;
+       margin: 0 !important;
+       display: flex !important;
+       flex-wrap: nowrap !important;
+       gap: 10px !important;
+       justify-content: flex-start !important;
+       white-space: nowrap;
+       min-width: max-content;
+       width: max-content;
+   }
+   @media (min-width: 992px) {
+       .featured-area.portfolio .filters-group ul {
+           justify-content: center !important;
+           margin: 0 auto !important;
+       }
+   }
+   main,
+   main > section,
+   .featured-area.portfolio,
+   .featured-area.portfolio .container,
+   .featured-area.portfolio .tab.featured-tab-area,
+   .featured-area.portfolio .tab_content { overflow: visible !important; }
+
+   .featured-area.portfolio .filters-group ul li,
+   .featured-area.portfolio .filters-group ul li[style] {
+       margin: 0 !important;
+       padding: 0 !important;
+       background: transparent !important;
+       background-color: transparent !important;
+       color: inherit !important;
+       border: 0 !important;
+       border-radius: 30px !important;
+       list-style: none !important;
+       line-height: normal !important;
+       display: inline-block !important;
+       transition: transform .25s ease, box-shadow .25s ease;
+   }
+   .featured-area.portfolio .filters-group ul li a,
+   .featured-area.portfolio .filters-group ul li a[style] {
+       display: inline-block !important;
+       padding: 8px 16px !important;
+       border-radius: 30px !important;
+       background: #ffffff !important;
+       background-color: #ffffff !important;
+       color: #532A1A !important;
+       font-weight: 600 !important;
+       font-size: 13px !important;
+       letter-spacing: .2px;
+       border: 1.5px solid #ecdfd7 !important;
+       text-decoration: none !important;
+       text-transform: none;
+       line-height: 1.2 !important;
+       cursor: pointer;
+       white-space: nowrap;
+       transition: background .3s ease, color .3s ease,
+                   border-color .3s ease, transform .25s ease,
+                   box-shadow .3s ease !important;
+   }
+   @media (max-width: 1199px) {
+       .featured-area.portfolio .filters-group ul li a,
+       .featured-area.portfolio .filters-group ul li a[style] {
+           padding: 7px 14px !important;
+           font-size: 12.5px !important;
+       }
+   }
+   .featured-area.portfolio .filters-group ul li a:hover,
+   .featured-area.portfolio .filters-group ul li a[style]:hover {
+       background: #532A1A !important;
+       background-color: #532A1A !important;
+       color: #ffffff !important;
+       border-color: #532A1A !important;
+       transform: translateY(-2px);
+       box-shadow: 0 8px 18px rgba(83, 42, 26, 0.28) !important;
+   }
+   .featured-area.portfolio .filters-group ul li.active a,
+   .featured-area.portfolio .filters-group ul li.current a,
+   .featured-area.portfolio .filters-group ul li.active a[style],
+   .featured-area.portfolio .filters-group ul li.current a[style] {
+       background: #532A1A !important;
+       background-color: #532A1A !important;
+       color: #ffffff !important;
+       border-color: #532A1A !important;
+       box-shadow: 0 6px 16px rgba(83, 42, 26, 0.25) !important;
+   }
+
+   /* ============ PRODUCT CARD REDESIGN (matches all_products.php) ============ */
+   .featured-area.portfolio .featured-item {
+       position: relative;
+       margin-bottom: 30px;
+       background: #fff;
+       border-radius: 14px;
+       overflow: hidden;
+       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+       transition: transform .4s cubic-bezier(.25,.8,.25,1),
+                   box-shadow .4s ease;
+       display: flex;
+       flex-direction: column;
+       height: 100%;
+   }
+   .featured-area.portfolio .featured-item:hover {
+       transform: translateY(-10px);
+       box-shadow: 0 22px 40px rgba(0, 0, 0, 0.16);
+   }
+
+   /* Image */
+   .featured-area.portfolio .featured-item .featured-item-img {
+       position: relative;
+       overflow: hidden;
+       aspect-ratio: 4 / 3;
+       background: #f6f3f0;
+       border-radius: 14px 14px 0 0;
+   }
+   .featured-area.portfolio .featured-item .featured-item-img > a:not(.product-wishlist):not(.product-quickview) {
+       display: block;
+       width: 100%;
+       height: 100%;
+   }
+   .featured-area.portfolio .featured-item .featured-item-img img {
+       width: 100%;
+       height: 100%;
+       object-fit: cover;
+       border: 0 !important;
+       border-radius: 0 !important;
+       transition: transform .8s cubic-bezier(.25,.8,.25,1), filter .4s ease;
+   }
+   .featured-area.portfolio .featured-item:hover .featured-item-img img {
+       transform: scale(1.12);
+       filter: brightness(.92);
+   }
+   .featured-area.portfolio .featured-item .featured-item-img::after {
+       content: "";
+       position: absolute;
+       inset: 0;
+       background: linear-gradient(to top, rgba(83,42,26,.55) 0%, rgba(0,0,0,0) 55%);
+       opacity: 0;
+       transition: opacity .4s ease;
+       pointer-events: none;
+   }
+   .featured-area.portfolio .featured-item:hover .featured-item-img::after { opacity: 1; }
+
+   /* Discount badge */
+   .featured-area.portfolio .product-badge {
+       position: absolute;
+       top: 14px;
+       left: 14px;
+       background: #532A1A;
+       color: #fff;
+       padding: 6px 12px;
+       border-radius: 20px;
+       font-size: 11px;
+       font-weight: 700;
+       letter-spacing: .5px;
+       z-index: 3;
+       box-shadow: 0 4px 12px rgba(0,0,0,.18);
+   }
+   /* Wishlist heart */
+   .featured-area.portfolio .product-wishlist {
+       position: absolute !important;
+       top: 14px !important;
+       right: 14px !important;
+       left: auto !important;
+       width: 38px !important;
+       height: 38px !important;
+       border-radius: 50% !important;
+       background: #fff !important;
+       color: #532A1A !important;
+       display: flex !important;
+       align-items: center !important;
+       justify-content: center !important;
+       z-index: 3;
+       cursor: pointer;
+       box-shadow: 0 4px 12px rgba(0,0,0,.15);
+       opacity: 0;
+       transform: translateY(-8px);
+       transition: opacity .35s ease, transform .35s ease, background .25s ease, color .25s ease;
+       text-decoration: none !important;
+       font-size: 15px;
+       padding: 0 !important;
+   }
+   .featured-area.portfolio .featured-item:hover .product-wishlist {
+       opacity: 1;
+       transform: translateY(0);
+   }
+   .featured-area.portfolio .product-wishlist:hover {
+       background: #532A1A !important;
+       color: #fff !important;
+   }
+
+   /* Quick-view button overlay */
+   .featured-area.portfolio .product-quickview {
+       position: absolute !important;
+       left: 50% !important;
+       bottom: 14px !important;
+       top: auto !important;
+       right: auto !important;
+       width: auto !important;
+       height: auto !important;
+       transform: translate(-50%, 20px);
+       background: #fff !important;
+       color: #532A1A !important;
+       padding: 9px 22px !important;
+       border-radius: 30px !important;
+       font-size: 12px !important;
+       font-weight: 600 !important;
+       letter-spacing: 1px;
+       text-transform: uppercase;
+       z-index: 3;
+       opacity: 0;
+       transition: opacity .35s ease, transform .35s ease, background .3s ease, color .3s ease;
+       text-decoration: none !important;
+       box-shadow: 0 6px 18px rgba(0,0,0,.22);
+       display: inline-block !important;
+       line-height: 1.2 !important;
+   }
+   .featured-area.portfolio .featured-item:hover .product-quickview {
+       opacity: 1;
+       transform: translate(-50%, 0);
+   }
+   .featured-area.portfolio .product-quickview:hover {
+       background: #532A1A !important;
+       color: #fff !important;
+   }
+
+   /* Card content */
+   .featured-area.portfolio .featured-item .content {
+       padding: 20px 20px 22px;
+       display: flex;
+       flex-direction: column;
+       flex-grow: 1;
+   }
+   .featured-area.portfolio .featured-item .content h3 {
+       font-size: 17px;
+       font-weight: 700;
+       margin: 0 0 12px;
+       line-height: 1.35;
+       transition: color .3s ease;
+   }
+   .featured-area.portfolio .featured-item .content h3 a {
+       color: #222;
+       text-decoration: none;
+   }
+   .featured-area.portfolio .featured-item:hover .content h3 a {
+       color: #532A1A;
+   }
+   .featured-area.portfolio .featured-item .content hr {
+       border: 0;
+       border-top: 1px dashed #eee;
+       margin: 0 0 12px !important;
+   }
+   .featured-area.portfolio .featured-item .content-in {
+       display: flex !important;
+       align-items: baseline !important;
+       justify-content: flex-start !important;
+       gap: 12px;
+       padding: 0 !important;
+       margin-bottom: 12px;
+   }
+   .featured-area.portfolio .featured-item .content-in h4 {
+       margin: 0 !important;
+       font-weight: 700 !important;
+   }
+   .featured-area.portfolio .featured-item .content-in h4:first-child {
+       font-size: 14px !important;
+       color: #999 !important;
+       font-weight: 500 !important;
+       text-decoration: line-through !important;
+   }
+   .featured-area.portfolio .featured-item .content-in h4:last-child {
+       font-size: 20px !important;
+       color: #532A1A !important;
+       text-decoration: none !important;
+   }
+
+   /* View Details button */
+   .featured-area.portfolio .featured-item .featured-content-list {
+       padding: 0 !important;
+       margin-top: auto;
+   }
+   .featured-area.portfolio .featured-item .featured-content-list .btn {
+       display: inline-flex !important;
+       align-items: center;
+       gap: 8px;
+       width: 100%;
+       justify-content: center;
+       padding: 11px 18px !important;
+       font-size: 13px !important;
+       font-weight: 600 !important;
+       letter-spacing: 1px;
+       text-transform: uppercase;
+       border-radius: 8px !important;
+       background: #532A1A !important;
+       color: #fff !important;
+       border: 0 !important;
+       position: relative;
+       overflow: hidden;
+       transition: background .35s ease, transform .25s ease, box-shadow .25s ease;
+   }
+   .featured-area.portfolio .featured-item .featured-content-list .btn:hover {
+       background: #2d160c !important;
+       transform: translateY(-2px);
+       box-shadow: 0 10px 22px rgba(83, 42, 26, 0.35);
+   }
+   .featured-area.portfolio .featured-item .featured-content-list .btn::after {
+       content: "→";
+       transition: transform .3s ease;
+   }
+   .featured-area.portfolio .featured-item .featured-content-list .btn:hover::after {
+       transform: translateX(5px);
+   }
+
+   /* "No products" empty state */
+   .featured-area.portfolio .tab_content #not_found,
+   .featured-area.portfolio .tab_content center p {
+       font-size: 1.4rem !important;
+       margin: 2rem auto !important;
+       color: #666 !important;
+   }
+
+   @media (max-width: 575px) {
+       .featured-area.portfolio .featured-item .content { padding: 16px 16px 18px; }
+       .featured-area.portfolio .featured-item .content h3 { font-size: 15px; }
+       .featured-area.portfolio .featured-item .content-in h4:last-child { font-size: 18px !important; }
+   }
+
    </style>
 
 </head>
@@ -425,7 +764,7 @@ hr {
             <div class="container">
                 <div class="filters-group">
                     <ul>
-                        <li  data-filter=".people"><a class="hi" style="color:#532A1A;" href="">Show All</a></li>
+                        <li data-filter="*"><a class="hi" style="color:#532A1A;" href="all_products.php">Show All</a></li>
                         <?php
                         include_once"connect.php";
                                          
@@ -482,12 +821,26 @@ hr {
                                    
                                 ?>
                                 
-                           <div class="col-lg-3 col-md-6">
+                           <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                               <div class="featured-item">
                                  <div class="featured-item-img">
-                                    <a href="#">
-                                       <a href="product.php?astringdata=<?php echo $encode_product_id; ?>"><img src="Admin/product_image/<?php echo $img1;?>"></a>
+                                    <?php
+                                        $oldP = (float) $old_price;
+                                        $newP = (float) $new_price;
+                                        $discount = ($oldP > 0 && $newP > 0 && $newP < $oldP)
+                                            ? round((($oldP - $newP) / $oldP) * 100)
+                                            : 0;
+                                        if ($discount > 0) {
+                                            echo '<span class="product-badge">-' . $discount . '% OFF</span>';
+                                        }
+                                    ?>
+                                    <a href="product.php?astringdata=<?php echo $encode_product_id; ?>" class="product-wishlist" title="Add to wishlist" onclick="event.preventDefault();">
+                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
                                     </a>
+                                    <a href="product.php?astringdata=<?php echo $encode_product_id; ?>">
+                                       <img src="Admin/product_image/<?php echo $img1;?>" alt="<?php echo htmlspecialchars($pname); ?>">
+                                    </a>
+                                    <a href="product.php?astringdata=<?php echo $encode_product_id; ?>" class="product-quickview">Quick View</a>
                                  </div>
                                  <div class="content">
                                     <h3><a href="product.php?astringdata=<?php echo $encode_product_id; ?>"><?php echo$pname;?></a></h3>
