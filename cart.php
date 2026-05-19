@@ -257,7 +257,7 @@ body{
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="index.html">Home</a><span>»</span><span>SHOPPING CART</span>
+                        <a href="index.php">Home</a><span>»</span><span>SHOPPING CART</span>
                     </div>
                 </div>
             </div>

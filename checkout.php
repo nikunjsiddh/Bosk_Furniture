@@ -389,7 +389,7 @@ button.disabled {
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="index.html">Home</a><span>»</span><span>CHECKOUT</span>
+                        <a href="index.php">Home</a><span>»</span><span>CHECKOUT</span>
                     </div>
                 </div>
             </div>

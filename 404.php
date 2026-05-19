@@ -30,7 +30,7 @@ http_response_code(404);
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="index.html">Home</a><span>»</span><span>Error 404</span>
+                        <a href="index.php">Home</a><span>»</span><span>Error 404</span>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@ http_response_code(404);
                     <p class="text-center">Oops! Looks Like Something Going Rong We can’t seem to find the page you’re looking for make sure that you have typed the currect URL</p>
                 </div>
                 <div class="port-info">
-                    <a href="index.html" class="btn btn-primary btn-lg">Go To Home</a>
+                    <a href="index.php" class="btn btn-primary btn-lg">Go To Home</a>
                 </div>
             </div>
         </section>
