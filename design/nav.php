@@ -35,6 +35,31 @@ if (session_status() === PHP_SESSION_NONE) {
             /* Hide the element on smaller screens */
         }
     }
+
+    /* ------------------------------------------------------------
+       Logo on the left + small gap before the menu starts.
+       Resets the legacy `margin-left: 95px` from menu.css that was
+       pushing the logo image to the right edge of its container
+       and eating the gap before the first menu item.
+       Applies to both the in-flow header and the sticky cloned one.
+       ------------------------------------------------------------ */
+    #header #logo,
+    #header.cloned #logo {
+        margin-left: 0 !important;
+        margin-right: 40px !important;
+    }
+    #header #logo.logo-white img,
+    #header.cloned #logo.logo-white img,
+    #header #logo img,
+    #header.cloned #logo img {
+        margin-left: 0 !important;
+    }
+    @media (max-width: 991px) {
+        #header #logo,
+        #header.cloned #logo {
+            margin-right: 18px !important;
+        }
+    }
 </style>
 <header id="header-container">
     <!-- Header -->
