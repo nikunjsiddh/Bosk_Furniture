@@ -359,49 +359,111 @@ hr {
 	 margin-left: 0.3rem;
 }
 
-   /* ============ PRODUCT GRID REDESIGN ============ */
-   .featured-area.portfolio .filters-group { margin-bottom: 10px; }
-   .featured-area.portfolio .filters-group ul {
-       list-style: none;
-       padding: 0;
-       margin: 0;
-       display: flex;
-       flex-wrap: wrap;
-       gap: 10px;
-       justify-content: center;
+   /* ============ FILTER PILLS — bulletproof (defeats inline styles) ============ */
+   /* Let the filter row break out of the .container width so all pills can
+      show fully without clipping the last item. */
+   .featured-area.portfolio .filters-group {
+       position: relative;
+       margin-left: -15px;
+       margin-right: -15px;
+       margin-bottom: 14px;
+       overflow-x: auto;
+       overflow-y: hidden;
+       padding: 6px 24px 14px;
+       -webkit-overflow-scrolling: touch;
+       scrollbar-width: none; /* Firefox */
    }
-   .featured-area.portfolio .filters-group ul li {
+   .featured-area.portfolio .filters-group::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+   .featured-area.portfolio .filters-group ul {
+       list-style: none !important;
+       padding: 0 24px 0 24px !important;
+       margin: 0 !important;
+       display: flex !important;
+       flex-wrap: nowrap !important;
+       gap: 10px !important;
+       justify-content: flex-start !important;
+       white-space: nowrap;
+       min-width: max-content;
+       width: max-content;
+   }
+   @media (min-width: 992px) {
+       .featured-area.portfolio .filters-group ul {
+           justify-content: center !important;
+           margin: 0 auto !important;
+       }
+   }
+   /* Prevent any ancestor from cropping the scroll strip */
+   main,
+   main > section,
+   .featured-area.portfolio,
+   .featured-area.portfolio .container,
+   .featured-area.portfolio .tab.featured-tab-area,
+   .featured-area.portfolio .tab_content { overflow: visible !important; }
+   /* Strip inline background-color / color from every li and let the
+      anchor inside carry the pill styling. */
+   .featured-area.portfolio .filters-group ul li,
+   .featured-area.portfolio .filters-group ul li[style] {
        margin: 0 !important;
        padding: 0 !important;
        background: transparent !important;
-       border-radius: 30px;
-       overflow: hidden;
+       background-color: transparent !important;
+       color: inherit !important;
+       border: 0 !important;
+       border-radius: 30px !important;
+       list-style: none !important;
+       line-height: normal !important;
+       display: inline-block !important;
        transition: transform .25s ease, box-shadow .25s ease;
    }
-   .featured-area.portfolio .filters-group ul li a {
-       display: inline-block;
-       padding: 10px 22px;
-       border-radius: 30px;
-       background: #fff;
+   /* Default (inactive) pill — compact so all filters fit in one row */
+   .featured-area.portfolio .filters-group ul li a,
+   .featured-area.portfolio .filters-group ul li a[style] {
+       display: inline-block !important;
+       padding: 8px 16px !important;
+       border-radius: 30px !important;
+       background: #ffffff !important;
+       background-color: #ffffff !important;
        color: #532A1A !important;
-       font-weight: 600;
-       font-size: 14px;
-       letter-spacing: .3px;
-       border: 1.5px solid #ecdfd7;
-       transition: all .3s ease;
-       text-decoration: none;
+       font-weight: 600 !important;
+       font-size: 13px !important;
+       letter-spacing: .2px;
+       border: 1.5px solid #ecdfd7 !important;
+       text-decoration: none !important;
+       text-transform: none;
+       line-height: 1.2 !important;
+       cursor: pointer;
+       white-space: nowrap;
+       transition: background .3s ease, color .3s ease,
+                   border-color .3s ease, transform .25s ease,
+                   box-shadow .3s ease !important;
    }
-   .featured-area.portfolio .filters-group ul li a:hover {
+   @media (max-width: 1199px) {
+       .featured-area.portfolio .filters-group ul li a,
+       .featured-area.portfolio .filters-group ul li a[style] {
+           padding: 7px 14px !important;
+           font-size: 12.5px !important;
+       }
+   }
+   /* Hover */
+   .featured-area.portfolio .filters-group ul li a:hover,
+   .featured-area.portfolio .filters-group ul li a[style]:hover {
        background: #532A1A !important;
-       color: #fff !important;
-       border-color: #532A1A;
+       background-color: #532A1A !important;
+       color: #ffffff !important;
+       border-color: #532A1A !important;
        transform: translateY(-2px);
-       box-shadow: 0 8px 18px rgba(83, 42, 26, 0.25);
+       box-shadow: 0 8px 18px rgba(83, 42, 26, 0.28) !important;
    }
-   .featured-area.portfolio .filters-group ul li.active a {
+   /* Active state — works whether on the li OR triggered by JS */
+   .featured-area.portfolio .filters-group ul li.active a,
+   .featured-area.portfolio .filters-group ul li.current a,
+   .featured-area.portfolio .filters-group ul li.active a[style],
+   .featured-area.portfolio .filters-group ul li.current a[style] {
        background: #532A1A !important;
-       color: #fff !important;
-       border-color: #532A1A;
+       background-color: #532A1A !important;
+       color: #ffffff !important;
+       border-color: #532A1A !important;
+       box-shadow: 0 6px 16px rgba(83, 42, 26, 0.25) !important;
    }
 
    /* Card */
