@@ -2,7 +2,7 @@
 $page_title       = 'My Wishlist | Bosk Furniture';
 $page_description = 'View and manage your saved furniture favourites in your Bosk Furniture wishlist.';
 $page_keywords    = 'wishlist, saved furniture, bosk furniture favourites';
-$page_canonical   = '/wishlist.php';
+$page_canonical   = '/wishlist';
 $page_robots      = 'noindex, follow';
 ?>
 <!DOCTYPE HTML>

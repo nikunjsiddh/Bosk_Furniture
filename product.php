@@ -48,7 +48,13 @@ if ($_seo_short === '') {
 $page_title       = $_seo_pname . ' | Buy Online at Bosk Furniture India';
 $page_description = $_seo_short;
 $page_keywords    = $_seo_pname . ', buy ' . $_seo_pname . ' online, ' . (isset($seo_pcategory) ? $seo_pcategory . ', ' : '') . 'furniture india, bosk furniture';
-$page_canonical   = '/product.php?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '');
+$page_canonical   = '/product?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '');
+$og_type          = 'product';
+$page_breadcrumbs = [
+    ['name' => 'Home',       'url' => '/'],
+    ['name' => 'Shop',       'url' => '/all_products'],
+    ['name' => $_seo_pname,  'url' => '/product?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '')]
+];
 if (!empty($seo_img1)) {
     $og_image = 'https://www.boskfurniture.com/Admin/product_image/' . $seo_img1;
 }

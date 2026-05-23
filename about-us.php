@@ -2,7 +2,11 @@
 $page_title       = 'About Us | Bosk Furniture - Trusted Furniture Brand in India';
 $page_description = 'Learn about Bosk Furniture - a trusted Indian brand crafting premium modular kitchens, wardrobes, sofas and custom interior furniture with guaranteed quality and craftsmanship.';
 $page_keywords    = 'about bosk furniture, furniture brand india, modular furniture company, custom furniture manufacturer, interior furniture brand';
-$page_canonical   = '/about-us.php';
+$page_canonical   = '/about-us';
+$page_breadcrumbs = [
+    ['name' => 'Home',     'url' => '/'],
+    ['name' => 'About Us', 'url' => '/about-us']
+];
 ?>
 <!DOCTYPE HTML>
 <html class="no-js" lang="en-IN">

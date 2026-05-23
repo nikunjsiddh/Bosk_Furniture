@@ -1,5 +1,5 @@
 # ============================================================
-# Bosk Furniture - robots.txt
+# Bosk Furniture - robots.txt (v2 - clean URL aware)
 # Site: https://www.boskfurniture.com
 # ============================================================
 
@@ -16,32 +16,62 @@ Disallow: /form/
 Disallow: /revolution/php/
 Disallow: /design/
 Disallow: /connect.php
+Disallow: /sitemap-generator.php
 
-# Disallow user account / transactional pages (no SEO value)
+# Disallow user account / transactional pages (both clean & .php form)
+Disallow: /cart
+Disallow: /cart1
 Disallow: /cart.php
 Disallow: /cart1.php
+Disallow: /checkout
 Disallow: /checkout.php
+Disallow: /wishlist
 Disallow: /wishlist.php
+Disallow: /login
 Disallow: /login.php
+Disallow: /register
 Disallow: /register.php
+Disallow: /logout
 Disallow: /logout.php
+Disallow: /profile
 Disallow: /profile.php
+Disallow: /order_details
 Disallow: /order_details.php
+Disallow: /invoice
 Disallow: /invoice.php
+Disallow: /return_request
 Disallow: /return_request.php
 
-# Disallow query-parameter URLs that create duplicate content
+# Disallow internal query-parameter URLs that produce duplicate content
 Disallow: /*?astringdata1=
 Disallow: /*&astringdata1=
 
-# Allow important resource files for proper rendering (mobile-friendly test)
+# Allow important resources for proper rendering / mobile-friendly test
 Allow: /css/
 Allow: /js/
 Allow: /images/
 Allow: /fonts/
+Allow: /Admin/product_image/
+Allow: /Admin/category_image/
+Allow: /Admin/project_image/
+Allow: /Admin/blog_image/
 
-# Crawl-delay (optional - polite crawling)
+# AI crawler controls (allow but politely)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Crawl-delay (polite crawling)
+User-agent: *
 Crawl-delay: 1
 
-# Sitemap location
+# Sitemap location (clean URL — works after .htaccess rewrite)
 Sitemap: https://www.boskfurniture.com/sitemap.xml

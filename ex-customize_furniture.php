@@ -8,7 +8,11 @@ if (session_status() === PHP_SESSION_NONE) {
 $page_title       = 'Customize Your Furniture | Bespoke Furniture Design - Bosk Furniture';
 $page_description = 'Customize your dream furniture with Bosk Furniture - bespoke modular kitchens, wardrobes, sofas and complete home interiors tailored to your space across India.';
 $page_keywords    = 'customize furniture india, bespoke furniture, custom modular furniture, made to order furniture, bosk furniture customization';
-$page_canonical   = '/ex-customize_furniture.php';
+$page_canonical   = '/ex-customize_furniture';
+$page_breadcrumbs = [
+    ['name' => 'Home',              'url' => '/'],
+    ['name' => 'Customize Furniture', 'url' => '/ex-customize_furniture']
+];
 ?>
 <!DOCTYPE HTML>
 <html class="no-js" lang="en-IN">

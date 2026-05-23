@@ -7,7 +7,11 @@ if (session_status() === PHP_SESSION_NONE) {
 $page_title       = 'Shop All Furniture Online | Bosk Furniture India';
 $page_description = 'Browse the complete Bosk Furniture collection - modular kitchens, wardrobes, sofas, beds, dining sets and more. Premium furniture online across India with free shipping.';
 $page_keywords    = 'all furniture, shop furniture online india, modular furniture, sofa, bed, wardrobe, dining table, bosk furniture catalogue';
-$page_canonical   = '/all_products.php';
+$page_canonical   = '/all_products';
+$page_breadcrumbs = [
+    ['name' => 'Home', 'url' => '/'],
+    ['name' => 'Shop', 'url' => '/all_products']
+];
 ?>
 <!DOCTYPE HTML>
 <html class="no-js" lang="en-IN">

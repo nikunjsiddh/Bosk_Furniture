@@ -18,7 +18,12 @@ $_seo_cat         = htmlspecialchars($decodedcategoryname, ENT_QUOTES, 'UTF-8');
 $page_title       = $_seo_cat . ' - Buy Online at Bosk Furniture India';
 $page_description = 'Shop premium ' . $_seo_cat . ' online at Bosk Furniture. Wide range of designs, guaranteed quality and free shipping across India. Best prices on ' . $_seo_cat . '.';
 $page_keywords    = $_seo_cat . ', buy ' . $_seo_cat . ' online, ' . $_seo_cat . ' india, ' . $_seo_cat . ' price, modular ' . $_seo_cat . ', bosk furniture';
-$page_canonical   = '/shop.php?astringdata2=' . urlencode($_GET['astringdata2']);
+$page_canonical   = '/shop?astringdata2=' . urlencode($_GET['astringdata2']);
+$page_breadcrumbs = [
+    ['name' => 'Home',                'url' => '/'],
+    ['name' => 'Shop',                'url' => '/all_products'],
+    ['name' => $decodedcategoryname,  'url' => '/shop?astringdata2=' . urlencode($_GET['astringdata2'])]
+];
 $page_schema = '
 <script type="application/ld+json">
 {

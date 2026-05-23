@@ -1,0 +1,59 @@
+{
+  "name": "Bosk Furniture - Premium Modular Furniture in India",
+  "short_name": "Bosk Furniture",
+  "description": "Custom modular kitchens, wardrobes, sofas, beds and complete interior furniture from Bhavnagar, Gujarat. Guaranteed quality with Hettich hardware.",
+  "lang": "en-IN",
+  "dir": "ltr",
+  "scope": "/",
+  "start_url": "/",
+  "id": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#532A1A",
+  "categories": ["shopping", "lifestyle", "business"],
+  "icons": [
+    {
+      "src": "/images/fevicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/fevicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Shop All Products",
+      "short_name": "Shop",
+      "description": "Browse all Bosk Furniture products",
+      "url": "/all_products",
+      "icons": [{ "src": "/images/fevicon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Modular Kitchens",
+      "short_name": "Kitchens",
+      "description": "Browse modular kitchen designs",
+      "url": "/shop?astringdata2=Modular%20Kitchens",
+      "icons": [{ "src": "/images/fevicon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Wardrobes",
+      "short_name": "Wardrobes",
+      "description": "Browse luxurious wardrobes",
+      "url": "/shop?astringdata2=LUSCIOUS%20WARDROBES",
+      "icons": [{ "src": "/images/fevicon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Contact Us",
+      "short_name": "Contact",
+      "description": "Get in touch with Bosk Furniture",
+      "url": "/contact",
+      "icons": [{ "src": "/images/fevicon.png", "sizes": "96x96" }]
+    }
+  ]
+}

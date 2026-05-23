@@ -2,7 +2,7 @@
 $page_title       = 'Login | Bosk Furniture - Access Your Account';
 $page_description = 'Sign in to your Bosk Furniture account to track orders, manage your wishlist, and access exclusive furniture deals across India.';
 $page_keywords    = 'bosk furniture login, sign in, customer account, furniture account india';
-$page_canonical   = '/login.php';
+$page_canonical   = '/login';
 $page_robots      = 'noindex, follow';
 ?>
 <!DOCTYPE HTML>

@@ -14,7 +14,7 @@ if(isset($_GET['astringdata']) && isset($_GET['astringdata1']))
 	   //echo $decoded_user_id;
 $page_title       = 'Order Details | Bosk Furniture';
 $page_description = 'View detailed information about your Bosk Furniture order including products, status and delivery information.';
-$page_canonical   = '/order_details.php';
+$page_canonical   = '/order_details';
 $page_robots      = 'noindex, nofollow';
 ?>
 <!DOCTYPE HTML>

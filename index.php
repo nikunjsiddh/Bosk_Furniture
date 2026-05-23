@@ -10,6 +10,9 @@ $page_description = 'Buy premium modular furniture online at Bosk Furniture - mo
 $page_keywords    = 'bosk furniture, modular furniture india, online furniture store, modular kitchen, wardrobe, sofa, bed, dining set, custom furniture, interior design india';
 $page_canonical   = '/';
 $og_image         = 'https://www.boskfurniture.com/images/og-default.jpg';
+$page_breadcrumbs = [
+    ['name' => 'Home', 'url' => '/']
+];
 ?>
 <!DOCTYPE HTML>
 <html class="no-js" lang="en-IN">
@@ -37,33 +40,8 @@ $og_image         = 'https://www.boskfurniture.com/images/og-default.jpg';
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link href="css/menu.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <!-- ===== HOMEPAGE LOCAL BUSINESS SCHEMA ===== -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FurnitureStore",
-      "name": "Bosk Furniture",
-      "image": "https://www.boskfurniture.com/images/og-default.jpg",
-      "url": "https://www.boskfurniture.com",
-      "telephone": "+91-XXXXXXXXXX",
-      "priceRange": "₹₹",
-      "description": "Premium modular and custom furniture store in India offering modular kitchens, wardrobes, sofas, beds, dining sets and complete interior design solutions.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "IN"
-      },
-      "areaServed": {
-        "@type": "Country",
-        "name": "India"
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-        "opens": "10:00",
-        "closes": "20:00"
-      }
-    }
-    </script>
+    <!-- Note: site-wide FurnitureStore + Organization JSON-LD is emitted by design/seo-meta.php.
+         No duplicate schema block needed here. -->
     
     <style>
         .recent-img16{

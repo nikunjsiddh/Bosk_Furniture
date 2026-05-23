@@ -36,29 +36,161 @@ if (session_status() === PHP_SESSION_NONE) {
         }
     }
 
-    /* ------------------------------------------------------------
-       Logo on the left + small gap before the menu starts.
-       Resets the legacy `margin-left: 95px` from menu.css that was
-       pushing the logo image to the right edge of its container
-       and eating the gap before the first menu item.
-       Applies to both the in-flow header and the sticky cloned one.
-       ------------------------------------------------------------ */
+    /* ============================================================
+       HEADER LAYOUT — compact flex row.
+
+       menu.css ships a tangle of legacy rules that fight each other:
+         - #header { padding: 22px 0 80px 0 }      → 102px tall
+         - #logo  { margin-top: -31px }            → pulls logo up
+         - #logo.logo-white img { margin-top:-1.3vw; margin-bottom:-2.7vw; margin-left:95px }
+         - #navigation { margin-top: 9px; margin-left: 77px }
+         - 8+ media queries with NEGATIVE margin-left on #navigation
+           (-5.9vw → -11.9vw) and even margin-left:-74.7vw on the
+           logo image, all of which drag the menu *under* the logo.
+
+       The cloned sticky header inherits everything, so on scroll the
+       logo and first menu item ("Home") overlap.
+
+       We replace the whole mess with a single flex row of a fixed,
+       sane height for both the in-flow header and the sticky clone.
+       ============================================================ */
+
+    /* The row itself — taller so the large logo fits comfortably */
+    #header.head-tr,
+    #header.cloned {
+        padding: 0 !important;
+        height: 140px !important;
+        min-height: 140px !important;
+        background-color: #fff !important;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+    }
+    #header.cloned {
+        height: 130px !important;
+        min-height: 130px !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.10);
+    }
+
+    #header .int_content_wraapper {
+        height: 100% !important;
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+    }
+
+    #header .left-side {
+        width: 100% !important;
+        height: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        float: none !important;
+    }
+
+    /* Logo — fixed width, vertically centred, real gap before the nav */
     #header #logo,
     #header.cloned #logo {
-        margin-left: 0 !important;
-        margin-right: 40px !important;
+        float: none !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        margin: 0 40px 0 0 !important;
+        padding: 0 !important;
+        flex: 0 0 auto !important;
     }
-    #header #logo.logo-white img,
-    #header.cloned #logo.logo-white img,
+    #header #logo a,
+    #header.cloned #logo a {
+        display: inline-flex !important;
+        align-items: center !important;
+        line-height: 0 !important;
+    }
     #header #logo img,
-    #header.cloned #logo img {
-        margin-left: 0 !important;
+    #header.cloned #logo img,
+    #header #logo.logo-white img,
+    #header.cloned #logo.logo-white img {
+        margin: 0 !important;
+        padding: 0 !important;
+        max-height: 120px !important;
+        width: auto !important;
+        height: auto !important;
+        max-width: 240px !important;
+        display: block !important;
+        float: none !important;
+    }
+    #header.cloned #logo img,
+    #header.cloned #logo.logo-white img {
+        max-height: 112px !important;
+        max-width: 230px !important;
+    }
+
+    /* Navigation — sits flush against the logo gap, no negative pulls */
+    #header #navigation,
+    #header.cloned #navigation {
+        float: none !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+    }
+    #header #navigation > ul,
+    #header.cloned #navigation > ul {
+        margin: 0 !important;
+        padding: 0 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        flex-wrap: nowrap !important;
+        float: none !important;
+    }
+    #header #navigation > ul > li,
+    #header.cloned #navigation > ul > li {
+        float: none !important;
+        display: inline-flex !important;
+        align-items: center !important;
+    }
+    #header #navigation > ul > li > a,
+    #header.cloned #navigation > ul > li > a {
+        padding: 10px 14px !important;
+        line-height: 1.2 !important;
+    }
+
+    /* Hide the legacy 80px-tall bottom slack and any clearfix gaps */
+    #header .clearfix { display: none !important; }
+
+    /* Mobile hamburger — keep on the right, vertically centred */
+    #header .mmenu-trigger {
+        margin-left: auto !important;
+        display: none;
+        align-items: center;
     }
     @media (max-width: 991px) {
-        #header #logo,
-        #header.cloned #logo {
-            margin-right: 18px !important;
+        #header .mmenu-trigger { display: inline-flex !important; }
+        #header #navigation { display: none !important; }
+        #header.head-tr,
+        #header.cloned {
+            height: 90px !important;
+            min-height: 90px !important;
         }
+        #header #logo img,
+        #header.cloned #logo img,
+        #header #logo.logo-white img,
+        #header.cloned #logo.logo-white img {
+            max-height: 72px !important;
+            max-width: 170px !important;
+        }
+        #header #logo,
+        #header.cloned #logo { margin-right: 16px !important; }
+    }
+
+    /* Tighter gap on medium desktops instead of the negative-margin trick */
+    @media (max-width: 1400px) {
+        #header #logo,
+        #header.cloned #logo { margin-right: 28px !important; }
+        #header #navigation > ul > li > a,
+        #header.cloned #navigation > ul > li > a { padding: 10px 12px !important; }
+    }
+    @media (max-width: 1200px) {
+        #header #logo,
+        #header.cloned #logo { margin-right: 20px !important; }
+        #header #navigation > ul > li > a,
+        #header.cloned #navigation > ul > li > a { padding: 10px 10px !important; }
     }
 </style>
 <header id="header-container">

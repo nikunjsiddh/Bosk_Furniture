@@ -15,7 +15,7 @@ if(isset($_GET['astringdata']) && isset($_GET['astringdata1']) && isset($_GET['a
 $page_title       = 'Return Request | Bosk Furniture Returns India';
 $page_description = 'Submit a return request for your Bosk Furniture order. Quick, easy and customer-friendly returns process across India.';
 $page_keywords    = 'furniture return, return request, bosk furniture returns, return policy india';
-$page_canonical   = '/return_request.php';
+$page_canonical   = '/return_request';
 $page_robots      = 'noindex, follow';
 ?>
 <!DOCTYPE HTML>

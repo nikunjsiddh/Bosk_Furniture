@@ -2,130 +2,179 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <!-- HOMEPAGE -->
   <url>
     <loc>https://www.boskfurniture.com/</loc>
-    <lastmod>2026-05-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.boskfurniture.com/"/>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://www.boskfurniture.com/images/og-default.jpg</image:loc>
-      <image:title>Bosk Furniture - Premium Modular Furniture India</image:title>
+      <image:title>Bosk Furniture - Premium Modular Furniture in India</image:title>
+      <image:caption>Custom modular furniture from Bhavnagar, Gujarat - India</image:caption>
     </image:image>
   </url>
 
   <!-- ABOUT -->
   <url>
-    <loc>https://www.boskfurniture.com/about-us.php</loc>
-    <lastmod>2026-05-18</lastmod>
+    <loc>https://www.boskfurniture.com/about-us</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/about-us"/>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
 
   <!-- CONTACT -->
   <url>
-    <loc>https://www.boskfurniture.com/contact.php</loc>
-    <lastmod>2026-05-18</lastmod>
+    <loc>https://www.boskfurniture.com/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/contact"/>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
 
   <!-- ALL PRODUCTS / SHOP LANDING -->
   <url>
-    <loc>https://www.boskfurniture.com/all_products.php</loc>
-    <lastmod>2026-05-18</lastmod>
+    <loc>https://www.boskfurniture.com/all_products</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/all_products"/>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
 
   <!-- SERVICES -->
   <url>
-    <loc>https://www.boskfurniture.com/all-services.php</loc>
-    <lastmod>2026-05-18</lastmod>
+    <loc>https://www.boskfurniture.com/all-services</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/all-services"/>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <!-- PROJECTS -->
   <url>
-    <loc>https://www.boskfurniture.com/projects.php</loc>
-    <lastmod>2026-05-18</lastmod>
+    <loc>https://www.boskfurniture.com/projects</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/projects"/>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- BLOG LIST -->
   <url>
-    <loc>https://www.boskfurniture.com/blog-full-list.php</loc>
-    <lastmod>2026-05-18</lastmod>
+    <loc>https://www.boskfurniture.com/blog-full-list</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/blog-full-list"/>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- TESTIMONIALS -->
   <url>
-    <loc>https://www.boskfurniture.com/testimonial.php</loc>
-    <lastmod>2026-05-18</lastmod>
+    <loc>https://www.boskfurniture.com/testimonial</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/testimonial"/>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- CUSTOMIZE FURNITURE -->
   <url>
-    <loc>https://www.boskfurniture.com/ex-customize_furniture.php</loc>
-    <lastmod>2026-05-18</lastmod>
+    <loc>https://www.boskfurniture.com/ex-customize_furniture</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/ex-customize_furniture"/>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <!-- DESIGN & ORDER PROCESS -->
   <url>
-    <loc>https://www.boskfurniture.com/design-order-process.php</loc>
-    <lastmod>2026-05-18</lastmod>
+    <loc>https://www.boskfurniture.com/design-order-process</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/design-order-process"/>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
 
+  <!-- CATEGORY PAGES (top-level — dynamic generator will refresh) -->
+  <url>
+    <loc>https://www.boskfurniture.com/shop?astringdata2=Sofa</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.boskfurniture.com/shop?astringdata2=LUSCIOUS%20WARDROBES</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.boskfurniture.com/shop?astringdata2=Comfy%20Beds%20With%20Full%20Storage</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.boskfurniture.com/shop?astringdata2=Entertaining%20TV%20Units</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.boskfurniture.com/shop?astringdata2=Modular%20Kitchens</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.boskfurniture.com/shop?astringdata2=Other%20Comforts</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
   <!-- WARRANTY -->
   <url>
-    <loc>https://www.boskfurniture.com/warranty.php</loc>
-    <lastmod>2026-05-18</lastmod>
+    <loc>https://www.boskfurniture.com/warranty</loc>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <!-- WARRANTY POLICY -->
   <url>
-    <loc>https://www.boskfurniture.com/warranty_policy.php</loc>
-    <lastmod>2026-05-18</lastmod>
+    <loc>https://www.boskfurniture.com/warranty_policy</loc>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <!-- HARDWARE WARRANTY -->
   <url>
-    <loc>https://www.boskfurniture.com/hardware_warranty.php</loc>
-    <lastmod>2026-05-18</lastmod>
+    <loc>https://www.boskfurniture.com/hardware_warranty</loc>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <!-- CARE & MAINTENANCE POLICY -->
   <url>
-    <loc>https://www.boskfurniture.com/care_and_maintenance_policy.php</loc>
-    <lastmod>2026-05-18</lastmod>
+    <loc>https://www.boskfurniture.com/care_and_maintenance_policy</loc>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <!--
-    NOTE: Dynamic product, category and project URLs (product.php?astringdata=...,
-    shop.php?astringdata2=..., project-details.php?astringdata=..., details.php?astringdata=...)
-    should be appended programmatically by a sitemap-generator script that iterates over
-    the products / categories / projects / blog tables in the database.
-    A starter script is included at /sitemap-generator.php (run it via CLI or admin to refresh).
+    Dynamic product / category / project / blog URLs are appended
+    by /sitemap-generator.php (run weekly via cron or manually).
+    All URLs are emitted in clean-URL form (no .php extension).
   -->
 
 </urlset>

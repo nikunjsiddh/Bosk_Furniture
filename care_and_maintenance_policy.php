@@ -2,7 +2,11 @@
 $page_title       = 'Care & Maintenance Policy | Bosk Furniture India';
 $page_description = 'Learn how to properly care for and maintain your Bosk Furniture - tips for wood, laminates, fabrics and hardware to keep your furniture looking new for years.';
 $page_keywords    = 'furniture care, furniture maintenance, how to clean furniture, bosk furniture care guide, wood care india';
-$page_canonical   = '/care_and_maintenance_policy.php';
+$page_canonical   = '/care_and_maintenance_policy';
+$page_breadcrumbs = [
+    ['name' => 'Home',                       'url' => '/'],
+    ['name' => 'Care & Maintenance Policy', 'url' => '/care_and_maintenance_policy']
+];
 ?>
 <!DOCTYPE HTML>
 <html class="no-js" lang="en-IN">

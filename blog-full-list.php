@@ -2,7 +2,11 @@
 $page_title       = 'Furniture Blog | Tips, Trends & Interior Design Ideas - Bosk Furniture';
 $page_description = 'Explore the Bosk Furniture blog for the latest furniture trends, interior design tips, modular kitchen ideas and home decor inspiration in India.';
 $page_keywords    = 'furniture blog, interior design blog india, modular kitchen ideas, home decor tips, bosk furniture blog';
-$page_canonical   = '/blog-full-list.php';
+$page_canonical   = '/blog-full-list';
+$page_breadcrumbs = [
+    ['name' => 'Home', 'url' => '/'],
+    ['name' => 'Blog', 'url' => '/blog-full-list']
+];
 ?>
 <!DOCTYPE HTML>
 <html class="no-js" lang="en-IN">

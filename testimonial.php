@@ -2,7 +2,11 @@
 $page_title       = 'Customer Testimonials | Bosk Furniture Reviews India';
 $page_description = 'Read genuine reviews and testimonials from Bosk Furniture customers across India. See why thousands trust us for modular furniture and interior design.';
 $page_keywords    = 'bosk furniture reviews, customer testimonials, furniture reviews india, customer feedback';
-$page_canonical   = '/testimonial.php';
+$page_canonical   = '/testimonial';
+$page_breadcrumbs = [
+    ['name' => 'Home',         'url' => '/'],
+    ['name' => 'Testimonials', 'url' => '/testimonial']
+];
 ?>
 <!DOCTYPE HTML>
 <html class="no-js" lang="en-IN">

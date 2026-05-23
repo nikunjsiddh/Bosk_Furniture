@@ -38,7 +38,13 @@ $_seo_blog        = isset($blog_title) && $blog_title !== '' ? $blog_title : 'Bl
 $page_title       = $_seo_blog . ' | Bosk Furniture Blog India';
 $page_description = 'Read "' . $_seo_blog . '" on the Bosk Furniture blog - expert furniture tips, interior design ideas and home decor inspiration for Indian homes.';
 $page_keywords    = $_seo_blog . ', furniture blog, interior design tips, bosk furniture blog india';
-$page_canonical   = '/details.php?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '');
+$page_canonical   = '/details?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '');
+$og_type          = 'article';
+$page_breadcrumbs = [
+    ['name' => 'Home',     'url' => '/'],
+    ['name' => 'Blog',     'url' => '/blog-full-list'],
+    ['name' => $_seo_blog, 'url' => '/details?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '')]
+];
 $page_schema = '
 <script type="application/ld+json">
 {

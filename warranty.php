@@ -2,7 +2,11 @@
 $page_title       = 'Warranty | Bosk Furniture Quality Assurance India';
 $page_description = 'Learn about Bosk Furniture warranty terms covering modular furniture, custom interiors and hardware. Comprehensive quality assurance for Indian customers.';
 $page_keywords    = 'bosk furniture warranty, furniture warranty india, modular furniture warranty, quality assurance';
-$page_canonical   = '/warranty.php';
+$page_canonical   = '/warranty';
+$page_breadcrumbs = [
+    ['name' => 'Home',     'url' => '/'],
+    ['name' => 'Warranty', 'url' => '/warranty']
+];
 ?>
 <!DOCTYPE HTML>
 <html class="no-js" lang="en-IN">

@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 $page_title       = 'My Profile | Bosk Furniture Account';
 $page_description = 'View and manage your Bosk Furniture profile - update details, track orders and manage your account preferences.';
 $page_keywords    = 'my profile, account, bosk furniture account';
-$page_canonical   = '/profile.php';
+$page_canonical   = '/profile';
 $page_robots      = 'noindex, follow';
 ?>
 <!DOCTYPE HTML>

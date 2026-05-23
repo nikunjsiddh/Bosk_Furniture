@@ -11,7 +11,7 @@ if (isset($_SESSION['email'])) {
 $page_title       = 'Secure Checkout | Bosk Furniture';
 $page_description = 'Complete your secure furniture order at Bosk Furniture India with safe payment options and free shipping on eligible items.';
 $page_keywords    = 'checkout, secure payment, furniture order, bosk furniture';
-$page_canonical   = '/checkout.php';
+$page_canonical   = '/checkout';
 $page_robots      = 'noindex, follow';
 ?>
 <!DOCTYPE HTML>

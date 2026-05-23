@@ -24,7 +24,12 @@ $_seo_proj        = isset($project_name) && $project_name !== '' ? $project_name
 $page_title       = $_seo_proj . ' | Bosk Furniture Interior Design Projects India';
 $page_description = 'Explore the ' . $_seo_proj . ' interior design project by Bosk Furniture - showcasing modular furniture, custom interiors and quality craftsmanship across India.';
 $page_keywords    = $_seo_proj . ', interior design project, modular furniture project, bosk furniture portfolio india';
-$page_canonical   = '/project-details.php?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '');
+$page_canonical   = '/project-details?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '');
+$page_breadcrumbs = [
+    ['name' => 'Home',     'url' => '/'],
+    ['name' => 'Projects', 'url' => '/projects'],
+    ['name' => $_seo_proj, 'url' => '/project-details?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '')]
+];
 ?>
 <!DOCTYPE HTML>
 <html class="no-js" lang="en-IN">

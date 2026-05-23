@@ -1,22 +1,21 @@
 <?php
 /* ============================================================
-   Bosk Furniture - Dynamic Sitemap Generator
+   Bosk Furniture - Dynamic Sitemap Generator (v2 - clean URLs)
    ------------------------------------------------------------
    Generates a complete sitemap.xml that includes:
      - All static pages (home, about, contact, etc.)
      - All products from `products` table
-     - All categories from `category` table
+     - All categories from `category` table (or distinct from products)
      - All projects from `projects` table
      - All blog posts from `blog` table
 
-   Usage:
-     1) Open https://www.boskfurniture.com/sitemap-generator.php in browser
-        (or run via CLI: php sitemap-generator.php)
-     2) It will overwrite /sitemap.xml with the fresh content
-     3) Re-submit sitemap in Google Search Console
+   All URLs emitted in CLEAN form (no .php extension) so they
+   match the .htaccess clean-URL rewrite rules.
 
-   Schedule this to run weekly via cron:
-     0 3 * * 0 /usr/bin/php /path/to/htdocs/bosk/sitemap-generator.php
+   Usage:
+     - Browser: https://www.boskfurniture.com/sitemap-generator.php
+     - CLI:     php sitemap-generator.php
+     - Cron:    0 3 * * 0  /usr/bin/php /var/www/.../sitemap-generator.php
    ============================================================ */
 
 include_once __DIR__ . '/connect.php';
@@ -26,12 +25,16 @@ $today    = date('Y-m-d');
 
 $xml  = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
 $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"' . "\n";
-$xml .= '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">' . "\n\n";
+$xml .= '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"' . "\n";
+$xml .= '        xmlns:xhtml="http://www.w3.org/1999/xhtml">' . "\n\n";
 
-function add_url(&$xml, $loc, $priority = '0.7', $changefreq = 'weekly', $lastmod = null, $image_loc = null, $image_title = null) {
+function add_url(&$xml, $loc, $priority = '0.7', $changefreq = 'weekly', $lastmod = null, $image_loc = null, $image_title = null, $hreflang_en_in = true) {
     $lastmod = $lastmod ?: date('Y-m-d');
     $xml .= "  <url>\n";
     $xml .= "    <loc>" . htmlspecialchars($loc, ENT_QUOTES, 'UTF-8') . "</loc>\n";
+    if ($hreflang_en_in) {
+        $xml .= '    <xhtml:link rel="alternate" hreflang="en-IN" href="' . htmlspecialchars($loc, ENT_QUOTES, 'UTF-8') . '"/>' . "\n";
+    }
     $xml .= "    <lastmod>" . $lastmod . "</lastmod>\n";
     $xml .= "    <changefreq>" . $changefreq . "</changefreq>\n";
     $xml .= "    <priority>" . $priority . "</priority>\n";
@@ -46,62 +49,63 @@ function add_url(&$xml, $loc, $priority = '0.7', $changefreq = 'weekly', $lastmo
     $xml .= "  </url>\n\n";
 }
 
-// ---- Static pages ----
+// ---- Static pages (clean URLs) ----
 $static = [
     ['/',                                  '1.0',  'daily'],
-    ['/about-us.php',                      '0.85', 'monthly'],
-    ['/contact.php',                       '0.85', 'monthly'],
-    ['/all_products.php',                  '0.95', 'daily'],
-    ['/all-services.php',                  '0.85', 'monthly'],
-    ['/projects.php',                      '0.8',  'weekly'],
-    ['/blog-full-list.php',                '0.8',  'weekly'],
-    ['/testimonial.php',                   '0.7',  'monthly'],
-    ['/ex-customize_furniture.php',        '0.85', 'monthly'],
-    ['/design-order-process.php',          '0.75', 'monthly'],
-    ['/warranty.php',                      '0.5',  'monthly'],
-    ['/warranty_policy.php',               '0.4',  'monthly'],
-    ['/hardware_warranty.php',             '0.4',  'monthly'],
-    ['/care_and_maintenance_policy.php',   '0.4',  'monthly'],
+    ['/about-us',                          '0.85', 'monthly'],
+    ['/contact',                           '0.85', 'monthly'],
+    ['/all_products',                      '0.95', 'daily'],
+    ['/all-services',                      '0.85', 'monthly'],
+    ['/projects',                          '0.8',  'weekly'],
+    ['/blog-full-list',                    '0.8',  'weekly'],
+    ['/testimonial',                       '0.7',  'monthly'],
+    ['/ex-customize_furniture',            '0.85', 'monthly'],
+    ['/design-order-process',              '0.75', 'monthly'],
+    ['/warranty',                          '0.5',  'monthly'],
+    ['/warranty_policy',                   '0.4',  'monthly'],
+    ['/hardware_warranty',                 '0.4',  'monthly'],
+    ['/care_and_maintenance_policy',       '0.4',  'monthly'],
 ];
 foreach ($static as $row) {
     add_url($xml, $site_url . $row[0], $row[1], $row[2], $today);
 }
 
-// ---- Products ----
+// ---- Dynamic content from DB ----
 if (isset($con) && $con) {
+    // Products
     $q = @mysqli_query($con, "SELECT id, pname, img1 FROM products ORDER BY id DESC");
     if ($q) {
         while ($r = mysqli_fetch_assoc($q)) {
-            $loc = $site_url . '/product.php?astringdata=' . urlencode(base64_encode($r['id']));
+            $loc = $site_url . '/product?astringdata=' . urlencode(base64_encode($r['id']));
             $img = !empty($r['img1']) ? $site_url . '/Admin/product_image/' . $r['img1'] : null;
             add_url($xml, $loc, '0.9', 'weekly', $today, $img, $r['pname']);
         }
     }
 
-    // ---- Categories (shop.php) ----
+    // Categories (clean URL shop)
     $q2 = @mysqli_query($con, "SELECT DISTINCT pcategory FROM products WHERE pcategory IS NOT NULL AND pcategory != ''");
     if ($q2) {
         while ($r = mysqli_fetch_assoc($q2)) {
-            $loc = $site_url . '/shop.php?astringdata2=' . urlencode($r['pcategory']);
+            $loc = $site_url . '/shop?astringdata2=' . urlencode($r['pcategory']);
             add_url($xml, $loc, '0.85', 'weekly', $today);
         }
     }
 
-    // ---- Projects ----
+    // Projects
     $q3 = @mysqli_query($con, "SELECT id, project_name, img1 FROM projects ORDER BY id DESC");
     if ($q3) {
         while ($r = mysqli_fetch_assoc($q3)) {
-            $loc = $site_url . '/project-details.php?astringdata=' . urlencode(base64_encode($r['id']));
+            $loc = $site_url . '/project-details?astringdata=' . urlencode(base64_encode($r['id']));
             $img = !empty($r['img1']) ? $site_url . '/Admin/project_image/' . $r['img1'] : null;
             add_url($xml, $loc, '0.7', 'monthly', $today, $img, $r['project_name']);
         }
     }
 
-    // ---- Blog ----
+    // Blog
     $q4 = @mysqli_query($con, "SELECT id, blog_title, img FROM blog ORDER BY id DESC");
     if ($q4) {
         while ($r = mysqli_fetch_assoc($q4)) {
-            $loc = $site_url . '/details.php?astringdata=' . urlencode(base64_encode($r['id']));
+            $loc = $site_url . '/details?astringdata=' . urlencode(base64_encode($r['id']));
             $img = !empty($r['img']) ? $site_url . '/Admin/blog_image/' . $r['img'] : null;
             add_url($xml, $loc, '0.7', 'monthly', $today, $img, $r['blog_title']);
         }
