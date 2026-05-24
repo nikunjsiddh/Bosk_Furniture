@@ -4802,6 +4802,71 @@ section.who-we-are {
     width: 100%;
   }
 }
+
+/* ----- Our Story image: responsive hover-effect layout ----- */
+.who-we-are .who {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.who-img-wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  margin: 0;
+  padding: 0;
+}
+
+.who-img-inner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  z-index: 1;
+  background: #111;
+}
+
+.who-img-inner img,
+.inner-page .who-we-are .who .who-img-inner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  padding: 0;
+  transform: scale(1);
+  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.6s ease;
+  filter: saturate(1) brightness(0.96);
+}
+
+/* Hover state */
+.who-img-wrap:hover .who-img-inner img {
+  transform: scale(1.08);
+  filter: saturate(1.1) brightness(1);
+}
+
+/* Keyboard accessibility */
+.who-img-wrap:focus-within .who-img-inner img {
+  transform: scale(1.08);
+}
+
+/* Tablet */
+@media screen and (max-width: 991px) {
+  .who-img-wrap {
+    margin: 0 auto 2rem;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .who-img-inner img {
+    transition: none !important;
+  }
+  .who-img-wrap:hover .who-img-inner img {
+    transform: none;
+  }
+}
 .inner-page .who-we-are .box.bg-2 img {
   margin-top: 1rem;
   height: 62px;
