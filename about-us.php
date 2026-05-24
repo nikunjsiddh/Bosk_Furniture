@@ -1,7 +1,7 @@
 <?php
-$page_title       = 'About Us | Bosk Furniture - Trusted Furniture Brand in India';
-$page_description = 'Learn about Bosk Furniture - a trusted Indian brand crafting premium modular kitchens, wardrobes, sofas and custom interior furniture with guaranteed quality and craftsmanship.';
-$page_keywords    = 'about bosk furniture, furniture brand india, modular furniture company, custom furniture manufacturer, interior furniture brand';
+$page_title       = 'Customized Modular Furniture Manufacturer in India | BOSK';
+$page_description = 'BOSK (Bosk Infracon) crafts guaranteed, customized modular furniture in India - modular wardrobes, beds, TV units & kitchens in marine-grade 710 plywood.';
+$page_keywords    = 'customized modular furniture manufacturer in india, modular furniture india, modular wardrobes, modular kitchen, marine plywood furniture, made in india furniture, hettich hardware furniture india, bosk furniture, bosk infracon';
 $page_canonical   = '/about-us';
 $page_breadcrumbs = [
     ['name' => 'Home',     'url' => '/'],
@@ -17,26 +17,43 @@ $page_breadcrumbs = [
     {
       "@context": "https://schema.org",
       "@type": "AboutPage",
-      "name": "About Bosk Furniture",
-      "url": "https://www.boskfurniture.com/about-us.php",
-      "description": "Learn about Bosk Furniture - trusted Indian brand crafting premium modular kitchens, wardrobes and custom interior furniture.",
+      "@id": "https://www.boskfurniture.com/about-us#aboutpage",
+      "name": "About BOSK - Customized Modular Furniture, Made in India",
+      "url": "https://www.boskfurniture.com/about-us",
+      "description": "BOSK (Bosk Infracon Private Limited) is a customized modular furniture manufacturer in India - wardrobes, beds, TV units, sofas and modular kitchens crafted in marine-grade 710 plywood with HETTICH hardware.",
+      "isPartOf": { "@id": "https://www.boskfurniture.com/#website" },
+      "about": { "@id": "https://www.boskfurniture.com/#organization" },
       "mainEntity": {
         "@type": "Organization",
+        "@id": "https://www.boskfurniture.com/#organization",
         "name": "Bosk Furniture",
-        "url": "https://www.boskfurniture.com"
-      },
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type":"ListItem","position":1,"name":"Home","item":"https://www.boskfurniture.com/"},
-          {"@type":"ListItem","position":2,"name":"About Us","item":"https://www.boskfurniture.com/about-us.php"}
+        "legalName": "Bosk Infracon Private Limited",
+        "url": "https://www.boskfurniture.com",
+        "foundingDate": "2019",
+        "founder": [
+          {"@type":"Person","name":"Jiten Indukumar Chhagani","jobTitle":"Promoter"},
+          {"@type":"Person","name":"Pranav Jiten Chhagani","jobTitle":"Director"},
+          {"@type":"Person","name":"Komal Chhagani","jobTitle":"Director"}
         ]
       }
     }
     </script>
     <style>
         /* ============ WHY BOSK FURNITURE CARDS ============ */
-        .all-services .item { perspective: 1000px; }
+        /* Equal-height grid: stretch all cards in a row to match the tallest */
+        .all-services .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .all-services .row > [class*="col-"] {
+            display: flex;
+            margin-bottom: 30px;
+        }
+        .all-services .item {
+            perspective: 1000px;
+            width: 100%;
+            display: flex;
+        }
         .all-services .service-box {
             position: relative;
             background: #ffffff;
@@ -46,7 +63,15 @@ $page_breadcrumbs = [
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
             transition: transform .45s cubic-bezier(.25,.8,.25,1),
                         box-shadow .45s ease;
+            width: 100%;
             height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .all-services .service-inner-box {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
         }
         /* Soft brand-tinted wash that fades in on hover */
         .all-services .service-box::before {
@@ -154,7 +179,7 @@ $page_breadcrumbs = [
         <section class="headings">
             <div class="text-heading">
                 <div class="container">
-                    <h1 class="text-center">About Us</h1>
+                    <h1 class="text-center">About BOSK &mdash; Customized Modular Furniture, Made in India</h1>
                 </div>
             </div>
         </section>
@@ -174,30 +199,34 @@ $page_breadcrumbs = [
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 who">
-                        <img src="images/bg/2.jpg" alt="">
+                        <img src="images/bg/2.jpg" alt="BOSK leadership team and customized modular furniture workshop in Bhavnagar, Gujarat">
                     </div>
                     <div class="col-md-6 who-1">
                         <div>
-                            <h2 class="text-left mb-4">Key Figures in <span>Bosk Interior Team</span></h2>
+                            <h2 class="text-left mb-4">Our Story: From Timber to <span>Customized Modular Furniture</span></h2>
                         </div>
                         <div class="pftext">
-                            <p>Bosk Infracon Private Limited is started in the year 2019 with clear intention of
-                                satisfying the customers with Customized Quality Furniture with a difference.</p>
+                            <p>BOSK is the furniture brand of <b>Bosk Infracon Private Limited</b>, founded in 2019
+                                with a single, clear intention: to give Indian homes <b>customized, quality modular
+                                furniture with a difference</b>. From our manufacturing base in Bhavnagar, Gujarat,
+                                we craft made-to-order wardrobes, beds, TV units, sofas and
+                                <a href="shop.php?astringdata2=Modular Kitchens">modular kitchens</a> on high-end
+                                imported machines &mdash; and deliver them, fully guaranteed, to customers across
+                                India. Every piece is built around <i>your</i> space, taste and budget, not pulled
+                                off a ready-made shelf.</p>
 
-                            <p><b>Our Promoter : </b>Shri Jiten Indukumar Chhagani, a Civil Engineer and visionary
-                                leader, has excelled not only in his professional career but has also demonstrated
-                                adaptability to global changes in the furniture industry. His foresight led to the
-                                strategic diversification of the family business, transitioning from Timber to
-                                Plywood.<br /><b>Our Director :</b>Shri Pranav Jiten Chhagani and Smt. Komal Chhagani,
-                                bring unique expertise to our team. Shri Pranav, a dynamic young entrepreneur, began his
-                                career in the family's furniture trading business. Renowned for his enthusiasm and
-                                friendly demeanor, he is recognized as a man of words. With a visionary spirit, Pranav
-                                aims to produce high-quality, customized furniture in India to rival ready-made imports
-                                from China. On the other hand, Smt. Komal Chhagani, also a young entrepreneur,
-                                specializes in interior design. Her energetic and enthusiastic approach, coupled with a
-                                refined taste for elegant designs, showcases her success in completing numerous projects
-                                and establishing expertise in furniture design, having trained under renowned
-                                architects. Together, they contribute to the diverse strengths of our leadership team.
+                            <p><b>Our Promoter :</b> Shri Jiten Indukumar Chhagani, a Civil Engineer and visionary
+                                leader, steered the family enterprise through a strategic shift from Timber to
+                                Plywood. That engineering mindset still defines how we work &mdash; we treat
+                                furniture as something to be built to last, not just assembled to look good in a
+                                showroom.<br /><b>Our Directors :</b> Shri Pranav Jiten Chhagani and
+                                Smt. Komal Chhagani bring complementary strengths to the business. Pranav, a
+                                dynamic young entrepreneur, began his career in the family's furniture trading
+                                business and is driven by one ambition: to produce high-quality, customized
+                                furniture in India that rivals ready-made imports from China. Komal is an interior
+                                designer with a refined eye for elegant, liveable spaces; trained under renowned
+                                architects, she has delivered numerous projects and leads design at BOSK. Together
+                                they pair manufacturing discipline with genuine design sensibility.
                             </p>
                         </div>
 
@@ -216,29 +245,30 @@ $page_breadcrumbs = [
                 </div>
                 <div class="row mt-50">
                     <div class="col-lg-4 col-xs-12 col-sm-12 col-md-6">
-                        <div class="item mb-30">
+                        <div class="item">
                             <div class=service-box>
 
                                 <div class="clearfix service-inner-box">
 
                                     <div>
-                                        <h3><a href="#">UNIQUENESS</a></h3>
-                                        <p>The furniture we craft is exclusively as per your taste & hence has its own
-                                            uniqueness.</p>
+                                        <h3><a href="all_products.php">TRULY CUSTOMIZED</a></h3>
+                                        <p>Every piece is crafted exclusively to your taste, so your furniture has
+                                            a uniqueness that mass-produced ranges simply can't offer.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-xs-12 col-sm-12 col-md-6">
-                        <div class="item smb-30">
+                        <div class="item">
                             <div class=service-box>
 
                                 <div class="clearfix service-inner-box">
 
                                     <div class=service-content-box>
-                                        <h3><a href="#">TIME SAVING</a></h3>
-                                        <p>The high end machines creates furniture in no time.</p>
+                                        <h3><a href="design-order-process.php">FASTER TURNAROUND</a></h3>
+                                        <p>Our high-end imported machines produce precision modular furniture
+                                            quickly, cutting the long waits associated with traditional carpentry.</p>
                                     </div>
                                 </div>
                             </div>
@@ -251,38 +281,40 @@ $page_breadcrumbs = [
                                 <div class="clearfix service-inner-box">
 
                                     <div>
-                                        <h3><a href=#>GUARANTEED PRODUCTS</a></h3>
-                                        <p>We provide manufacturing defect warranty.</p>
+                                        <h3><a href="warranty.php">GUARANTEED PRODUCTS</a></h3>
+                                        <p>We stand behind our work with a manufacturing-defect warranty &mdash; so
+                                            durable, customized furniture comes with real peace of mind.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-xs-12 col-sm-12 col-md-6">
-                        <div class="item mb-30">
+                        <div class="item">
                             <div class=service-box>
 
                                 <div class="clearfix service-inner-box">
 
                                     <div>
-                                        <h3><a href="#">BEST FINISHING</a></h3>
-                                        <p>The furniture is machine-crafted with edges covered in matching-tone Edge
-                                            bands, ensuring a polished finish.</p>
+                                        <h3><a href="all_products.php">BEST-IN-CLASS FINISHING</a></h3>
+                                        <p>Furniture is machine-crafted with edges sealed in matching-tone edge
+                                            bands for a clean, polished, long-lasting finish.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-xs-12 col-sm-12 col-md-6">
-                        <div class="item mb-30">
+                        <div class="item">
                             <div class=service-box>
 
                                 <div class="clearfix service-inner-box">
 
                                     <div>
-                                        <h3><a href="#">COST EFFECTIVE</a></h3>
-                                        <p>If all the parameters are compared, our crafted furniture should be
-                                            economical than other similar products.</p>
+                                        <h3><a href="all_products.php">COST-EFFECTIVE</a></h3>
+                                        <p>Compare the parameters that matter &mdash; material, hardware, finish and
+                                            warranty &mdash; and our crafted furniture works out more economical
+                                            than similar products.</p>
                                     </div>
                                 </div>
                             </div>
@@ -290,15 +322,15 @@ $page_breadcrumbs = [
                     </div>
 
                     <div class="col-lg-4 col-xs-12 col-sm-12 col-md-6">
-                        <div class="item smb-30">
+                        <div class="item">
                             <div class=service-box>
 
                                 <div class="clearfix service-inner-box">
 
                                     <div>
-                                        <h3><a href=#>HYGIENE</a></h3>
-                                        <p>The furniture is being crafted at our factory, only erection and fitting is
-                                            to be done at customer’s premises.</p>
+                                        <h3><a href="design-order-process.php">HYGIENIC, FACTORY-BUILT</a></h3>
+                                        <p>Your furniture is manufactured in our factory under controlled
+                                            conditions; only erection and fitting happen at your premises.</p>
                                     </div>
                                 </div>
                             </div>
@@ -311,10 +343,10 @@ $page_breadcrumbs = [
                                 <div class="clearfix service-inner-box">
 
                                     <div>
-                                        <h3><a href=#>HASSLES</a></h3>
-                                        <p>No hassles as the furniture is going to be made at our factory. Only
-                                            installation to be done at site which normally takes 2-4 days. We need your
-                                            place only for installation.</p>
+                                        <h3><a href="design-order-process.php">HASSLE-FREE INSTALLATION</a></h3>
+                                        <p>Because the furniture is made at our factory, there's no mess at home.
+                                            Installation on site typically takes just 2&ndash;4 days &mdash; we only
+                                            need access to your space for fitting.</p>
                                     </div>
                                 </div>
                             </div>
@@ -328,10 +360,10 @@ $page_breadcrumbs = [
                                 <div class="clearfix service-inner-box">
 
                                     <div>
-                                        <h3><a href=#>DURABILITY</a></h3>
-                                        <p>The base material used is Marine grade : 710 ply and the fixtures used are
-                                            from HETTICH – a German company known for its quality & innovations in
-                                            hardware.</p>
+                                        <h3><a href="warranty.php">BUILT FOR DURABILITY</a></h3>
+                                        <p>We build with marine-grade 710 plywood and fit HETTICH hardware &mdash;
+                                            from the German company renowned for quality and innovation &mdash; so
+                                            your furniture performs for years, not seasons.</p>
                                     </div>
                                 </div>
                             </div>
@@ -349,31 +381,36 @@ $page_breadcrumbs = [
 
                     <div class="col-md-6 who-1">
                         <div>
-                            <h2 class="text-left mb-4">INITIATION</h2>
+                            <h2 class="text-left mb-4">Customized Modular Furniture vs. <span>Ready-Made &amp; Imported</span></h2>
                         </div>
                         <div class="pftext">
-                            <p>Transforming Furniture Choices: From Ready-Made Dilemmas to <br /><b>BOSK INFRACON's
-                                    Customized Excellence</b></p>
+                            <p>BOSK began with a simple question: why are people choosing ready-made or imported
+                                furniture? The honest answer was usually time-saving and convenience, not quality.
+                                Most locally available ready-made furniture is built from engineered wood &mdash;
+                                MDF or particle board &mdash; which can look good on day one but tends to swell, sag
+                                and fail when exposed to moisture and daily use, with little after-sales support.</p>
 
-                            <p><b>The thought:</b>- why people are opting for ready made furniture or China furniture ?
-                                for looks ? (main reason found was saving in time and avoiding hardships of traditional
-                                furniture)<br />
-                                - are the people getting their worth by buying the local readymade available furniture
-                                from market which is mostly made of Engineering Wood (MDF or Particle Board)?<br />
-                                - the looks may be good but what about the durability?<br />
-                                - what about the after sales?<br />
-                                <b>Thought Process:</b>- Can we manufacture quality modular furniture in our home town
-                                which can be customized as per the requirements, is <b>durable</b>, is <b>time
-                                    saving</b> and is <b>warranted</b>.
-                                <br /><b>Result:</b>- Establishment of <b>BOSK INFRACON PRIVATE LIMITED</b> where
-                                <b>Guaranteed Customized Modular furniture</b> is to be crafted on imported machines to
-                                bring a satisfied smile on the users face.
+                            <p>We believed there was a better way: <b>guaranteed, customized modular furniture, made
+                                in India</b>, that keeps the looks and the convenience but adds durability,
+                                personalisation and a warranty. That belief is the reason Bosk Infracon Private
+                                Limited exists &mdash; to craft modular furniture on imported machines and put a
+                                satisfied smile on every user's face.<br /><br />
+                                <b>What we make:</b> a complete range of modular furniture for the home, including
+                                modular sofas,
+                                <a href="shop.php?astringdata2=LUSCIOUS WARDROBES">luscious wardrobes</a>,
+                                <a href="shop.php?astringdata2=Comfy Beds With Full Storage">comfy beds with full storage</a>,
+                                <a href="shop.php?astringdata2=Entertaining TV Units">entertaining TV units</a>,
+                                <a href="shop.php?astringdata2=Modular Kitchens">modular kitchens</a> and other
+                                everyday comforts. Each range is fully customizable in size, layout, finish and
+                                hardware. Ready to replace ready-made compromises with furniture designed around
+                                your home? <a href="all_products.php">Explore our range</a> or
+                                <a href="contact.php">get in touch</a>.
                             </p>
                         </div>
 
                     </div>
                     <div class="col-md-6 who">
-                        <img src="images/bg/1.jpg" alt="">
+                        <img src="images/bg/1.jpg" alt="Customized modular furniture crafted in marine-grade 710 plywood at the BOSK factory">
                     </div>
                 </div>
             </div>
