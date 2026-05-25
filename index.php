@@ -42,59 +42,67 @@ $page_breadcrumbs = [
     <link rel="stylesheet" href="css/styles.css">
     <!-- Note: site-wide FurnitureStore + Organization JSON-LD is emitted by design/seo-meta.php.
          No duplicate schema block needed here. -->
-    
+
     <style>
-        .recent-img16{
-            
-        }
+        .recent-img16 {}
+
         @media screen and (min-width: 991px) {
-          .btn-class-view-all {
-            margin-left: 80.8vw;
-            margin-top: -6.3vw;
-          }
+            .btn-class-view-all {
+                margin-left: 80.8vw;
+                margin-top: -6.3vw;
+            }
         }
+
         @media screen and (max-width: 990px) {
-          .btn-class-view-all {
-            margin-top: -11.3vw;
-          }
+            .btn-class-view-all {
+                margin-top: -11.3vw;
+            }
         }
-         @media screen and (min-width: 991px) {
-          .btn-class-view-all1 {
-            margin-left: 60.8vw;
-            margin-top: -6.3vw;
-          }
+
+        @media screen and (min-width: 991px) {
+            .btn-class-view-all1 {
+                margin-left: 60.8vw;
+                margin-top: -6.3vw;
+            }
         }
+
         @media screen and (max-width: 990px) {
-          .btn-class-view-all1 {
-            margin-top: -11.3vw;
-          }
+            .btn-class-view-all1 {
+                margin-top: -11.3vw;
+            }
         }
+
         /* Hero image dark overlay + soft gradient so heading/buttons stay readable */
         #hero-area.home-1 {
             position: relative;
         }
+
         #hero-area.home-1::before {
             content: "";
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.65) 0%,
-                rgba(0, 0, 0, 0.45) 45%,
-                rgba(0, 0, 0, 0.55) 100%
-            );
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom,
+                    rgba(0, 0, 0, 0.65) 0%,
+                    rgba(0, 0, 0, 0.45) 45%,
+                    rgba(0, 0, 0, 0.55) 100%);
             z-index: 1;
             pointer-events: none;
         }
+
         #hero-area.home-1 .hero-main,
         #hero-area.home-1 .container {
             position: relative;
             z-index: 2;
         }
+
         #hero-area.home-1 .welcome-text h1,
         #hero-area.home-1 .welcome-text p {
             text-shadow: 0 2px 12px rgba(0, 0, 0, 0.75);
         }
+
         #hero-area.home-1 .hero-buttons .btn {
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
         }
@@ -110,19 +118,28 @@ $page_breadcrumbs = [
             align-items: center;
             text-align: center;
         }
+
         #hero-area.home-1 .welcome-text {
             margin: 0;
         }
+
         #hero-area.home-1 .hero-buttons {
             margin-top: 30px;
             text-align: center;
         }
+
         #hero-area.home-1 .hero-buttons .btn {
             margin: 0 8px !important;
         }
+
         @media (max-width: 767px) {
-            #hero-area.home-1 .hero-buttons { margin-top: 20px; }
-            #hero-area.home-1 .hero-buttons .btn { margin: 6px !important; }
+            #hero-area.home-1 .hero-buttons {
+                margin-top: 20px;
+            }
+
+            #hero-area.home-1 .hero-buttons .btn {
+                margin: 6px !important;
+            }
         }
 
         /* ============ BLOG SECTION REDESIGN ============ */
@@ -132,22 +149,25 @@ $page_breadcrumbs = [
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-            transition: transform .45s cubic-bezier(.25,.8,.25,1),
-                        box-shadow .45s ease;
+            transition: transform .45s cubic-bezier(.25, .8, .25, 1),
+                box-shadow .45s ease;
             height: 100%;
             display: flex;
             flex-direction: column;
         }
+
         .blog-section .blog-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
         }
+
         .blog-section .blog-card-img {
             position: relative;
             overflow: hidden;
             aspect-ratio: 16 / 10;
             background: #f2f2f2;
         }
+
         .blog-section .blog-card-img img {
             width: 100%;
             height: 100%;
@@ -155,19 +175,24 @@ $page_breadcrumbs = [
             display: block;
             transition: transform .8s ease, filter .5s ease;
         }
+
         .blog-section .blog-card:hover .blog-card-img img {
             transform: scale(1.12);
             filter: brightness(.85);
         }
+
         .blog-section .blog-card-img::after {
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 55%);
+            background: linear-gradient(to top, rgba(0, 0, 0, .55) 0%, rgba(0, 0, 0, 0) 55%);
             opacity: 0;
             transition: opacity .5s ease;
         }
-        .blog-section .blog-card:hover .blog-card-img::after { opacity: 1; }
+
+        .blog-section .blog-card:hover .blog-card-img::after {
+            opacity: 1;
+        }
 
         .blog-section .blog-date-badge {
             position: absolute;
@@ -183,10 +208,13 @@ $page_breadcrumbs = [
             line-height: 1.2;
             z-index: 2;
             text-transform: uppercase;
-            box-shadow: 0 4px 12px rgba(0,0,0,.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .2);
             transition: transform .4s ease;
         }
-        .blog-section .blog-card:hover .blog-date-badge { transform: translateY(-3px); }
+
+        .blog-section .blog-card:hover .blog-date-badge {
+            transform: translateY(-3px);
+        }
 
         .blog-section .blog-card-body {
             padding: 22px 24px 26px;
@@ -194,6 +222,7 @@ $page_breadcrumbs = [
             flex-direction: column;
             flex-grow: 1;
         }
+
         .blog-section .blog-meta {
             font-size: 12px;
             color: #888;
@@ -201,7 +230,12 @@ $page_breadcrumbs = [
             margin-bottom: 10px;
             text-transform: uppercase;
         }
-        .blog-section .blog-meta i { color: #532A1A; margin-right: 5px; }
+
+        .blog-section .blog-meta i {
+            color: #532A1A;
+            margin-right: 5px;
+        }
+
         .blog-section .blog-card-body h3 {
             font-size: 20px;
             font-weight: 700;
@@ -210,8 +244,15 @@ $page_breadcrumbs = [
             color: #222;
             transition: color .35s ease;
         }
-        .blog-section .blog-card-body h3 a { color: inherit; text-decoration: none; }
-        .blog-section .blog-card:hover .blog-card-body h3 { color: #532A1A; }
+
+        .blog-section .blog-card-body h3 a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .blog-section .blog-card:hover .blog-card-body h3 {
+            color: #532A1A;
+        }
 
         .blog-section .blog-card-body p {
             font-size: 14px;
@@ -223,6 +264,7 @@ $page_breadcrumbs = [
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+
         .blog-section .blog-read-more {
             display: inline-flex;
             align-items: center;
@@ -235,17 +277,29 @@ $page_breadcrumbs = [
             position: relative;
             width: fit-content;
         }
+
         .blog-section .blog-read-more::after {
             content: "→";
             display: inline-block;
             transition: transform .35s ease;
         }
-        .blog-section .blog-read-more:hover { color: #211610; }
-        .blog-section .blog-read-more:hover::after { transform: translateX(6px); }
+
+        .blog-section .blog-read-more:hover {
+            color: #211610;
+        }
+
+        .blog-section .blog-read-more:hover::after {
+            transform: translateX(6px);
+        }
 
         @media (max-width: 575px) {
-            .blog-section .blog-card-body { padding: 18px 18px 22px; }
-            .blog-section .blog-card-body h3 { font-size: 17px; }
+            .blog-section .blog-card-body {
+                padding: 18px 18px 22px;
+            }
+
+            .blog-section .blog-card-body h3 {
+                font-size: 17px;
+            }
         }
 
         /* ============ RECENT PROJECTS REDESIGN ============ */
@@ -258,38 +312,43 @@ $page_breadcrumbs = [
             overflow: hidden;
             background: #111;
             box-shadow: 0 6px 22px rgba(0, 0, 0, 0.10);
-            transition: transform .5s cubic-bezier(.25,.8,.25,1),
-                        box-shadow .5s ease;
+            transition: transform .5s cubic-bezier(.25, .8, .25, 1),
+                box-shadow .5s ease;
             text-decoration: none;
         }
+
         .recently .project-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 24px 46px rgba(0, 0, 0, 0.22);
         }
+
         .recently .project-card-img {
             position: absolute;
             inset: 0;
             background-size: cover;
             background-position: center;
-            transition: transform 1s cubic-bezier(.25,.8,.25,1);
+            transition: transform 1s cubic-bezier(.25, .8, .25, 1);
         }
+
         .recently .project-card:hover .project-card-img {
             transform: scale(1.12);
         }
+
         .recently .project-card-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(
-                to top,
-                rgba(0,0,0,0.85) 0%,
-                rgba(0,0,0,0.45) 50%,
-                rgba(0,0,0,0.10) 100%
-            );
+            background: linear-gradient(to top,
+                    rgba(0, 0, 0, 0.85) 0%,
+                    rgba(0, 0, 0, 0.45) 50%,
+                    rgba(0, 0, 0, 0.10) 100%);
             opacity: 0.65;
             transition: opacity .5s ease;
             z-index: 1;
         }
-        .recently .project-card:hover .project-card-overlay { opacity: 1; }
+
+        .recently .project-card:hover .project-card-overlay {
+            opacity: 1;
+        }
 
         .recently .project-tag {
             position: absolute;
@@ -307,7 +366,10 @@ $page_breadcrumbs = [
             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
             transition: transform .4s ease;
         }
-        .recently .project-card:hover .project-tag { transform: translateY(-3px); }
+
+        .recently .project-card:hover .project-tag {
+            transform: translateY(-3px);
+        }
 
         .recently .project-card-content {
             position: absolute;
@@ -318,9 +380,12 @@ $page_breadcrumbs = [
             color: #fff;
             z-index: 2;
             transform: translateY(34px);
-            transition: transform .55s cubic-bezier(.25,.8,.25,1);
+            transition: transform .55s cubic-bezier(.25, .8, .25, 1);
         }
-        .recently .project-card:hover .project-card-content { transform: translateY(0); }
+
+        .recently .project-card:hover .project-card-content {
+            transform: translateY(0);
+        }
 
         .recently .project-card-title {
             font-size: 19px;
@@ -330,6 +395,7 @@ $page_breadcrumbs = [
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
             color: #fff;
         }
+
         .recently .project-card-cta {
             display: inline-flex;
             align-items: center;
@@ -347,29 +413,50 @@ $page_breadcrumbs = [
             backdrop-filter: blur(4px);
             opacity: 0;
             transition: opacity .35s ease .12s,
-                        background .3s ease;
+                background .3s ease;
         }
-        .recently .project-card:hover .project-card-cta { opacity: 1; }
+
+        .recently .project-card:hover .project-card-cta {
+            opacity: 1;
+        }
+
         .recently .project-card-cta:hover {
             background: #532A1A;
             border-color: #532A1A;
         }
+
         .recently .project-card-cta::after {
             content: "→";
             transition: transform .35s ease;
         }
-        .recently .project-card-cta:hover::after { transform: translateX(5px); }
+
+        .recently .project-card-cta:hover::after {
+            transform: translateX(5px);
+        }
 
         /* Touch devices: show content without hover */
         @media (hover: none) {
-            .recently .project-card-content { transform: translateY(0); }
-            .recently .project-card-cta { opacity: 1; }
-            .recently .project-card-overlay { opacity: 1; }
+            .recently .project-card-content {
+                transform: translateY(0);
+            }
+
+            .recently .project-card-cta {
+                opacity: 1;
+            }
+
+            .recently .project-card-overlay {
+                opacity: 1;
+            }
         }
 
         @media (max-width: 575px) {
-            .recently .project-card { aspect-ratio: 4 / 4.5; }
-            .recently .project-card-title { font-size: 17px; }
+            .recently .project-card {
+                aspect-ratio: 4 / 4.5;
+            }
+
+            .recently .project-card-title {
+                font-size: 17px;
+            }
         }
 
         /* ============ PARTNER LOGO MARQUEE ============ */
@@ -379,21 +466,24 @@ $page_breadcrumbs = [
             overflow: hidden;
             padding: 10px 0;
         }
+
         .partners .logo-marquee-track {
             display: flex !important;
             flex-wrap: nowrap !important;
             align-items: center;
             width: max-content;
             -webkit-animation: logoScroll 35s linear infinite !important;
-                    animation: logoScroll 35s linear infinite !important;
+            animation: logoScroll 35s linear infinite !important;
             will-change: transform;
         }
+
         .partners .logo-set {
             display: flex;
             flex-wrap: nowrap;
             align-items: center;
             flex-shrink: 0;
         }
+
         .partners .logo-set img {
             flex-shrink: 0 !important;
             height: 100px;
@@ -405,55 +495,95 @@ $page_breadcrumbs = [
             cursor: pointer;
             filter: grayscale(100%) opacity(.6);
             -webkit-transition: filter .35s ease, -webkit-transform .35s ease;
-                    transition: filter .35s ease, transform .35s ease;
+            transition: filter .35s ease, transform .35s ease;
             -webkit-user-drag: none;
             user-select: none;
             pointer-events: auto;
         }
+
         /* When the cursor enters the strip: pause + dim every logo slightly */
         .partners .logo-marquee:hover .logo-marquee-track {
             -webkit-animation-play-state: paused;
-                    animation-play-state: paused;
+            animation-play-state: paused;
         }
+
         .partners .logo-marquee:hover .logo-set img {
             filter: grayscale(100%) opacity(.3);
         }
+
         /* The one logo under the cursor pops to full color, scales up, glows */
         .partners .logo-marquee .logo-set img:hover {
-            filter: grayscale(0%) opacity(1)
-                    drop-shadow(0 8px 18px rgba(0, 0, 0, 0.22)) !important;
+            filter: grayscale(0%) opacity(1) drop-shadow(0 8px 18px rgba(0, 0, 0, 0.22)) !important;
             -webkit-transform: scale(1.2);
-                    transform: scale(1.2);
+            transform: scale(1.2);
         }
+
         @-webkit-keyframes logoScroll {
-            0%   { -webkit-transform: translateX(0); transform: translateX(0); }
-            100% { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+            0% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
+
+            100% {
+                -webkit-transform: translateX(-50%);
+                transform: translateX(-50%);
+            }
         }
+
         @keyframes logoScroll {
-            0%   { -webkit-transform: translateX(0); transform: translateX(0); }
-            100% { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+            0% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
+
+            100% {
+                -webkit-transform: translateX(-50%);
+                transform: translateX(-50%);
+            }
         }
+
         @media (max-width: 991px) {
-            .partners .logo-set img { height: 75px; margin: 0 32px; }
-            .partners .logo-marquee-track { animation-duration: 28s !important; -webkit-animation-duration: 28s !important; }
+            .partners .logo-set img {
+                height: 75px;
+                margin: 0 32px;
+            }
+
+            .partners .logo-marquee-track {
+                animation-duration: 28s !important;
+                -webkit-animation-duration: 28s !important;
+            }
         }
+
         @media (max-width: 575px) {
-            .partners .logo-set img { height: 58px; margin: 0 24px; }
-            .partners .logo-marquee-track { animation-duration: 22s !important; -webkit-animation-duration: 22s !important; }
+            .partners .logo-set img {
+                height: 58px;
+                margin: 0 24px;
+            }
+
+            .partners .logo-marquee-track {
+                animation-duration: 22s !important;
+                -webkit-animation-duration: 22s !important;
+            }
         }
 
         /* ============ RECENT PROJECTS SLIDER ARROWS ============ */
-        .homepage-1 .home5-right-slider.owl-carousel { position: relative; }
+        .homepage-1 .home5-right-slider.owl-carousel {
+            position: relative;
+        }
+
         .homepage-1 .home5-right-slider.owl-carousel .owl-stage-outer {
             position: relative;
             overflow: hidden !important;
         }
+
         /* Allow ancestors of the arrows to render outside their normal box so
            absolutely-positioned arrows are never clipped */
         .recently,
         .recently .portfolio,
         .recently .right-slider,
-        .homepage-1 .home5-right-slider.owl-carousel { overflow: visible !important; }
+        .homepage-1 .home5-right-slider.owl-carousel {
+            overflow: visible !important;
+        }
 
         /* Overlay the nav exactly on the slide area, so top:50% = middle of cards */
         .homepage-1 .home5-right-slider.owl-carousel .owl-nav {
@@ -467,6 +597,7 @@ $page_breadcrumbs = [
             pointer-events: none !important;
             height: auto !important;
         }
+
         .homepage-1 .home5-right-slider.owl-carousel .owl-prev,
         .homepage-1 .home5-right-slider.owl-carousel .owl-next {
             position: absolute !important;
@@ -475,7 +606,7 @@ $page_breadcrumbs = [
             padding: 0 !important;
             pointer-events: auto !important;
             -webkit-transform: translateY(-50%) !important;
-                    transform: translateY(-50%) !important;
+            transform: translateY(-50%) !important;
             width: 54px !important;
             height: 54px !important;
             border-radius: 50% !important;
@@ -495,10 +626,11 @@ $page_breadcrumbs = [
             z-index: 20 !important;
             opacity: 1 !important;
             overflow: visible !important;
-            transition: transform .45s cubic-bezier(.25,.8,.25,1),
-                        box-shadow .45s ease,
-                        background .45s ease !important;
+            transition: transform .45s cubic-bezier(.25, .8, .25, 1),
+                box-shadow .45s ease,
+                background .45s ease !important;
         }
+
         /* Soft glowing ring that expands on hover */
         .homepage-1 .home5-right-slider.owl-carousel .owl-prev::before,
         .homepage-1 .home5-right-slider.owl-carousel .owl-next::before {
@@ -509,9 +641,10 @@ $page_breadcrumbs = [
             border: 2px solid rgba(83, 42, 26, 0.35);
             opacity: 0;
             transform: scale(.85);
-            transition: opacity .45s ease, transform .55s cubic-bezier(.25,.8,.25,1);
+            transition: opacity .45s ease, transform .55s cubic-bezier(.25, .8, .25, 1);
             pointer-events: none;
         }
+
         /* Subtle resting pulse to draw the eye */
         .homepage-1 .home5-right-slider.owl-carousel .owl-prev::after,
         .homepage-1 .home5-right-slider.owl-carousel .owl-next::after {
@@ -523,10 +656,19 @@ $page_breadcrumbs = [
             animation: arrowPulse 2.4s ease-out infinite;
             pointer-events: none;
         }
+
         @keyframes arrowPulse {
-            0%   { box-shadow: 0 0 0 0   rgba(83, 42, 26, 0.5); }
-            70%  { box-shadow: 0 0 0 16px rgba(83, 42, 26, 0); }
-            100% { box-shadow: 0 0 0 0   rgba(83, 42, 26, 0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(83, 42, 26, 0.5);
+            }
+
+            70% {
+                box-shadow: 0 0 0 16px rgba(83, 42, 26, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(83, 42, 26, 0);
+            }
         }
 
         /* Push both arrows inside the slider so neither edge can clip them */
@@ -534,6 +676,7 @@ $page_breadcrumbs = [
             left: 28px !important;
             right: auto !important;
         }
+
         .homepage-1 .home5-right-slider.owl-carousel .owl-next {
             right: 28px !important;
             left: auto !important;
@@ -547,14 +690,16 @@ $page_breadcrumbs = [
                 0 14px 30px rgba(83, 42, 26, 0.45),
                 inset 0 0 0 2px rgba(255, 255, 255, 0.28) !important;
             -webkit-transform: translateY(-50%) scale(1.12) !important;
-                    transform: translateY(-50%) scale(1.12) !important;
+            transform: translateY(-50%) scale(1.12) !important;
         }
+
         .homepage-1 .home5-right-slider.owl-carousel .owl-prev:hover::before,
         .homepage-1 .home5-right-slider.owl-carousel .owl-next:hover::before {
             opacity: 1;
             transform: scale(1.15);
             border-color: rgba(83, 42, 26, 0.55);
         }
+
         /* Pause the resting pulse on hover for a clean focused look */
         .homepage-1 .home5-right-slider.owl-carousel .owl-prev:hover::after,
         .homepage-1 .home5-right-slider.owl-carousel .owl-next:hover::after {
@@ -578,32 +723,44 @@ $page_breadcrumbs = [
             padding: 0 !important;
             text-align: center;
             vertical-align: middle;
-            transition: transform .35s cubic-bezier(.25,.8,.25,1) !important;
+            transition: transform .35s cubic-bezier(.25, .8, .25, 1) !important;
         }
+
         .homepage-1 .home5-right-slider.owl-carousel .owl-prev:hover i {
             transform: translateX(-4px);
         }
+
         .homepage-1 .home5-right-slider.owl-carousel .owl-next:hover i {
             transform: translateX(4px);
         }
+
         /* Click press feedback */
         .homepage-1 .home5-right-slider.owl-carousel .owl-prev:active,
         .homepage-1 .home5-right-slider.owl-carousel .owl-next:active {
             -webkit-transform: translateY(-50%) scale(1.02) !important;
-                    transform: translateY(-50%) scale(1.02) !important;
+            transform: translateY(-50%) scale(1.02) !important;
         }
 
         @media (max-width: 991px) {
+
             .homepage-1 .home5-right-slider.owl-carousel .owl-prev,
             .homepage-1 .home5-right-slider.owl-carousel .owl-next {
                 width: 44px !important;
                 height: 44px !important;
                 font-size: 15px !important;
             }
-            .homepage-1 .home5-right-slider.owl-carousel .owl-prev { left: 14px !important; }
-            .homepage-1 .home5-right-slider.owl-carousel .owl-next { right: 14px !important; }
+
+            .homepage-1 .home5-right-slider.owl-carousel .owl-prev {
+                left: 14px !important;
+            }
+
+            .homepage-1 .home5-right-slider.owl-carousel .owl-next {
+                right: 14px !important;
+            }
         }
+
         @media (prefers-reduced-motion: reduce) {
+
             .homepage-1 .home5-right-slider.owl-carousel .owl-prev::after,
             .homepage-1 .home5-right-slider.owl-carousel .owl-next::after {
                 animation: none;
@@ -632,14 +789,16 @@ $page_breadcrumbs = [
                                 <!-- Welcome Text -->
                                 <div class="welcome-text">
                                     <h1 style="color:white !important;" class="h1"><b>Guaranteed Modular Furniture</b>
-                                    <br class="d-md-none">
-                                    <span class="typed border-bottom"></span>
-                                </h1>
-                                    <p style="color:white !important;" class="mt-4"><b>Our experience ensures that your projects will be done right and with the upmost professionalism.</b></p>
+                                        <br class="d-md-none">
+                                        <span class="typed border-bottom"></span>
+                                    </h1>
+                                    <p style="color:white !important;" class="mt-4"><b>Our experience ensures that your
+                                            projects will be done right and with the upmost professionalism.</b></p>
                                 </div>
                                 <!--/ End Welcome Text -->
                                 <div class="hero-buttons">
-                                    <a href="about-us.php" class="btn btn-default btn-theme-colored2 btn-xl">Read More</a>
+                                    <a href="about-us.php" class="btn btn-default btn-theme-colored2 btn-xl">Read
+                                        More</a>
                                     <a href="contact.php" class="btn btn-dark btn-theme-colored btn-xl">Contact Us</a>
                                 </div>
                             </div>
@@ -655,9 +814,9 @@ $page_breadcrumbs = [
                 <div class="section-title">
                     <h3>Recent</h3>
                     <h2>Projects</h2>
-                     <div class="hero-inner btn-class-view-all" style="">
-                            <a href="all_products.php" class="btn btn-dark btn-theme-colored btn-xl mt-5">View All</a>
-                     </div>
+                    <div class="hero-inner btn-class-view-all" style="">
+                        <a href="all_products.php" class="btn btn-dark btn-theme-colored btn-xl mt-5">View All</a>
+                    </div>
                 </div>
                 <div class="portfolio right-slider">
                     <div class="owl-carousel home5-right-slider">
@@ -678,12 +837,16 @@ $page_breadcrumbs = [
                                       $encode_project_id=base64_encode($project_id);
                         ?>
                         <div class="inner-box">
-                            <a href="project-details.php?astringdata=<?php echo $encode_project_id; ?>" class="project-card" data-aos="fade-up">
-                                <div class="project-card-img" style="background-image: url(Admin/project_image/<?php echo $img1;?>)"></div>
+                            <a href="project-details.php?astringdata=<?php echo $encode_project_id; ?>"
+                                class="project-card" data-aos="fade-up">
+                                <div class="project-card-img"
+                                    style="background-image: url(Admin/project_image/<?php echo $img1;?>)"></div>
                                 <span class="project-tag">Project</span>
                                 <div class="project-card-overlay"></div>
                                 <div class="project-card-content">
-                                    <h4 class="project-card-title"><?php echo $project_name;?></h4>
+                                    <h4 class="project-card-title">
+                                        <?php echo $project_name;?>
+                                    </h4>
                                     <span class="project-card-cta">View Details </span>
                                 </div>
                             </a>
@@ -774,11 +937,11 @@ $page_breadcrumbs = [
                     </div>
                 </div>
             </div>
-           
+
         </section>
         <!-- END SECTION RECENTLY WORKS -->
 
-<section class="all-services bg-white-2">
+        <section class="all-services bg-white-2">
             <div class="container">
                 <div class="section-title">
                     <h3>Our</h3>
@@ -799,29 +962,34 @@ $page_breadcrumbs = [
                                               $img=$row2['img'];
                                               $count=$row2['product_count'];
                                           ?>
-                                          
+
                     <div class="col-lg-4 col-xs-6 col-sm-6 col-md-6">
                         <div class="item mb-30">
                             <div class=service-box>
-                               
+
                                 <div class="clearfix service-inner-box">
-                                    <div class=service-icon-box><img src="Admin/category_image/<?php echo $img;?>" alt=""></div>
+                                    <div class=service-icon-box><img src="Admin/category_image/<?php echo $img;?>"
+                                            alt=""></div>
                                     <div class="service-content-box mt-1">
-                                        <h3><a href="shop.php?astringdata2=<?php echo $row2['name'];?>"><b><?php echo $name;?></b></a></h3>
-                                        <p><?php echo $count;?> Products</p>
+                                        <h3><a href="shop.php?astringdata2=<?php echo $row2['name'];?>"><b>
+                                                    <?php echo $name;?>
+                                                </b></a></h3>
+                                        <p>
+                                            <?php echo $count;?> Products
+                                        </p>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
-                   <?php
+                    <?php
                                           }
                    ?>
-                   
-                   
-                   
-                   
+
+
+
+
                 </div>
             </div>
         </section>
@@ -833,7 +1001,8 @@ $page_breadcrumbs = [
                     <div class="col-lg-12 col-md-8 col-xs-8">
                         <div class="info-text" data-aos="fade-up">
                             <h3 style="color:white !important;" class="text-center mb-0"><b>Why Choose Us</b></h3>
-                            <p style="color:white !important;" class="text-center mb-4 p-0"><b>Ethical working and Integrity is our strength</b></p>
+                            <p style="color:white !important;" class="text-center mb-4 p-0"><b>Ethical working and
+                                    Integrity is our strength</b></p>
                         </div>
                     </div>
                 </div>
@@ -848,34 +1017,48 @@ $page_breadcrumbs = [
                     <div _ngcontent-bgi-c3="" class="row m-0">
                         <div _ngcontent-bgi-c3="" class="col-lg-3 col-sm-6 col-md-6 p-0" data-aos="fade-up">
                             <div _ngcontent-bgi-c3="" class="single-featured-box">
-                                <div _ngcontent-bgi-c3="" class="icon color-fb7756"><img src="images/icons/i-5.svg" width="85" height="85" alt=""></div>
+                                <div _ngcontent-bgi-c3="" class="icon color-fb7756"><img src="images/icons/i-5.svg"
+                                        width="85" height="85" alt=""></div>
                                 <h3 _ngcontent-bgi-c3="" class="mt-5">UNIQUENESS</h3>
-                                <p _ngcontent-bgi-c3="">The furniture we craft is exclusively as per your taste & hence has its own uniqueness.</p><a _ngcontent-bgi-c3="" class="read-more-btn" href="about-us.php">Read More</a></div>
+                                <p _ngcontent-bgi-c3="">The furniture we craft is exclusively as per your taste & hence
+                                    has its own uniqueness.</p><a _ngcontent-bgi-c3="" class="read-more-btn"
+                                    href="about-us.php">Read More</a>
+                            </div>
                         </div>
                         <div _ngcontent-bgi-c3="" class="col-lg-3 col-sm-6 col-md-6 p-0" data-aos="fade-up">
                             <div _ngcontent-bgi-c3="" class="single-featured-box">
-                                <div _ngcontent-bgi-c3="" class="icon color-facd60"><img src="images/icons/i-6.svg" width="85" height="85" alt=""></div>
+                                <div _ngcontent-bgi-c3="" class="icon color-facd60"><img src="images/icons/i-6.svg"
+                                        width="85" height="85" alt=""></div>
                                 <h3 _ngcontent-bgi-c3="" class="mt-5">BEST FINISHING</h3>
-                                <p _ngcontent-bgi-c3="">FINISHING- The furniture is crafted on machines, the edges are also covered with hot press Edge bands.
-</p><a _ngcontent-bgi-c3="" class="read-more-btn" href="about-us.php">Read More</a></div>
+                                <p _ngcontent-bgi-c3="">FINISHING- The furniture is crafted on machines, the edges are
+                                    also covered with hot press Edge bands.
+                                </p><a _ngcontent-bgi-c3="" class="read-more-btn" href="about-us.php">Read More</a>
+                            </div>
                         </div>
                         <div _ngcontent-bgi-c3="" class="col-lg-3 col-sm-6 col-md-6 p-0" data-aos="fade-up">
                             <div _ngcontent-bgi-c3="" class="single-featured-box">
-                                <div _ngcontent-bgi-c3="" class="icon color-1ac0c6"><img src="images/icons/i-7.svg" width="85" height="85" alt=""></div>
+                                <div _ngcontent-bgi-c3="" class="icon color-1ac0c6"><img src="images/icons/i-7.svg"
+                                        width="85" height="85" alt=""></div>
                                 <h3 _ngcontent-bgi-c3="" class="mt-5">COST EFFECTIVE</h3>
-                                <p _ngcontent-bgi-c3="">If all the parameters are compared, our crafted furniture should be economical than other similar products.</p><a _ngcontent-bgi-c3="" class="read-more-btn" href="about-us.php">Read More</a></div>
+                                <p _ngcontent-bgi-c3="">If all the parameters are compared, our crafted furniture should
+                                    be economical than other similar products.</p><a _ngcontent-bgi-c3=""
+                                    class="read-more-btn" href="about-us.php">Read More</a>
+                            </div>
                         </div>
                         <div _ngcontent-bgi-c3="" class="col-lg-3 col-sm-6 col-md-6 p-0" data-aos="fade-up">
                             <div _ngcontent-bgi-c3="" class="single-featured-box">
-                                <div _ngcontent-bgi-c3="" class="icon"><img src="images/icons/i-8.svg" width="85" height="85" alt=""></div>
+                                <div _ngcontent-bgi-c3="" class="icon"><img src="images/icons/i-8.svg" width="85"
+                                        height="85" alt=""></div>
                                 <h3 _ngcontent-bgi-c3="" class="mt-5">HYGIENE</h3>
-                                <p _ngcontent-bgi-c3="">The furniture is being crafted at our factory, only erection and fitting is to be done at customer’s premises.
-</p><a _ngcontent-bgi-c3="" class="read-more-btn" href="about-us.php">Read More</a></div>
+                                <p _ngcontent-bgi-c3="">The furniture is being crafted at our factory, only erection and
+                                    fitting is to be done at customer’s premises.
+                                </p><a _ngcontent-bgi-c3="" class="read-more-btn" href="about-us.php">Read More</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section><br/><br/>
+        </section><br /><br />
         <!-- END SECTION INFO -->
 
         <!-- START SECTION PROJECTS -->
@@ -898,8 +1081,8 @@ $page_breadcrumbs = [
         <!--            </ul>-->
         <!--        </div>-->
         <!--        <div class="row portfolio-items">-->
-                  
-                <?php
+
+        <?php
                                 // include_once"connect.php";
                                          
                                 // $cmd3="select * from products limit 8";
@@ -923,42 +1106,42 @@ $page_breadcrumbs = [
                                 //     $tags=$row3['tags'];
                                    
                                 ?>
-                    <!--<div class="item col-lg-3 col-sm-6 col-xs-12 people landscapes last-item two pt">-->
-                    <!--    <div class="single-portfolio">-->
-                    <!--        <div class="portfolio-img">-->
-                    <!--            <a href="product.php?astringdata=<?php echo $encode_id; ?>"><img src="Admin/product_image/<?php echo $img1;?>" alt="" /></a>-->
-                                
-                    <!--        </div>-->
-                    <!--    </div>-->
-                       
-                    <!--        <div class="shop-info bl mb-4">-->
-                    <!--        <h3 style="color:black !important;" class="text-center"><a href="product.php?astringdata=<?php echo $encode_id; ?>" style="color:black !important;"><b><?php echo $pname;?></b></a></h3>-->
-                    <!--        <ul style="margin-top:-2%;" class="starts text-center">-->
-                    <!--            <li class="mb-0"><i class="fa fa-star"></i>-->
-                    <!--            </li>-->
-                    <!--            <li class="mb-0"><i class="fa fa-star"></i>-->
-                    <!--            </li>-->
-                    <!--            <li class="mb-0"><i class="fa fa-star"></i>-->
-                    <!--            </li>-->
-                    <!--            <li class="mb-0"><i class="fa fa-star"></i>-->
-                    <!--            </li>-->
-                    <!--            <li class="mb-0"><i class="fa fa-star"></i>-->
-                    <!--            </li>-->
-                    <!--        </ul>-->
-                    <!--        <p class="product-old-price text-center" style="margin-top:-3%;" >₹<?php echo $old_price;?></p>-->
-                    <!--        <p class="recent-price text-center" style="margin-top:-2%;">₹<?php echo $new_price;?></p>-->
-                    <!--        <div class="text-center">-->
-                    <!--            <a class="btn1 btn-sm" style="font-size:1.1rem !important;" href="product.php?astringdata=<?php echo $encode_id; ?>">View Detail</a>-->
-                    <!--        </div>-->
-                    <!--    </div>-->
-                        
-                    <!--</div>-->
-                    <?php
+        <!--<div class="item col-lg-3 col-sm-6 col-xs-12 people landscapes last-item two pt">-->
+        <!--    <div class="single-portfolio">-->
+        <!--        <div class="portfolio-img">-->
+        <!--            <a href="product.php?astringdata=<?php echo $encode_id; ?>"><img src="Admin/product_image/<?php echo $img1;?>" alt="" /></a>-->
+
+        <!--        </div>-->
+        <!--    </div>-->
+
+        <!--        <div class="shop-info bl mb-4">-->
+        <!--        <h3 style="color:black !important;" class="text-center"><a href="product.php?astringdata=<?php echo $encode_id; ?>" style="color:black !important;"><b><?php echo $pname;?></b></a></h3>-->
+        <!--        <ul style="margin-top:-2%;" class="starts text-center">-->
+        <!--            <li class="mb-0"><i class="fa fa-star"></i>-->
+        <!--            </li>-->
+        <!--            <li class="mb-0"><i class="fa fa-star"></i>-->
+        <!--            </li>-->
+        <!--            <li class="mb-0"><i class="fa fa-star"></i>-->
+        <!--            </li>-->
+        <!--            <li class="mb-0"><i class="fa fa-star"></i>-->
+        <!--            </li>-->
+        <!--            <li class="mb-0"><i class="fa fa-star"></i>-->
+        <!--            </li>-->
+        <!--        </ul>-->
+        <!--        <p class="product-old-price text-center" style="margin-top:-3%;" >₹<?php echo $old_price;?></p>-->
+        <!--        <p class="recent-price text-center" style="margin-top:-2%;">₹<?php echo $new_price;?></p>-->
+        <!--        <div class="text-center">-->
+        <!--            <a class="btn1 btn-sm" style="font-size:1.1rem !important;" href="product.php?astringdata=<?php echo $encode_id; ?>">View Detail</a>-->
+        <!--        </div>-->
+        <!--    </div>-->
+
+        <!--</div>-->
+        <?php
                                 // }
                     ?>
         <!--        </div>-->
         <!--    </div>-->
-            
+
         <!--</section>-->
         <!-- END SECTION PROJECTS -->
 
@@ -970,7 +1153,12 @@ $page_breadcrumbs = [
                         <div class="info-text">
                             <h3>WHY BOSK FURNITURE?</h3>
                             <h5 class="mt-3"><b>Furniture has a personality too!</b></h5>
-                            <p class="pt-2">There are countless elements which makes you, uniquely you. Furniture has a personality too! <br/>With customized furniture, the spaces can be made to speak the language that the owner wants it to. It can be crafted up to the optimum space available. We at the BOSK INFRACON PRIVATE LIMITED deliver it with highest accuracy a machine can give. Custom-crafted furniture made imported machines can have the perfect fit and be highly efficient. It can be designed to fit your space to the tee. </p>
+                            <p class="pt-2">There are countless elements which makes you, uniquely you. Furniture has a
+                                personality too! <br />With customized furniture, the spaces can be made to speak the
+                                language that the owner wants it to. It can be crafted up to the optimum space
+                                available. We at the BOSK INFRACON PRIVATE LIMITED deliver it with highest accuracy a
+                                machine can give. Custom-crafted furniture made imported machines can have the perfect
+                                fit and be highly efficient. It can be designed to fit your space to the tee. </p>
                             <div class="inf-btn pro">
                                 <a href="about-us.php" class="btn btn-pro btn-secondary btn-lg">Read More</a>
                             </div>
@@ -991,51 +1179,65 @@ $page_breadcrumbs = [
                     <!--    <a href="blog-full-list.php" class="button button--wayra button--border-thick button--text-upper button--size-s">View All</a>-->
                     <!--</div>-->
                     <div class="hero-inner btn-class-view-all1" style="">
-                            <a href="testimonial.php" class="btn btn-dark btn-theme-colored btn-xl mt-5">View All</a>
-                     </div>
+                        <a href="testimonial.php" class="btn btn-dark btn-theme-colored btn-xl mt-5">View All</a>
+                    </div>
                 </div>
                 <div class="owl-carousel style1">
                     <div class="test-1" data-aos="zoom-in">
                         <h3>S.M. Godhwani</h3>
                         <!--<img src="images/testimonials/ts-1.jpg" alt="">-->
                         <h6 class="mt-2">Rajkot</h6>
-                        <br/>
-                        <p>Today visited this showroom, and Today treated very nicely, gone through entire products and found very quality products with transperent rate Analysis.be the customer Definitely will be the customer of this Showroom.<br/>Thank You..!</p><br/>
+                        <br />
+                        <p>Today visited this showroom, and Today treated very nicely, gone through entire products and
+                            found very quality products with transperent rate Analysis.be the customer Definitely will
+                            be the customer of this Showroom.<br />Thank You..!</p><br />
                     </div>
                     <div class="test-1" data-aos="zoom-in">
                         <h3>Rajesh Deomurari</h3>
                         <!--<img src="images/testimonials/ts-2.jpg" alt="">-->
                         <h6 class="mt-2">Ahmedabad</h6>
-                        <br/>
-                        <p>A much required system.I was astonish to hear that planning furniture in house is so systematic.He has scientific approach And very effective thing is transperary in the work. He is after quality and workmanship,He has vision and good imagination power. I wish all my heart wish him a great Success.</p>
+                        <br />
+                        <p>A much required system.I was astonish to hear that planning furniture in house is so
+                            systematic.He has scientific approach And very effective thing is transperary in the work.
+                            He is after quality and workmanship,He has vision and good imagination power. I wish all my
+                            heart wish him a great Success.</p>
                     </div>
                     <div class="test-1" data-aos="zoom-in">
                         <h3>Jay Patel</h3>
                         <!--<img src="images/testimonials/ts-6.jpg" alt="">-->
                         <h6 class="mt-2">Amreli</h6>
-                        <br/>
-                        <p>I am pleased with the explanation about products and material range was really exiting..I really recommended this service to others with explanations..I really like to apperieciate the amount of time spend to walk their different days of concepts..<br/>Thank You..</p><br/>
+                        <br />
+                        <p>I am pleased with the explanation about products and material range was really exiting..I
+                            really recommended this service to others with explanations..I really like to apperieciate
+                            the amount of time spend to walk their different days of concepts..<br />Thank You..</p>
+                        <br />
                     </div>
                     <div class="test-1" data-aos="zoom-in">
                         <h3>Kaivalya Pathak</h3>
                         <!--<img src="images/testimonials/ts-4.jpg" alt="">-->
                         <h6 class="mt-2">Jamnagar</h6>
-                        <br/>
-                        <p>Came here for first time and we appericiate the concept and kind of dsesign you provide at minimal rate.We liked the ambiance as well as the staff and way they explained their design and work..Overall Great Visit..!!</p><br/><br/>
+                        <br />
+                        <p>Came here for first time and we appericiate the concept and kind of dsesign you provide at
+                            minimal rate.We liked the ambiance as well as the staff and way they explained their design
+                            and work..Overall Great Visit..!!</p><br /><br />
                     </div>
                     <div class="test-1" data-aos="zoom-in">
                         <h3>Abhishek Mehta</h3>
                         <!--<img src="images/testimonials/ts-2.jpg" alt="">-->
                         <h6 class="mt-2">Junagadh</h6>
-                        <br/>
-                        <p>I am working in Import-Export department at bhavnagar.I am visiting at your gallery Bosk Furniture.I am happy to share my feedback that very simple and beautiful structure with color combination.I will contact to you in future whenever i required..Thanks..</p><br/>
+                        <br />
+                        <p>I am working in Import-Export department at bhavnagar.I am visiting at your gallery Bosk
+                            Furniture.I am happy to share my feedback that very simple and beautiful structure with
+                            color combination.I will contact to you in future whenever i required..Thanks..</p><br />
                     </div>
                     <div class="test-1" data-aos="zoom-in">
                         <h3>Sandip Chauhan</h3>
                         <!--<img src="images/testimonials/ts-6.jpg" alt="">-->
                         <h6 class="mt-2">Vadodara</h6>
-                        <br/>
-                        <p>Showroom lights and color combination is very good..Very good over selection for color at showroom..For concept of furniture making i personally fell time saving compare to making all things on site..<br/>Thanks..</p><br/><br/>
+                        <br />
+                        <p>Showroom lights and color combination is very good..Very good over selection for color at
+                            showroom..For concept of furniture making i personally fell time saving compare to making
+                            all things on site..<br />Thanks..</p><br /><br />
                     </div>
                 </div>
             </div>
@@ -1052,12 +1254,12 @@ $page_breadcrumbs = [
                     <!--    <a href="blog-full-list.php" class="button button--wayra button--border-thick button--text-upper button--size-s">View All</a>-->
                     <!--</div>-->
                     <div class="hero-inner btn-class-view-all1" style="">
-                            <a href="blog-full-list.php" class="btn btn-dark btn-theme-colored btn-xl mt-5">View All</a>
-                     </div>
+                        <a href="blog-full-list.php" class="btn btn-dark btn-theme-colored btn-xl mt-5">View All</a>
+                    </div>
                 </div>
                 <div class="news-wrap">
                     <div class="row">
-                         <?php
+                        <?php
                         include_once"connect.php";
                                          
                         $cmd4="select * from blog order by id DESC limit 4";
@@ -1074,20 +1276,28 @@ $page_breadcrumbs = [
                         <div class="col-xl-3 col-lg-6 col-md-6 col-12 mt-5" data-aos="fade-up">
                             <article class="blog-card">
                                 <a href="details.php?astringdata=<?php echo $encodeblog_id; ?>" class="blog-card-img">
-                                    <img src="Admin/blog_image/<?php echo $img;?>" alt="<?php echo htmlspecialchars($blog_title); ?>">
-                                    <span class="blog-date-badge"><?php echo $blog_date;?></span>
+                                    <img src="Admin/blog_image/<?php echo $img;?>"
+                                        alt="<?php echo htmlspecialchars($blog_title); ?>">
+                                    <span class="blog-date-badge">
+                                        <?php echo $blog_date;?>
+                                    </span>
                                 </a>
                                 <div class="blog-card-body">
                                     <div class="blog-meta">
                                         <i class="fa fa-user"></i> By Admin
                                     </div>
-                                    <h3><a href="details.php?astringdata=<?php echo $encodeblog_id; ?>"><?php echo $blog_title;?></a></h3>
-                                    <p><?php echo strip_tags($blog_description);?></p>
-                                    <a href="details.php?astringdata=<?php echo $encodeblog_id; ?>" class="blog-read-more">Read more </a>
+                                    <h3><a href="details.php?astringdata=<?php echo $encodeblog_id; ?>">
+                                            <?php echo $blog_title;?>
+                                        </a></h3>
+                                    <p>
+                                        <?php echo strip_tags($blog_description);?>
+                                    </p>
+                                    <a href="details.php?astringdata=<?php echo $encodeblog_id; ?>"
+                                        class="blog-read-more">Read more </a>
                                 </div>
                             </article>
                         </div>
-                        
+
                         <?php
                         }
                         ?>
@@ -1160,11 +1370,11 @@ $page_breadcrumbs = [
         <script src="revolution/js/extensions/revolution.extension.parallax.min.js"></script>
         <script src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
         <script src="revolution/js/extensions/revolution.extension.video.min.js"></script>
-        
+
         <script>
             var tpj = jQuery;
             var revapi26;
-            tpj(document).ready(function() {
+            tpj(document).ready(function () {
                 if (tpj("#rev_slider_26_1").revolution == undefined) {
                     revslider_showDoubleJqueryError("#rev_slider_26_1");
                 } else {
