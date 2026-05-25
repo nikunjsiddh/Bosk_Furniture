@@ -68,7 +68,7 @@
     /* ================== TOP STRIP (NEWSLETTER) ================== */
     .bf-cta-strip {
         position: relative;
-        padding: 2.5rem 0;
+        padding: 1.6rem 0;
         background: var(--bf-bg-soft);
         border-bottom: 1px solid var(--bf-line);
     }
@@ -182,18 +182,18 @@
     }
 
     /* ================== MAIN GRID ================== */
-    .bf-main { padding: 4rem 0 2.5rem; }
+    .bf-main { padding: 2.2rem 0 1.4rem; }
 
     .bf-col h3,
     .bf-col h4 {
         position: relative;
         color: var(--bf-heading);
-        font-size: 1.15rem;
+        font-size: 1.05rem;
         font-weight: 700;
         letter-spacing: .12em;
         text-transform: uppercase;
-        margin: 0 0 1.6rem;
-        padding-bottom: .85rem;
+        margin: 0 0 1rem;
+        padding-bottom: .6rem;
     }
     .bf-col h3::after,
     .bf-col h4::after {
@@ -211,28 +211,28 @@
     .bf-brand-block { padding-right: 1rem; }
     .bf-logo {
         display: inline-block;
-        margin-bottom: 1.2rem;
+        margin-bottom: .7rem;
         transition: transform .4s cubic-bezier(.2,.7,.2,1);
     }
     .bf-logo:hover { transform: translateY(-2px); }
     .bf-logo img {
-        max-width: 170px;
+        max-width: 140px;
         height: auto;
     }
     .bf-tagline {
-        font-size: .88rem;
+        font-size: .78rem;
         font-weight: 700;
         color: var(--bf-brand);
         letter-spacing: .18em;
         text-transform: uppercase;
-        margin: 0 0 1.2rem;
+        margin: 0 0 .7rem;
         display: inline-flex;
         align-items: center;
-        gap: .55rem;
+        gap: .5rem;
     }
     .bf-tagline::before {
         content: "";
-        width: 26px; height: 2px;
+        width: 22px; height: 2px;
         background: var(--bf-brand);
         display: inline-block;
     }
@@ -240,25 +240,26 @@
     .bf-contact { list-style: none; padding: 0; margin: 0; }
     .bf-contact li {
         display: flex;
-        gap: .9rem;
+        gap: .65rem;
         align-items: flex-start;
-        padding: .65rem 0;
-        font-size: .98rem;
-        line-height: 1.65;
+        padding: .3rem 0;
+        font-size: .9rem;
+        line-height: 1.5;
         color: var(--bf-text);
         transition: color .3s ease, transform .3s ease;
     }
-    .bf-contact li:hover { color: var(--bf-brand); transform: translateX(4px); }
+    .bf-contact li:hover { color: var(--bf-brand); transform: translateX(3px); }
     .bf-contact li i {
-        flex: 0 0 38px;
-        width: 38px; height: 38px;
+        flex: 0 0 28px;
+        width: 28px; height: 28px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
         background: rgba(83,42,26,.08);
         color: var(--bf-brand);
-        font-size: 1rem;
+        font-size: .82rem;
+        margin-top: 2px;
         transition: background .3s ease, color .3s ease, transform .3s ease, box-shadow .3s ease;
     }
     .bf-contact li:hover i {
@@ -274,14 +275,42 @@
     }
     .bf-contact a:hover { color: var(--bf-brand) !important; }
 
+    /* Social block (left column) */
+    .bf-social-block {
+        margin-top: .9rem;
+        padding-top: .8rem;
+        border-top: 1px dashed var(--bf-line);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .bf-social-label {
+        display: inline-flex;
+        align-items: center;
+        gap: .5rem;
+        font-size: .72rem;
+        font-weight: 700;
+        color: var(--bf-brand);
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        margin: 0;
+    }
+    .bf-social-bar {
+        display: inline-block;
+        width: 20px;
+        height: 2px;
+        background: var(--bf-brand);
+    }
+
     /* Social icons */
     .bf-social {
         display: flex;
-        gap: .55rem;
-        margin-top: 1.4rem;
+        gap: .4rem;
+        flex-wrap: wrap;
     }
     .bf-social a {
-        width: 44px; height: 44px;
+        width: 34px; height: 34px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -289,7 +318,7 @@
         background: #fff;
         border: 1px solid var(--bf-line);
         color: var(--bf-brand);
-        font-size: 1.05rem;
+        font-size: .88rem;
         text-decoration: none !important;
         transition: transform .35s cubic-bezier(.2,.7,.2,1), color .35s ease, border-color .35s ease, box-shadow .35s ease;
         position: relative;
@@ -329,13 +358,13 @@
         position: relative;
         display: inline-flex;
         align-items: center;
-        gap: .5rem;
+        gap: .4rem;
         color: var(--bf-text) !important;
-        font-size: .98rem;
+        font-size: .9rem;
         font-weight: 500;
         text-decoration: none !important;
-        padding: .45rem 0;
-        line-height: 1.55;
+        padding: .25rem 0;
+        line-height: 1.5;
         transition: color .3s ease, padding-left .3s ease;
     }
     .bf-links a::before {
@@ -367,13 +396,13 @@
     .bf-cat {
         display: flex;
         align-items: center;
-        gap: .75rem;
-        padding: .55rem 0;
+        gap: .6rem;
+        padding: .28rem 0;
         color: var(--bf-text) !important;
         text-decoration: none !important;
-        font-size: 1rem;
+        font-size: .92rem;
         font-weight: 500;
-        line-height: 1.55;
+        line-height: 1.5;
         transition: color .3s ease, transform .3s ease;
     }
     .bf-cat-dot {
@@ -395,7 +424,7 @@
     /* ================== BOTTOM BAR ================== */
     .bf-bottom {
         border-top: 1px solid var(--bf-line);
-        padding: 1.4rem 0;
+        padding: .9rem 0;
         background: var(--bf-bg-soft);
     }
     .bf-bottom-inner {
@@ -495,7 +524,7 @@
         <div class="container">
             <div class="row">
                 <!-- Brand + contact -->
-                <div class="col-lg-4 col-md-6 bf-col bf-brand-block">
+                <div class="col-lg-4 col-md-6 col-sm-12 bf-col bf-brand-block">
                     <a href="index.php" class="bf-logo" aria-label="Bosk Furniture — Home">
                         <img src="images/logo-white.png" alt="Bosk Furniture">
                     </a>
@@ -519,17 +548,23 @@
                         </li>
                     </ul>
 
-                    <div class="bf-social" aria-label="Follow us">
-                        <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                        <a href="https://twitter.com/" target="_blank" rel="noopener" aria-label="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                        <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
-                        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                    <div class="bf-social-block">
+                        <span class="bf-social-label">
+                            <span class="bf-social-bar"></span>
+                            Follow Us
+                        </span>
+                        <div class="bf-social" aria-label="Follow us">
+                            <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            <a href="https://twitter.com/" target="_blank" rel="noopener" aria-label="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+                            <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Navigation -->
-                <div class="col-lg-4 col-md-6 bf-col">
+                <div class="col-lg-5 col-md-6 col-sm-7 bf-col">
                     <h3>Navigation</h3>
                     <ul class="bf-links">
                         <li><a href="index.php">Home</a></li>
@@ -549,7 +584,7 @@
                 </div>
 
                 <!-- Categories -->
-                <div class="col-lg-4 col-md-12 bf-col">
+                <div class="col-lg-3 col-md-6 col-sm-5 bf-col">
                     <h3>Shop by Category</h3>
                     <ul class="bf-cats">
                         <?php
