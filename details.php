@@ -466,6 +466,42 @@ $page_schema = '
             min-height: 140px;
             resize: vertical;
         }
+
+        /* Validation styling */
+        .comment-form label .req { color: #c0392b; margin-left: 2px; }
+        .comment-form .form-group.has-error .form-control {
+            border-color: #c0392b !important;
+            background: #fcf3f3;
+            box-shadow: 0 0 0 4px rgba(192,57,43,.07);
+        }
+        .comment-form .error-msg {
+            display: none;
+            margin-top: 6px;
+            font-size: 12px;
+            color: #c0392b;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(-4px);
+            transition: opacity .25s ease, transform .25s ease;
+        }
+        .comment-form .form-group.has-error .error-msg {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .comment-form .form-group.has-error .error-msg::before {
+            content: "⚠  ";
+            color: #c0392b;
+        }
+        #return:not(:empty) {
+            margin-top: 18px;
+            padding: 14px 18px;
+            background: #ecf7ed;
+            border: 1.5px solid #b6dfb9;
+            color: #1f6d28;
+            border-radius: 10px;
+            font-size: 14px;
+        }
         .comment-submit {
             display: inline-flex;
             align-items: center;
@@ -850,23 +886,27 @@ $page_schema = '
                                 <h3>Leave a Comment</h3>
                                 <p class="comment-sub">Got thoughts on this article? We'd love to hear what you think.</p>
                             </div>
-                            <form onsubmit="return contact_us(this);" id="MyForm" method="post" class="comment-form">
+                            <form onsubmit="return validateAndSubmitComment(this);" id="MyForm" method="post" class="comment-form" novalidate>
                                 <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <label for="cf-name">Your Name</label>
-                                        <input id="cf-name" type="text" name="name" class="form-control" placeholder="e.g. Ravi Patel" required>
+                                    <div class="col-md-6 form-group" data-field="name">
+                                        <label for="cf-name">Your Name<span class="req">*</span></label>
+                                        <input id="cf-name" type="text" name="name" class="form-control" placeholder="e.g. Ravi Patel" autocomplete="name" maxlength="60">
+                                        <small class="error-msg"></small>
                                     </div>
-                                    <div class="col-md-6 form-group">
-                                        <label for="cf-email">Email</label>
-                                        <input id="cf-email" type="email" name="email" class="form-control" placeholder="you@example.com" required>
+                                    <div class="col-md-6 form-group" data-field="email">
+                                        <label for="cf-email">Email<span class="req">*</span></label>
+                                        <input id="cf-email" type="email" name="email" class="form-control" placeholder="you@example.com" autocomplete="email" maxlength="80">
+                                        <small class="error-msg"></small>
                                     </div>
-                                    <div class="col-md-12 form-group">
-                                        <label for="cf-phone">Contact Number</label>
-                                        <input id="cf-phone" type="number" name="phone" class="form-control" placeholder="10-digit mobile number" required>
+                                    <div class="col-md-12 form-group" data-field="phone">
+                                        <label for="cf-phone">Contact Number<span class="req">*</span></label>
+                                        <input id="cf-phone" type="tel" name="phone" class="form-control" placeholder="10-digit mobile number" autocomplete="tel" inputmode="numeric" maxlength="10">
+                                        <small class="error-msg"></small>
                                     </div>
-                                    <div class="col-md-12 form-group">
-                                        <label for="cf-msg">Your Comment</label>
-                                        <textarea id="cf-msg" class="form-control" name="msg" rows="6" placeholder="Share your thoughts..." required></textarea>
+                                    <div class="col-md-12 form-group" data-field="msg">
+                                        <label for="cf-msg">Your Comment<span class="req">*</span></label>
+                                        <textarea id="cf-msg" class="form-control" name="msg" rows="6" placeholder="Share your thoughts..." maxlength="1000"></textarea>
+                                        <small class="error-msg"></small>
                                     </div>
                                     <div class="col-md-12">
                                         <button type="submit" name="submit" class="comment-submit">
@@ -979,7 +1019,107 @@ $page_schema = '
                 }
             }
 
-            // 3) Copy share link
+            // 3) Comment form validation (mirrors contact.php pattern)
+            var commentForm = document.getElementById('MyForm');
+            if (commentForm) {
+                var rules = {
+                    name: function (v) {
+                        if (!v.trim()) return 'Please enter your name.';
+                        if (v.trim().length < 2) return 'Name must be at least 2 characters.';
+                        if (!/^[A-Za-z\s.'-]{2,60}$/.test(v.trim())) return 'Only letters, spaces and . \' - are allowed.';
+                        return '';
+                    },
+                    email: function (v) {
+                        if (!v.trim()) return 'Please enter your email address.';
+                        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())) return 'Please enter a valid email address.';
+                        return '';
+                    },
+                    phone: function (v) {
+                        if (!v.trim()) return 'Please enter your contact number.';
+                        if (!/^[6-9]\d{9}$/.test(v.trim())) return 'Enter a valid 10-digit Indian mobile number.';
+                        return '';
+                    },
+                    msg: function (v) {
+                        if (!v.trim()) return 'Please type a comment.';
+                        if (v.trim().length < 10) return 'Comment should be at least 10 characters.';
+                        if (v.trim().length > 1000) return 'Comment must be under 1000 characters.';
+                        return '';
+                    }
+                };
+
+                var getGroup = function (field) {
+                    return commentForm.querySelector('.form-group[data-field="' + field + '"]');
+                };
+
+                var showError = function (field, msg) {
+                    var g = getGroup(field);
+                    if (!g) return;
+                    var errEl = g.querySelector('.error-msg');
+                    if (msg) {
+                        g.classList.add('has-error');
+                        if (errEl) errEl.textContent = msg;
+                    } else {
+                        g.classList.remove('has-error');
+                        if (errEl) errEl.textContent = '';
+                    }
+                };
+
+                var validateField = function (field) {
+                    var rule = rules[field];
+                    if (!rule) return true;
+                    var input = commentForm.querySelector('[name="' + field + '"]');
+                    var value = input ? (input.value || '') : '';
+                    var msg = rule(value);
+                    showError(field, msg);
+                    return msg === '';
+                };
+
+                var validateAll = function () {
+                    var ok = true;
+                    Object.keys(rules).forEach(function (f) {
+                        if (!validateField(f)) ok = false;
+                    });
+                    return ok;
+                };
+
+                // Restrict phone input to digits only
+                var phoneInput = commentForm.querySelector('[name="phone"]');
+                if (phoneInput) {
+                    phoneInput.addEventListener('input', function () {
+                        this.value = this.value.replace(/\D/g, '').slice(0, 10);
+                    });
+                }
+
+                // Live validation on blur and while correcting
+                Object.keys(rules).forEach(function (f) {
+                    var input = commentForm.querySelector('[name="' + f + '"]');
+                    if (!input) return;
+                    input.addEventListener('input', function () {
+                        var g = getGroup(f);
+                        if (g && g.classList.contains('has-error')) validateField(f);
+                    });
+                    input.addEventListener('blur', function () {
+                        var g = getGroup(f);
+                        if (input.value.trim() !== '' || (g && g.classList.contains('has-error'))) {
+                            validateField(f);
+                        }
+                    });
+                });
+
+                window.validateAndSubmitComment = function (formEl) {
+                    if (!validateAll()) {
+                        var firstErr = commentForm.querySelector('.form-group.has-error input, .form-group.has-error textarea');
+                        if (firstErr) firstErr.focus();
+                        return false;
+                    }
+                    if (typeof contact_us === 'function') {
+                        return contact_us(formEl);
+                    }
+                    return true;
+                };
+            }
+
+            // 4) Copy share link
             var copyBtn = document.querySelector('.share-copy');
             if (copyBtn) {
                 copyBtn.addEventListener('click', function () {
