@@ -8010,4 +8010,20 @@ div.partners {
   }
 }
 
+/* Mobile header logo fix: menu.css @media (max-width:1191px) sets
+   #logo { position:absolute; left:-66px; width:45% } which pushes the
+   logo off-screen on viewports <768px. Restore it for mobile. */
+@media only screen and (max-width: 767px) {
+  #header #logo,
+  #header #logo.logo-white,
+  #header.cloned #logo {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    width: auto !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+}
+
 /*# sourceMappingURL=styles.css.map */
