@@ -39,7 +39,10 @@ $site_price_range = '₹₹';
 $default_title    = 'Bosk Furniture - Premium Modular & Custom Furniture in India';
 $default_desc     = 'Bosk Furniture offers premium modular kitchens, wardrobes, sofas, beds, dining sets & custom interior furniture across India. Guaranteed quality, Hettich hardware, customised craftsmanship from Bhavnagar, Gujarat.';
 $default_keywords = 'modular furniture india, modular kitchen bhavnagar, custom furniture gujarat, wardrobes, sofa set, dining table, bed, interior design furniture, online furniture store india, bosk furniture';
-$default_image    = $site_url . '/images/og-default.jpg';
+// OG image: prefer the official 1200x630 og-default.jpg if it exists,
+// otherwise fall back to a real slider image so social shares never break.
+$_og_local_path   = __DIR__ . '/../images/og-default.jpg';
+$default_image    = $site_url . (is_file($_og_local_path) ? '/images/og-default.jpg' : '/images/slider/2.jpg');
 $twitter_handle   = '@boskfurniture';
 
 /* ------------------------------------------------------------
@@ -169,6 +172,12 @@ if (isset($page_breadcrumbs) && is_array($page_breadcrumbs) && count($page_bread
 <meta name="msapplication-TileColor" content="#532A1A">
 <meta name="msapplication-navbutton-color" content="#532A1A">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+
+<!-- ===== SEARCH ENGINE VERIFICATION (replace with your real codes) ===== -->
+<!-- <meta name="google-site-verification" content="YOUR_GSC_CODE_HERE"> -->
+<!-- <meta name="msvalidate.01" content="YOUR_BING_CODE_HERE"> -->
+<!-- <meta name="yandex-verification" content="YOUR_YANDEX_CODE_HERE"> -->
+<!-- <meta name="p:domain_verify" content="YOUR_PINTEREST_CODE_HERE"> -->
 
 <!-- ===== CANONICAL & HREFLANG ===== -->
 <link rel="canonical" href="<?php echo $e_canonical; ?>">

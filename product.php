@@ -74,7 +74,7 @@ $page_schema = '
   "category": ' . json_encode(isset($seo_pcategory) ? $seo_pcategory : 'Furniture') . ',
   "offers": {
     "@type": "Offer",
-    "url": "https://www.boskfurniture.com/product.php?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '') . '",
+    "url": "https://www.boskfurniture.com/product?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '') . '",
     "priceCurrency": "INR",
     "price": ' . json_encode(isset($seo_new_price) ? (string)$seo_new_price : '0') . ',
     "availability": "' . $_seo_avail . '",
@@ -89,8 +89,8 @@ $page_schema = '
   "@type": "BreadcrumbList",
   "itemListElement": [
     {"@type":"ListItem","position":1,"name":"Home","item":"https://www.boskfurniture.com/"},
-    {"@type":"ListItem","position":2,"name":"Shop","item":"https://www.boskfurniture.com/all_products.php"},
-    {"@type":"ListItem","position":3,"name":' . json_encode($_seo_pname) . ',"item":"https://www.boskfurniture.com/product.php?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '') . '"}
+    {"@type":"ListItem","position":2,"name":"Shop","item":"https://www.boskfurniture.com/all_products"},
+    {"@type":"ListItem","position":3,"name":' . json_encode($_seo_pname) . ',"item":"https://www.boskfurniture.com/product?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '') . '"}
   ]
 }
 </script>';
@@ -724,7 +724,7 @@ button[disabled]{
                                 ?>
                                 <div class="recent-main">
                                     <div class="recent-img">
-                                        <a href="product.php?astringdata=<?php echo $row2['id'];; ?>"><img src="Admin/product_image/<?php echo $img12;?>" alt=""></a>
+                                        <a href="product.php?astringdata=<?php echo $row2['id'];; ?>"><img src="Admin/product_image/<?php echo $img12;?>" alt="<?php echo htmlspecialchars(isset($row2['pname']) ? $row2['pname'] : 'Related product', ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture" loading="lazy" decoding="async"></a>
                                     </div>
                                     <div class="info-img">
                                         <a href="product.php?astringdata=<?php echo $row2['id'];; ?>"><h6><?php echo $pname2;?></h6></a>

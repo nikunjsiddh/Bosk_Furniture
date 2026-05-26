@@ -28,7 +28,7 @@ $page_breadcrumbs = [
         <section class="headings">
             <div class="text-heading">
                 <div class="container">
-                    <h1 class="text-center">Warrenty Policy</h1>
+                    <h1 class="text-center">Warranty Policy</h1>
                 </div>
             </div>
         </section>
@@ -36,7 +36,7 @@ $page_breadcrumbs = [
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="index.php">Home</a><span>»</span><span>Warrenty Policy</span>
+                        <a href="index.php">Home</a><span>»</span><span>Warranty Policy</span>
                     </div>
                 </div>
             </div>

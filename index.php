@@ -5,11 +5,12 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$page_title       = 'Bosk Furniture - Premium Modular Furniture & Interior Design in India';
-$page_description = 'Buy premium modular furniture online at Bosk Furniture - modular kitchens, wardrobes, sofas, beds, dining sets & custom interior solutions. Guaranteed quality across India.';
+$page_title       = 'Bosk Furniture | Custom Modular Furniture in India';
+$page_description = 'Custom modular kitchens, wardrobes, sofas, beds & interior furniture by Bosk Furniture — premium quality with free shipping across India.';
 $page_keywords    = 'bosk furniture, modular furniture india, online furniture store, modular kitchen, wardrobe, sofa, bed, dining set, custom furniture, interior design india';
 $page_canonical   = '/';
-$og_image         = 'https://www.boskfurniture.com/images/og-default.jpg';
+// Let design/seo-meta.php pick the OG image — it falls back to slider/2.jpg
+// if /images/og-default.jpg hasn't been uploaded yet.
 $page_breadcrumbs = [
     ['name' => 'Home', 'url' => '/']
 ];
@@ -969,7 +970,7 @@ $page_breadcrumbs = [
 
                                 <div class="clearfix service-inner-box">
                                     <div class=service-icon-box><img src="Admin/category_image/<?php echo $img;?>"
-                                            alt=""></div>
+                                            alt="<?php echo htmlspecialchars($name, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture Category" loading="lazy" decoding="async"></div>
                                     <div class="service-content-box mt-1">
                                         <h3><a href="shop.php?astringdata2=<?php echo $row2['name'];?>"><b>
                                                     <?php echo $name;?>
@@ -1018,7 +1019,7 @@ $page_breadcrumbs = [
                         <div _ngcontent-bgi-c3="" class="col-lg-3 col-sm-6 col-md-6 p-0" data-aos="fade-up">
                             <div _ngcontent-bgi-c3="" class="single-featured-box">
                                 <div _ngcontent-bgi-c3="" class="icon color-fb7756"><img src="images/icons/i-5.svg"
-                                        width="85" height="85" alt=""></div>
+                                        width="85" height="85" alt="Uniqueness icon - custom furniture made just for you" loading="lazy" decoding="async"></div>
                                 <h3 _ngcontent-bgi-c3="" class="mt-5">UNIQUENESS</h3>
                                 <p _ngcontent-bgi-c3="">The furniture we craft is exclusively as per your taste & hence
                                     has its own uniqueness.</p><a _ngcontent-bgi-c3="" class="read-more-btn"
@@ -1028,7 +1029,7 @@ $page_breadcrumbs = [
                         <div _ngcontent-bgi-c3="" class="col-lg-3 col-sm-6 col-md-6 p-0" data-aos="fade-up">
                             <div _ngcontent-bgi-c3="" class="single-featured-box">
                                 <div _ngcontent-bgi-c3="" class="icon color-facd60"><img src="images/icons/i-6.svg"
-                                        width="85" height="85" alt=""></div>
+                                        width="85" height="85" alt="Best finishing icon - machine-edged premium furniture" loading="lazy" decoding="async"></div>
                                 <h3 _ngcontent-bgi-c3="" class="mt-5">BEST FINISHING</h3>
                                 <p _ngcontent-bgi-c3="">FINISHING- The furniture is crafted on machines, the edges are
                                     also covered with hot press Edge bands.
@@ -1038,7 +1039,7 @@ $page_breadcrumbs = [
                         <div _ngcontent-bgi-c3="" class="col-lg-3 col-sm-6 col-md-6 p-0" data-aos="fade-up">
                             <div _ngcontent-bgi-c3="" class="single-featured-box">
                                 <div _ngcontent-bgi-c3="" class="icon color-1ac0c6"><img src="images/icons/i-7.svg"
-                                        width="85" height="85" alt=""></div>
+                                        width="85" height="85" alt="Cost effective icon - affordable customised furniture India" loading="lazy" decoding="async"></div>
                                 <h3 _ngcontent-bgi-c3="" class="mt-5">COST EFFECTIVE</h3>
                                 <p _ngcontent-bgi-c3="">If all the parameters are compared, our crafted furniture should
                                     be economical than other similar products.</p><a _ngcontent-bgi-c3=""
@@ -1048,7 +1049,7 @@ $page_breadcrumbs = [
                         <div _ngcontent-bgi-c3="" class="col-lg-3 col-sm-6 col-md-6 p-0" data-aos="fade-up">
                             <div _ngcontent-bgi-c3="" class="single-featured-box">
                                 <div _ngcontent-bgi-c3="" class="icon"><img src="images/icons/i-8.svg" width="85"
-                                        height="85" alt=""></div>
+                                        height="85" alt="Hygiene icon - factory crafted furniture, on-site fitting only" loading="lazy" decoding="async"></div>
                                 <h3 _ngcontent-bgi-c3="" class="mt-5">HYGIENE</h3>
                                 <p _ngcontent-bgi-c3="">The furniture is being crafted at our factory, only erection and
                                     fitting is to be done at customer’s premises.
@@ -1109,13 +1110,13 @@ $page_breadcrumbs = [
         <!--<div class="item col-lg-3 col-sm-6 col-xs-12 people landscapes last-item two pt">-->
         <!--    <div class="single-portfolio">-->
         <!--        <div class="portfolio-img">-->
-        <!--            <a href="product.php?astringdata=<?php echo $encode_id; ?>"><img src="Admin/product_image/<?php echo $img1;?>" alt="" /></a>-->
+        <!--            <a href="product.php?astringdata={encode_id}"><img src="Admin/product_image/{img1}" alt="" /></a>-->
 
         <!--        </div>-->
         <!--    </div>-->
 
         <!--        <div class="shop-info bl mb-4">-->
-        <!--        <h3 style="color:black !important;" class="text-center"><a href="product.php?astringdata=<?php echo $encode_id; ?>" style="color:black !important;"><b><?php echo $pname;?></b></a></h3>-->
+        <!--        <h3 style="color:black !important;" class="text-center"><a href="product.php?astringdata={encode_id}" style="color:black !important;"><b>{pname}</b></a></h3>-->
         <!--        <ul style="margin-top:-2%;" class="starts text-center">-->
         <!--            <li class="mb-0"><i class="fa fa-star"></i>-->
         <!--            </li>-->
@@ -1128,10 +1129,10 @@ $page_breadcrumbs = [
         <!--            <li class="mb-0"><i class="fa fa-star"></i>-->
         <!--            </li>-->
         <!--        </ul>-->
-        <!--        <p class="product-old-price text-center" style="margin-top:-3%;" >₹<?php echo $old_price;?></p>-->
-        <!--        <p class="recent-price text-center" style="margin-top:-2%;">₹<?php echo $new_price;?></p>-->
+        <!--        <p class="product-old-price text-center" style="margin-top:-3%;" >₹{old_price}</p>-->
+        <!--        <p class="recent-price text-center" style="margin-top:-2%;">₹{new_price}</p>-->
         <!--        <div class="text-center">-->
-        <!--            <a class="btn1 btn-sm" style="font-size:1.1rem !important;" href="product.php?astringdata=<?php echo $encode_id; ?>">View Detail</a>-->
+        <!--            <a class="btn1 btn-sm" style="font-size:1.1rem !important;" href="product.php?astringdata={encode_id}">View Detail</a>-->
         <!--        </div>-->
         <!--    </div>-->
 

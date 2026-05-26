@@ -120,8 +120,8 @@ $page_breadcrumbs = [
                                 <div class="recent-content"></div>
                                 <div class="recent-details">
                                     <div class="recent-title"><?php echo $project_name;?></div>
-                                    <!--<div class="recent-price">₹<?php echo $new_price;?></div>-->
-                                    <!--<div class="house-details"><?php echo $pcategory;?></div>-->
+                                    <!--<div class="recent-price">{price}</div>-->
+                                    <!--<div class="house-details">{category}</div>-->
                                 </div>
                                 <div class="view-proper">View Details</div>
                             </a>

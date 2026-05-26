@@ -1,6 +1,6 @@
 <?php
-$page_title       = 'Contact Bosk Furniture | Get a Free Furniture Quote in India';
-$page_description = 'Contact Bosk Furniture for modular kitchens, wardrobes, sofas and custom interior furniture. Request a free quote, design consultation or visit our showroom across India.';
+$page_title       = 'Contact Bosk Furniture | Free Quote in India';
+$page_description = 'Contact Bosk Furniture for modular kitchens, wardrobes, sofas and custom interior furniture. Request a free quote or design consultation across India.';
 $page_keywords    = 'contact bosk furniture, furniture quote india, modular furniture consultation, interior design enquiry, furniture showroom india';
 $page_canonical   = '/contact';
 $page_breadcrumbs = [

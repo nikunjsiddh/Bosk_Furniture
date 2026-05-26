@@ -83,16 +83,14 @@ $page_breadcrumbs = [
                     <div class="col-lg-9 col-md-12 project-info">
                         <div class="row">
                             <div class="col-md-12 hover-effect">
-                                <a href="blog-details.html">
-                                    <figure><img src="Admin/project_image/<?php echo $img1;?>" alt=""></figure>
-                                </a>
+                                <figure><img src="Admin/project_image/<?php echo $img1;?>" alt="<?php echo htmlspecialchars(isset($project_name) ? $project_name : 'Bosk Furniture project', ENT_QUOTES, 'UTF-8'); ?> - Design planning by Bosk Furniture" loading="eager" decoding="async"></figure>
                                 <div class="project-text">
                                     <h3 class="mt-3">Design Planning</h3>
                                     
                                     <p class="mb-4"><?php echo $pro_desc;?></p>
 
                                     <h3 class="mt-4">Interior Detail</h3>
-                                    <img src="Admin/project_image/<?php echo $img2;?>" class="mb-3" alt="">
+                                    <img src="Admin/project_image/<?php echo $img2;?>" class="mb-3" alt="<?php echo htmlspecialchars(isset($project_name) ? $project_name : 'Bosk Furniture project', ENT_QUOTES, 'UTF-8'); ?> - Interior detail by Bosk Furniture" loading="lazy" decoding="async">
                                     <p class="mb-4"><?php echo $interior_detail;?></p>
 
                                 </div>
@@ -123,7 +121,7 @@ $page_breadcrumbs = [
                                   ?>
                                 <div class="recent-main">
                                     <div class="recent-img">
-                                        <a href="project-details.php?astringdata=<?php echo $encode_project_id; ?>"><img src="Admin/project_image/<?php echo $img1;?>" alt=""></a>
+                                        <a href="project-details.php?astringdata=<?php echo $encode_project_id; ?>"><img src="Admin/project_image/<?php echo $img1;?>" alt="<?php echo htmlspecialchars($project_name, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture project" loading="lazy" decoding="async"></a>
                                     </div>
                                     <div class="info-img">
                                         <a href="project-details.php?astringdata=<?php echo $encode_project_id; ?>"><h6><?php echo $project_name;?></h6></a>

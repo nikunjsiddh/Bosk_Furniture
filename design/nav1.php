@@ -90,7 +90,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <div class="left-side">
                 <!-- Logo -->
                 <div id="logo" class="col-lg-2 logo-white">
-                    <a href="index.php"><img src="images/logo-black.png" alt=""></a>
+                    <a href="index.php"><img src="images/logo-black.png" alt="Bosk Furniture - Custom Modular Furniture &amp; Interior Design India" width="180" height="60"></a>
                 </div>
                 <!-- Mobile Navigation -->
                 <div class="mmenu-trigger">
@@ -119,7 +119,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                         //       $name=$row['name'];
                                         //       $img=$row['img'];
                                           ?>
-                            <!--<li><a href="shop.php?astringdata2=<?php echo $row['name'];?>"><?php echo $name;?></a>-->
+                            <!--<li><a href="shop.php?astringdata2={$row[name]}">{$name}</a>-->
                             <!--</li>-->
                             <?php
                                         //   }

@@ -1,6 +1,6 @@
 <?php
-$page_title       = 'Design & Order Process | How to Order Custom Furniture - Bosk Furniture';
-$page_description = 'Step-by-step guide to ordering custom and modular furniture from Bosk Furniture India - from design consultation to delivery and installation.';
+$page_title       = 'How to Order Custom Furniture | Bosk Furniture';
+$page_description = 'Step-by-step guide to ordering custom and modular furniture from Bosk Furniture — design consultation, manufacturing, delivery and installation in India.';
 $page_keywords    = 'custom furniture process, how to order furniture, furniture design process, bosk furniture ordering';
 $page_canonical   = '/design-order-process';
 $page_breadcrumbs = [
@@ -145,7 +145,7 @@ body {
                        
                     </div>
                     <div class="col-md-6 who">
-                        <img src="images/bg/1.png" alt="">
+                        <img src="images/bg/1.png" alt="Bosk Furniture design and order process - end-to-end project workflow" loading="eager" decoding="async">
                     </div>
                 </div>
             </div>

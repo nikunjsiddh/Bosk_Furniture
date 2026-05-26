@@ -37,7 +37,7 @@ $page_robots      = 'noindex, follow';
         <section class="headings">
             <div class="text-heading">
                 <div class="container">
-                    <h1 class="text-center">CONTACT US</h1>
+                    <h1 class="text-center">Return Request</h1>
                 </div>
             </div>
         </section>
@@ -45,7 +45,7 @@ $page_robots      = 'noindex, follow';
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="index.php">Home</a><span>»</span><span>CONTACT US</span>
+                        <a href="index.php">Home</a><span>»</span><span>Return Request</span>
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@ $page_robots      = 'noindex, follow';
         <section id="contact" class="contact">
             <div class="container">
                 <div class="section-title ml-3">
-                    <h3>Return Reqest?</h3>
+                    <h3>Return Request?</h3>
                     <h2>CONTACT US</h2>
                 </div>
                 <div class="row">

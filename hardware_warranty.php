@@ -43,7 +43,7 @@ tr:nth-child(even){background-color: #f2f2f2}
         <section class="headings">
             <div class="text-heading">
                 <div class="container">
-                    <h1 class="text-center">Fitting Warrenty</h1>
+                    <h1 class="text-center">Hardware &amp; Fitting Warranty</h1>
                 </div>
             </div>
         </section>
@@ -51,7 +51,7 @@ tr:nth-child(even){background-color: #f2f2f2}
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="index.php">Home</a><span>»</span><span>Fitting Warrenty</span>
+                        <a href="index.php">Home</a><span>»</span><span>Hardware &amp; Fitting Warranty</span>
                     </div>
                 </div>
             </div>

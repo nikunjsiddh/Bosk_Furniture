@@ -64,7 +64,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, S.M. Godhwani</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +87,7 @@ $page_breadcrumbs = [
                                        
                                         <div class="admin">
                                             <p>By, Rajesh Deomurari</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -110,7 +110,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Jay Patel</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +134,7 @@ $page_breadcrumbs = [
                                        
                                         <div class="admin">
                                             <p>By, Dr. Prakash Shah</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -156,7 +156,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Kamlesh Patel</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -179,7 +179,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Dr.Shivang</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -204,7 +204,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Jammit</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -226,7 +226,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Richa Doshi</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -248,7 +248,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Amit Shah</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -276,7 +276,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Kaivalya Pathak</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -298,7 +298,7 @@ $page_breadcrumbs = [
                                        
                                         <div class="admin">
                                             <p>By, Abhishek Mehta</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -320,7 +320,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Sandip Chauhan</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -350,7 +350,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Hiren P. Soundarva</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -372,7 +372,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Sandip Paser</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -394,7 +394,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Dr.Soham V. Ramdeoputram</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -422,7 +422,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Dr.Sheetal Chandarana</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -444,7 +444,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Kamal K. Dave</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -466,7 +466,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Rahil Kazi</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -494,7 +494,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Niece</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -516,7 +516,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Pratik Shah</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -538,7 +538,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Adhvarya</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -566,7 +566,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Amit sarvaiya</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -588,7 +588,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Vishva Bhatt</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>
@@ -610,7 +610,7 @@ $page_breadcrumbs = [
                                         
                                         <div class="admin">
                                             <p>By, Vipul Dhamsania</p>
-                                            <img src="images/testimonials/1.png" alt="">
+                                            <img src="images/testimonials/1.png" alt="Bosk Furniture customer review avatar" loading="lazy" decoding="async" width="60" height="60">
                                         </div>
                                     </div>
                                 </div>

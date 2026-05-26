@@ -30,14 +30,14 @@ $page_schema = '
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": ' . json_encode($decodedcategoryname . ' - Bosk Furniture') . ',
-  "url": "https://www.boskfurniture.com/shop.php?astringdata2=' . urlencode($_GET['astringdata2']) . '",
+  "url": "https://www.boskfurniture.com/shop?astringdata2=' . urlencode($_GET['astringdata2']) . '",
   "description": ' . json_encode('Browse ' . $decodedcategoryname . ' collection at Bosk Furniture India.') . ',
   "breadcrumb": {
     "@type": "BreadcrumbList",
     "itemListElement": [
       {"@type":"ListItem","position":1,"name":"Home","item":"https://www.boskfurniture.com/"},
-      {"@type":"ListItem","position":2,"name":"Shop","item":"https://www.boskfurniture.com/all_products.php"},
-      {"@type":"ListItem","position":3,"name":' . json_encode($decodedcategoryname) . ',"item":"https://www.boskfurniture.com/shop.php?astringdata2=' . urlencode($_GET['astringdata2']) . '"}
+      {"@type":"ListItem","position":2,"name":"Shop","item":"https://www.boskfurniture.com/all_products"},
+      {"@type":"ListItem","position":3,"name":' . json_encode($decodedcategoryname) . ',"item":"https://www.boskfurniture.com/shop?astringdata2=' . urlencode($_GET['astringdata2']) . '"}
     ]
   }
 }

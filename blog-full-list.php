@@ -1,6 +1,6 @@
 <?php
-$page_title       = 'Furniture Blog | Tips, Trends & Interior Design Ideas - Bosk Furniture';
-$page_description = 'Explore the Bosk Furniture blog for the latest furniture trends, interior design tips, modular kitchen ideas and home decor inspiration in India.';
+$page_title       = 'Furniture &amp; Interior Design Blog | Bosk Furniture';
+$page_description = 'Explore the Bosk Furniture blog for furniture trends, interior design tips, modular kitchen ideas and home decor inspiration for Indian homes.';
 $page_keywords    = 'furniture blog, interior design blog india, modular kitchen ideas, home decor tips, bosk furniture blog';
 $page_canonical   = '/blog-full-list';
 $page_breadcrumbs = [
