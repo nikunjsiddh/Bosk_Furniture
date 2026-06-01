@@ -1,11 +1,39 @@
 <!-- sidebar -->
+        <style>
+            /* ===== Brand logo presentation (expanded sidebar) ===== */
+            .sidebar .brand-icon{display:flex;align-items:center;justify-content:center;padding:0;margin-bottom:16px;}
+            .sidebar .brand-icon .logo-icon{display:none;}
+            .sidebar .brand-icon .logo-text{
+                display:flex;align-items:center;justify-content:center;width:100%;
+                background:linear-gradient(135deg,#ffffff 0%,#eef2f7 100%);
+                border-radius:14px;padding:12px 16px;
+                box-shadow:0 7px 20px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.85);
+                transition:transform .25s ease, box-shadow .25s ease;
+            }
+            .sidebar .brand-icon:hover .logo-text{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.85);}
+            .sidebar .brand-icon .logo-text img{width:100%;max-width:150px;height:auto;display:block;object-fit:contain;}
+
+            /* ===== mini (collapsed) sidebar -> clean "B" monogram badge ===== */
+            .sidebar.sidebar-mini .brand-icon{margin-bottom:8px;}
+            .sidebar.sidebar-mini .brand-icon .logo-text{display:none !important;}
+            .sidebar.sidebar-mini .brand-icon .logo-icon{
+                display:flex !important;align-items:center;justify-content:center;
+                width:46px;height:46px;border-radius:13px;
+                background:linear-gradient(135deg,#ffffff 0%,#eef2f7 100%);
+                box-shadow:0 6px 16px rgba(0,0,0,.26), inset 0 1px 0 rgba(255,255,255,.85);
+                transition:transform .2s ease;
+            }
+            .sidebar.sidebar-mini .brand-icon:hover .logo-icon{transform:translateY(-2px);}
+            .sidebar.sidebar-mini .brand-icon .brand-mono{
+                font-family:Georgia,'Times New Roman',serif;font-weight:800;font-size:24px;
+                line-height:1;color:#5a2d1c;
+            }
+        </style>
         <div class="sidebar px-4 py-4 py-md-4 me-0">
             <div class="d-flex flex-column h-100">
-                <a href="index.php" class="mb-0 brand-icon">
-                    <span class="logo-icon">
-                        <i class="bi bi-bag-check-fill fs-4"></i>
-                    </span>
-                    <span class="logo-text"><img src="logo.png"></span>
+                <a href="Dash.php" class="mb-0 brand-icon" title="Bosk Furniture — Dashboard">
+                    <span class="logo-icon"><span class="brand-mono">B</span></span>
+                    <span class="logo-text"><img src="logo.png" alt="Bosk Furniture"></span>
                 </a>
                 <!-- Menu: main ul -->
                 <ul class="menu-list flex-grow-1 mt-3">
