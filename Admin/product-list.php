@@ -67,6 +67,33 @@ $total_categories = count($cat_set);
         .page-item.active .page-link{background:#3b6fe0 !important;border-color:#3b6fe0 !important;color:#fff !important;box-shadow:0 4px 12px rgba(59,111,224,.35);}
         .page-item.disabled .page-link{color:#c2c8d0 !important;background:#fff !important;border-color:#eef0f4 !important;cursor:not-allowed;transform:none;}
 
+        /* ===== Animations & visual effects ===== */
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+        @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+        @keyframes popIn{from{opacity:0;transform:scale(.96);}to{opacity:1;transform:scale(1);}}
+        .stat-card{animation:fadeInUp .5s ease both;}
+        .row > div:nth-child(1) > .stat-card{animation-delay:.05s;}
+        .row > div:nth-child(2) > .stat-card{animation-delay:.12s;}
+        .row > div:nth-child(3) > .stat-card{animation-delay:.19s;}
+        .row > div:nth-child(4) > .stat-card{animation-delay:.26s;}
+        .card.shadow-sm{animation:fadeInUp .55s ease both;animation-delay:.26s;}
+        #myDataTable tbody tr{animation:fadeIn .45s ease both;}
+        .prod-thumb{transition:transform .2s ease, box-shadow .2s ease;}
+        .prod-thumb:hover{transform:scale(1.12);box-shadow:0 6px 18px rgba(0,0,0,.18);}
+        .prod-name{transition:color .15s ease;}
+        #myDataTable tbody tr:hover .prod-name{color:#3b6fe0;}
+        .stock-badge,.cat-badge{transition:transform .15s ease;}
+        #myDataTable tbody tr:hover .stock-badge{transform:scale(1.06);}
+        .btn-primary{transition:transform .15s ease, box-shadow .15s ease;}
+        .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(59,111,224,.35);}
+        .modal-content{animation:popIn .28s ease both;}
+        .detail-img{transition:transform .18s ease, box-shadow .18s ease;}
+        .detail-img:hover{transform:scale(1.06);box-shadow:0 6px 16px rgba(0,0,0,.16);}
+        @media (prefers-reduced-motion: reduce){
+            .stat-card,.card.shadow-sm,#myDataTable tbody tr,.modal-content{animation:none;}
+            .prod-thumb:hover,.detail-img:hover,.btn-primary:hover{transform:none;}
+        }
+
         .prod-thumb{
             width:62px;height:62px;object-fit:cover;border-radius:10px;
             border:1px solid #eef0f4;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.05);
@@ -396,7 +423,7 @@ $total_categories = count($cat_set);
     <script src="js/deleteproduct.js"></script>
 
     <!-- Jquery Page Js -->
-    <script src="javascript/template.js"></script>
+    <script src="javascript/template.js?v=2"></script>
     <script src="toastr/toastr.min.js"></script>
 
     <script>
@@ -425,6 +452,17 @@ $total_categories = count($cat_set);
             toastr["success"]("Product updated successfully!", "Saved");
         <?php else: ?>
             toastr["error"]("Could not update the product. Please try again.", "Failed");
+        <?php endif; ?>
+    </script>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['added'])): ?>
+    <script>
+        toastr.options = { "closeButton": true, "progressBar": true, "positionClass": "toast-top-right", "timeOut": "4000" };
+        <?php if ($_GET['added'] === '1'): ?>
+            toastr["success"]("Product added successfully!", "Added");
+        <?php else: ?>
+            toastr["error"]("Could not add the product. Please try again.", "Failed");
         <?php endif; ?>
     </script>
     <?php endif; ?>

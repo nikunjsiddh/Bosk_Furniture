@@ -43,6 +43,15 @@ $tags         = $p['tags'];
         .remove-wrap{font-size:12.5px;}
         .req{color:#e23b3b;}
         .save-bar{position:sticky;bottom:0;z-index:5;}
+        /* ===== Animations & visual effects ===== */
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+        .edit-card{animation:fadeInUp .45s ease both;}
+        .col-xl-4 .edit-card{animation-delay:.1s;}
+        .img-slot .preview{transition:transform .2s ease;}
+        .img-slot:hover .preview{transform:scale(1.05);}
+        .btn-primary{transition:transform .15s ease, box-shadow .15s ease;}
+        .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(59,111,224,.35);}
+        @media (prefers-reduced-motion: reduce){ .edit-card{animation:none;} .img-slot:hover .preview,.btn-primary:hover{transform:none;} }
     </style>
 </head>
 <body>
@@ -232,7 +241,7 @@ $tags         = $p['tags'];
     </div>
 
     <script src="assets/bundles/libscripts.bundle.js"></script>
-    <script src="javascript/template.js"></script>
+    <script src="javascript/template.js?v=2"></script>
     <script src="toastr/toastr.min.js"></script>
     <script>
         function previewImg(input, targetId) {

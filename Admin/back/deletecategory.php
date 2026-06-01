@@ -28,7 +28,7 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
           }
-            toastr["error"]("Deleted Success...!","Category")
+            toastr["success"]("Category Deleted Successfully...!","Category")
 		</script>
 		<?php
         }
