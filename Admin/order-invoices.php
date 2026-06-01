@@ -2,25 +2,98 @@
 session_start();
 if (isset($_SESSION['email'])) {
 include_once("connect.php");
+
+// ---- Invoice totals per order_id ----
+$totals = array();
+$tq = mysqli_query($con, "select order_id, count(*) items, sum(price*quantity) total from order_items group by order_id");
+if ($tq) {
+    while ($r = mysqli_fetch_assoc($tq)) {
+        $totals[$r['order_id']] = array('items' => intval($r['items']), 'total' => intval($r['total']));
+    }
+}
+
+// ---- Fetch all orders with customer ----
+$orders = array();
+$oq = mysqli_query($con, "select o.*, u.firstname, u.lastname, u.email from orders o left join user u on u.id=o.user_id order by o.id desc") or die(mysqli_error($con));
+while ($row = mysqli_fetch_assoc($oq)) {
+    $orders[] = $row;
+}
+
+// ---- Summary stats ----
+$total_invoices = count($orders);
+$total_billed   = 0;
+foreach ($totals as $t) { $total_billed += $t['total']; }
+$avg_invoice = $total_invoices > 0 ? round($total_billed / $total_invoices) : 0;
 ?>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
-<!-- Mirrored from pixelwibes.com/template/ebazar/html/dist/order-invoices.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 27 Nov 2023 06:18:22 GMT -->
 <head>
     <?php include_once"design/header.php"?>
-
-    <!-- plugin css file  -->
-    <link rel="stylesheet" href="assets/plugin/datatables/responsive.dataTables.min.css">
     <link rel="stylesheet" href="assets/plugin/datatables/dataTables.bootstrap5.min.css">
-    
-  
+    <link rel="stylesheet" href="assets/plugin/datatables/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="toastr/toastr.css">
+
+    <style>
+        .stat-card{border:0;border-radius:14px;overflow:hidden;transition:transform .15s ease, box-shadow .15s ease;}
+        .stat-card:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(0,0,0,.08);}
+        .stat-icon{width:54px;height:54px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;}
+        .stat-value{font-size:24px;font-weight:700;line-height:1;}
+        .stat-label{font-size:13px;letter-spacing:.3px;}
+
+        #myDataTable thead th{text-transform:uppercase;font-size:11.5px;letter-spacing:.6px;color:#6c757d;font-weight:700;white-space:nowrap;border-bottom:2px solid #eef0f4;}
+        #myDataTable tbody tr{transition:background .12s ease;}
+        #myDataTable tbody tr:hover{background:#f7f9fc;}
+        #myDataTable td{vertical-align:middle;}
+
+        /* ===== DataTables controls + pagination ===== */
+        .dataTables_wrapper .dataTables_length select{border-radius:8px;border:1px solid #e4e7ec;padding:4px 28px 4px 10px;outline:none;}
+        .dataTables_wrapper .dataTables_filter input{border-radius:8px;border:1px solid #e4e7ec;padding:6px 12px;outline:none;transition:border-color .15s ease,box-shadow .15s ease;}
+        .dataTables_wrapper .dataTables_filter input:focus{border-color:#3b6fe0;box-shadow:0 0 0 3px rgba(59,111,224,.12);}
+        .dataTables_wrapper .dataTables_info{color:#7a7f8a;font-size:13px;padding-top:18px;}
+        .dataTables_wrapper .dataTables_paginate{padding-top:14px;}
+        .dataTables_wrapper .dataTables_paginate .pagination{margin-bottom:0;}
+        .page-item .page-link{color:#3b6fe0 !important;background:#fff !important;border:1px solid #e4e7ec !important;margin:0 3px;border-radius:9px !important;min-width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13.5px;transition:all .15s ease;}
+        .page-item .page-link:hover{background:#eef3ff !important;border-color:#3b6fe0 !important;color:#3b6fe0 !important;transform:translateY(-1px);}
+        .page-item.active .page-link{background:#3b6fe0 !important;border-color:#3b6fe0 !important;color:#fff !important;box-shadow:0 4px 12px rgba(59,111,224,.35);}
+        .page-item.disabled .page-link{color:#c2c8d0 !important;background:#fff !important;border-color:#eef0f4 !important;cursor:not-allowed;transform:none;}
+
+        .order-id{font-weight:700;color:#3b6fe0;font-family:monospace;font-size:13px;}
+        .cust-name{font-weight:600;color:#2d2f39;}
+        .cust-mail{color:#9aa0ab;font-size:12px;}
+        .date-cell{color:#7a7f8a;font-size:13px;white-space:nowrap;}
+        .total-cell{font-weight:700;color:#1aa260;}
+        .total-cell::before{content:'\20B9';margin-right:1px;}
+
+        .act-btn{width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;border:0;font-size:16px;transition:all .15s ease;}
+        .act-btn + .act-btn{margin-left:6px;}
+        .act-btn:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,.12);}
+        .act-view{background:#eef3ff;color:#3b6fe0;}
+        .act-view:hover{background:#3b6fe0;color:#fff;}
+        .act-inv{background:#fff5e6;color:#d98a00;}
+        .act-inv:hover{background:#d98a00;color:#fff;}
+
+        /* ===== Animations & visual effects ===== */
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+        @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+        .stat-card{animation:fadeInUp .5s ease both;}
+        .row > div:nth-child(1) > .stat-card{animation-delay:.05s;}
+        .row > div:nth-child(2) > .stat-card{animation-delay:.13s;}
+        .row > div:nth-child(3) > .stat-card{animation-delay:.21s;}
+        .card.shadow-sm{animation:fadeInUp .55s ease both;animation-delay:.22s;}
+        #myDataTable tbody tr{animation:fadeIn .45s ease both;}
+        .order-id{transition:color .15s ease;}
+        #myDataTable tbody tr:hover .order-id{color:#2851c8;}
+        .btn-primary{transition:transform .15s ease, box-shadow .15s ease;}
+        .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(59,111,224,.35);}
+        @media (prefers-reduced-motion: reduce){ .stat-card,.card.shadow-sm,#myDataTable tbody tr{animation:none;} .btn-primary:hover{transform:none;} }
+    </style>
 </head>
 <body>
     <div id="ebazar-layout" class="theme-blue">
-        
+
         <!-- sidebar -->
-         <?php include_once"design/sidebar.php"?>
+        <?php include_once"design/sidebar.php"?>
 
         <!-- main body area -->
         <div class="main px-lg-4 px-md-4">
@@ -31,242 +104,140 @@ include_once("connect.php");
             <!-- Body: Body -->
             <div class="body d-flex py-3">
                 <div class="container-xxl">
+
+                    <!-- Page heading -->
                     <div class="row align-items-center">
-                        <div class="border-0 mb-4">
+                        <div class="border-0 mb-3">
                             <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
                                 <h3 class="fw-bold mb-0">Order Invoices</h3>
+                                <a href="order-list.php" class="btn btn-primary d-inline-flex align-items-center">
+                                    <i class="icofont-cart me-2"></i> All Orders
+                                </a>
                             </div>
-                        </div>
-                    </div> <!-- Row end  -->
-                    <div class="row mb-3">
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <table id="patient-table" class="table table-hover align-middle mb-0" style="width: 100%;">
-                                        <thead>
-                                            <tr>
-                                                <th>Order Id</th>
-                                                <th>Billing Date</th>
-                                                <th>Total Amount</th>
-                                                <th>User Name</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            include_once"connect.php";
-                                 
-                                              $cmd="select * from orders order by id DESC limit 8";
-                                              $result=mysqli_query($con,$cmd) or die(mysqli_error($con));
-                                              while($row=mysqli_fetch_array($result))
-                                              {     
-                                                  $order_id = $row['order_id'];
-                                                  $address=$row['address'];
-                                                  $user_id=$row['user_id'];
-                                                  $encoded_user_id = base64_encode($user_id);
-                                                  $date_time=$row['date_time'];
-                                                  $phone=$row['phone'];
-                                            $cmd1="select * from user where id='$user_id'";
-                                            $result1=mysqli_query($con,$cmd1)or die(mysqli_error($con));
-                                            $row1=mysqli_fetch_array($result1);
-                                            $firstname=$row1['firstname'];
-                                            $lastname=$row1['lastname'];
-                                            $name=$firstname.' '.$lastname;
-                                                 
-                                            ?>
-                                            <tr>
-                                                <td><a href="order-details.php?astringdata=<?php echo $order_id;?>&astringdata1=<?php echo $encoded_user_id;?>"><strong><?php echo $order_id;?></strong></a></td>
-                                                <td><?php echo $date_time;?></td>
-                                                <td>$212</td>
-                                                <td><?php echo $name;?></td>
-                                                <td>
-                                                    <a class="btn btn-sm btn-white" href="invoice.php?astringdata=<?php echo $order_id;?>&astringdata1=<?php echo $user_id;?>"><i class="icofont-print fs-5"></i></a>
-                                                    <a class="btn btn-sm btn-white" href="invoice.php?astringdata=<?php echo $order_id;?>&astringdata1=<?php echo $user_id;?>"><i class="icofont-download fs-5"></i></a>
-                                                    <a class="btn btn-sm btn-white" href="order-details.php?astringdata=<?php echo $order_id;?>&astringdata1=<?php echo $encoded_user_id;?>"><i class="icofont-eye fs-5"></i></a>
-                                                </td>
-                                            </tr>
-                                           <?php
-                                              }
-                                           ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- Row end  -->
-                </div>
-            </div>
-        
-            <!-- Modal Custom Settings-->
-            <div class="modal fade right" id="Settingmodal" tabindex="-1"  aria-hidden="true">
-                <div class="modal-dialog  modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Custom Settings</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body custom_setting">
-                            <!-- Settings: Color -->
-                            <div class="setting-theme pb-3">
-                                <h6 class="card-title mb-2 fs-6 d-flex align-items-center"><i class="icofont-color-bucket fs-4 me-2 text-primary"></i>Template Color Settings</h6>
-                                <ul class="list-unstyled row row-cols-3 g-2 choose-skin mb-2 mt-2">
-                                    <li data-theme="indigo"><div class="indigo"></div></li>
-                                    <li data-theme="tradewind"><div class="tradewind"></div></li>
-                                    <li data-theme="monalisa"><div class="monalisa"></div></li>
-                                    <li data-theme="blue" class="active"><div class="blue"></div></li>
-                                    <li data-theme="cyan"><div class="cyan"></div></li>
-                                    <li data-theme="green"><div class="green"></div></li>
-                                    <li data-theme="orange"><div class="orange"></div></li>
-                                    <li data-theme="blush"><div class="blush"></div></li>
-                                    <li data-theme="red"><div class="red"></div></li>
-                                </ul>
-                            </div>
-                            <div class="sidebar-gradient py-3">
-                                <h6 class="card-title mb-2 fs-6 d-flex align-items-center"><i class="icofont-paint fs-4 me-2 text-primary"></i>Sidebar Gradient</h6>
-                                <div class="form-check form-switch gradient-switch pt-2 mb-2">
-                                    <input class="form-check-input" type="checkbox" id="CheckGradient">
-                                    <label class="form-check-label" for="CheckGradient">Enable Gradient! ( Sidebar )</label>
-                                </div>
-                            </div>
-                            <!-- Settings: Template dynamics -->
-                            <div class="dynamic-block py-3">
-                                <ul class="list-unstyled choose-skin mb-2 mt-1">
-                                    <li data-theme="dynamic"><div class="dynamic"><i class="icofont-paint me-2"></i> Click to Dyanmic Setting</div></li>
-                                </ul>
-                                <div class="dt-setting">
-                                    <ul class="list-group list-unstyled mt-1">
-                                        <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
-                                            <label>Primary Color</label>
-                                            <button id="primaryColorPicker" class="btn bg-primary avatar xs border-0 rounded-0"></button>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
-                                            <label>Secondary Color</label>
-                                            <button id="secondaryColorPicker" class="btn bg-secondary avatar xs border-0 rounded-0"></button>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
-                                            <label class="text-muted">Chart Color 1</label>
-                                            <button id="chartColorPicker1" class="btn chart-color1 avatar xs border-0 rounded-0"></button>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
-                                            <label class="text-muted">Chart Color 2</label>
-                                            <button id="chartColorPicker2" class="btn chart-color2 avatar xs border-0 rounded-0"></button>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
-                                            <label class="text-muted">Chart Color 3</label>
-                                            <button id="chartColorPicker3" class="btn chart-color3 avatar xs border-0 rounded-0"></button>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
-                                            <label class="text-muted">Chart Color 4</label>
-                                            <button id="chartColorPicker4" class="btn chart-color4 avatar xs border-0 rounded-0"></button>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
-                                            <label class="text-muted">Chart Color 5</label>
-                                            <button id="chartColorPicker5" class="btn chart-color5 avatar xs border-0 rounded-0"></button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- Settings: Font -->
-                            <div class="setting-font py-3">
-                                <h6 class="card-title mb-2 fs-6 d-flex align-items-center"><i class="icofont-font fs-4 me-2 text-primary"></i> Font Settings</h6>
-                                <ul class="list-group font_setting mt-1">
-                                    <li class="list-group-item py-1 px-2">
-                                        <div class="form-check mb-0">
-                                            <input class="form-check-input" type="radio" name="font" id="font-poppins" value="font-poppins">
-                                            <label class="form-check-label" for="font-poppins">
-                                                Poppins Google Font
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item py-1 px-2">
-                                        <div class="form-check mb-0">
-                                            <input class="form-check-input" type="radio" name="font" id="font-opensans" value="font-opensans" checked="">
-                                            <label class="form-check-label" for="font-opensans">
-                                                Open Sans Google Font
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item py-1 px-2">
-                                        <div class="form-check mb-0">
-                                            <input class="form-check-input" type="radio" name="font" id="font-montserrat" value="font-montserrat">
-                                            <label class="form-check-label" for="font-montserrat">
-                                                Montserrat Google Font
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item py-1 px-2">
-                                        <div class="form-check mb-0">
-                                            <input class="form-check-input" type="radio" name="font" id="font-mukta" value="font-mukta">
-                                            <label class="form-check-label" for="font-mukta">
-                                                Mukta Google Font
-                                            </label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- Settings: Light/dark -->
-                            <div class="setting-mode py-3">
-                                <h6 class="card-title mb-2 fs-6 d-flex align-items-center"><i class="icofont-layout fs-4 me-2 text-primary"></i>Contrast Layout</h6>
-                                <ul class="list-group list-unstyled mb-0 mt-1">
-                                    <li class="list-group-item d-flex align-items-center py-1 px-2">
-                                        <div class="form-check form-switch theme-switch mb-0">
-                                            <input class="form-check-input" type="checkbox" id="theme-switch">
-                                            <label class="form-check-label" for="theme-switch">Enable Dark Mode!</label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item d-flex align-items-center py-1 px-2">
-                                        <div class="form-check form-switch theme-high-contrast mb-0">
-                                            <input class="form-check-input" type="checkbox" id="theme-high-contrast">
-                                            <label class="form-check-label" for="theme-high-contrast">Enable High Contrast</label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item d-flex align-items-center py-1 px-2">
-                                        <div class="form-check form-switch theme-rtl mb-0">
-                                            <input class="form-check-input" type="checkbox" id="theme-rtl">
-                                            <label class="form-check-label" for="theme-rtl">Enable RTL Mode!</label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="modal-footer justify-content-start">
-                            <button type="button" class="btn btn-white border lift" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary lift">Save Changes</button>
                         </div>
                     </div>
-                </div>
-            </div> 
 
+                    <!-- Summary stat cards -->
+                    <div class="row g-3 mb-3">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="card stat-card bg-white">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="stat-icon" style="background:#eef3ff;color:#3b6fe0;"><i class="icofont-file-document"></i></div>
+                                    <div class="ms-3">
+                                        <div class="stat-value"><?php echo $total_invoices; ?></div>
+                                        <div class="stat-label text-muted">Total Invoices</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="card stat-card bg-white">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="stat-icon" style="background:#e7f8ee;color:#1aa260;"><i class="icofont-money"></i></div>
+                                    <div class="ms-3">
+                                        <div class="stat-value">&#8377;<?php echo number_format($total_billed); ?></div>
+                                        <div class="stat-label text-muted">Total Billed</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="card stat-card bg-white">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="stat-icon" style="background:#fff5e6;color:#d98a00;"><i class="icofont-chart-line"></i></div>
+                                    <div class="ms-3">
+                                        <div class="stat-value">&#8377;<?php echo number_format($avg_invoice); ?></div>
+                                        <div class="stat-label text-muted">Avg. Invoice</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Invoices table -->
+                    <div class="row g-3 mb-3">
+                        <div class="col-12">
+                            <div class="card bg-white shadow-sm" style="border:0;border-radius:14px;">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="myDataTable" class="table table-hover align-middle mb-0" style="width: 100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Invoice / Order ID</th>
+                                                    <th>Billing Date</th>
+                                                    <th>Customer</th>
+                                                    <th>Items</th>
+                                                    <th>Total Amount</th>
+                                                    <th class="text-end">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php foreach ($orders as $row):
+                                                $order_id = $row['order_id'];
+                                                $user_id  = $row['user_id'];
+                                                $encoded_user_id = base64_encode($user_id);
+                                                $name  = trim(($row['firstname'] ?? '') . ' ' . ($row['lastname'] ?? ''));
+                                                if ($name === '') { $name = 'User #' . $user_id; }
+                                                $email = $row['email'] ?? '';
+                                                $date  = $row['date_time'];
+                                                $items = isset($totals[$order_id]) ? $totals[$order_id]['items'] : 0;
+                                                $total = isset($totals[$order_id]) ? $totals[$order_id]['total'] : 0;
+                                            ?>
+                                                <tr>
+                                                    <td><a href="invoice.php?astringdata=<?php echo $order_id;?>&astringdata1=<?php echo $user_id;?>" class="order-id">#<?php echo $order_id;?></a></td>
+                                                    <td><span class="date-cell"><?php echo date('d M Y, h:i A', strtotime($date));?></span></td>
+                                                    <td>
+                                                        <div class="cust-name"><?php echo htmlspecialchars($name);?></div>
+                                                        <?php if ($email !== ''): ?><div class="cust-mail"><?php echo htmlspecialchars($email);?></div><?php endif; ?>
+                                                    </td>
+                                                    <td><?php echo $items;?></td>
+                                                    <td><span class="total-cell"><?php echo number_format($total);?></span></td>
+                                                    <td class="text-end">
+                                                        <a href="invoice.php?astringdata=<?php echo $order_id;?>&astringdata1=<?php echo $user_id;?>" class="act-btn act-inv" title="Print invoice"><i class="icofont-print"></i></a>
+                                                        <a href="order-details.php?astringdata=<?php echo $order_id;?>&astringdata1=<?php echo $encoded_user_id;?>" class="act-btn act-view" title="View details"><i class="icofont-eye-alt"></i></a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
-    
     </div>
 
     <!-- Jquery Core Js -->
     <script src="assets/bundles/libscripts.bundle.js"></script>
-
-    <!-- Plugin Js-->
     <script src="assets/bundles/dataTables.bundle.js"></script>
+    <script src="javascript/template.js?v=2"></script>
+    <script src="toastr/toastr.min.js"></script>
 
-    <!-- Jquery Page Js -->
-    <script src="javascript/template.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#patient-table')
-            .addClass( 'nowrap' )
-            .dataTable( {
-                responsive: true,
-                columnDefs: [
-                    { targets: [-1, -3], className: 'dt-body-right' }
-                ]
+        $(document).ready(function () {
+            $('#myDataTable').DataTable({
+                responsive: false,
+                order: [],
+                pageLength: 10,
+                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                columnDefs: [ { targets: [-1], orderable: false } ],
+                language: {
+                    search: "",
+                    searchPlaceholder: "Search invoices...",
+                    lengthMenu: "Show _MENU_ invoices"
+                }
             });
         });
-
     </script>
+
 </body>
 
-<!-- Mirrored from pixelwibes.com/template/ebazar/html/dist/order-invoices.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 27 Nov 2023 06:18:23 GMT -->
-</html> 
-<?php 
+</html>
+<?php
 }
 else{
      header("Location: index.php");
