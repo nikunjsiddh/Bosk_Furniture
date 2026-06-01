@@ -5,7 +5,7 @@
     {
         $id = mysqli_real_escape_string($con,$_POST['id']);
         $id = htmlspecialchars($id);
-        $data = "delete from projects where id='$id'";
+        $data = "delete from products where id='$id'";
         $result = mysqli_query($con,$data) or die(mysqli_error($con));
         if($result)
         {
@@ -28,7 +28,7 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
           }
-            toastr["error"]("Deleted Success...!","Project")
+            toastr["success"]("Product Deleted Successfully...!","Product")
 		</script>
 		<?php
         }
