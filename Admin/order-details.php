@@ -225,8 +225,9 @@ if(isset($_GET['astringdata']) && isset($_GET['astringdata1']))
                                                      include_once("connect.php");
                                                         $cmd2="select * from order_items where order_id='$order_id'";
                                                         $result2=mysqli_query($con,$cmd2) or die(mysqli_error($con));
+                                                        $totalPrice1 = 0;
                                                         while($row2=mysqli_fetch_array($result2))
-                                                        {     
+                                                        {
                                                             $product_id = $row2['product_id'];
                                                         //   echo $product_id;
                                                             $price=$row2['price'];
@@ -273,8 +274,7 @@ if(isset($_GET['astringdata']) && isset($_GET['astringdata1']))
                                             </table>
                                         </div>
                                         <?php
-                                        $total_price = $quantity * $new_price;
-                                        $subTotal+=$totalPrice1;
+                                        $subTotal = $totalPrice1;
                                         $tax=$subTotal*0.18;
                                         $shipping=$subTotal*0.02;
                                         $total1=$subTotal+$tax+$shipping;
