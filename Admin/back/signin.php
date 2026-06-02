@@ -1,25 +1,21 @@
 <?php
-	include("../connect.php");		
+	session_start();
+	include("../connect.php");
     if(isset($_POST['email']) && isset($_POST['pwd']))
 	{
-	
+
 		$email=mysqli_real_escape_string($con,$_POST['email']);
 		$pwd=mysqli_real_escape_string($con,$_POST['pwd']);
-		
-		
+
+
 		$sel = "select * from admin where email='$email' and password='$pwd'";
 		$ex = $con->query($sel) or die (mysqli_error($con));
-		
+
 		if($ex->num_rows>0)
 		{
-			while($row = mysqli_fetch_array($ex))
-			{
-				$email = $row['email'];
-				$pwd = $row['pwd'];
-			}
-			session_start();
-			$_SESSION['email'] = $email;
-		
+			$row = mysqli_fetch_assoc($ex);
+			$_SESSION['email'] = $row['email'];
+
 			echo "<script>window.location='Dash.php';</script>";
 		}
 		else
