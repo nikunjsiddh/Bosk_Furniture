@@ -516,7 +516,7 @@ if (isset($_GET['astringdata'])) {
                                                 $cmd1   = "select * from user where email='$userEmail'";
                                                 $result1= mysqli_query($con,$cmd1) or die(mysqli_error($con));
                                                 $row1   = mysqli_fetch_array($result1);
-                                                $user_id= $row1['id'];
+                                                $user_id= isset($row1['id']) ? $row1['id'] : '';
                                             ?>
                                                 <form onsubmit="return cart(this);" id="myform" method="post" enctype="multipart/form-data" class="cart">
                                                     <input type="hidden" name="user_id" id="user_id" value="<?php echo $user_id;?>">
