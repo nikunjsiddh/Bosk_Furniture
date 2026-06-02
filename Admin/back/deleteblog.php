@@ -28,7 +28,7 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
           }
-            toastr["error"]("Deleted Success...!","Blog")
+            toastr["success"]("Blog Deleted Successfully...!","Blog")
 		</script>
 		<?php
         }

@@ -5,6 +5,21 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 include_once("connect.php");
+
+$bid = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$res = mysqli_query($con, "SELECT * FROM blog WHERE id='" . $bid . "'");
+if (!$res || mysqli_num_rows($res) === 0) {
+    header("Location: Blog-list.php");
+    exit();
+}
+$b = mysqli_fetch_assoc($res);
+
+$title  = $b['blog_title'];
+$desc   = $b['blog_description'];
+$bdate  = $b['blog_date'];
+$img    = $b['img'];
+$hasImg = ($img !== '' && $img !== 'noimg.jpg');
+$src    = $hasImg ? 'blog_image/' . $img : 'blog_image/noimg.jpg';
 ?>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
@@ -41,7 +56,8 @@ include_once("connect.php");
 
             <?php include_once"design/nav.php"?>
 
-            <form action="back/addblog.php" method="post" enctype="multipart/form-data" id="addForm">
+            <form action="back/editblog.php" method="post" enctype="multipart/form-data" id="editForm">
+            <input type="hidden" name="id" value="<?php echo $bid; ?>">
 
             <div class="body d-flex py-3">
                 <div class="container-xxl">
@@ -52,7 +68,7 @@ include_once("connect.php");
                             <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
                                 <div class="d-flex align-items-center">
                                     <a href="Blog-list.php" class="btn btn-light border me-3"><i class="icofont-arrow-left"></i></a>
-                                    <h3 class="fw-bold mb-0">Add Blog</h3>
+                                    <h3 class="fw-bold mb-0">Edit Blog <span class="text-muted fw-light fs-5">#<?php echo $bid; ?></span></h3>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +76,7 @@ include_once("connect.php");
 
                     <div class="row g-3 mb-3">
 
-                        <!-- Info -->
+                        <!-- Content -->
                         <div class="col-xl-7 col-lg-7">
                             <div class="card edit-card mb-3">
                                 <div class="card-header py-3"><h6 class="m-0 fw-bold">Blog Content</h6></div>
@@ -68,15 +84,15 @@ include_once("connect.php");
                                     <div class="row g-3">
                                         <div class="col-md-12">
                                             <label class="form-label">Blog Title <span class="req">*</span></label>
-                                            <input type="text" name="blog_title" class="form-control" placeholder="e.g. 5 Ways to Style a Modular Kitchen" required>
+                                            <input type="text" name="blog_title" class="form-control" value="<?php echo htmlspecialchars($title); ?>" required>
                                         </div>
                                         <div class="col-md-12">
                                             <label class="form-label">Blog Description <span class="req">*</span></label>
-                                            <textarea name="blog_description" class="form-control" rows="8" placeholder="Write the blog content..." required></textarea>
+                                            <textarea name="blog_description" class="form-control" rows="8" required><?php echo htmlspecialchars($desc); ?></textarea>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Publish Date</label>
-                                            <input type="date" name="blog_date" class="form-control" value="<?php echo date('Y-m-d'); ?>">
+                                            <input type="date" name="blog_date" class="form-control" value="<?php echo htmlspecialchars($bdate); ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -92,11 +108,11 @@ include_once("connect.php");
                                 </div>
                                 <div class="card-body">
                                     <div class="img-slot">
-                                        <div class="slot-label">Image</div>
-                                        <img src="blog_image/noimg.jpg" class="preview mb-2" id="preview" alt="" onerror="this.src='product_image/noimg.jpg'">
+                                        <div class="slot-label">Current Image</div>
+                                        <img src="<?php echo $src; ?>" class="preview mb-2" id="preview" alt="<?php echo htmlspecialchars($title); ?>" onerror="this.src='product_image/noimg.jpg'">
                                         <input type="file" name="img" accept="image/*" class="form-control form-control-sm" onchange="previewImg(this,'preview')">
                                     </div>
-                                    <small class="text-muted d-block mt-2">Optional — a placeholder is used if no image is uploaded.</small>
+                                    <small class="text-muted d-block mt-2">Leave empty to keep the current image, or choose a file to replace it.</small>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +122,7 @@ include_once("connect.php");
                     <div class="card edit-card save-bar mb-3">
                         <div class="card-body d-flex justify-content-end gap-2 py-2">
                             <a href="Blog-list.php" class="btn btn-light border">Cancel</a>
-                            <button type="submit" class="btn btn-primary px-4"><i class="icofont-plus me-2"></i>Add Blog</button>
+                            <button type="submit" class="btn btn-primary px-4"><i class="icofont-save me-2"></i>Save Changes</button>
                         </div>
                     </div>
 
