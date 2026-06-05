@@ -172,8 +172,8 @@ include_once("connect.php");
                                             <input type="number" name="stock" class="form-control" value="0">
                                         </div>
                                         <div class="col-md-12">
-                                            <label class="form-label">Publish Date</label>
-                                            <input type="date" name="publish_date" class="form-control">
+                                            <label class="form-label">Publish Date &amp; Time</label>
+                                            <input type="datetime-local" name="publish_date" class="form-control" value="<?php echo date('Y-m-d\TH:i'); ?>">
                                         </div>
                                     </div>
                                 </div>

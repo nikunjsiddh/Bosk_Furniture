@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['id'])) {
 $id               = intval($_POST['id']);
 $blog_title       = trim($_POST['blog_title'] ?? '');
 $blog_description = trim($_POST['blog_description'] ?? '');
-$blog_date        = trim($_POST['blog_date'] ?? '');
+$blog_date        = str_replace('T', ' ', trim($_POST['blog_date'] ?? ''));
 
 // load current row (for existing image / date)
 $cur = mysqli_query($con, "SELECT * FROM blog WHERE id='" . $id . "'");

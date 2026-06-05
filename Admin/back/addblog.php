@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['blog_title'])) {
 
 $blog_title       = trim($_POST['blog_title'] ?? '');
 $blog_description = trim($_POST['blog_description'] ?? '');
-$blog_date        = trim($_POST['blog_date'] ?? '');
-if ($blog_date === '') { $blog_date = date('Y-m-d'); }
+$blog_date        = str_replace('T', ' ', trim($_POST['blog_date'] ?? ''));
+if ($blog_date === '') { $blog_date = date('Y-m-d H:i:s'); }
 
 $allowed = array('jpg', 'jpeg', 'png', 'webp', 'gif');
 

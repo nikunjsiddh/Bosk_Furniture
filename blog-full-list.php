@@ -191,7 +191,7 @@ $page_breadcrumbs = [
                         <article class="blog-card">
                             <a href="details.php?astringdata=<?php echo $id; ?>" class="blog-card-img">
                                 <img src="Admin/blog_image/<?php echo $img;?>" alt="<?php echo htmlspecialchars($blog_title); ?>">
-                                <span class="blog-date-badge"><?php echo $blog_date;?></span>
+                                <span class="blog-date-badge"><?php echo ($blog_date ? date('Y-m-d', strtotime($blog_date)) : '');?></span>
                             </a>
                             <div class="blog-card-body">
                                 <div class="blog-meta">

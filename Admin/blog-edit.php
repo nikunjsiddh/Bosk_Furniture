@@ -91,8 +91,8 @@ $src    = $hasImg ? 'blog_image/' . $img : 'blog_image/noimg.jpg';
                                             <textarea name="blog_description" class="form-control" rows="8" required><?php echo htmlspecialchars($desc); ?></textarea>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label">Publish Date</label>
-                                            <input type="date" name="blog_date" class="form-control" value="<?php echo htmlspecialchars($bdate); ?>">
+                                            <label class="form-label">Publish Date &amp; Time</label>
+                                            <input type="datetime-local" name="blog_date" class="form-control" value="<?php echo ($bdate && $bdate !== '0000-00-00 00:00:00') ? date('Y-m-d\TH:i', strtotime($bdate)) : ''; ?>">
                                         </div>
                                     </div>
                                 </div>

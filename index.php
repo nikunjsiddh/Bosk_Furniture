@@ -1280,7 +1280,7 @@ $page_breadcrumbs = [
                                     <img src="Admin/blog_image/<?php echo $img;?>"
                                         alt="<?php echo htmlspecialchars($blog_title); ?>">
                                     <span class="blog-date-badge">
-                                        <?php echo $blog_date;?>
+                                        <?php echo ($blog_date ? date('Y-m-d', strtotime($blog_date)) : '');?>
                                     </span>
                                 </a>
                                 <div class="blog-card-body">

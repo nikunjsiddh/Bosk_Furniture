@@ -75,8 +75,8 @@ include_once("connect.php");
                                             <textarea name="blog_description" class="form-control" rows="8" placeholder="Write the blog content..." required></textarea>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label">Publish Date</label>
-                                            <input type="date" name="blog_date" class="form-control" value="<?php echo date('Y-m-d'); ?>">
+                                            <label class="form-label">Publish Date &amp; Time</label>
+                                            <input type="datetime-local" name="blog_date" class="form-control" value="<?php echo date('Y-m-d\TH:i'); ?>">
                                         </div>
                                     </div>
                                 </div>

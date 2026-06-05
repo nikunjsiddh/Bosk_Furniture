@@ -16,7 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['pname'])) {
 $pname        = trim($_POST['pname'] ?? '');
 $pcategory    = trim($_POST['pcategory'] ?? '');
 $description  = trim($_POST['description'] ?? '');
-$publish_date = trim($_POST['publish_date'] ?? '');
+$publish_date = str_replace('T', ' ', trim($_POST['publish_date'] ?? ''));
+if ($publish_date === '') { $publish_date = date('Y-m-d H:i:s'); }
 $sku          = trim($_POST['sku'] ?? '');
 $stock        = intval($_POST['stock'] ?? 0);
 $status       = intval($_POST['status'] ?? 0);

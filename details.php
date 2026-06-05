@@ -822,7 +822,7 @@ $page_schema = '
                     <h1 class="article-title"><?php echo $blog_title ? htmlspecialchars($blog_title, ENT_QUOTES, 'UTF-8') : 'Blog Article'; ?></h1>
                     <div class="article-meta">
                         <?php if (!empty($blog_date)) : ?>
-                        <span class="meta-item"><i class="fa fa-calendar-o" aria-hidden="true"></i> <?php echo htmlspecialchars($blog_date, ENT_QUOTES, 'UTF-8'); ?></span>
+                        <span class="meta-item"><i class="fa fa-calendar-o" aria-hidden="true"></i> <?php echo htmlspecialchars(($blog_date ? date('Y-m-d', strtotime($blog_date)) : ''), ENT_QUOTES, 'UTF-8'); ?></span>
                         <?php endif; ?>
                         <span class="meta-item"><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $reading_min; ?> min read</span>
                         <span class="meta-item"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Bosk Team</span>

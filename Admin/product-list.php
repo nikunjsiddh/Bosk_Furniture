@@ -263,7 +263,7 @@ $total_categories = count($cat_set);
                                                     <td><span class="prod-name" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#expedit<?php echo $id;?>" title="View details"><?php echo $pname;?></span></td>
                                                     <td><span class="cat-badge"><?php echo $pcategory;?></span></td>
                                                     <td style="display:none;"><?php echo $description;?></td>
-                                                    <td><span class="date-cell"><?php echo $publish_date;?></span></td>
+                                                    <td><span class="date-cell"><?php echo ($publish_date && $publish_date !== '0000-00-00 00:00:00') ? date('d M Y, h:i A', strtotime($publish_date)) : '—';?></span></td>
                                                     <td style="display:none;"><?php echo $sku;?></td>
                                                     <td><span class="stock-badge <?php echo $stock_cls;?>"><?php echo $stock;?></span></td>
                                                     <td style="display:none;"><?php echo $status;?></td>
@@ -383,7 +383,7 @@ $total_categories = count($cat_set);
                                 <span class="lbl">Stock Quantity</span><span class="val"><?php echo $stock; ?> units</span>
                             </div>
                             <div class="modal-detail-row d-flex justify-content-between">
-                                <span class="lbl">Publish Date</span><span class="val"><?php echo $publish_date; ?></span>
+                                <span class="lbl">Publish Date</span><span class="val"><?php echo ($publish_date && $publish_date !== '0000-00-00 00:00:00') ? date('d M Y, h:i A', strtotime($publish_date)) : '—'; ?></span>
                             </div>
                             <div class="modal-detail-row d-flex justify-content-between">
                                 <span class="lbl">Product ID</span><span class="val">#<?php echo $id; ?></span>

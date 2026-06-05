@@ -172,7 +172,7 @@ $latest_txt = ($latest && $latest !== '0000-00-00') ? date('d M Y', strtotime($l
                                                     <td><span class="idx-badge"><?php echo $count; ?></span></td>
                                                     <td><img class="prod-thumb" src="<?php echo $src;?>" alt="<?php echo htmlspecialchars($title); ?>" onerror="this.src='product_image/noimg.jpg'"></td>
                                                     <td><span class="prod-name"><?php echo htmlspecialchars($title);?></span></td>
-                                                    <td><span class="date-cell"><?php echo ($bdate && $bdate !== '0000-00-00') ? date('d M Y', strtotime($bdate)) : '—';?></span></td>
+                                                    <td><span class="date-cell"><?php echo ($bdate && $bdate !== '0000-00-00 00:00:00' && $bdate !== '0000-00-00') ? date('d M Y, h:i A', strtotime($bdate)) : '—';?></span></td>
                                                     <td><span class="desc-cell"><?php echo htmlspecialchars($short);?></span></td>
                                                     <td class="text-end">
                                                         <a href="blog-edit.php?id=<?php echo $id;?>" class="act-btn act-edit" title="Edit"><i class="icofont-ui-edit"></i></a>

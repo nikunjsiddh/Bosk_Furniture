@@ -215,8 +215,8 @@ $tags         = $p['tags'];
                                             <input type="number" name="stock" class="form-control" value="<?php echo htmlspecialchars($stock); ?>">
                                         </div>
                                         <div class="col-md-12">
-                                            <label class="form-label">Publish Date</label>
-                                            <input type="date" name="publish_date" class="form-control" value="<?php echo htmlspecialchars($publish_date); ?>">
+                                            <label class="form-label">Publish Date &amp; Time</label>
+                                            <input type="datetime-local" name="publish_date" class="form-control" value="<?php echo ($publish_date && $publish_date !== '0000-00-00 00:00:00') ? date('Y-m-d\TH:i', strtotime($publish_date)) : ''; ?>">
                                         </div>
                                     </div>
                                 </div>
