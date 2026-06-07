@@ -1,4 +1,6 @@
 <!-- START FOOTER -->
+<!-- Site-wide responsive hardening layer (mobile/tablet only; desktop untouched). Loaded last for highest precedence. -->
+<link rel="stylesheet" href="css/responsive.css">
 <style>
     /* ============================================================ */
     /* ================== BOSK MODERN FOOTER ===================== */

@@ -156,15 +156,23 @@ body{
 
 .infos input{
   width: 300px;
+  max-width: 100%;
 }
 
 .align-right input{
   text-align:right;
   width: 300px;
+  max-width: 100%;
 }
 
 div.container{
   width: 800px;
+  max-width: 100%;
+}
+
+#invoice img{
+  max-width: 100%;
+  height: auto;
 }
 
 #imgInp{

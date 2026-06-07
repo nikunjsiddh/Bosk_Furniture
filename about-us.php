@@ -45,15 +45,18 @@ $page_breadcrumbs = [
             display: flex;
             flex-wrap: wrap;
         }
-        .all-services .row > [class*="col-"] {
+
+        .all-services .row>[class*="col-"] {
             display: flex;
             margin-bottom: 30px;
         }
+
         .all-services .item {
             perspective: 1000px;
             width: 100%;
             display: flex;
         }
+
         .all-services .service-box {
             position: relative;
             background: #ffffff;
@@ -61,30 +64,33 @@ $page_breadcrumbs = [
             padding: 28px 28px 24px;
             overflow: hidden;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-            transition: transform .45s cubic-bezier(.25,.8,.25,1),
-                        box-shadow .45s ease;
+            transition: transform .45s cubic-bezier(.25, .8, .25, 1),
+                box-shadow .45s ease;
             width: 100%;
             height: 100%;
             display: flex;
             flex-direction: column;
         }
+
         .all-services .service-inner-box {
             flex: 1 1 auto;
             display: flex;
             flex-direction: column;
         }
+
         /* Soft brand-tinted wash that fades in on hover */
         .all-services .service-box::before {
             content: "";
             position: absolute;
             inset: 0;
             background: linear-gradient(135deg,
-                rgba(83, 42, 26, 0.07) 0%,
-                rgba(83, 42, 26, 0) 65%);
+                    rgba(83, 42, 26, 0.07) 0%,
+                    rgba(83, 42, 26, 0) 65%);
             opacity: 0;
             transition: opacity .4s ease;
             pointer-events: none;
         }
+
         /* Left accent bar that slides in from 0 to 6px on hover */
         .all-services .service-box::after {
             content: "";
@@ -94,14 +100,21 @@ $page_breadcrumbs = [
             width: 0;
             height: 100%;
             background: #532A1A;
-            transition: width .4s cubic-bezier(.25,.8,.25,1);
+            transition: width .4s cubic-bezier(.25, .8, .25, 1);
         }
+
         .all-services .item:hover .service-box {
             transform: translateY(-10px);
             box-shadow: 0 22px 42px rgba(83, 42, 26, 0.18);
         }
-        .all-services .item:hover .service-box::before { opacity: 1; }
-        .all-services .item:hover .service-box::after { width: 6px; }
+
+        .all-services .item:hover .service-box::before {
+            opacity: 1;
+        }
+
+        .all-services .item:hover .service-box::after {
+            width: 6px;
+        }
 
         .all-services .service-box h3 {
             font-size: 18px;
@@ -112,17 +125,21 @@ $page_breadcrumbs = [
             position: relative;
             z-index: 1;
         }
+
         .all-services .service-box h3 a {
             color: #222 !important;
             text-decoration: none !important;
             transition: color .35s ease;
         }
+
         .all-services .item:hover .service-box h3 {
             transform: translateX(8px);
         }
+
         .all-services .item:hover .service-box h3 a {
             color: #532A1A !important;
         }
+
         .all-services .service-box p {
             margin: 0;
             color: #666;
@@ -131,6 +148,7 @@ $page_breadcrumbs = [
             z-index: 1;
             transition: color .3s ease, transform .35s ease;
         }
+
         .all-services .item:hover .service-box p {
             color: #444;
             transform: translateX(8px);
@@ -146,13 +164,15 @@ $page_breadcrumbs = [
             color: #ecdfd7;
             opacity: 0;
             transform: rotate(-25deg) scale(.6);
-            transition: opacity .45s ease, transform .55s cubic-bezier(.25,.8,.25,1);
+            transition: opacity .45s ease, transform .55s cubic-bezier(.25, .8, .25, 1);
             pointer-events: none;
             z-index: 1;
         }
+
         .all-services .service-inner-box {
             position: relative;
         }
+
         .all-services .item:hover .service-inner-box::before {
             opacity: 1;
             transform: rotate(0deg) scale(1);
@@ -160,8 +180,13 @@ $page_breadcrumbs = [
         }
 
         @media (max-width: 575px) {
-            .all-services .service-box { padding: 22px 22px 20px; }
-            .all-services .service-box h3 { font-size: 16px; }
+            .all-services .service-box {
+                padding: 22px 22px 20px;
+            }
+
+            .all-services .service-box h3 {
+                font-size: 16px;
+            }
         }
 
         /* ============================================================ */
@@ -185,18 +210,27 @@ $page_breadcrumbs = [
             overflow: hidden;
             padding: 5rem 0 !important;
         }
+
         .who-section-1 {
             background:
-                radial-gradient(900px 500px at -8% 0%, rgba(83,42,26,.05), transparent 60%),
+                radial-gradient(900px 500px at -8% 0%, rgba(83, 42, 26, .05), transparent 60%),
                 linear-gradient(180deg, #ffffff 0%, #fbf7f4 100%);
         }
+
         .who-section-2 {
             background:
-                radial-gradient(900px 500px at 108% 100%, rgba(83,42,26,.05), transparent 60%),
+                radial-gradient(900px 500px at 108% 100%, rgba(83, 42, 26, .05), transparent 60%),
                 linear-gradient(180deg, #fbf7f4 0%, #ffffff 100%);
         }
-        .who-section .container { position: relative; z-index: 1; }
-        .who-section .row { row-gap: 2rem; }
+
+        .who-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .who-section .row {
+            row-gap: 2rem;
+        }
 
         /* Section label tag */
         .who-label {
@@ -209,6 +243,7 @@ $page_breadcrumbs = [
             color: #532A1A;
             margin-bottom: 1rem;
         }
+
         .who-label-line {
             display: inline-block;
             width: 36px;
@@ -217,9 +252,12 @@ $page_breadcrumbs = [
             margin-right: 12px;
             transform-origin: left center;
             transform: scaleX(0);
-            transition: transform .8s cubic-bezier(.2,.7,.2,1) .2s;
+            transition: transform .8s cubic-bezier(.2, .7, .2, 1) .2s;
         }
-        [data-reveal].is-revealed .who-label-line { transform: scaleX(1); }
+
+        [data-reveal].is-revealed .who-label-line {
+            transform: scaleX(1);
+        }
 
         /* Heading polish */
         .who-section .who-1 h2 {
@@ -229,11 +267,13 @@ $page_breadcrumbs = [
             color: #111;
             margin-bottom: 1.25rem !important;
         }
+
         .who-section .who-1 h2 span {
             color: #532A1A;
             position: relative;
             display: inline-block;
         }
+
         /* Override the global underline rule so it can animate */
         .who-section .who-1 h2 span::after {
             display: block !important;
@@ -244,9 +284,12 @@ $page_breadcrumbs = [
             margin-left: 0 !important;
             margin-top: .35rem !important;
             margin-bottom: 0 !important;
-            transition: width .9s cubic-bezier(.2,.7,.2,1) .3s;
+            transition: width .9s cubic-bezier(.2, .7, .2, 1) .3s;
         }
-        [data-reveal].is-revealed .who-1 h2 span::after { width: 100% !important; }
+
+        [data-reveal].is-revealed .who-1 h2 span::after {
+            width: 100% !important;
+        }
 
         /* Paragraph text refinement */
         .who-section .pftext p {
@@ -255,13 +298,15 @@ $page_breadcrumbs = [
             font-size: 1rem;
             margin-bottom: 1.1rem;
         }
+
         .who-section .pftext a {
             color: #532A1A;
             font-weight: 600;
             text-decoration: none;
-            border-bottom: 1px dashed rgba(83,42,26,.35);
+            border-bottom: 1px dashed rgba(83, 42, 26, .35);
             transition: border-color .3s ease, color .3s ease;
         }
+
         .who-section .pftext a:hover {
             color: #3a1d12;
             border-bottom-color: #532A1A;
@@ -273,19 +318,23 @@ $page_breadcrumbs = [
             gap: 1rem;
             margin-top: 1.5rem;
         }
+
         .who-person {
             position: relative;
             padding: 1.1rem 1.2rem 1.1rem 1.4rem;
             background: #fff;
             border-radius: 10px;
-            border: 1px solid rgba(83,42,26,.10);
-            box-shadow: 0 6px 18px rgba(83,42,26,.05);
-            transition: transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s ease, border-color .4s ease;
+            border: 1px solid rgba(83, 42, 26, .10);
+            box-shadow: 0 6px 18px rgba(83, 42, 26, .05);
+            transition: transform .4s cubic-bezier(.2, .7, .2, 1), box-shadow .4s ease, border-color .4s ease;
         }
+
         .who-person::before {
             content: "";
             position: absolute;
-            left: 0; top: 14px; bottom: 14px;
+            left: 0;
+            top: 14px;
+            bottom: 14px;
             width: 4px;
             background: #532A1A;
             border-radius: 0 4px 4px 0;
@@ -293,12 +342,17 @@ $page_breadcrumbs = [
             transform-origin: center;
             transition: transform .4s ease;
         }
+
         .who-person:hover {
             transform: translateY(-3px);
-            box-shadow: 0 14px 30px rgba(83,42,26,.12);
-            border-color: rgba(83,42,26,.2);
+            box-shadow: 0 14px 30px rgba(83, 42, 26, .12);
+            border-color: rgba(83, 42, 26, .2);
         }
-        .who-person:hover::before { transform: scaleY(1); }
+
+        .who-person:hover::before {
+            transform: scaleY(1);
+        }
+
         .who-person-role {
             display: inline-block;
             font-size: .7rem;
@@ -311,6 +365,7 @@ $page_breadcrumbs = [
             margin-bottom: .55rem;
             font-weight: 600;
         }
+
         .who-section .who-person h4 {
             font-size: 1.02rem;
             font-weight: 700;
@@ -318,6 +373,7 @@ $page_breadcrumbs = [
             margin: 0 0 .4rem;
             line-height: 1.3;
         }
+
         .who-section .who-person p,
         .who-section .pftext .who-person p {
             margin: 0;
@@ -332,6 +388,7 @@ $page_breadcrumbs = [
             margin-top: .25rem !important;
             margin-bottom: .75rem !important;
         }
+
         .who-chip-list {
             list-style: none;
             padding: 0;
@@ -340,6 +397,7 @@ $page_breadcrumbs = [
             flex-wrap: wrap;
             gap: .55rem;
         }
+
         .who-chip-list li a {
             display: inline-flex;
             align-items: center;
@@ -347,20 +405,24 @@ $page_breadcrumbs = [
             padding: .5rem .9rem;
             border-radius: 999px;
             background: #fff;
-            border: 1px solid rgba(83,42,26,.18);
+            border: 1px solid rgba(83, 42, 26, .18);
             color: #532A1A !important;
             font-size: .88rem;
             font-weight: 600;
             text-decoration: none !important;
-            transition: transform .35s cubic-bezier(.2,.7,.2,1), background .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
+            transition: transform .35s cubic-bezier(.2, .7, .2, 1), background .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
         }
-        .who-chip-list li a i { font-size: .9rem; }
+
+        .who-chip-list li a i {
+            font-size: .9rem;
+        }
+
         .who-chip-list li a:hover {
             background: #532A1A;
             color: #fff !important;
             border-color: #532A1A;
             transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(83,42,26,.25);
+            box-shadow: 0 8px 18px rgba(83, 42, 26, .25);
         }
 
         .who-cta-line {
@@ -376,6 +438,7 @@ $page_breadcrumbs = [
             gap: .8rem;
             margin-top: .25rem;
         }
+
         .who-btn {
             display: inline-flex;
             align-items: center;
@@ -387,28 +450,38 @@ $page_breadcrumbs = [
             letter-spacing: .04em;
             text-transform: uppercase;
             text-decoration: none !important;
-            transition: transform .35s cubic-bezier(.2,.7,.2,1), background .35s ease, color .35s ease, box-shadow .35s ease, border-color .35s ease;
+            transition: transform .35s cubic-bezier(.2, .7, .2, 1), background .35s ease, color .35s ease, box-shadow .35s ease, border-color .35s ease;
             cursor: pointer;
             border: 2px solid transparent;
         }
-        .who-btn i { transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+
+        .who-btn i {
+            transition: transform .35s cubic-bezier(.2, .7, .2, 1);
+        }
+
         .who-btn-primary {
             background: #532A1A;
             color: #fff !important;
-            box-shadow: 0 10px 22px rgba(83,42,26,.25);
+            box-shadow: 0 10px 22px rgba(83, 42, 26, .25);
         }
+
         .who-btn-primary:hover {
             background: #3a1d12;
             transform: translateY(-3px);
-            box-shadow: 0 16px 30px rgba(83,42,26,.32);
+            box-shadow: 0 16px 30px rgba(83, 42, 26, .32);
             color: #fff !important;
         }
-        .who-btn-primary:hover i { transform: translateX(4px); }
+
+        .who-btn-primary:hover i {
+            transform: translateX(4px);
+        }
+
         .who-btn-ghost {
             background: transparent;
             border-color: #532A1A;
             color: #532A1A !important;
         }
+
         .who-btn-ghost:hover {
             background: #532A1A;
             color: #fff !important;
@@ -420,6 +493,7 @@ $page_breadcrumbs = [
             display: block;
             padding: 0 .5rem;
         }
+
         .who-img-stage {
             position: relative;
             width: 100%;
@@ -429,6 +503,7 @@ $page_breadcrumbs = [
             padding-right: 1.5rem;
             padding-bottom: 1.5rem;
         }
+
         .who-section-2 .who-img-stage {
             padding-right: 0;
             padding-left: 1.5rem;
@@ -452,13 +527,15 @@ $page_breadcrumbs = [
             z-index: 3;
             opacity: 0;
             transform: translate(-12px, 6px);
-            transition: opacity .8s ease .15s, transform .8s cubic-bezier(.2,.7,.2,1) .15s;
+            transition: opacity .8s ease .15s, transform .8s cubic-bezier(.2, .7, .2, 1) .15s;
         }
+
         .who-section-2 .who-stage-number {
             left: auto;
             right: -1rem;
             transform: translate(12px, 6px);
         }
+
         [data-reveal].is-revealed .who-stage-number {
             opacity: 1;
             transform: translate(0, 0);
@@ -483,15 +560,19 @@ $page_breadcrumbs = [
             background: linear-gradient(135deg, #532A1A 0%, #7a4128 100%);
             border-radius: 8px;
             z-index: 0;
-            transition: transform .55s cubic-bezier(.2,.7,.2,1);
+            transition: transform .55s cubic-bezier(.2, .7, .2, 1);
         }
-        .who-img-wrap:hover .who-img-accent { transform: translate(4px, 4px); }
+
+        .who-img-wrap:hover .who-img-accent {
+            transform: translate(4px, 4px);
+        }
 
         /* Alt-side variant for section 2 (image on right) */
         .who-section-2 .who-img-accent {
             left: -18px;
             right: 18px;
         }
+
         .who-section-2 .who-img-wrap:hover .who-img-accent {
             transform: translate(-4px, 4px);
         }
@@ -503,9 +584,10 @@ $page_breadcrumbs = [
             width: 100%;
             overflow: hidden;
             border-radius: 8px;
-            box-shadow: 0 18px 38px rgba(0,0,0,.18);
+            box-shadow: 0 18px 38px rgba(0, 0, 0, .18);
             background: #111;
         }
+
         .who-section .who-img-inner img {
             display: block;
             width: 100%;
@@ -513,9 +595,10 @@ $page_breadcrumbs = [
             max-width: 100%;
             padding: 0;
             transform: scale(1);
-            transition: transform .8s cubic-bezier(.2,.7,.2,1), filter .6s ease;
+            transition: transform .8s cubic-bezier(.2, .7, .2, 1), filter .6s ease;
             filter: saturate(1) brightness(.97);
         }
+
         .who-img-wrap:hover .who-img-inner img {
             transform: scale(1.06);
             filter: saturate(1.1) brightness(1);
@@ -524,11 +607,12 @@ $page_breadcrumbs = [
         /* Floating badge on image */
         .who-img-badge {
             position: absolute;
-            top: 16px; left: 16px;
+            top: 16px;
+            left: 16px;
             display: inline-flex;
             align-items: center;
             gap: .4rem;
-            background: rgba(255,255,255,.95);
+            background: rgba(255, 255, 255, .95);
             color: #532A1A;
             font-size: .76rem;
             font-weight: 700;
@@ -536,18 +620,23 @@ $page_breadcrumbs = [
             text-transform: uppercase;
             padding: .5rem .9rem;
             border-radius: 999px;
-            box-shadow: 0 6px 18px rgba(0,0,0,.15);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .15);
             z-index: 2;
             backdrop-filter: blur(4px);
             transform: translateY(-6px);
             opacity: 0;
-            transition: transform .55s cubic-bezier(.2,.7,.2,1) .35s, opacity .55s ease .35s;
+            transition: transform .55s cubic-bezier(.2, .7, .2, 1) .35s, opacity .55s ease .35s;
         }
-        .who-img-badge i { color: #532A1A; }
+
+        .who-img-badge i {
+            color: #532A1A;
+        }
+
         [data-reveal].is-revealed .who-img-badge {
             transform: translateY(0);
             opacity: 1;
         }
+
         .who-section-2 .who-img-badge {
             left: auto;
             right: 16px;
@@ -556,12 +645,22 @@ $page_breadcrumbs = [
         /* On-scroll reveal: base + revealed states */
         [data-reveal] {
             opacity: 0;
-            transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1);
+            transition: opacity .9s ease, transform .9s cubic-bezier(.2, .7, .2, 1);
             will-change: opacity, transform;
         }
-        [data-reveal="left"]  { transform: translateX(-32px); }
-        [data-reveal="right"] { transform: translateX(32px); }
-        [data-reveal="up"]    { transform: translateY(32px); }
+
+        [data-reveal="left"] {
+            transform: translateX(-32px);
+        }
+
+        [data-reveal="right"] {
+            transform: translateX(32px);
+        }
+
+        [data-reveal="up"] {
+            transform: translateY(32px);
+        }
+
         [data-reveal].is-revealed {
             opacity: 1;
             transform: translate(0, 0);
@@ -569,46 +668,106 @@ $page_breadcrumbs = [
 
         /* Responsive */
         @media (max-width: 991px) {
-            .who-section { padding: 4rem 0 !important; }
-            .who-section .who-1 h2 { font-size: 1.6rem; }
+            .who-section {
+                padding: 4rem 0 !important;
+            }
+
+            .who-section .who-1 h2 {
+                font-size: 1.6rem;
+            }
+
             .who-img-stage {
                 max-width: 520px;
                 padding-top: 2rem;
                 padding-right: 1.2rem;
                 padding-bottom: 1.2rem;
             }
+
             .who-section-2 .who-img-stage {
                 padding-right: 0;
                 padding-left: 1.2rem;
             }
-            .who-stage-number { font-size: 8rem; top: -1rem; }
+
+            .who-stage-number {
+                font-size: 8rem;
+                top: -1rem;
+            }
+
             /* Image first on mobile in section 2 for better flow */
-            .who-section-2 .row { flex-direction: column-reverse; }
-            .who-section-2 .who { margin-bottom: 1rem; }
+            .who-section-2 .row {
+                flex-direction: column-reverse;
+            }
+
+            .who-section-2 .who {
+                margin-bottom: 1rem;
+            }
         }
+
         @media (max-width: 575px) {
-            .who-section { padding: 3rem 0 !important; }
-            .who-section .who-1 h2 { font-size: 1.4rem; }
+            .who-section {
+                padding: 3rem 0 !important;
+            }
+
+            .who-section .who-1 h2 {
+                font-size: 1.4rem;
+            }
+
             .who-img-stage {
                 padding-top: 1.5rem;
                 padding-right: .9rem;
                 padding-bottom: .9rem;
             }
+
             .who-section-2 .who-img-stage {
                 padding-right: 0;
                 padding-left: .9rem;
             }
-            .who-stage-number { font-size: 6rem; top: -.6rem; left: -.3rem; -webkit-text-stroke-width: 1.5px; }
-            .who-section-2 .who-stage-number { right: -.3rem; left: auto; }
-            .who-img-accent { top: 12px; left: 12px; right: -12px; bottom: -12px; }
-            .who-section-2 .who-img-accent { left: -12px; right: 12px; }
-            .who-chip-list li a { font-size: .82rem; padding: .42rem .75rem; }
-            .who-btn { padding: .75rem 1.2rem; font-size: .85rem; flex: 1 1 auto; justify-content: center; }
-            .who-img-badge { font-size: .68rem; padding: .4rem .7rem; }
+
+            .who-stage-number {
+                font-size: 6rem;
+                top: -.6rem;
+                left: -.3rem;
+                -webkit-text-stroke-width: 1.5px;
+            }
+
+            .who-section-2 .who-stage-number {
+                right: -.3rem;
+                left: auto;
+            }
+
+            .who-img-accent {
+                top: 12px;
+                left: 12px;
+                right: -12px;
+                bottom: -12px;
+            }
+
+            .who-section-2 .who-img-accent {
+                left: -12px;
+                right: 12px;
+            }
+
+            .who-chip-list li a {
+                font-size: .82rem;
+                padding: .42rem .75rem;
+            }
+
+            .who-btn {
+                padding: .75rem 1.2rem;
+                font-size: .85rem;
+                flex: 1 1 auto;
+                justify-content: center;
+            }
+
+            .who-img-badge {
+                font-size: .68rem;
+                padding: .4rem .7rem;
+            }
         }
 
         /* Respect reduced motion */
         @media (prefers-reduced-motion: reduce) {
+
             [data-reveal],
             .who-label-line,
             .who-section .who-1 h2 span::after,
@@ -621,11 +780,29 @@ $page_breadcrumbs = [
             .who-chip-list li a {
                 transition: none !important;
             }
-            [data-reveal] { opacity: 1; transform: none; }
-            .who-label-line { transform: scaleX(1); }
-            .who-section .who-1 h2 span::after { width: 100%; }
-            .who-img-badge { opacity: 1; transform: none; }
-            .who-stage-number { opacity: 1; transform: none; }
+
+            [data-reveal] {
+                opacity: 1;
+                transform: none;
+            }
+
+            .who-label-line {
+                transform: scaleX(1);
+            }
+
+            .who-section .who-1 h2 span::after {
+                width: 100%;
+            }
+
+            .who-img-badge {
+                opacity: 1;
+                transform: none;
+            }
+
+            .who-stage-number {
+                opacity: 1;
+                transform: none;
+            }
         }
     </style>
 </head>
@@ -668,7 +845,8 @@ $page_breadcrumbs = [
                             <figure class="who-img-wrap">
                                 <span class="who-img-accent" aria-hidden="true"></span>
                                 <div class="who-img-inner">
-                                    <img src="images/about/bosk-furniture-shoppe.jpg" alt="BOSK Furniture Shoppe showroom interior in Bhavnagar, Gujarat showcasing customized modular furniture displays">
+                                    <img src="images/about/bosk-furniture-shoppe.jpg"
+                                        alt="BOSK Furniture Shoppe showroom interior in Bhavnagar, Gujarat showcasing customized modular furniture displays">
                                 </div>
                                 <span class="who-img-badge">
                                     <i class="fa fa-star" aria-hidden="true"></i> Since 2019
@@ -678,16 +856,18 @@ $page_breadcrumbs = [
                     </div>
                     <div class="col-md-6 who-1" data-reveal="right">
                         <span class="who-label"><span class="who-label-line"></span>Our Story</span>
-                        <h2 class="text-left mb-4">Our Story: From Timber to <span>Customized Modular Furniture</span></h2>
+                        <h2 class="text-left mb-4">Our Story: From Timber to <span>Customized Modular Furniture</span>
+                        </h2>
                         <div class="pftext">
                             <p>BOSK is the furniture brand of <b>Bosk Infracon Private Limited</b>, founded in 2019
                                 with a single, clear intention: to give Indian homes <b>customized, quality modular
-                                furniture with a difference</b>. From our manufacturing base in Bhavnagar, Gujarat,
+                                    furniture with a difference</b>. From our manufacturing base in Bhavnagar, Gujarat,
                                 we craft made-to-order wardrobes, beds, TV units, sofas and
                                 <a href="shop.php?astringdata2=Modular Kitchens">modular kitchens</a> on high-end
                                 imported machines &mdash; and deliver them, fully guaranteed, to customers across
                                 India. Every piece is built around <i>your</i> space, taste and budget, not pulled
-                                off a ready-made shelf.</p>
+                                off a ready-made shelf.
+                            </p>
 
                             <div class="who-people">
                                 <div class="who-person">
@@ -860,7 +1040,8 @@ $page_breadcrumbs = [
 
                     <div class="col-md-6 who-1" data-reveal="left">
                         <span class="who-label"><span class="who-label-line"></span>Why BOSK</span>
-                        <h2 class="text-left mb-4">Customized Modular Furniture vs. <span>Ready-Made &amp; Imported</span></h2>
+                        <h2 class="text-left mb-4">Customized Modular Furniture vs. <span>Ready-Made &amp;
+                                Imported</span></h2>
                         <div class="pftext">
                             <p>BOSK began with a simple question: why are people choosing ready-made or imported
                                 furniture? The honest answer was usually time-saving and convenience, not quality.
@@ -869,7 +1050,7 @@ $page_breadcrumbs = [
                                 and fail when exposed to moisture and daily use, with little after-sales support.</p>
 
                             <p>We believed there was a better way: <b>guaranteed, customized modular furniture, made
-                                in India</b>, that keeps the looks and the convenience but adds durability,
+                                    in India</b>, that keeps the looks and the convenience but adds durability,
                                 personalisation and a warranty. That belief is the reason Bosk Infracon Private
                                 Limited exists &mdash; to craft modular furniture on imported machines and put a
                                 satisfied smile on every user's face.</p>
@@ -878,11 +1059,16 @@ $page_breadcrumbs = [
                                 furniture for the home, fully customizable in size, layout, finish and hardware:</p>
 
                             <ul class="who-chip-list">
-                                <li><a href="shop.php?astringdata2=LUSCIOUS WARDROBES"><i class="fa fa-archive" aria-hidden="true"></i> Luscious Wardrobes</a></li>
-                                <li><a href="shop.php?astringdata2=Comfy Beds With Full Storage"><i class="fa fa-bed" aria-hidden="true"></i> Beds with Storage</a></li>
-                                <li><a href="shop.php?astringdata2=Entertaining TV Units"><i class="fa fa-tv" aria-hidden="true"></i> TV Units</a></li>
-                                <li><a href="shop.php?astringdata2=Modular Kitchens"><i class="fa fa-cutlery" aria-hidden="true"></i> Modular Kitchens</a></li>
-                                <li><a href="shop.php"><i class="fa fa-couch" aria-hidden="true"></i> Modular Sofas</a></li>
+                                <li><a href="shop.php?astringdata2=LUSCIOUS WARDROBES"><i class="fa fa-archive"
+                                            aria-hidden="true"></i> Luscious Wardrobes</a></li>
+                                <li><a href="shop.php?astringdata2=Comfy Beds With Full Storage"><i class="fa fa-bed"
+                                            aria-hidden="true"></i> Beds with Storage</a></li>
+                                <li><a href="shop.php?astringdata2=Entertaining TV Units"><i class="fa fa-tv"
+                                            aria-hidden="true"></i> TV Units</a></li>
+                                <li><a href="shop.php?astringdata2=Modular Kitchens"><i class="fa fa-cutlery"
+                                            aria-hidden="true"></i> Modular Kitchens</a></li>
+                                <li><a href="shop.php"><i class="fa fa-couch" aria-hidden="true"></i> Modular Sofas</a>
+                                </li>
                             </ul>
 
                             <p class="who-cta-line">Ready to replace ready-made compromises with furniture designed
@@ -905,7 +1091,8 @@ $page_breadcrumbs = [
                             <figure class="who-img-wrap who-img-wrap-alt">
                                 <span class="who-img-accent" aria-hidden="true"></span>
                                 <div class="who-img-inner">
-                                    <img src="images/bg/1.jpg" alt="Customized modular furniture crafted in marine-grade 710 plywood at the BOSK factory">
+                                    <img src="images/bg/1.jpg"
+                                        alt="Customized modular furniture crafted in marine-grade 710 plywood at the BOSK factory">
                                 </div>
                                 <span class="who-img-badge">
                                     <i class="fa fa-map-marker" aria-hidden="true"></i> Made in India

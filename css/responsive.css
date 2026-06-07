@@ -1,0 +1,60 @@
+/* ==========================================================================
+   Bosk Furniture — Responsive Hardening Layer   (css/responsive.css)
+   --------------------------------------------------------------------------
+   WHAT THIS IS
+   A thin, defensive safety-net that guarantees every page stays clean on
+   phones and tablets — even with dynamic content such as long product names,
+   large admin-uploaded images, long e-mail addresses or many categories.
+
+   SAFETY MODEL (important)
+   • EVERY rule below lives inside a `max-width: 991.98px` media query, so the
+     desktop / laptop layout (>= 992px) is left 100% byte-for-byte UNCHANGED.
+   • Image rules deliberately use NO `!important`, so the header logo and any
+     element with its own sizing still win — this only catches images that
+     would otherwise spill out of their box.
+   • It is loaded LAST (from design/footer.php, at the end of <body>) so it
+     layers on top of the theme without fighting it.
+
+   This file only adds guard-rails. It does not restyle, recolour or relayout
+   anything that already fits.
+   ========================================================================== */
+
+@media (max-width: 991.98px) {
+
+  /* ---- 1. Kill any accidental sideways scroll -------------------------- */
+  html,
+  body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  /* ---- 2. Images & video: always contained, never distorted ----------- */
+  /* No !important: elements that set their own width (logo, icons) keep it. */
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* ---- 3. Embeds (Google Maps, video iframes, etc.) stay in-bounds ----- */
+  iframe,
+  embed,
+  object {
+    max-width: 100%;
+  }
+
+  /* ---- 4. Long unbroken strings wrap instead of pushing the page wide -- */
+  body {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* ---- 5. Tables never force the page wider than the screen ----------- */
+  table {
+    max-width: 100%;
+  }
+}

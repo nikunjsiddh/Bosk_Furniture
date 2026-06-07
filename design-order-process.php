@@ -91,6 +91,7 @@ body {
 @media screen and (max-width: 767px) {
     .accordion {
         padding: 0 16px;
+        min-width: 0;
     }
     .accordion h1 {
         font-size: 22px;
