@@ -66,7 +66,7 @@ $page_breadcrumbs = [
     ['name' => $_seo_pname,  'url' => '/product?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '')]
 ];
 if (!empty($seo_img1)) {
-    $og_image = 'https://www.boskfurniture.com/Admin/product_image/' . $seo_img1;
+    $og_image = 'https://www.boskfurniture.com/admin/product_image/' . $seo_img1;
 }
 
 // Build Product JSON-LD schema
@@ -77,7 +77,7 @@ $page_schema = '
   "@context": "https://schema.org",
   "@type": "Product",
   "name": ' . json_encode($_seo_pname) . ',
-  "image": ' . json_encode(!empty($seo_img1) ? 'https://www.boskfurniture.com/Admin/product_image/' . $seo_img1 : 'https://www.boskfurniture.com/images/og-default.jpg') . ',
+  "image": ' . json_encode(!empty($seo_img1) ? 'https://www.boskfurniture.com/admin/product_image/' . $seo_img1 : 'https://www.boskfurniture.com/images/og-default.jpg') . ',
   "description": ' . json_encode($_seo_short) . ',
   "sku": ' . json_encode(isset($seo_sku) ? $seo_sku : '') . ',
   "brand": {"@type":"Brand","name":"Bosk Furniture"},
@@ -472,7 +472,7 @@ if (isset($_GET['astringdata'])) {
                                                 <div class="img-frame">
                                                     <div class="img-showcase">
                                                         <?php foreach ($gallery as $g) { ?>
-                                                            <img src="Admin/product_image/<?php echo $g; ?>" alt="<?php echo $alt_txt; ?>">
+                                                            <img src="admin/product_image/<?php echo $g; ?>" alt="<?php echo $alt_txt; ?>">
                                                         <?php } ?>
                                                     </div>
                                                 </div>
@@ -482,7 +482,7 @@ if (isset($_GET['astringdata'])) {
                                                 <?php foreach ($gallery as $i => $g) { ?>
                                                     <div class="img-item<?php echo $i === 0 ? ' active' : ''; ?>">
                                                         <a href="#" data-id="<?php echo $i + 1; ?>">
-                                                            <img src="Admin/product_image/<?php echo $g; ?>" alt="<?php echo $alt_txt; ?>">
+                                                            <img src="admin/product_image/<?php echo $g; ?>" alt="<?php echo $alt_txt; ?>">
                                                         </a>
                                                     </div>
                                                 <?php } ?>
@@ -615,7 +615,7 @@ if (isset($_GET['astringdata'])) {
                                     $tags2=$row2['tags'];
                                 ?>
                                 <a class="bosk-seller" href="product.php?astringdata=<?php echo $row2['id']; ?>">
-                                    <span class="thumb"><img src="Admin/product_image/<?php echo $img12;?>" alt="<?php echo htmlspecialchars(isset($row2['pname']) ? $row2['pname'] : 'Related product', ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture" loading="lazy" decoding="async"></span>
+                                    <span class="thumb"><img src="admin/product_image/<?php echo $img12;?>" alt="<?php echo htmlspecialchars(isset($row2['pname']) ? $row2['pname'] : 'Related product', ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture" loading="lazy" decoding="async"></span>
                                     <span class="meta">
                                         <h6><?php echo $pname2;?></h6>
                                         <p class="pr"><i class="fa fa-inr" aria-hidden="true"></i><?php echo $new_price2;?></p>

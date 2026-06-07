@@ -843,7 +843,7 @@ hr {
                                         <i class="fa fa-heart-o" aria-hidden="true"></i>
                                     </a>
                                     <a href="product.php?astringdata=<?php echo $encode_product_id; ?>">
-                                       <img src="Admin/product_image/<?php echo $img1;?>" alt="<?php echo htmlspecialchars($pname); ?>">
+                                       <img src="admin/product_image/<?php echo $img1;?>" alt="<?php echo htmlspecialchars($pname); ?>">
                                     </a>
                                     <a href="product.php?astringdata=<?php echo $encode_product_id; ?>" class="product-quickview">Quick View</a>
                                  </div>

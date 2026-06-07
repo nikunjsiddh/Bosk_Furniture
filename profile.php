@@ -697,10 +697,23 @@ include_once"connect.php";
  else{
      ?>
         <center>
-            <p style="font-size:1.6rem;" class="mt-5 mb-1">Hello User,Please Login / Register First To View Profile..
-            </p><br /><button class=" mb-5" type="submit" class="btn btn-primary" style="background-color:#532A1A;"><a
-                    style="color:white;" href="login.php">Login / Register</a></button>
+            <div class="bf-guest">
+                <div class="bf-guest-icon"><i class="fa fa-user-o" aria-hidden="true"></i></div>
+                <h3 class="bf-guest-title">Login to View Your Profile</h3>
+                <p class="bf-guest-text">Hello! Please login or create your Bosk Furniture account to view and manage your profile, orders &amp; details.</p>
+                <a href="login.php" class="bf-guest-btn"><i class="fa fa-sign-in" aria-hidden="true"></i> Login / Register</a>
+            </div>
         </center>
+        <style>
+            .bf-guest{max-width:480px;margin:0 auto;padding:42px 18px 70px;}
+            .bf-guest-icon{width:90px;height:90px;border-radius:50%;margin:0 auto 22px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f3e9e2,#e7d5c7);color:#532A1A;font-size:38px;box-shadow:0 10px 26px rgba(83,42,26,.18);}
+            .bf-guest-title{font-size:23px;font-weight:700;color:#2b1d14;margin:0 0 10px;font-family:'Montserrat',sans-serif;}
+            .bf-guest-text{color:#8a7d75;font-size:14.5px;line-height:1.65;margin:0 0 26px;}
+            .bf-guest-btn{display:inline-flex;align-items:center;gap:10px;padding:15px 42px;border-radius:50px;background:linear-gradient(135deg,#532A1A 0%,#7a4128 55%,#b8763f 130%);color:#fff !important;font-weight:600;font-size:15px;letter-spacing:.3px;text-decoration:none;box-shadow:0 12px 26px rgba(83,42,26,.30);transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;}
+            .bf-guest-btn:hover{transform:translateY(-2px);box-shadow:0 18px 34px rgba(83,42,26,.40);filter:brightness(1.06);color:#fff !important;}
+            .bf-guest-btn:active{transform:translateY(0);}
+            @media(max-width:480px){.bf-guest{padding:30px 16px 54px;}.bf-guest-title{font-size:19px;}.bf-guest-btn{padding:13px 32px;font-size:14.5px;}.bf-guest-icon{width:78px;height:78px;font-size:32px;}}
+        </style>
         <?php
  }
         ?>

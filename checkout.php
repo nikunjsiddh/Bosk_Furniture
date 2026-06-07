@@ -519,7 +519,7 @@ button.disabled {
 									    ?>
 										<tr class="cart_item">
 										    <td>
-												<img class="img1" src="Admin/product_image/<?php echo $img1;?>">
+												<img class="img1" src="admin/product_image/<?php echo $img1;?>">
 											</td>
 											<td class="product-name">
 												<?php echo $pname;?> <strong class="product-quantity"> x <?php echo $quantity;?></strong>

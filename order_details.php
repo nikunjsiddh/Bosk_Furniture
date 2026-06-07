@@ -481,7 +481,7 @@ $page_robots      = 'noindex, nofollow';
             ?>
             <div class="row no-gutters mt-3">
               <div class="col-3 col-md-1">
-                <img class="img-fluid pr-3" src="Admin/product_image/<?php echo $img1;?>" alt="Bosk Furniture order item" loading="lazy" decoding="async">
+                <img class="img-fluid pr-3" src="admin/product_image/<?php echo $img1;?>" alt="Bosk Furniture order item" loading="lazy" decoding="async">
               </div>
               <div class="col-9 col-md-3 pr-0 pr-md-3">
                   

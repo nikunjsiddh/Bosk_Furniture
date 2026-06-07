@@ -808,7 +808,7 @@ $page_schema = '
         // ---- Derived data for the article UI ----
         $word_count   = str_word_count(strip_tags($blog_description));
         $reading_min  = max(1, (int) ceil($word_count / 200));
-        $hero_img     = $img ? 'Admin/blog_image/' . $img : 'images/bg/about-us.jpg';
+        $hero_img     = $img ? 'admin/blog_image/' . $img : 'images/bg/about-us.jpg';
         $share_url    = 'https://www.boskfurniture.com/details?astringdata=' . urlencode((string)$blogid);
         $share_title  = $blog_title;
         ?>
@@ -858,7 +858,7 @@ $page_schema = '
                             <?php if (!empty($img)) : ?>
                             <figure class="article-feature-img">
                                 <div class="article-feature-frame">
-                                    <img src="Admin/blog_image/<?php echo htmlspecialchars($img, ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($blog_title, ENT_QUOTES, 'UTF-8'); ?>" loading="lazy">
+                                    <img src="admin/blog_image/<?php echo htmlspecialchars($img, ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($blog_title, ENT_QUOTES, 'UTF-8'); ?>" loading="lazy">
                                 </div>
                                 <figcaption class="article-feature-caption">
                                     <i class="fa fa-camera" aria-hidden="true"></i>
@@ -952,7 +952,7 @@ $page_schema = '
                                     <li class="recent-item<?php echo $isActive ? ' is-active' : ''; ?>">
                                         <a class="recent-link" href="details.php?astringdata=<?php echo (int)$rid; ?>">
                                             <span class="recent-thumb">
-                                                <img src="Admin/blog_image/<?php echo htmlspecialchars($rimg, ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($rtitle, ENT_QUOTES, 'UTF-8'); ?>" loading="lazy">
+                                                <img src="admin/blog_image/<?php echo htmlspecialchars($rimg, ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($rtitle, ENT_QUOTES, 'UTF-8'); ?>" loading="lazy">
                                             </span>
                                             <span class="recent-meta">
                                                 <h6><?php echo htmlspecialchars($rtitle, ENT_QUOTES, 'UTF-8'); ?></h6>

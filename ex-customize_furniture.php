@@ -114,7 +114,7 @@ $page_breadcrumbs = [
                         ?>
                         <div class="inner-box">
                             <a href="project-details.php?astringdata=<?php echo $encode_project_id; ?>" class="recent-16" data-aos="fade-up">
-                                <div class="recent-img16 img-fluid img-center" style="background-image: url(Admin/project_image/<?php echo $img1;?>)">
+                                <div class="recent-img16 img-fluid img-center" style="background-image: url(admin/project_image/<?php echo $img1;?>)">
                                 
                                 </div>
                                 <div class="recent-content"></div>

@@ -77,7 +77,7 @@ if (isset($con) && $con) {
     if ($q) {
         while ($r = mysqli_fetch_assoc($q)) {
             $loc = $site_url . '/product?astringdata=' . urlencode(base64_encode($r['id']));
-            $img = !empty($r['img1']) ? $site_url . '/Admin/product_image/' . $r['img1'] : null;
+            $img = !empty($r['img1']) ? $site_url . '/admin/product_image/' . $r['img1'] : null;
             add_url($xml, $loc, '0.9', 'weekly', $today, $img, $r['pname']);
         }
     }
@@ -96,7 +96,7 @@ if (isset($con) && $con) {
     if ($q3) {
         while ($r = mysqli_fetch_assoc($q3)) {
             $loc = $site_url . '/project-details?astringdata=' . urlencode(base64_encode($r['id']));
-            $img = !empty($r['img1']) ? $site_url . '/Admin/project_image/' . $r['img1'] : null;
+            $img = !empty($r['img1']) ? $site_url . '/admin/project_image/' . $r['img1'] : null;
             add_url($xml, $loc, '0.7', 'monthly', $today, $img, $r['project_name']);
         }
     }
@@ -106,7 +106,7 @@ if (isset($con) && $con) {
     if ($q4) {
         while ($r = mysqli_fetch_assoc($q4)) {
             $loc = $site_url . '/details?astringdata=' . urlencode(base64_encode($r['id']));
-            $img = !empty($r['img']) ? $site_url . '/Admin/blog_image/' . $r['img'] : null;
+            $img = !empty($r['img']) ? $site_url . '/admin/blog_image/' . $r['img'] : null;
             add_url($xml, $loc, '0.7', 'monthly', $today, $img, $r['blog_title']);
         }
     }

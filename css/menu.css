@@ -680,6 +680,21 @@ element.style {
     opacity: 1;
     visibility: visible;
 }
+
+/* === Fix: the rightmost top-level nav item ("Account") has a 365px-wide
+   submenu that opened left:0 (rightwards) and jutted past the viewport's right
+   edge — even while hidden (opacity:0) it stayed in layout and caused a
+   desktop horizontal scrollbar on every page. Open that submenu leftwards
+   (right-aligned) so it stays inside the viewport. No visual change otherwise. === */
+#navigation ul#responsive > li:last-child > ul {
+    left: auto;
+    right: 0;
+}
+#navigation ul#responsive > li:last-child > ul ul {
+    left: auto;
+    right: 100%;
+    margin: 0 10px 0 0;
+}
 /* Indicator Arrow */
 #navigation ul li a:after,
 #navigation ul ul li a:after {
@@ -1459,6 +1474,58 @@ html.mm-opening .mm-menu.mm-opened~.mm-slideout {
         -webkit-transform: translate3d(440px, 0, 0);
         transform: translate3d(440px, 0, 0)
     }
+}
+
+/* === Fix: the mobile off-canvas menu was only 80% wide, so when open the
+   pushed page showed a thin sliver with the site logo cut off at the screen
+   edge (looked broken). Make the menu full-width and slide the page fully off,
+   so opening the menu shows a clean full menu and never a half-cut logo. === */
+@media (max-width: 992px) {
+    .mm-menu.mm-offcanvas { width: 100% !important; max-width: 100% !important; min-width: 0 !important; }
+    html.mm-opening .mm-menu.mm-opened ~ .mm-slideout {
+        -webkit-transform: translate3d(100%, 0, 0) !important;
+        transform: translate3d(100%, 0, 0) !important;
+    }
+
+    /* Branded root menu header: a taller white bar showing the Bosk logo,
+       with a close (X) button on the right (needed since the menu is full-width). */
+    .mm-menu .mm-navbar.mm-brand-navbar {
+        background: #ffffff;
+        border-bottom: 1px solid rgba(0,0,0,.08);
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .mm-menu .mm-panel.mm-brand-panel { padding-top: 72px !important; }
+    .mm-menu .mm-navbar.mm-brand-navbar .mm-title {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+    .mm-menu .mm-navbar.mm-brand-navbar .mm-brand-logo {
+        height: 52px;
+        width: auto;
+        max-width: 180px;
+    }
+    .mm-menu .mm-navbar.mm-brand-navbar .mm-brand-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 56px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        line-height: 1;
+        color: #532A1A;
+        text-decoration: none;
+        z-index: 2;
+    }
+    .mm-menu .mm-navbar.mm-brand-navbar .mm-brand-close:hover { color: #b8763f; }
 }
 .mm-sronly {
     border: 0!important;

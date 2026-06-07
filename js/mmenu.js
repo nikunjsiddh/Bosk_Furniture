@@ -30,6 +30,22 @@ $(document).ready(function(){
 				var mmenuAPI = $(".mmenu-init").data( "mmenu" );
 				var $icon = $(".hamburger");
 
+				// Brand the ROOT menu header with the Bosk logo and add a
+				// close (X) button. The menu is full-width on mobile, so a
+				// visible close control is required. Scope to the root navbar
+				// (the panel whose navbar has no "prev" back button) so submenu
+				// titles like "Account" are left untouched.
+				var $rootNav = $(".mmenu-init .mm-navbar").filter(function() {
+					return $(this).find(".mm-prev").length === 0;
+				}).first();
+				$rootNav.addClass("mm-brand-navbar");
+				$rootNav.closest(".mm-panel").addClass("mm-brand-panel");
+				$rootNav.find(".mm-title")
+					.html('<img class="mm-brand-logo" src="images/logo-black.png" alt="Bosk Furniture">');
+				$('<a class="mm-brand-close" href="#" aria-label="Close menu">&#10005;</a>')
+					.appendTo($rootNav)
+					.on("click", function(e) { e.preventDefault(); mmenuAPI.close(); });
+
 				$(".mmenu-trigger").click(function() {
 					mmenuAPI.open();
 				});

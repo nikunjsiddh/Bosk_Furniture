@@ -190,7 +190,7 @@ $page_breadcrumbs = [
                     <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up">
                         <article class="blog-card">
                             <a href="details.php?astringdata=<?php echo $id; ?>" class="blog-card-img">
-                                <img src="Admin/blog_image/<?php echo $img;?>" alt="<?php echo htmlspecialchars($blog_title); ?>">
+                                <img src="admin/blog_image/<?php echo $img;?>" alt="<?php echo htmlspecialchars($blog_title); ?>">
                                 <span class="blog-date-badge"><?php echo ($blog_date ? date('Y-m-d', strtotime($blog_date)) : '');?></span>
                             </a>
                             <div class="blog-card-body">

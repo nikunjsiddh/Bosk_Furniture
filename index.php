@@ -841,7 +841,7 @@ $page_breadcrumbs = [
                             <a href="project-details.php?astringdata=<?php echo $encode_project_id; ?>"
                                 class="project-card" data-aos="fade-up">
                                 <div class="project-card-img"
-                                    style="background-image: url(Admin/project_image/<?php echo $img1;?>)"></div>
+                                    style="background-image: url(admin/project_image/<?php echo $img1;?>)"></div>
                                 <span class="project-tag">Project</span>
                                 <div class="project-card-overlay"></div>
                                 <div class="project-card-content">
@@ -969,7 +969,7 @@ $page_breadcrumbs = [
                             <div class=service-box>
 
                                 <div class="clearfix service-inner-box">
-                                    <div class=service-icon-box><img src="Admin/category_image/<?php echo $img;?>"
+                                    <div class=service-icon-box><img src="admin/category_image/<?php echo $img;?>"
                                             alt="<?php echo htmlspecialchars($name, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture Category" loading="lazy" decoding="async"></div>
                                     <div class="service-content-box mt-1">
                                         <h3><a href="shop.php?astringdata2=<?php echo $row2['name'];?>"><b>
@@ -1110,7 +1110,7 @@ $page_breadcrumbs = [
         <!--<div class="item col-lg-3 col-sm-6 col-xs-12 people landscapes last-item two pt">-->
         <!--    <div class="single-portfolio">-->
         <!--        <div class="portfolio-img">-->
-        <!--            <a href="product.php?astringdata={encode_id}"><img src="Admin/product_image/{img1}" alt="" /></a>-->
+        <!--            <a href="product.php?astringdata={encode_id}"><img src="admin/product_image/{img1}" alt="" /></a>-->
 
         <!--        </div>-->
         <!--    </div>-->
@@ -1277,7 +1277,7 @@ $page_breadcrumbs = [
                         <div class="col-xl-3 col-lg-6 col-md-6 col-12 mt-5" data-aos="fade-up">
                             <article class="blog-card">
                                 <a href="details.php?astringdata=<?php echo $encodeblog_id; ?>" class="blog-card-img">
-                                    <img src="Admin/blog_image/<?php echo $img;?>"
+                                    <img src="admin/blog_image/<?php echo $img;?>"
                                         alt="<?php echo htmlspecialchars($blog_title); ?>">
                                     <span class="blog-date-badge">
                                         <?php echo ($blog_date ? date('Y-m-d', strtotime($blog_date)) : '');?>
