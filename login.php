@@ -275,17 +275,7 @@ $page_robots      = 'noindex, follow';
       
 
         <!-- START FOOTER -->
-        <footer class="first-footer mt-5">
-            
-            <div class="second-footer bg-white-3">
-                <div class="container">
-                    <p>2023 © Copyright - All Rights Reserved.</p>
-                    <p style="color:black !important;">Powered <i class="fa fa-heart" aria-hidden="true"></i> By <a href="https://softwingz.com/" style="color:black !important;">SOFTWINGZ INFOTECH</a></p>
-                </div>
-            </div>
-        </footer>
-
-       
+        <?php include_once"design/footer.php";?>
         <!-- END FOOTER -->
 
         <!-- START PRELOADER -->

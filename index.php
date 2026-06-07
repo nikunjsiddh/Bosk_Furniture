@@ -1328,7 +1328,7 @@ $page_breadcrumbs = [
         <!-- END SECTION PARTNERS -->
 
         <!-- START FOOTER -->
-        <?php include_once"design/footer1.php";?>
+        <?php include_once"design/footer.php";?>
 
         <a data-scroll href="#wrapper" class="go-up"><i class="fa fa-angle-double-up" aria-hidden="true"></i></a>
         <!-- END FOOTER -->
