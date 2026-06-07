@@ -24,6 +24,16 @@ if (isset($_GET['astringdata'])) {
         $decoded_id = ($maybe !== false && ctype_digit($maybe)) ? (int) $maybe : 0;
     }
 
+    // Scheduled publishing: a product is only viewable from its Publish Date onward.
+    // Future-dated (or missing) products redirect to the shop instead of showing.
+    if ($decoded_id > 0) {
+        $pubchk = mysqli_query($con, "select id from products where id='" . $decoded_id . "' and publish_date <= NOW()");
+        if (!$pubchk || mysqli_num_rows($pubchk) === 0) {
+            header("Location: shop.php");
+            exit();
+        }
+    }
+
     if ($decoded_id > 0) {
         $cmd3    = "select * from products where id='" . $decoded_id . "'";
         $result3 = mysqli_query($con, $cmd3) or die(mysqli_error($con));
@@ -586,7 +596,7 @@ if (isset($_GET['astringdata'])) {
                                 <?php
                                 include_once"connect.php";
 
-                                $cmd2="select * from products order by id Asc limit 3";
+                                $cmd2="select * from products where publish_date <= NOW() order by id Asc limit 3";
                                 $result2=mysqli_query($con,$cmd2) or die(mysqli_error($con));
                                 while($row2=mysqli_fetch_array($result2))
                                 {

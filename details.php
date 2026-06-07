@@ -25,6 +25,15 @@ if (isset($_GET['astringdata'])) {
         $blogid  = ($decoded !== false && ctype_digit($decoded)) ? (int) $decoded : 0;
     }
 
+    // Scheduled publishing: a blog post is only viewable from its publish date onward.
+    if ($blogid > 0) {
+        $pubchk = mysqli_query($con, "select id from blog where id='" . $blogid . "' and blog_date <= NOW()");
+        if (!$pubchk || mysqli_num_rows($pubchk) === 0) {
+            header("Location: blog-full-list.php");
+            exit();
+        }
+    }
+
     if ($blogid > 0) {
         $cmd3    = "select * from blog where id='" . $blogid . "'";
         $result3 = mysqli_query($con, $cmd3) or die(mysqli_error($con));
@@ -931,7 +940,7 @@ $page_schema = '
                                 <ul class="recent-list">
                                     <?php
                                     include_once "connect.php";
-                                    $cmd1    = "select * from blog limit 6";
+                                    $cmd1    = "select * from blog where blog_date <= NOW() limit 6";
                                     $result1 = mysqli_query($con, $cmd1) or die(mysqli_error($con));
                                     while ($row1 = mysqli_fetch_array($result1)) {
                                         $rid     = $row1['id'];
@@ -948,7 +957,7 @@ $page_schema = '
                                             <span class="recent-meta">
                                                 <h6><?php echo htmlspecialchars($rtitle, ENT_QUOTES, 'UTF-8'); ?></h6>
                                                 <?php if (!empty($rdate)) : ?>
-                                                <span class="recent-date"><i class="fa fa-calendar-o" aria-hidden="true"></i> <?php echo htmlspecialchars($rdate, ENT_QUOTES, 'UTF-8'); ?></span>
+                                                <span class="recent-date"><i class="fa fa-calendar-o" aria-hidden="true"></i> <?php echo htmlspecialchars(($rdate ? date('Y-m-d', strtotime($rdate)) : ''), ENT_QUOTES, 'UTF-8'); ?></span>
                                                 <?php endif; ?>
                                             </span>
                                         </a>

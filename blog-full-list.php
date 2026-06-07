@@ -178,7 +178,7 @@ $page_breadcrumbs = [
                     <?php
                     include_once"connect.php";
 
-                    $cmd = "select * from blog order by id DESC";
+                    $cmd = "select * from blog where blog_date <= NOW() order by id DESC";
                     $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
                     while ($row = mysqli_fetch_array($result)) {
                         $id              = $row['id'];

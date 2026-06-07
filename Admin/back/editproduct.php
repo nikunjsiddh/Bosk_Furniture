@@ -13,6 +13,7 @@
             $status = htmlspecialchars($status);
             $publish_date  =  mysqli_real_escape_string($con,$_POST['publish_date']);
             $publish_date = htmlspecialchars($publish_date);
+            $publish_date = str_replace('T', ' ', $publish_date); // datetime-local -> MySQL datetime
             $tags  =  mysqli_real_escape_string($con,$_POST['tags']);
             $tags = htmlspecialchars($tags);
             $pcategory  =  mysqli_real_escape_string($con,$_POST['pcategory']);

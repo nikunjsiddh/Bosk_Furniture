@@ -795,7 +795,7 @@ hr {
                         <div class="row justify-content-center">
                             <?php
                                 
-                                $cmd3="select * from products where pcategory='$decodedcategoryname'";
+                                $cmd3="select * from products where pcategory='$decodedcategoryname' and publish_date <= NOW()";
                                 $result3=mysqli_query($con,$cmd3) or die(mysqli_error($con));
                                 $no_of_rows=(mysqli_num_rows($result3));
                                 // echo $no_of_rows;

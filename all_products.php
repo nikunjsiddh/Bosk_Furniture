@@ -899,7 +899,7 @@ $page_breadcrumbs = [
                   <div class="row justify-content-center">
                     <?php
                                 
-                                $cmd3="select * from products";
+                                $cmd3="select * from products where publish_date <= NOW()";
                                 $result3=mysqli_query($con,$cmd3) or die(mysqli_error($con));
                                 $no_of_rows=(mysqli_num_rows($result3));
                                 // echo $no_of_rows;

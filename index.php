@@ -1263,7 +1263,7 @@ $page_breadcrumbs = [
                         <?php
                         include_once"connect.php";
                                          
-                        $cmd4="select * from blog order by id DESC limit 4";
+                        $cmd4="select * from blog where blog_date <= NOW() order by id DESC limit 4";
                         $result4=mysqli_query($con,$cmd4) or die(mysqli_error($con));
                         while($row4=mysqli_fetch_array($result4))
                         {     

@@ -73,7 +73,7 @@ foreach ($static as $row) {
 // ---- Dynamic content from DB ----
 if (isset($con) && $con) {
     // Products
-    $q = @mysqli_query($con, "SELECT id, pname, img1 FROM products ORDER BY id DESC");
+    $q = @mysqli_query($con, "SELECT id, pname, img1 FROM products WHERE publish_date <= NOW() ORDER BY id DESC");
     if ($q) {
         while ($r = mysqli_fetch_assoc($q)) {
             $loc = $site_url . '/product?astringdata=' . urlencode(base64_encode($r['id']));
@@ -102,7 +102,7 @@ if (isset($con) && $con) {
     }
 
     // Blog
-    $q4 = @mysqli_query($con, "SELECT id, blog_title, img FROM blog ORDER BY id DESC");
+    $q4 = @mysqli_query($con, "SELECT id, blog_title, img FROM blog WHERE blog_date <= NOW() ORDER BY id DESC");
     if ($q4) {
         while ($r = mysqli_fetch_assoc($q4)) {
             $loc = $site_url . '/details?astringdata=' . urlencode(base64_encode($r['id']));
