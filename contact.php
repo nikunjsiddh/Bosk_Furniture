@@ -412,7 +412,7 @@ $page_breadcrumbs = [
                                 <div class="info-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
                                 <div class="info-text">
                                     <span class="info-label">Visit Us</span>
-                                    5, Aryamaan Complex, Near Meghani Circle, Sir Patanni Road, Bhavnagar-364001, Gujarat, India.
+                                    <a href="https://share.google/J6L4mvZMeQLmtCWOF" target="_blank" rel="noopener" title="View our location on Google Maps" style="color:inherit;text-decoration:none;">5, Aryamaan Complex, Near Meghani Circle, Sir Patanni Road, Bhavnagar-364001, Gujarat, India.</a>
                                 </div>
                             </div>
                             <div class="info-row">
