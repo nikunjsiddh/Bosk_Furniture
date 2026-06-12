@@ -1,180 +1,438 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- HOMEPAGE -->
   <url>
     <loc>https://www.boskfurniture.com/</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.boskfurniture.com/"/>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-06-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://www.boskfurniture.com/images/og-default.jpg</image:loc>
-      <image:title>Bosk Furniture - Premium Modular Furniture in India</image:title>
-      <image:caption>Custom modular furniture from Bhavnagar, Gujarat - India</image:caption>
-    </image:image>
   </url>
 
-  <!-- ABOUT -->
   <url>
     <loc>https://www.boskfurniture.com/about-us</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/about-us"/>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- CONTACT -->
   <url>
     <loc>https://www.boskfurniture.com/contact</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/contact"/>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- ALL PRODUCTS / SHOP LANDING -->
   <url>
     <loc>https://www.boskfurniture.com/all_products</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/all_products"/>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-06-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
 
-  <!-- SERVICES -->
   <url>
     <loc>https://www.boskfurniture.com/all-services</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/all-services"/>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- PROJECTS -->
   <url>
     <loc>https://www.boskfurniture.com/projects</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/projects"/>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- BLOG LIST -->
   <url>
     <loc>https://www.boskfurniture.com/blog-full-list</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/blog-full-list"/>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- TESTIMONIALS -->
   <url>
     <loc>https://www.boskfurniture.com/testimonial</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/testimonial"/>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- CUSTOMIZE FURNITURE -->
   <url>
     <loc>https://www.boskfurniture.com/ex-customize_furniture</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/ex-customize_furniture"/>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- DESIGN & ORDER PROCESS -->
   <url>
     <loc>https://www.boskfurniture.com/design-order-process</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/design-order-process"/>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
 
-  <!-- CATEGORY PAGES (top-level — dynamic generator will refresh) -->
-  <url>
-    <loc>https://www.boskfurniture.com/shop?astringdata2=Sofa</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.boskfurniture.com/shop?astringdata2=LUSCIOUS%20WARDROBES</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.boskfurniture.com/shop?astringdata2=Comfy%20Beds%20With%20Full%20Storage</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.boskfurniture.com/shop?astringdata2=Entertaining%20TV%20Units</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.boskfurniture.com/shop?astringdata2=Modular%20Kitchens</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.boskfurniture.com/shop?astringdata2=Other%20Comforts</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <!-- WARRANTY -->
   <url>
     <loc>https://www.boskfurniture.com/warranty</loc>
-    <lastmod>2026-05-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/warranty"/>
+    <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
-  <!-- WARRANTY POLICY -->
   <url>
     <loc>https://www.boskfurniture.com/warranty_policy</loc>
-    <lastmod>2026-05-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/warranty_policy"/>
+    <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
 
-  <!-- HARDWARE WARRANTY -->
   <url>
     <loc>https://www.boskfurniture.com/hardware_warranty</loc>
-    <lastmod>2026-05-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/hardware_warranty"/>
+    <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
 
-  <!-- CARE & MAINTENANCE POLICY -->
   <url>
     <loc>https://www.boskfurniture.com/care_and_maintenance_policy</loc>
-    <lastmod>2026-05-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/care_and_maintenance_policy"/>
+    <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
 
-  <!--
-    Dynamic product / category / project / blog URLs are appended
-    by /sitemap-generator.php (run weekly via cron or manually).
-    All URLs are emitted in clean-URL form (no .php extension).
-  -->
+  <url>
+    <loc>https://www.boskfurniture.com/product?astringdata=NQ%3D%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/product?astringdata=NQ%3D%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/product_image/869486.jpg</image:loc>
+      <image:title>Product 5</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/product?astringdata=NA%3D%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/product?astringdata=NA%3D%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/product_image/130220.jpg</image:loc>
+      <image:title>Product 4</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/product?astringdata=Mw%3D%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/product?astringdata=Mw%3D%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/product_image/217110.jpg</image:loc>
+      <image:title>Product 3</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/product?astringdata=Mg%3D%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/product?astringdata=Mg%3D%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/product_image/902810.jpg</image:loc>
+      <image:title>Product 2</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/shop?astringdata2=+LUSCIOUS+WARDROBES</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/shop?astringdata2=+LUSCIOUS+WARDROBES"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/shop?astringdata2=Comfy+Beds+With+Full+Storage</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/shop?astringdata2=Comfy+Beds+With+Full+Storage"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/shop?astringdata2=LUSCIOUS+WARDROBES</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/shop?astringdata2=LUSCIOUS+WARDROBES"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/shop?astringdata2=Entertaining+TV+Units</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/shop?astringdata2=Entertaining+TV+Units"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/project-details?astringdata=MTU%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-details?astringdata=MTU%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/project_image/437711.jpg</image:loc>
+      <image:title>Kitchen Modular1</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/project-details?astringdata=MTQ%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-details?astringdata=MTQ%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/project_image/663153.jpg</image:loc>
+      <image:title>Kitchen Modular2</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/project-details?astringdata=MTI%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-details?astringdata=MTI%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/project_image/780383.jpg</image:loc>
+      <image:title>Wardrobe</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/project-details?astringdata=MTE%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-details?astringdata=MTE%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/project_image/396980.jpg</image:loc>
+      <image:title>Kitchen Modular4</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/project-details?astringdata=OQ%3D%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-details?astringdata=OQ%3D%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/project_image/649078.jpg</image:loc>
+      <image:title>Bed4</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/project-details?astringdata=Ng%3D%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-details?astringdata=Ng%3D%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/project_image/581675.jpg</image:loc>
+      <image:title>Bed2</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/project-details?astringdata=NA%3D%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-details?astringdata=NA%3D%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/project_image/232091.jpg</image:loc>
+      <image:title>Bed1</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/project-details?astringdata=Mw%3D%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-details?astringdata=Mw%3D%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/project_image/225123.jpg</image:loc>
+      <image:title>Kitchen Modular5</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/project-details?astringdata=Mg%3D%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-details?astringdata=Mg%3D%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/project_image/984619.jpg</image:loc>
+      <image:title>Hall1</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/details?astringdata=MTc%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/details?astringdata=MTc%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/blog_image/Blog 6.405230.jpg</image:loc>
+      <image:title>Blog 6</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/details?astringdata=MTY%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/details?astringdata=MTY%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/blog_image/Blog 5.714551.jpg</image:loc>
+      <image:title>Blog 5</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/details?astringdata=MTU%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/details?astringdata=MTU%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/blog_image/Blog 4.670867.jpg</image:loc>
+      <image:title>Blog 4</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/details?astringdata=MTQ%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/details?astringdata=MTQ%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/blog_image/Blog 3.197379.jpg</image:loc>
+      <image:title>Blog 3</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/details?astringdata=MTM%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/details?astringdata=MTM%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/blog_image/Blog 2.158618.jpg</image:loc>
+      <image:title>Blog 2</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/details?astringdata=Ng%3D%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/details?astringdata=Ng%3D%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/blog_image/Blog 6.405230.jpg</image:loc>
+      <image:title>Blog 6</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/details?astringdata=NQ%3D%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/details?astringdata=NQ%3D%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/blog_image/Blog 5.714551.jpg</image:loc>
+      <image:title>Blog 5</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/details?astringdata=NA%3D%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/details?astringdata=NA%3D%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/blog_image/Blog 4.670867.jpg</image:loc>
+      <image:title>Blog 4</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/details?astringdata=Mw%3D%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/details?astringdata=Mw%3D%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/blog_image/Blog 3.197379.jpg</image:loc>
+      <image:title>Blog 3</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/details?astringdata=Mg%3D%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/details?astringdata=Mg%3D%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/blog_image/Blog 2.158618.jpg</image:loc>
+      <image:title>Blog 2</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.boskfurniture.com/details?astringdata=MQ%3D%3D</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/details?astringdata=MQ%3D%3D"/>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.boskfurniture.com/admin/blog_image/Nihil quaerat volupt.287100.jpg</image:loc>
+      <image:title>First Blog</image:title>
+    </image:image>
+  </url>
 
 </urlset>
