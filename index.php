@@ -809,6 +809,141 @@ $page_breadcrumbs = [
             </div>
         </section>
 
+        <style>
+            /* === Fix: the theme "home5-right-slider" layout gives
+               .recently-slider a large LEFT padding on wide/laptop screens
+               (e.g. 184px at 1880px), which shoves the projects carousel to the
+               right with empty space on the left and overlaps the heading.
+               Force a clean, centered, contained section at all widths:
+               heading on top, full-width carousel below. === */
+            .homepage-1 .recently .container-fluid.recently-slider {
+                max-width: 1320px !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+            }
+            /* The theme absolutely-positions the small "Recent" label and the
+               View All button inside .section-title, so the box collapses to the
+               h2's height (~31px): "PROJECTS" hangs below the box and gets cut by
+               the carousel on wide screens, and View All lands invisible at the
+               top-right. Rebuild the heading as normal centered flow. */
+            .homepage-1 .recently .section-title {
+                position: static !important;
+                float: none !important;
+                width: 100% !important;
+                height: auto !important;
+                min-height: 0 !important;
+                padding: 0 !important;
+                margin: 0 0 36px !important;
+                display: flex !important;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                overflow: visible !important;
+            }
+            .homepage-1 .recently .section-title h3,
+            .homepage-1 .recently .section-title h2 {
+                position: static !important;
+                float: none !important;
+                width: auto !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                transform: none !important;
+            }
+            .homepage-1 .recently .section-title h3 { margin-bottom: 6px !important; }
+            .homepage-1 .recently .section-title .hero-inner {
+                position: static !important;
+                float: none !important;
+                width: auto !important;
+                margin: 16px 0 0 !important;
+                padding: 0 !important;
+                display: block !important;
+            }
+            .homepage-1 .recently .section-title .hero-inner a.btn {
+                position: static !important;
+                display: inline-block !important;
+                margin-top: 0 !important;
+            }
+            /* Remove the tall brown accent bar (left:0 decorative ::before) that the
+               theme stretched to 358px for the old left-column layout — it now hangs
+               down as a coffee-coloured box beside the centered carousel. */
+            .homepage-1 .recently .section-title::before {
+                display: none !important;
+            }
+            .homepage-1 .recently .portfolio.right-slider {
+                position: static !important;
+                float: none !important;
+                clear: both !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .homepage-1 .recently .home5-right-slider {
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            /* Same theme bug in "Happy Customers" and "Our Blog": the floated
+               h3/h2 don't push the static .hero-inner, so the View All button
+               paints on top of the heading. Give the title real flow — heading
+               left (accent bar kept), View All pinned right-center; on phones
+               the button stacks below the heading. */
+            .homepage-1 .testimonials .section-title,
+            .homepage-1 .blog-section .section-title {
+                position: relative !important;
+                float: none !important;
+                height: auto !important;
+                min-height: 0 !important;
+                overflow: visible !important;
+                margin-bottom: 30px !important;
+            }
+            .homepage-1 .testimonials .section-title h3,
+            .homepage-1 .testimonials .section-title h2,
+            .homepage-1 .blog-section .section-title h3,
+            .homepage-1 .blog-section .section-title h2 {
+                position: static !important;
+                float: none !important;
+                margin: 0 !important;
+                width: auto !important;
+                max-width: calc(100% - 160px);
+            }
+            .homepage-1 .testimonials .section-title h3,
+            .homepage-1 .blog-section .section-title h3 {
+                margin-bottom: 6px !important;
+            }
+            .homepage-1 .testimonials .section-title .hero-inner,
+            .homepage-1 .blog-section .section-title .hero-inner {
+                position: absolute !important;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                float: none !important;
+                width: auto !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .homepage-1 .testimonials .section-title .hero-inner a.btn,
+            .homepage-1 .blog-section .section-title .hero-inner a.btn {
+                position: static !important;
+                display: inline-block !important;
+                margin: 0 !important;
+            }
+            @media (max-width: 575px) {
+                .homepage-1 .testimonials .section-title h3,
+                .homepage-1 .testimonials .section-title h2,
+                .homepage-1 .blog-section .section-title h3,
+                .homepage-1 .blog-section .section-title h2 {
+                    max-width: 100%;
+                }
+                .homepage-1 .testimonials .section-title .hero-inner,
+                .homepage-1 .blog-section .section-title .hero-inner {
+                    position: static !important;
+                    transform: none !important;
+                    margin-top: 14px !important;
+                }
+            }
+        </style>
         <!-- START SECTION RECENTLY WORKS -->
         <section class="recently portfolio bg-white-3">
             <div class="container-fluid recently-slider">
@@ -942,6 +1077,46 @@ $page_breadcrumbs = [
         </section>
         <!-- END SECTION RECENTLY WORKS -->
 
+        <style>
+            /* === Homepage "Our Categories" — richer, fuller image cards (scoped to homepage).
+               Fixes the old tiny 80x76 distorted (object-fit:fill) thumbnails. === */
+            .homepage-1 .all-services.bg-white-2 .item.mb-30 .service-box {
+                padding: 0 !important;
+                border: 1px solid rgba(83, 42, 26, .08) !important;
+                border-radius: 16px !important;
+                overflow: hidden !important;
+                box-shadow: 0 8px 22px rgba(83, 42, 26, .07) !important;
+                transition: transform .28s ease, box-shadow .28s ease !important;
+            }
+            .homepage-1 .all-services.bg-white-2 .item.mb-30 .service-box:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 18px 38px rgba(83, 42, 26, .16) !important;
+            }
+            .homepage-1 .all-services.bg-white-2 .service-inner-box { display: block !important; }
+            .homepage-1 .all-services.bg-white-2 .service-icon-box {
+                width: 100% !important; margin: 0 !important; padding: 0 !important; overflow: hidden;
+            }
+            .homepage-1 .all-services.bg-white-2 .service-inner-box.clearfix { padding: 0 !important; }
+            .homepage-1 .all-services.bg-white-2 .service-icon-box img {
+                width: 100% !important; height: 185px !important; object-fit: cover !important;
+                border-radius: 0 !important; display: block; transition: transform .45s ease;
+            }
+            .homepage-1 .all-services.bg-white-2 .item.mb-30 .service-box:hover .service-icon-box img {
+                transform: scale(1.07);
+            }
+            .homepage-1 .all-services.bg-white-2 .service-content-box {
+                padding: 15px 16px 18px !important; text-align: center; margin-top: 0 !important;
+            }
+            .homepage-1 .all-services.bg-white-2 .service-content-box h3 { margin: 0 0 3px !important; font-size: 16.5px; }
+            .homepage-1 .all-services.bg-white-2 .service-content-box h3 a { color: #2b1d14 !important; }
+            .homepage-1 .all-services.bg-white-2 .service-content-box h3 a:hover { color: #b8763f !important; }
+            .homepage-1 .all-services.bg-white-2 .service-content-box p { margin: 0 !important; color: #8a7d75; font-size: 13px; }
+            @media (max-width: 575px) {
+                .homepage-1 .all-services.bg-white-2 .service-icon-box img { height: 130px !important; }
+                .homepage-1 .all-services.bg-white-2 .service-content-box { padding: 12px 10px 14px !important; }
+                .homepage-1 .all-services.bg-white-2 .service-content-box h3 { font-size: 14.5px; }
+            }
+        </style>
         <section class="all-services bg-white-2">
             <div class="container">
                 <div class="section-title">

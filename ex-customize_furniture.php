@@ -42,17 +42,62 @@ $page_breadcrumbs = [
     <link rel="stylesheet" href="css/styles.css">
     
     <style>
-        @media screen and (min-width: 991px) {
-          .btn-class-view-all {
-            margin-left: 80.8vw;
-            margin-top: -6.3vw;
-          }
+        /* The old vw-margin hack pulled the View All button up over the
+           "Recent Projects" heading (overlapped at most screen widths).
+           Same clean layout as the homepage: centered heading, button below. */
+        .recently .container-fluid.recently-slider {
+            max-width: 1320px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            padding-left: 15px !important;
+            padding-right: 15px !important;
         }
-        @media screen and (max-width: 990px) {
-          .btn-class-view-all {
-            margin-top: -11.3vw;
-          }
+        .recently .section-title {
+            position: static !important;
+            float: none !important;
+            width: 100% !important;
+            height: auto !important;
+            min-height: 0 !important;
+            padding: 0 !important;
+            margin: 0 0 36px !important;
+            display: flex !important;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            overflow: visible !important;
         }
+        .recently .section-title::before { display: none !important; }
+        .recently .section-title h3,
+        .recently .section-title h2 {
+            position: static !important;
+            float: none !important;
+            width: auto !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        .recently .section-title h3 { margin-bottom: 6px !important; }
+        .recently .section-title .hero-inner {
+            position: static !important;
+            float: none !important;
+            width: auto !important;
+            margin: 16px 0 0 !important;
+            padding: 0 !important;
+            display: block !important;
+        }
+        .recently .section-title .hero-inner a.btn {
+            position: static !important;
+            display: inline-block !important;
+            margin-top: 0 !important;
+        }
+        .recently .portfolio.right-slider {
+            position: static !important;
+            float: none !important;
+            clear: both !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        .recently .home5-right-slider { margin: 0 !important; padding: 0 !important; }
     </style>
 </head>
 

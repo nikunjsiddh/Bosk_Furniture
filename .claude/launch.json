@@ -6,6 +6,12 @@
       "runtimeExecutable": "php",
       "runtimeArgs": ["-S", "127.0.0.1:8766", "-t", "."],
       "port": 8766
+    },
+    {
+      "name": "deepti-static",
+      "runtimeExecutable": "php",
+      "runtimeArgs": ["-S", "127.0.0.1:8767", "-t", "C:/xampp2/htdocs/deepti"],
+      "port": 8767
     }
   ]
 }

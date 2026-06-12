@@ -695,6 +695,16 @@ element.style {
     right: 100%;
     margin: 0 10px 0 0;
 }
+
+/* === Desktop header alignment: the menu was left-aligned inside a full-width
+   nav area, so it clustered next to the logo and left a big empty gap on the
+   right at wide/laptop screens. Right-align it => logo on the left, menu +
+   Cart + Account on the right (standard e-commerce header). Desktop only,
+   so the mobile mmenu is unaffected. === */
+@media (min-width: 992px) {
+    #header #navigation { justify-content: flex-end !important; }
+    #header #navigation ul#responsive { margin-left: auto !important; }
+}
 /* Indicator Arrow */
 #navigation ul li a:after,
 #navigation ul ul li a:after {

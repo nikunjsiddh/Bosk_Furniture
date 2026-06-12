@@ -1,0 +1,1337 @@
+/* ============================================================================
+   BOSK FURNITURE — RENTAL MODULE design system
+   Self-contained styles for the "Furniture on Rent" flow. Matches the Bosk
+   brand (brown #532A1A). Used by: rent.php, rent-product.php, rent-cart.php,
+   kyc.php, rent-checkout.php, my-rentals.php
+   ========================================================================== */
+:root {
+    --rt-brand: #532A1A;
+    --rt-brand-2: #7a4128;
+    --rt-accent: #b8763f;
+    --rt-bg: #ffffff;
+    --rt-soft: #faf6f2;
+    --rt-cream: #fbf5f1;
+    --rt-line: #ece2da;
+    --rt-heading: #2b1d14;
+    --rt-text: #5c4f46;
+    --rt-dim: #8a7d75;
+    --rt-green: #1aa260;
+    --rt-green-bg: #e7f8ee;
+    --rt-amber: #d98a00;
+    --rt-amber-bg: #fff5e6;
+    --rt-red: #e23b3b;
+    --rt-red-bg: #fdeaea;
+    --rt-radius: 16px;
+    --rt-shadow: 0 6px 22px rgba(83, 42, 26, .08);
+    --rt-shadow-hover: 0 18px 40px rgba(83, 42, 26, .16);
+}
+
+/* ---- base / layout ---- */
+.rent-scope {
+    font-family: 'Poppins', 'Open Sans', 'Segoe UI', sans-serif;
+    color: var(--rt-text);
+    background: var(--rt-bg);
+}
+
+.rent-scope * {
+    box-sizing: border-box;
+}
+
+.rent-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 18px;
+}
+
+.rent-section {
+    padding: 46px 0;
+}
+
+.rent-section-head {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 30px;
+}
+
+.rent-section-head .eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--rt-accent);
+    margin-bottom: 8px;
+}
+
+.rent-section-head h2 {
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-weight: 800;
+    color: var(--rt-heading);
+    margin: 0 0 10px;
+    line-height: 1.25;
+}
+
+.rent-section-head p {
+    color: var(--rt-dim);
+    font-size: 15px;
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* ---- buttons ---- */
+.rent-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 13px 30px;
+    border-radius: 999px;
+    border: 0;
+    cursor: pointer;
+    font-size: 14.5px;
+    font-weight: 600;
+    letter-spacing: .2px;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(135deg, var(--rt-brand) 0%, var(--rt-brand-2) 55%, var(--rt-accent) 130%);
+    box-shadow: 0 12px 24px rgba(83, 42, 26, .26);
+    transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+
+.rent-btn:hover {
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 18px 34px rgba(83, 42, 26, .36);
+    filter: brightness(1.05);
+}
+
+.rent-btn:active {
+    transform: translateY(0);
+}
+
+.rent-btn-outline {
+    background: #fff;
+    color: var(--rt-brand);
+    border: 1.6px solid var(--rt-line);
+    box-shadow: none;
+}
+
+.rent-btn-outline:hover {
+    color: var(--rt-brand);
+    border-color: var(--rt-accent);
+    background: var(--rt-soft);
+}
+
+.rent-btn-block {
+    width: 100%;
+}
+
+.rent-btn-sm {
+    padding: 9px 18px;
+    font-size: 13px;
+}
+
+/* ---- HERO ---- */
+.rent-hero {
+    position: relative;
+    color: #fff;
+    overflow: hidden;
+    background:
+        linear-gradient(120deg, rgba(43, 19, 11, .86) 0%, rgba(83, 42, 26, .72) 55%, rgba(184, 118, 63, .55) 100%),
+        url('../images/about/bosk-furniture-shoppe.jpg') center center / cover no-repeat;
+}
+
+.rent-hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 64px 18px 70px;
+}
+
+.rent-hero .rent-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, .14);
+    border: 1px solid rgba(255, 255, 255, .25);
+    color: #fff;
+    padding: 7px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    backdrop-filter: blur(4px);
+}
+
+.rent-hero h1 {
+    font-size: clamp(1.9rem, 5vw, 3.1rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 0 0 14px;
+    max-width: 16ch;
+}
+
+.rent-hero h1 .hl {
+    color: #ffd9b0;
+}
+
+.rent-hero p {
+    font-size: clamp(1rem, 1.6vw, 1.12rem);
+    line-height: 1.7;
+    max-width: 52ch;
+    opacity: .94;
+    margin: 0 0 26px;
+}
+
+.rent-hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.rent-hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 34px;
+    margin-top: 40px;
+    padding-top: 26px;
+    border-top: 1px solid rgba(255, 255, 255, .18);
+}
+
+.rent-hero-stats .st b {
+    display: block;
+    font-size: 1.7rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.rent-hero-stats .st span {
+    font-size: 12.5px;
+    opacity: .82;
+    letter-spacing: .04em;
+}
+
+/* ---- HOW IT WORKS (flow overview) ---- */
+.rent-how {
+    background: var(--rt-soft);
+}
+
+.rent-how-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    counter-reset: rstep;
+}
+
+.rent-how-step {
+    position: relative;
+    background: #fff;
+    border: 1px solid var(--rt-line);
+    border-radius: var(--rt-radius);
+    padding: 26px 18px 22px;
+    text-align: center;
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.rent-how-step:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--rt-shadow-hover);
+    border-color: transparent;
+}
+
+.rent-how-step .n {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rt-brand), var(--rt-accent));
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 14px rgba(83, 42, 26, .3);
+}
+
+.rent-how-step .ic {
+    width: 56px;
+    height: 56px;
+    margin: 6px auto 14px;
+    border-radius: 14px;
+    background: var(--rt-cream);
+    color: var(--rt-brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.rent-how-step h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--rt-heading);
+    margin: 0 0 6px;
+}
+
+.rent-how-step p {
+    font-size: 12.8px;
+    color: var(--rt-dim);
+    line-height: 1.55;
+    margin: 0;
+}
+
+/* connector arrows between steps (desktop) */
+.rent-how-step:not(:last-child)::after {
+    content: "\f105";
+    /* fa angle-right */
+    font-family: "FontAwesome";
+    position: absolute;
+    right: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--rt-accent);
+    font-size: 20px;
+    z-index: 2;
+}
+
+/* ---- PROGRESS STEPPER (checkout flow pages) ---- */
+.rent-progress {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    max-width: 760px;
+    margin: 0 auto 8px;
+    padding: 6px 0 4px;
+}
+
+.rent-progress .step {
+    position: relative;
+    flex: 1 1 0;
+    text-align: center;
+    min-width: 0;
+}
+
+.rent-progress .step .dot {
+    width: 38px;
+    height: 38px;
+    margin: 0 auto 8px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--rt-line);
+    color: var(--rt-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    position: relative;
+    z-index: 2;
+    transition: all .25s ease;
+}
+
+.rent-progress .step .lbl {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--rt-dim);
+    letter-spacing: .02em;
+}
+
+/* connecting line */
+.rent-progress .step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 19px;
+    left: 50%;
+    width: 100%;
+    height: 3px;
+    background: var(--rt-line);
+    z-index: 1;
+}
+
+.rent-progress .step.done .dot {
+    background: var(--rt-brand);
+    border-color: var(--rt-brand);
+    color: #fff;
+}
+
+.rent-progress .step.done:not(:last-child)::after {
+    background: var(--rt-brand);
+}
+
+.rent-progress .step.active .dot {
+    background: #fff;
+    border-color: var(--rt-brand);
+    color: var(--rt-brand);
+    box-shadow: 0 0 0 5px rgba(83, 42, 26, .12);
+}
+
+.rent-progress .step.active .lbl {
+    color: var(--rt-brand);
+}
+
+/* ---- TOOLBAR / FILTERS (catalogue) ---- */
+.rent-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 22px;
+}
+
+.rent-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.rent-filter {
+    border: 1.5px solid var(--rt-line);
+    background: #fff;
+    color: var(--rt-brand);
+    border-radius: 999px;
+    padding: 8px 17px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all .2s ease;
+}
+
+.rent-filter:hover {
+    color: #fff;
+    background: var(--rt-brand);
+    border-color: var(--rt-brand);
+}
+
+.rent-filter.active {
+    color: #fff;
+    background: var(--rt-brand);
+    border-color: var(--rt-brand);
+    box-shadow: 0 6px 16px rgba(83, 42, 26, .22);
+}
+
+.rent-sort {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--rt-dim);
+}
+
+.rent-sort select {
+    border: 1.5px solid var(--rt-line);
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: var(--rt-heading);
+    background: #fff;
+    outline: none;
+}
+
+/* ---- PRODUCT GRID + CARDS ---- */
+.rent-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.rent-card {
+    background: #fff;
+    border: 1px solid var(--rt-line);
+    border-radius: var(--rt-radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+.rent-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--rt-shadow-hover);
+    border-color: transparent;
+}
+
+.rent-card-img {
+    position: relative;
+    aspect-ratio: 4/3;
+    background: var(--rt-soft);
+    overflow: hidden;
+}
+
+.rent-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s cubic-bezier(.25, .8, .25, 1);
+}
+
+.rent-card:hover .rent-card-img img {
+    transform: scale(1.08);
+}
+
+.rent-card-tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--rt-brand);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    padding: 5px 12px;
+    border-radius: 999px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .18);
+}
+
+.rent-card-fav {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--rt-brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all .2s ease;
+}
+
+.rent-card-fav:hover {
+    background: var(--rt-brand);
+    color: #fff;
+}
+
+.rent-card-body {
+    padding: 16px 16px 18px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.rent-card-cat {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--rt-accent);
+    margin-bottom: 5px;
+}
+
+.rent-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--rt-heading);
+    margin: 0 0 12px;
+    line-height: 1.35;
+}
+
+.rent-card-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.rent-card:hover .rent-card-title a {
+    color: var(--rt-brand);
+}
+
+.rent-card-price {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    margin-bottom: 8px;
+}
+
+.rent-card-price .amt {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--rt-brand);
+}
+
+.rent-card-price .per {
+    font-size: 12.5px;
+    color: var(--rt-dim);
+    font-weight: 600;
+}
+
+.rent-card-price .from {
+    font-size: 11px;
+    color: var(--rt-dim);
+    margin-right: 2px;
+}
+
+.rent-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.rent-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--rt-soft);
+    color: var(--rt-text);
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+
+.rent-chip i {
+    color: var(--rt-accent);
+}
+
+.rent-chip.dep {
+    background: var(--rt-green-bg);
+    color: var(--rt-green);
+}
+
+.rent-card-cta {
+    margin-top: auto;
+}
+
+/* ---- PRODUCT DETAIL ---- */
+.rent-pd {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 38px;
+    align-items: start;
+}
+
+.rent-pd-gallery .main {
+    border-radius: var(--rt-radius);
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    background: var(--rt-soft);
+    border: 1px solid var(--rt-line);
+}
+
+.rent-pd-gallery .main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.rent-pd-thumbs {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.rent-pd-thumbs img {
+    width: 74px;
+    height: 74px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid var(--rt-line);
+    cursor: pointer;
+    transition: border-color .2s ease;
+}
+
+.rent-pd-thumbs img:hover,
+.rent-pd-thumbs img.active {
+    border-color: var(--rt-brand);
+}
+
+.rent-pd-info h1 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: var(--rt-heading);
+    margin: 6px 0 10px;
+}
+
+.rent-pd-info .lede {
+    color: var(--rt-text);
+    line-height: 1.7;
+    font-size: 14.5px;
+    margin: 0 0 20px;
+}
+
+/* plan selector */
+.rent-plans-head {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--rt-heading);
+    margin: 0 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rent-plans {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.rent-plan {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    border: 2px solid var(--rt-line);
+    border-radius: 14px;
+    padding: 18px 14px 16px;
+    text-align: center;
+    background: #fff;
+    transition: all .2s ease;
+}
+
+.rent-plan:hover {
+    border-color: var(--rt-accent);
+}
+
+.rent-plan input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.rent-plan .tenure {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--rt-heading);
+    margin-bottom: 6px;
+}
+
+.rent-plan .mo {
+    font-size: 21px;
+    font-weight: 800;
+    color: var(--rt-brand);
+    line-height: 1;
+}
+
+.rent-plan .mo small {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--rt-dim);
+}
+
+.rent-plan .dep {
+    font-size: 11.5px;
+    color: var(--rt-dim);
+    margin-top: 8px;
+}
+
+.rent-plan .save {
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--rt-green);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.rent-plan input:checked+.rent-plan-in,
+.rent-plan.selected {
+    border-color: var(--rt-brand);
+}
+
+.rent-plan input:checked~* {
+    /* highlight handled by .selected via JS too */
+}
+
+.rent-plan.selected {
+    border-color: var(--rt-brand);
+    background: var(--rt-cream);
+    box-shadow: 0 8px 20px rgba(83, 42, 26, .14);
+}
+
+.rent-plan.selected::after {
+    content: "\f00c";
+    font-family: "FontAwesome";
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    color: var(--rt-brand);
+    font-size: 13px;
+}
+
+/* deposit / summary box on product page */
+.rent-summary-box {
+    background: var(--rt-soft);
+    border: 1px solid var(--rt-line);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-bottom: 18px;
+}
+
+.rent-srow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 0;
+    font-size: 13.5px;
+}
+
+.rent-srow .k {
+    color: var(--rt-dim);
+}
+
+.rent-srow .v {
+    font-weight: 700;
+    color: var(--rt-heading);
+}
+
+.rent-srow.total {
+    border-top: 1px dashed var(--rt-line);
+    margin-top: 4px;
+    padding-top: 12px;
+    font-size: 15px;
+}
+
+.rent-srow.total .v {
+    color: var(--rt-brand);
+    font-size: 18px;
+}
+
+.rent-refund-note {
+    display: flex;
+    gap: 9px;
+    align-items: flex-start;
+    background: var(--rt-green-bg);
+    color: #14794a;
+    border-radius: 12px;
+    padding: 11px 14px;
+    font-size: 12.8px;
+    line-height: 1.5;
+    margin-top: 12px;
+}
+
+.rent-refund-note i {
+    margin-top: 1px;
+}
+
+/* ---- TWO-COLUMN FLOW LAYOUT (cart / checkout) ---- */
+.rent-cols {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 26px;
+    align-items: start;
+}
+
+.rent-panel {
+    background: #fff;
+    border: 1px solid var(--rt-line);
+    border-radius: var(--rt-radius);
+    padding: 22px;
+}
+
+.rent-panel h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--rt-heading);
+    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.rent-aside {
+    position: sticky;
+    top: 20px;
+    background: var(--rt-soft);
+    border: 1px solid var(--rt-line);
+    border-radius: var(--rt-radius);
+    padding: 22px;
+}
+
+.rent-aside h3 {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--rt-heading);
+    margin: 0 0 14px;
+}
+
+/* ---- CART ITEMS ---- */
+.rent-line {
+    display: flex;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rt-line);
+}
+
+.rent-line:last-child {
+    border-bottom: 0;
+}
+
+.rent-line-img {
+    width: 92px;
+    height: 92px;
+    border-radius: 12px;
+    object-fit: cover;
+    flex: 0 0 92px;
+    background: var(--rt-soft);
+}
+
+.rent-line-main {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.rent-line-main h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--rt-heading);
+    margin: 0 0 6px;
+}
+
+.rent-line-main .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.rent-line-price {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.rent-line-price .mo {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--rt-brand);
+}
+
+.rent-line-price .mo small {
+    font-size: 11px;
+    color: var(--rt-dim);
+    font-weight: 600;
+}
+
+.rent-line-remove {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--rt-red);
+    font-size: 12px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.rent-line-remove:hover {
+    color: var(--rt-red);
+    text-decoration: underline;
+}
+
+/* ---- KYC ---- */
+.kyc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.kyc-field {
+    margin-bottom: 4px;
+}
+
+.kyc-field label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--rt-text);
+    margin-bottom: 7px;
+}
+
+.kyc-field input,
+.kyc-field select {
+    width: 100%;
+    height: 48px;
+    border: 1.6px solid var(--rt-line);
+    border-radius: 11px;
+    padding: 0 14px;
+    font-size: 14px;
+    color: var(--rt-heading);
+    background: #fff;
+    outline: none;
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.kyc-field input:focus,
+.kyc-field select:focus {
+    border-color: var(--rt-accent);
+    box-shadow: 0 0 0 4px rgba(184, 118, 63, .14);
+}
+
+.kyc-drop {
+    grid-column: 1 / -1;
+    border: 2px dashed var(--rt-line);
+    border-radius: 14px;
+    background: var(--rt-soft);
+    padding: 30px 18px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color .2s ease, background .2s ease;
+}
+
+.kyc-drop:hover {
+    border-color: var(--rt-accent);
+    background: var(--rt-cream);
+}
+
+.kyc-drop .ic {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--rt-brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: var(--rt-shadow);
+}
+
+.kyc-drop b {
+    color: var(--rt-heading);
+    font-size: 14px;
+}
+
+.kyc-drop span {
+    display: block;
+    font-size: 12px;
+    color: var(--rt-dim);
+    margin-top: 4px;
+}
+
+.kyc-secure {
+    display: flex;
+    gap: 9px;
+    align-items: flex-start;
+    background: var(--rt-cream);
+    border-radius: 12px;
+    padding: 12px 15px;
+    font-size: 12.6px;
+    line-height: 1.55;
+    color: var(--rt-text);
+    margin-top: 16px;
+}
+
+.kyc-secure i {
+    color: var(--rt-brand);
+    margin-top: 1px;
+}
+
+/* ---- MY RENTALS ---- */
+.myrent-card {
+    background: #fff;
+    border: 1px solid var(--rt-line);
+    border-radius: var(--rt-radius);
+    padding: 20px;
+    margin-bottom: 18px;
+    display: grid;
+    grid-template-columns: 110px 1fr auto;
+    gap: 18px;
+    align-items: center;
+}
+
+.myrent-card .pic {
+    width: 110px;
+    height: 110px;
+    border-radius: 12px;
+    object-fit: cover;
+    background: var(--rt-soft);
+}
+
+.myrent-card h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--rt-heading);
+    margin: 0 0 6px;
+}
+
+.myrent-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 4px 11px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+}
+
+.myrent-status.active {
+    background: var(--rt-green-bg);
+    color: var(--rt-green);
+}
+
+.myrent-status.overdue {
+    background: var(--rt-red-bg);
+    color: var(--rt-red);
+}
+
+.myrent-status.returned {
+    background: #eef0f4;
+    color: #6c757d;
+}
+
+.myrent-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-size: 12.8px;
+    color: var(--rt-dim);
+    margin-top: 4px;
+}
+
+.myrent-meta b {
+    color: var(--rt-heading);
+    font-weight: 700;
+}
+
+.myrent-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 150px;
+}
+
+/* end-of-tenure option cards */
+.eot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.eot-card {
+    border: 2px solid var(--rt-line);
+    border-radius: 14px;
+    padding: 20px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.eot-card:hover {
+    border-color: var(--rt-brand);
+    transform: translateY(-4px);
+    box-shadow: var(--rt-shadow);
+}
+
+.eot-card .ic {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    background: var(--rt-cream);
+    color: var(--rt-brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+.eot-card h4 {
+    font-size: 15px;
+    margin: 0 0 6px;
+    color: var(--rt-heading);
+}
+
+.eot-card p {
+    font-size: 12.5px;
+    color: var(--rt-dim);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ---- small info note ---- */
+.rent-note {
+    display: flex;
+    gap: 11px;
+    align-items: flex-start;
+    background: var(--rt-cream);
+    border: 1px solid var(--rt-line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--rt-text);
+}
+
+.rent-note i {
+    color: var(--rt-brand);
+    font-size: 16px;
+    margin-top: 1px;
+}
+
+/* ---- empty state ---- */
+.rent-empty {
+    text-align: center;
+    padding: 50px 18px;
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.rent-empty .ic {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: var(--rt-cream);
+    color: var(--rt-brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+}
+
+.rent-empty h3 {
+    font-size: 21px;
+    color: var(--rt-heading);
+    margin: 0 0 8px;
+}
+
+.rent-empty p {
+    color: var(--rt-dim);
+    margin: 0 0 22px;
+}
+
+/* ============================ RESPONSIVE ============================ */
+@media (max-width: 1199px) {
+    .rent-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 991px) {
+    .rent-how-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px 16px;
+    }
+
+    .rent-how-step:not(:last-child)::after {
+        display: none;
+    }
+
+    .rent-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    .rent-pd {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .rent-cols {
+        grid-template-columns: 1fr;
+    }
+
+    .rent-aside {
+        position: static;
+    }
+}
+
+@media (max-width: 767px) {
+    .rent-section {
+        padding: 34px 0;
+    }
+
+    .rent-hero-inner {
+        padding: 46px 18px 50px;
+    }
+
+    .rent-how-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .rent-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .rent-plans {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 8px;
+    }
+
+    .rent-plan {
+        padding: 14px 8px 14px;
+    }
+
+    .rent-plan .mo {
+        font-size: 17px;
+    }
+
+    .rent-progress .step .lbl {
+        font-size: 10.5px;
+    }
+
+    .rent-progress .step .dot {
+        width: 32px;
+        height: 32px;
+        font-size: 13px;
+    }
+
+    .rent-progress .step:not(:last-child)::after {
+        top: 16px;
+    }
+
+    .myrent-card {
+        grid-template-columns: 84px 1fr;
+    }
+
+    .myrent-card .pic {
+        width: 84px;
+        height: 84px;
+    }
+
+    .myrent-actions {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .myrent-actions .rent-btn {
+        flex: 1 1 auto;
+    }
+
+    .kyc-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .eot-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rent-hero-stats {
+        gap: 22px;
+    }
+}
+
+@media (max-width: 479px) {
+    .rent-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rent-how-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rent-progress .step .lbl {
+        display: none;
+    }
+
+    .rent-progress .step.active .lbl {
+        display: block;
+    }
+}
