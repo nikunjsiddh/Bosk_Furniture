@@ -29,6 +29,11 @@ $xml .= '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"' 
 $xml .= '        xmlns:xhtml="http://www.w3.org/1999/xhtml">' . "\n\n";
 
 function add_url(&$xml, $loc, $priority = '0.7', $changefreq = 'weekly', $lastmod = null, $image_loc = null, $image_title = null, $hreflang_en_in = true) {
+    // Safety net: never emit the same <loc> twice in one sitemap.
+    static $seen_locs = array();
+    if (isset($seen_locs[$loc])) { return; }
+    $seen_locs[$loc] = true;
+
     $lastmod = $lastmod ?: date('Y-m-d');
     $xml .= "  <url>\n";
     $xml .= "    <loc>" . htmlspecialchars($loc, ENT_QUOTES, 'UTF-8') . "</loc>\n";
@@ -83,10 +88,18 @@ if (isset($con) && $con) {
     }
 
     // Categories (clean URL shop)
-    $q2 = @mysqli_query($con, "SELECT DISTINCT pcategory FROM products WHERE pcategory IS NOT NULL AND pcategory != ''");
+    // TRIM() in SQL collapses leading/trailing spaces, and we also de-dupe in
+    // PHP (case-insensitive) so a stray-space category like " LUSCIOUS WARDROBES"
+    // never emits a second duplicate URL alongside "LUSCIOUS WARDROBES".
+    $q2 = @mysqli_query($con, "SELECT DISTINCT TRIM(pcategory) AS cat FROM products WHERE TRIM(IFNULL(pcategory,'')) != '' ORDER BY cat");
     if ($q2) {
+        $seen_cats = array();
         while ($r = mysqli_fetch_assoc($q2)) {
-            $loc = $site_url . '/shop?astringdata2=' . urlencode($r['pcategory']);
+            $cat = trim($r['cat']);
+            $key = strtolower($cat);
+            if ($cat === '' || isset($seen_cats[$key])) { continue; }
+            $seen_cats[$key] = true;
+            $loc = $site_url . '/shop?astringdata2=' . urlencode($cat);
             add_url($xml, $loc, '0.85', 'weekly', $today);
         }
     }
