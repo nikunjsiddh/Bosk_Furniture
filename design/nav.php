@@ -239,11 +239,9 @@ if (session_status() === PHP_SESSION_NONE) {
 
                             <!--</ul>-->
                         </li>
-                        <!-- Rent (rental module) — hidden until backend is ready. Un-comment to show again.
                         <li>
                             <a href="rent.php">Rent</a>
                         </li>
-                        -->
                         <li>
                             <a href="about-us.php">About Us</a>
                         </li>
