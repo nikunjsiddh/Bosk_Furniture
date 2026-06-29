@@ -2,7 +2,7 @@
    BOSK FURNITURE — RENTAL MODULE design system
    Self-contained styles for the "Furniture on Rent" flow. Matches the Bosk
    brand (brown #532A1A). Used by: rent.php, rent-product.php, rent-cart.php,
-   kyc.php, rent-checkout.php, my-rentals.php
+   rent-checkout.php, my-rentals.php
    ========================================================================== */
 :root {
     --rt-brand: #532A1A;

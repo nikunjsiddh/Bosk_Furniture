@@ -3,7 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 $page_title       = 'Your Rental Cart | Bosk Furniture on Rent';
-$page_description = 'Review your rental cart — monthly rent, refundable deposit and free delivery — then continue to a quick one-time KYC at Bosk Furniture.';
+$page_description = 'Review your rental cart — monthly rent and free delivery — then continue to checkout at Bosk Furniture.';
 $page_canonical   = '/rent-cart';
 $page_breadcrumbs = [
     ['name' => 'Home', 'url' => '/'],
@@ -24,14 +24,11 @@ foreach ([1, 4] as $cid) {
     $cart[] = ['product' => $prod, 'plan' => $plan];
 }
 
-/* ---- totals ---- */
-$rent_total    = 0;
-$deposit_total = 0;
+/* ---- totals (rent only) ---- */
+$rent_total = 0;
 foreach ($cart as $item) {
-    $rent_total    += $item['plan']['monthly'];
-    $deposit_total += $item['plan']['deposit'];
+    $rent_total += $item['plan']['monthly'];
 }
-$due_today = $rent_total + $deposit_total;
 ?>
 <!DOCTYPE HTML>
 <html class="no-js" lang="en-IN">
@@ -57,7 +54,7 @@ $due_today = $rent_total + $deposit_total;
                     <div class="rent-section-head" style="margin-bottom:28px;">
                         <span class="eyebrow">Step 3</span>
                         <h2>Your rental cart</h2>
-                        <p>Review your pieces, monthly rent and refundable deposit. You can change anything before
+                        <p>Review your pieces and monthly rent. You can change anything before
                             you proceed — nothing is charged yet.</p>
                     </div>
 
@@ -84,9 +81,6 @@ $due_today = $rent_total + $deposit_total;
                                     </div>
                                     <div class="rent-line-price">
                                         <div class="mo"><?php echo rent_money($plan['monthly']); ?><small>/mo</small></div>
-                                        <div style="font-size:11.5px;color:var(--rt-dim);margin-top:4px;">
-                                            + <?php echo rent_money($plan['deposit']); ?> deposit
-                                        </div>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -97,47 +91,33 @@ $due_today = $rent_total + $deposit_total;
                             <h3>Order summary</h3>
 
                             <div class="rent-srow">
-                                <span class="k">First month's rent</span>
+                                <span class="k">Monthly rent</span>
                                 <span class="v"><?php echo rent_money($rent_total); ?></span>
                             </div>
-                            <div class="rent-srow">
-                                <span class="k">Refundable deposit</span>
-                                <span class="v"><?php echo rent_money($deposit_total); ?></span>
-                            </div>
-                            <div class="rent-srow">
-                                <span class="k">Delivery &amp; setup</span>
-                                <span class="v" style="color:var(--rt-green);">FREE</span>
-                            </div>
                             <div class="rent-srow total">
-                                <span class="k">Due today</span>
-                                <span class="v"><?php echo rent_money($due_today); ?></span>
+                                <span class="k">Total rent / month</span>
+                                <span class="v"><?php echo rent_money($rent_total); ?></span>
                             </div>
 
-                            <div class="rent-refund-note">
-                                <i class="fa fa-shield"></i>
-                                <div>The <?php echo rent_money($deposit_total); ?> deposit is fully refundable — returned
-                                    to you when you return the furniture in good condition at the end of your tenure.</div>
-                            </div>
-
-                            <a class="rent-btn rent-btn-block" href="kyc.php" style="margin-top:16px;">
-                                Proceed to KYC <i class="fa fa-arrow-right"></i>
+                            <a class="rent-btn rent-btn-block" href="rent-checkout.php" style="margin-top:16px;">
+                                Proceed to Checkout <i class="fa fa-arrow-right"></i>
                             </a>
                             <a class="rent-btn-outline rent-btn rent-btn-block" href="rent.php" style="margin-top:10px;">
                                 <i class="fa fa-angle-left"></i> Continue browsing
                             </a>
 
                             <p style="font-size:11.8px;color:var(--rt-dim);line-height:1.55;text-align:center;margin:14px 0 0;">
-                                Monthly rent auto-charged each cycle after the first month.
+                                Nothing is charged now — confirm your details on the next step.
                             </p>
                         </aside>
 
                     </div><!-- /.rent-cols -->
 
-                    <!-- one-time KYC note -->
+                    <!-- next-step note -->
                     <div class="rent-note" style="margin-top:26px;">
-                        <i class="fa fa-id-card-o"></i>
-                        <div>Renting requires a quick <b>one-time KYC</b> — upload an ID &amp; address proof on the next
-                            step so we can verify you and schedule free delivery. It takes about two minutes.</div>
+                        <i class="fa fa-truck"></i>
+                        <div>On the next step, just share your <b>delivery details</b> and confirm your rental request.
+                            Our team will call you to arrange free delivery &amp; setup. It takes about a minute.</div>
                     </div>
 
                 </div>

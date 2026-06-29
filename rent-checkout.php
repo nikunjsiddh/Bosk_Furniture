@@ -3,7 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 $page_title       = 'Rental Checkout | Bosk Furniture';
-$page_description = 'Confirm your delivery address and set up secure recurring payment for your furniture rental — pay first month plus refundable deposit today.';
+$page_description = 'Confirm your delivery address and place your furniture rental request — our team calls you to arrange free delivery and setup.';
 $page_canonical   = '/rent-checkout';
 $page_breadcrumbs = [
     ['name' => 'Home', 'url' => '/'],
@@ -20,14 +20,14 @@ $_p = rent_find(2);                       // Nordic Queen Bed with Storage
 if ($_p) { $CART[] = ['product' => $_p, 'plan' => $_p['plans'][1]]; }   // 6-month plan
 if (empty($CART)) { $CART[] = ['product' => $GLOBALS['RENTAL_PRODUCTS'][0], 'plan' => $GLOBALS['RENTAL_PRODUCTS'][0]['plans'][0]]; }
 
-/* ---- totals ---- */
-$rent_total    = 0;   // first month's rent (sum of monthly)
-$deposit_total = 0;   // refundable deposits
+/* ---- totals (rent only) ---- */
+$rent_total = 0;   // monthly rent (sum of selected plans)
 foreach ($CART as $line) {
-    $rent_total    += (int)$line['plan']['monthly'];
-    $deposit_total += (int)$line['plan']['deposit'];
+    $rent_total += (int)$line['plan']['monthly'];
 }
-$pay_today = $rent_total + $deposit_total;     // delivery is FREE
+
+/* demo order reference shown on confirmation */
+$order_ref = 'BR' . date('ymd') . str_pad((string)mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
 ?>
 <!DOCTYPE HTML>
 <html class="no-js" lang="en-IN">
@@ -47,13 +47,13 @@ $pay_today = $rent_total + $deposit_total;     // delivery is FREE
             <section class="rent-section">
                 <div class="rent-wrap">
 
-                    <?php rent_steps(5); ?>
+                    <?php rent_steps(4); ?>
 
                     <div class="rent-section-head" style="margin-top:18px;">
                         <span class="eyebrow">Final step</span>
                         <h2>Checkout</h2>
-                        <p>Confirm where we should deliver and set up your pieces, then pay your first month's
-                            rent and refundable deposit to confirm the rental.</p>
+                        <p>Confirm where we should deliver and set up your pieces, then place your rental
+                            request — our team will call you to take it forward.</p>
                     </div>
 
                     <div class="rent-cols">
@@ -86,99 +86,39 @@ $pay_today = $rent_total + $deposit_total;     // delivery is FREE
                                         <input type="text" id="ck-address" name="address" placeholder="Flat no., building, street, area, landmark">
                                     </div>
                                 </div>
-                                <div class="rent-note" style="margin-top:16px;">
-                                    <i class="fa fa-truck"></i>
-                                    <div>Free delivery &amp; professional setup is included. Our team will call on this number
-                                        to schedule a convenient slot after payment.</div>
-                                </div>
-                            </div>
-
-                            <!-- Payment -->
-                            <div class="rent-panel">
-                                <h3><i class="fa fa-credit-card"></i> Payment</h3>
-                                <p style="font-size:14px;line-height:1.7;color:var(--rt-text);margin:0 0 16px;">
-                                    Renting is a simple recurring setup — you pay once today and the monthly rent is
-                                    auto-charged after that, so you never have to remember a due date.
-                                </p>
-
-                                <div style="display:flex;flex-direction:column;gap:14px;">
-                                    <div style="display:flex;gap:12px;align-items:flex-start;">
-                                        <i class="fa fa-check-circle" style="color:var(--rt-green);font-size:18px;margin-top:2px;"></i>
-                                        <div style="font-size:13.5px;line-height:1.6;">
-                                            <b style="color:var(--rt-heading);">Pay today:</b> your first month's rent
-                                            <b><?php echo rent_money($rent_total); ?></b> + a fully refundable deposit
-                                            <b><?php echo rent_money($deposit_total); ?></b>.
-                                        </div>
-                                    </div>
-                                    <div style="display:flex;gap:12px;align-items:flex-start;">
-                                        <i class="fa fa-refresh" style="color:var(--rt-accent);font-size:17px;margin-top:2px;"></i>
-                                        <div style="font-size:13.5px;line-height:1.6;">
-                                            <b style="color:var(--rt-heading);">From next month:</b> the monthly rent
-                                            <b><?php echo rent_money($rent_total); ?>/month</b> is auto-charged via secure
-                                            recurring billing (e.g. Razorpay Subscriptions / UPI AutoPay).
-                                        </div>
-                                    </div>
-                                    <div style="display:flex;gap:12px;align-items:flex-start;">
-                                        <i class="fa fa-recycle" style="color:var(--rt-accent);font-size:17px;margin-top:2px;"></i>
-                                        <div style="font-size:13.5px;line-height:1.6;">
-                                            <b style="color:var(--rt-heading);">Total freedom:</b> cancel, return, extend or
-                                            buy out any time at tenure end — billing stops the moment you return.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="kyc-secure">
-                                    <i class="fa fa-lock"></i>
-                                    <div>Payments are processed over a secure, encrypted connection. Bosk Furniture never
-                                        stores your full card or UPI details.</div>
-                                </div>
                             </div>
 
                         </div>
 
                         <!-- ===================== ASIDE ===================== -->
                         <aside class="rent-aside">
-                            <h3>Payment summary</h3>
+                            <h3>Rental summary</h3>
 
                             <div class="rent-srow">
-                                <span class="k">First month's rent</span>
+                                <span class="k">Monthly rent</span>
                                 <span class="v"><?php echo rent_money($rent_total); ?></span>
                             </div>
-                            <div class="rent-srow">
-                                <span class="k">Refundable deposit</span>
-                                <span class="v"><?php echo rent_money($deposit_total); ?></span>
-                            </div>
-                            <div class="rent-srow">
-                                <span class="k">Delivery &amp; setup</span>
-                                <span class="v" style="color:var(--rt-green);">FREE</span>
-                            </div>
                             <div class="rent-srow total">
-                                <span class="k">Pay today</span>
-                                <span class="v"><?php echo rent_money($pay_today); ?></span>
+                                <span class="k">Total rent / month</span>
+                                <span class="v"><?php echo rent_money($rent_total); ?></span>
                             </div>
 
                             <p style="font-size:12.5px;color:var(--rt-dim);margin:10px 0 16px;line-height:1.55;">
-                                Then <b style="color:var(--rt-heading);"><?php echo rent_money($rent_total); ?>/month</b>
-                                auto-charged on your billing date until your tenure ends.
+                                <b style="color:var(--rt-heading);"><?php echo rent_money($rent_total); ?>/month</b>
+                                for your chosen tenure. Our team confirms the details before delivery.
                             </p>
 
-                            <a class="rent-btn rent-btn-block" href="my-rentals.php">
-                                <i class="fa fa-lock"></i> Pay &amp; Confirm Rental
-                            </a>
-
-                            <div class="rent-refund-note">
-                                <i class="fa fa-shield"></i>
-                                <div>The <?php echo rent_money($deposit_total); ?> deposit is 100% refundable — returned
-                                    to your account once you return the furniture in good condition.</div>
-                            </div>
+                            <button type="button" id="confirmRentalBtn" class="rent-btn rent-btn-block" style="border:0;cursor:pointer;width:100%;">
+                                <i class="fa fa-check-circle"></i> Confirm Rental Request
+                            </button>
                         </aside>
 
                     </div><!-- /.rent-cols -->
 
                     <div class="rent-note" style="margin-top:30px;">
                         <i class="fa fa-info-circle"></i>
-                        <div>You'll receive an order confirmation by SMS &amp; email as soon as payment succeeds. Our team
-                            then calls you to schedule <b>free delivery &amp; setup</b> at your convenience — usually within
+                        <div>You'll receive a request confirmation by SMS &amp; email. Our team then calls you to confirm
+                            the rental and schedule <b>free delivery &amp; setup</b> at your convenience — usually within
                             2&ndash;4 working days.</div>
                     </div>
 
@@ -186,6 +126,45 @@ $pay_today = $rent_total + $deposit_total;     // delivery is FREE
             </section>
 
         </div><!-- /.rent-scope -->
+
+        <!-- ===================== ORDER CONFIRMATION MODAL ===================== -->
+        <style>
+            .rent-modal-overlay{position:fixed;inset:0;background:rgba(40,20,10,.55);display:none;
+                align-items:center;justify-content:center;z-index:99999;padding:20px;}
+            .rent-modal-overlay.open{display:flex;}
+            .rent-modal{background:#fff;max-width:440px;width:100%;border-radius:16px;
+                padding:36px 30px 30px;text-align:center;position:relative;
+                box-shadow:0 24px 60px rgba(0,0,0,.28);animation:rentPop .25s ease;}
+            @keyframes rentPop{from{transform:translateY(14px) scale(.96);opacity:0}to{transform:none;opacity:1}}
+            .rent-modal .tick{width:76px;height:76px;border-radius:50%;
+                background:var(--rt-green,#2e9e5b);color:#fff;display:flex;align-items:center;
+                justify-content:center;font-size:38px;margin:0 auto 18px;}
+            .rent-modal h3{font-size:22px;color:var(--rt-heading,#3a2417);margin:0 0 8px;}
+            .rent-modal p{font-size:14px;line-height:1.65;color:var(--rt-text,#5b4a3f);margin:0 0 6px;}
+            .rent-modal .ord-ref{display:inline-block;margin:14px 0 18px;padding:8px 16px;
+                background:var(--rt-soft,#f6efe9);border-radius:8px;font-weight:700;
+                letter-spacing:.5px;color:var(--rt-brand,#532A1A);}
+            .rent-modal .rent-btn{margin-top:6px;}
+            .rent-modal .modal-x{position:absolute;top:12px;right:14px;border:0;background:none;
+                font-size:22px;line-height:1;color:var(--rt-dim,#9a8c80);cursor:pointer;}
+        </style>
+
+        <div class="rent-modal-overlay" id="rentConfirmModal" role="dialog" aria-modal="true" aria-labelledby="rentConfirmTitle">
+            <div class="rent-modal">
+                <button type="button" class="modal-x" data-close aria-label="Close">&times;</button>
+                <div class="tick"><i class="fa fa-check"></i></div>
+                <h3 id="rentConfirmTitle">Rental request confirmed!</h3>
+                <p>Thank you — your rental request has been placed successfully.</p>
+                <span class="ord-ref">Order ID: <?php echo htmlspecialchars($order_ref); ?></span>
+                <p>Our team will call you shortly to confirm the details.</p>
+                <a class="rent-btn rent-btn-block" href="my-rentals.php" style="margin-top:18px;">
+                    View My Rentals <i class="fa fa-arrow-right"></i>
+                </a>
+                <a class="rent-btn-outline rent-btn rent-btn-block" href="rent.php" data-close style="margin-top:10px;">
+                    Continue browsing
+                </a>
+            </div>
+        </div>
 
         <?php include_once "design/footer.php"; ?>
 
@@ -204,6 +183,38 @@ $pay_today = $rent_total + $deposit_total;     // delivery is FREE
                 el.addEventListener('input', function () {
                     el.value = el.value.replace(/[^0-9]/g, '');
                 });
+            });
+        })();
+
+        /* Order confirmation popup */
+        (function () {
+            var btn = document.getElementById('confirmRentalBtn');
+            var overlay = document.getElementById('rentConfirmModal');
+            if (!btn || !overlay) return;
+
+            function open() {
+                overlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+            function close() {
+                overlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            btn.addEventListener('click', open);
+
+            /* close on X / overlay click / Esc */
+            overlay.querySelectorAll('[data-close]').forEach(function (el) {
+                el.addEventListener('click', function (e) {
+                    if (!el.getAttribute('href')) e.preventDefault();
+                    close();
+                });
+            });
+            overlay.addEventListener('click', function (e) {
+                if (e.target === overlay) close();
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') close();
             });
         })();
     </script>

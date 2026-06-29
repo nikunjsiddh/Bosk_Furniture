@@ -55,7 +55,7 @@ include_once "design/rent-data.php";
                         <span class="eyebrow">Simple &amp; transparent</span>
                         <h2>How renting works</h2>
                         <p>From browsing to delivery in a few clear steps — you always see the monthly rent and the
-                            refundable deposit before you pay.</p>
+                            refundable deposit before you confirm.</p>
                     </div>
                     <div class="rent-how-grid">
                         <div class="rent-how-step">
@@ -72,18 +72,12 @@ include_once "design/rent-data.php";
                         </div>
                         <div class="rent-how-step">
                             <span class="n">3</span>
-                            <div class="ic"><i class="fa fa-id-card-o"></i></div>
-                            <h4>Quick KYC</h4>
-                            <p>Upload ID &amp; address proof once — securely, for verification.</p>
+                            <div class="ic"><i class="fa fa-check-circle"></i></div>
+                            <h4>Confirm &amp; get it delivered</h4>
+                            <p>Share delivery details and confirm — we deliver &amp; set up free.</p>
                         </div>
                         <div class="rent-how-step">
                             <span class="n">4</span>
-                            <div class="ic"><i class="fa fa-credit-card"></i></div>
-                            <h4>Pay &amp; get it delivered</h4>
-                            <p>First month + deposit, then auto monthly rent. We deliver &amp; set up free.</p>
-                        </div>
-                        <div class="rent-how-step">
-                            <span class="n">5</span>
                             <div class="ic"><i class="fa fa-recycle"></i></div>
                             <h4>Return, extend or buy</h4>
                             <p>At tenure end: return (deposit refunded), extend, or buy the piece.</p>
