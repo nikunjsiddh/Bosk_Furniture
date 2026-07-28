@@ -57,7 +57,7 @@ $page_breadcrumbs = [
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="index.php">Home</a><span>»</span><span>PROJECT DETAILS</span>
+                        <a href="/">Home</a><span>»</span><span>PROJECT DETAILS</span>
                     </div>
                 </div>
             </div>
@@ -121,11 +121,11 @@ $page_breadcrumbs = [
                                   ?>
                                 <div class="recent-main">
                                     <div class="recent-img">
-                                        <a href="project-details.php?astringdata=<?php echo $encode_project_id; ?>"><img src="admin/project_image/<?php echo $img1;?>" alt="<?php echo htmlspecialchars($project_name, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture project" loading="lazy" decoding="async"></a>
+                                        <a href="project-details?astringdata=<?php echo $encode_project_id; ?>"><img src="admin/project_image/<?php echo $img1;?>" alt="<?php echo htmlspecialchars($project_name, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture project" loading="lazy" decoding="async"></a>
                                     </div>
                                     <div class="info-img">
-                                        <a href="project-details.php?astringdata=<?php echo $encode_project_id; ?>"><h6><?php echo $project_name;?></h6></a>
-                                        <a style="text-decoration:underline;" href="project-details.php?astringdata=<?php echo $encode_project_id; ?>"><b>Learn More</b></a>
+                                        <a href="project-details?astringdata=<?php echo $encode_project_id; ?>"><h6><?php echo $project_name;?></h6></a>
+                                        <a style="text-decoration:underline;" href="project-details?astringdata=<?php echo $encode_project_id; ?>"><b>Learn More</b></a>
                                     </div>
                                 </div><br/>
                                 <?php

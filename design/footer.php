@@ -753,8 +753,8 @@
             <div class="row">
                 <!-- Brand + contact -->
                 <div class="col-lg-4 col-md-6 col-sm-12 bf-col bf-brand-block">
-                    <a href="index.php" class="bf-logo" aria-label="Bosk Furniture — Home">
-                        <img src="images/logo-white.png" alt="Bosk Furniture">
+                    <a href="/" class="bf-logo" aria-label="Bosk Furniture — Home">
+                        <img src="images/logo-white.png" alt="Bosk Furniture" loading="lazy" decoding="async">
                     </a>
                     <span class="bf-tagline">Registered Office</span>
                     <ul class="bf-contact">
@@ -801,19 +801,19 @@
                 <div class="col-lg-5 col-md-6 col-sm-7 bf-col">
                     <h3>Navigation</h3>
                     <ul class="bf-links">
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="all_products.php">Shop</a></li>
-                        <li><a href="about-us.php">About Us</a></li>
-                        <li><a href="blog-full-list.php">Blog</a></li>
-                        <li><a href="design-order-process.php">How it Works</a></li>
-                        <li><a href="contact.php">Contact Us</a></li>
-                        <li><a href="profile.php">My Account</a></li>
-                        <li><a href="cart.php">Cart</a></li>
-                        <li><a href="testimonial.php">Testimonial</a></li>
-                        <li><a href="warranty.php">Warranty</a></li>
-                        <li><a href="warranty_policy.php">Warranty Policy</a></li>
-                        <li><a href="care_and_maintenance_policy.php">Care &amp; Maintenance</a></li>
-                        <li><a href="hardware_warranty.php">Hardware Policy</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="all_products">Shop</a></li>
+                        <li><a href="about-us">About Us</a></li>
+                        <li><a href="blog-full-list">Blog</a></li>
+                        <li><a href="design-order-process">How it Works</a></li>
+                        <li><a href="contact">Contact Us</a></li>
+                        <li><a href="profile">My Account</a></li>
+                        <li><a href="cart">Cart</a></li>
+                        <li><a href="testimonial">Testimonial</a></li>
+                        <li><a href="warranty">Warranty</a></li>
+                        <li><a href="warranty_policy">Warranty Policy</a></li>
+                        <li><a href="care_and_maintenance_policy">Care &amp; Maintenance</a></li>
+                        <li><a href="hardware_warranty">Hardware Policy</a></li>
                     </ul>
                 </div>
 
@@ -830,7 +830,7 @@
                                 $cat_name = $row['name'];
                         ?>
                         <li>
-                            <a class="bf-cat" href="shop.php?astringdata2=<?php echo urlencode($cat_name); ?>">
+                            <a class="bf-cat" href="shop?astringdata2=<?php echo urlencode($cat_name); ?>">
                                 <span class="bf-cat-dot" aria-hidden="true"></span>
                                 <span>
                                     <?php echo htmlspecialchars($cat_name, ENT_QUOTES, 'UTF-8'); ?>
@@ -849,12 +849,12 @@
         <div class="container">
             <div class="bf-bottom-inner">
                 <p style="margin:0;">&copy;
-                    <?php echo date('Y'); ?> <a href="index.php">Bosk Furniture</a>. All Rights Reserved.
+                    <?php echo date('Y'); ?> <a href="/">Bosk Furniture</a>. All Rights Reserved.
                 </p>
                 <div class="bf-bottom-links">
-                    <a href="warranty_policy.php">Warranty</a>
-                    <a href="care_and_maintenance_policy.php">Care Policy</a>
-                    <a href="contact.php">Support</a>
+                    <a href="warranty_policy">Warranty</a>
+                    <a href="care_and_maintenance_policy">Care Policy</a>
+                    <a href="contact">Support</a>
                 </div>
                 <p style="margin:0;">Powered by <a href="https://two12.in/" target="_blank" rel="noopener">Two12 Design
                         Studio</a></p>

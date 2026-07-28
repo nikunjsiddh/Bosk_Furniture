@@ -164,7 +164,7 @@ $page_breadcrumbs = [
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="index.php">Home</a><span>»</span><span>BLOG</span>
+                        <a href="/">Home</a><span>»</span><span>BLOG</span>
                     </div>
                 </div>
             </div>
@@ -189,8 +189,8 @@ $page_breadcrumbs = [
                     ?>
                     <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up">
                         <article class="blog-card">
-                            <a href="details.php?astringdata=<?php echo $id; ?>" class="blog-card-img">
-                                <img src="admin/blog_image/<?php echo $img;?>" alt="<?php echo htmlspecialchars($blog_title); ?>">
+                            <a href="details?astringdata=<?php echo $id; ?>" class="blog-card-img">
+                                <img src="admin/blog_image/<?php echo $img;?>" alt="<?php echo htmlspecialchars($blog_title); ?>" loading="lazy" decoding="async">
                                 <span class="blog-date-badge"><?php echo ($blog_date ? date('Y-m-d', strtotime($blog_date)) : '');?></span>
                             </a>
                             <div class="blog-card-body">
@@ -198,10 +198,10 @@ $page_breadcrumbs = [
                                     <i class="fa fa-user"></i> By Admin
                                 </div>
                                 <h3>
-                                    <a href="details.php?astringdata=<?php echo $id; ?>"><?php echo $blog_title;?></a>
+                                    <a href="details?astringdata=<?php echo $id; ?>"><?php echo $blog_title;?></a>
                                 </h3>
                                 <p><?php echo strip_tags($blog_description);?></p>
-                                <a href="details.php?astringdata=<?php echo $id; ?>" class="blog-read-more">Read more </a>
+                                <a href="details?astringdata=<?php echo $id; ?>" class="blog-read-more">Read more </a>
                             </div>
                         </article>
                     </div>

@@ -5,8 +5,8 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="netabout">
-                        <a href="index.php" class="logo">
-                            <img src="images/logo-white.png" alt="netcom">
+                        <a href="/" class="logo">
+                            <img src="images/logo-white.png" alt="Bosk Furniture logo" loading="lazy" decoding="async">
                         </a>
                         <p style="color:black !important;"><b>Registered Office Location</b></p>
                     </div>
@@ -39,22 +39,22 @@
                         <h3>Navigation</h3>
                         <div class="nav-footer">
                             <ul>
-                                <li><a href="index.php">Home</a></li>
-                                <li><a href="all_products.php">Shop</a></li>
-                                <li><a href="about-us.php">About Us</a></li>
-                                <li><a href="blog-full-list.php">Blog</a></li>
-                                <li><a href="design-order-process.php">How It Works</a></li>
-                                <li><a href="contact.php">Contact Us</a></li>
-                                <li><a href="profile.php">My Account</a></li>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="all_products">Shop</a></li>
+                                <li><a href="about-us">About Us</a></li>
+                                <li><a href="blog-full-list">Blog</a></li>
+                                <li><a href="design-order-process">How It Works</a></li>
+                                <li><a href="contact">Contact Us</a></li>
+                                <li><a href="profile">My Account</a></li>
                             </ul>
                             <ul class="nav-right">
 
-                                <li><a href="cart.php">Cart</a></li>
-                                <li><a href="testimonial.php">Testimonial</a></li>
-                                <li><a href="warranty.php">warranty</a></li>
-                                <li><a href="warranty_policy.php">warranty policy</a></li>
-                                <li><a href="care_and_maintenance_policy.php">Care & Maintainence Policy</a></li>
-                                <li><a href="hardware_warranty.php">Hardware Policy</a></li>
+                                <li><a href="cart">Cart</a></li>
+                                <li><a href="testimonial">Testimonial</a></li>
+                                <li><a href="warranty">warranty</a></li>
+                                <li><a href="warranty_policy">warranty policy</a></li>
+                                <li><a href="care_and_maintenance_policy">Care & Maintainence Policy</a></li>
+                                <li><a href="hardware_warranty">Hardware Policy</a></li>
 
                             </ul>
                         </div>
@@ -82,7 +82,7 @@
                                     </div>
                                     <div class="text">
                                         <h5 style="color:black !important;"><a style="color:black !important;"
-                                                href="shop.php?astringdata2=<?php echo $row['name'];?>">
+                                                href="shop?astringdata2=<?php echo $row['name'];?>">
                                                 <?php echo $name;?>
                                             </a> </h5>
                                         <!--<h4>about 5 days ago</h4>-->

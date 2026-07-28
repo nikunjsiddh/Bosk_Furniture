@@ -51,7 +51,7 @@ tr:nth-child(even){background-color: #f2f2f2}
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="index.php">Home</a><span>»</span><span>Hardware &amp; Fitting Warranty</span>
+                        <a href="/">Home</a><span>»</span><span>Hardware &amp; Fitting Warranty</span>
                     </div>
                 </div>
             </div>

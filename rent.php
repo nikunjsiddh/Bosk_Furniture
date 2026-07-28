@@ -145,7 +145,7 @@ include_once "design/rent-data.php";
                                     <?php endif; ?>
                                     <span class="rent-card-tag">3 · 6 · 12 mo</span>
                                     <a href="#" class="rent-card-fav" title="Save" onclick="return false;"><i class="fa fa-heart-o"></i></a>
-                                    <a href="rent-product.php?id=<?php echo $p['id']; ?>">
+                                    <a href="rent-product?id=<?php echo $p['id']; ?>">
                                         <img src="<?php echo rent_img($p['image']); ?>" alt="<?php echo htmlspecialchars($p['name']); ?> on rent" loading="lazy">
                                     </a>
                                     <?php if (!$inStock): ?>
@@ -155,7 +155,7 @@ include_once "design/rent-data.php";
                                 <div class="rent-card-body">
                                     <div class="rent-card-cat"><?php echo htmlspecialchars($p['category']); ?></div>
                                     <h3 class="rent-card-title">
-                                        <a href="rent-product.php?id=<?php echo $p['id']; ?>"><?php echo htmlspecialchars($p['name']); ?></a>
+                                        <a href="rent-product?id=<?php echo $p['id']; ?>"><?php echo htmlspecialchars($p['name']); ?></a>
                                     </h3>
                                     <?php if (!empty($p['combo_items'])): ?>
                                         <ul class="rent-combo-items">
@@ -182,11 +182,11 @@ include_once "design/rent-data.php";
                                     </div>
                                     <div class="rent-card-cta">
                                         <?php if ($inStock): ?>
-                                            <a href="rent-product.php?id=<?php echo $p['id']; ?>" class="rent-btn rent-btn-block rent-btn-sm">
+                                            <a href="rent-product?id=<?php echo $p['id']; ?>" class="rent-btn rent-btn-block rent-btn-sm">
                                                 View &amp; Rent <i class="fa fa-angle-right"></i>
                                             </a>
                                         <?php else: ?>
-                                            <a href="contact.php" class="rent-btn rent-btn-outline rent-btn-block rent-btn-sm">
+                                            <a href="contact" class="rent-btn rent-btn-outline rent-btn-block rent-btn-sm">
                                                 <i class="fa fa-bell-o"></i> Notify Me
                                             </a>
                                         <?php endif; ?>
@@ -214,7 +214,7 @@ include_once "design/rent-data.php";
                     <div class="rent-note" style="margin-top:22px;">
                         <i class="fa fa-info-circle"></i>
                         <div>This is the dedicated <b>Rent Furniture</b> catalogue. Buying instead? Visit our
-                            <a href="all_products.php" style="color:var(--rt-brand);font-weight:600;">Shop</a> for furniture to own.</div>
+                            <a href="all_products" style="color:var(--rt-brand);font-weight:600;">Shop</a> for furniture to own.</div>
                     </div>
                 </div>
             </section>

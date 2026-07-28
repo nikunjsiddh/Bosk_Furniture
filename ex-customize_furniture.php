@@ -123,7 +123,7 @@ $page_breadcrumbs = [
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="index.php">Home</a><span>»</span><span>Customize Modest Furniture</span>
+                        <a href="/">Home</a><span>»</span><span>Customize Modest Furniture</span>
                     </div>
                 </div>
             </div>
@@ -136,7 +136,7 @@ $page_breadcrumbs = [
                     <h3>Recent</h3>
                     <h2>Projects</h2>
                      <div class="hero-inner btn-class-view-all" style="">
-                            <a href="all_products.php" class="btn btn-dark btn-theme-colored btn-xl mt-5">View All</a>
+                            <a href="all_products" class="btn btn-dark btn-theme-colored btn-xl mt-5">View All</a>
                      </div>
                 </div>
                 <div class="portfolio right-slider">
@@ -158,7 +158,7 @@ $page_breadcrumbs = [
                                       $encode_project_id=base64_encode($project_id);
                         ?>
                         <div class="inner-box">
-                            <a href="project-details.php?astringdata=<?php echo $encode_project_id; ?>" class="recent-16" data-aos="fade-up">
+                            <a href="project-details?astringdata=<?php echo $encode_project_id; ?>" class="recent-16" data-aos="fade-up">
                                 <div class="recent-img16 img-fluid img-center" style="background-image: url(admin/project_image/<?php echo $img1;?>)">
                                 
                                 </div>

@@ -36,7 +36,7 @@ $page_breadcrumbs = [
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="index.php">Home</a><span>»</span><span>Warranty Policy</span>
+                        <a href="/">Home</a><span>»</span><span>Warranty Policy</span>
                     </div>
                 </div>
             </div>

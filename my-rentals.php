@@ -2,8 +2,9 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-$page_title       = 'My Rentals | Bosk Furniture';
+$page_title       = 'My Rentals Dashboard | Bosk Furniture on Rent';
 $page_description = 'Track your active furniture rentals, upcoming payments, invoices and end-of-tenure choices — return, extend or buy out — all in one Bosk account dashboard.';
+$page_robots      = 'noindex, follow';
 $page_canonical   = '/my-rentals';
 $page_breadcrumbs = [
     ['name' => 'Home', 'url' => '/'],
@@ -111,7 +112,7 @@ foreach ($MY_RENTALS as $r) {
                                         <i class="fa fa-credit-card"></i> Pay rent
                                     </a>
                                 <?php else: ?>
-                                    <a class="rent-btn rent-btn-outline rent-btn-sm" href="rent-product.php?id=<?php echo (int)$prod['id']; ?>">
+                                    <a class="rent-btn rent-btn-outline rent-btn-sm" href="rent-product?id=<?php echo (int)$prod['id']; ?>">
                                         <i class="fa fa-refresh"></i> Rent again
                                     </a>
                                 <?php endif; ?>

@@ -4,6 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 $page_title       = 'Your Rental Cart | Bosk Furniture on Rent';
 $page_description = 'Review your rental cart — monthly rent and free delivery — then continue to checkout at Bosk Furniture.';
+$page_robots      = 'noindex, follow';
 $page_canonical   = '/rent-cart';
 $page_breadcrumbs = [
     ['name' => 'Home', 'url' => '/'],
@@ -121,10 +122,10 @@ $shield_total = (int)round($rent_total * RENT_SHIELD_RATE); // BOSK Shield add-o
                                 <span class="v" id="rcPayNow"><?php echo rent_money($dep_total + $rent_total); ?></span>
                             </div>
 
-                            <a class="rent-btn rent-btn-block" href="rent-kyc.php" style="margin-top:16px;">
+                            <a class="rent-btn rent-btn-block" href="rent-kyc" style="margin-top:16px;">
                                 Continue — KYC &amp; Delivery Slot <i class="fa fa-arrow-right"></i>
                             </a>
-                            <a class="rent-btn-outline rent-btn rent-btn-block" href="rent.php" style="margin-top:10px;">
+                            <a class="rent-btn-outline rent-btn rent-btn-block" href="rent" style="margin-top:10px;">
                                 <i class="fa fa-angle-left"></i> Continue browsing
                             </a>
 

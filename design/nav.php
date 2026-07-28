@@ -201,7 +201,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <div class="left-side">
                 <!-- Logo -->
                 <div id="logo" class="col-lg-2 logo-white">
-                    <a href="index.php"><img src="images/logo-black.png" alt="Bosk Furniture - Custom Modular Furniture &amp; Interior Design India" width="180" height="60"></a>
+                    <a href="/"><img src="images/logo-black.png" alt="Bosk Furniture - Custom Modular Furniture &amp; Interior Design India" width="180" height="60"></a>
                 </div>
                 <!-- Mobile Navigation -->
                 <div class="mmenu-trigger">
@@ -215,9 +215,9 @@ if (session_status() === PHP_SESSION_NONE) {
                 <nav id="navigation" class="style-1 white">
                     <ul id="responsive">
                         <li>
-                            <a href="index.php">Home</a>
+                            <a href="/">Home</a>
                         </li>
-                        <li><a href="all_products.php">Shop</a>
+                        <li><a href="all_products">Shop</a>
 
                             <!--<ul>-->
                             <?php
@@ -240,19 +240,19 @@ if (session_status() === PHP_SESSION_NONE) {
                             <!--</ul>-->
                         </li>
                         <li>
-                            <a href="rent.php">Rent</a>
+                            <a href="rent">Rent</a>
                         </li>
                         <li>
-                            <a href="about-us.php">About Us</a>
+                            <a href="about-us">About Us</a>
                         </li>
                         <li>
-                            <a href="blog-full-list.php">Blog</a>
+                            <a href="blog-full-list">Blog</a>
                         </li>
                         <li>
-                            <a href="design-order-process.php">How We Works</a>
+                            <a href="design-order-process">How We Works</a>
                         </li>
                         <li>
-                            <a href="contact.php">Contact Us</a>
+                            <a href="contact">Contact Us</a>
                         </li>
                         <?php
 
@@ -278,7 +278,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                                         $hi      = mysqli_num_rows($result1);
                                                     }
                                                     ?>
-                        <li><a href="cart.php">
+                        <li><a href="cart">
                                 <div class="minicart-icon wishlist-icon">
                                     Cart <i class="fa fa-shopping-cart"></i>
                                     <span class="item-count element">
@@ -288,11 +288,11 @@ if (session_status() === PHP_SESSION_NONE) {
                             </a>
 
                         </li>
-                        <li><a href="profile.php">Account <i class="fa fa-user"></i></a>
+                        <li><a href="profile">Account <i class="fa fa-user"></i></a>
                             <ul>
-                                <li><a href="profile.php">My Account</a>
+                                <li><a href="profile">My Account</a>
                                 </li>
-                                <li><a href="logout.php">logout</a>
+                                <li><a href="logout">logout</a>
                                 </li>
 
                             </ul>
@@ -313,7 +313,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <?php
                                                 }else{
                                                     ?>
-                        <li><a href="cart.php">
+                        <li><a href="cart">
                                 <div class="minicart-icon wishlist-icon">
                                     Cart <i class="fa fa-shopping-cart"></i>
                                     <span class="item-count element">0</span>
@@ -321,11 +321,11 @@ if (session_status() === PHP_SESSION_NONE) {
                             </a>
 
                         </li>
-                        <li><a href="profile.php">Account <i class="fa fa-user"></i></a>
+                        <li><a href="profile">Account <i class="fa fa-user"></i></a>
                             <ul>
-                                <li><a href="profile.php">My Account</a>
+                                <li><a href="profile">My Account</a>
                                 </li>
-                                <li><a href="login.php">Login/Register</a>
+                                <li><a href="login">Login/Register</a>
                                 </li>
                             </ul>
                             <!--<ul>-->
