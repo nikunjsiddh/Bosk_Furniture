@@ -20,11 +20,14 @@ $_p = rent_find(2);                       // Nordic Queen Bed with Storage
 if ($_p) { $CART[] = ['product' => $_p, 'plan' => $_p['plans'][1]]; }   // 6-month plan
 if (empty($CART)) { $CART[] = ['product' => $GLOBALS['RENTAL_PRODUCTS'][0], 'plan' => $GLOBALS['RENTAL_PRODUCTS'][0]['plans'][0]]; }
 
-/* ---- totals (rent only) ---- */
+/* ---- totals: payable now = refundable deposit + 1st month rent ---- */
 $rent_total = 0;   // monthly rent (sum of selected plans)
+$dep_total  = 0;   // one-time refundable deposit
 foreach ($CART as $line) {
     $rent_total += (int)$line['plan']['monthly'];
+    $dep_total  += (int)$line['plan']['deposit'];
 }
+$pay_now = $dep_total + $rent_total;
 
 /* demo order reference shown on confirmation */
 $order_ref = 'BR' . date('ymd') . str_pad((string)mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
@@ -47,13 +50,13 @@ $order_ref = 'BR' . date('ymd') . str_pad((string)mt_rand(0, 9999), 4, '0', STR_
             <section class="rent-section">
                 <div class="rent-wrap">
 
-                    <?php rent_steps(4); ?>
+                    <?php rent_steps(5); ?>
 
                     <div class="rent-section-head" style="margin-top:18px;">
                         <span class="eyebrow">Final step</span>
-                        <h2>Checkout</h2>
-                        <p>Confirm where we should deliver and set up your pieces, then place your rental
-                            request — our team will call you to take it forward.</p>
+                        <h2>Checkout &amp; payment</h2>
+                        <p>Confirm your delivery address, choose how to pay the refundable deposit and first month's
+                            rent, and your rental is booked.</p>
                     </div>
 
                     <div class="rent-cols">
@@ -88,38 +91,78 @@ $order_ref = 'BR' . date('ymd') . str_pad((string)mt_rand(0, 9999), 4, '0', STR_
                                 </div>
                             </div>
 
+                            <!-- Payment method (mock UI) -->
+                            <div class="rent-panel" style="margin-bottom:22px;">
+                                <h3><i class="fa fa-credit-card"></i> Payment method</h3>
+                                <div id="ckPayOpts">
+                                    <div class="rent-pay-opt selected" onclick="ckPaySelect(this)">
+                                        <div class="ic"><i class="fa fa-mobile" style="font-size:22px;"></i></div>
+                                        <div>
+                                            <b>UPI / UPI Autopay</b>
+                                            <span>Recommended — monthly rent auto-debits, cancel anytime</span>
+                                        </div>
+                                        <div class="rad"></div>
+                                    </div>
+                                </div>
+                                <div class="kyc-secure" style="margin-top:12px;">
+                                    <i class="fa fa-lock"></i>
+                                    <div>Payments are processed on a <b>secure gateway</b>. The deposit is held safely and
+                                        auto-refunded within 5–7 days of pickup at tenure end.</div>
+                                </div>
+                            </div>
+
                         </div>
 
                         <!-- ===================== ASIDE ===================== -->
                         <aside class="rent-aside">
                             <h3>Rental summary</h3>
 
+                            <?php foreach ($CART as $line): ?>
+                                <div class="rent-srow">
+                                    <span class="k" style="max-width:70%;"><?php echo htmlspecialchars($line['product']['name']); ?>
+                                        · <?php echo (int)$line['plan']['tenure']; ?> mo</span>
+                                    <span class="v"><?php echo rent_money($line['plan']['monthly']); ?>/mo</span>
+                                </div>
+                            <?php endforeach; ?>
+
                             <div class="rent-srow">
-                                <span class="k">Monthly rent</span>
+                                <span class="k">Monthly rent (from month 2)</span>
                                 <span class="v"><?php echo rent_money($rent_total); ?></span>
+                            </div>
+                            <div class="rent-srow">
+                                <span class="k">1st month rent</span>
+                                <span class="v"><?php echo rent_money($rent_total); ?></span>
+                            </div>
+                            <div class="rent-srow">
+                                <span class="k">Refundable deposit (one-time)</span>
+                                <span class="v"><?php echo rent_money($dep_total); ?></span>
                             </div>
                             <div class="rent-srow total">
-                                <span class="k">Total rent / month</span>
-                                <span class="v"><?php echo rent_money($rent_total); ?></span>
+                                <span class="k">Payable now</span>
+                                <span class="v"><?php echo rent_money($pay_now); ?></span>
                             </div>
 
-                            <p style="font-size:12.5px;color:var(--rt-dim);margin:10px 0 16px;line-height:1.55;">
-                                <b style="color:var(--rt-heading);"><?php echo rent_money($rent_total); ?>/month</b>
-                                for your chosen tenure. Our team confirms the details before delivery.
-                            </p>
+                            <div class="rent-refund-note" style="margin-top:12px;">
+                                <i class="fa fa-shield"></i>
+                                <div><?php echo rent_money($dep_total); ?> of this is a <b>refundable deposit</b> —
+                                    you get it back when the furniture is returned.</div>
+                            </div>
 
-                            <button type="button" id="confirmRentalBtn" class="rent-btn rent-btn-block" style="border:0;cursor:pointer;width:100%;">
-                                <i class="fa fa-check-circle"></i> Confirm Rental Request
+                            <button type="button" id="confirmRentalBtn" class="rent-btn rent-btn-block" style="border:0;cursor:pointer;width:100%;margin-top:16px;">
+                                <i class="fa fa-check-circle"></i> Pay <?php echo rent_money($pay_now); ?> &amp; Book
                             </button>
+                            <a class="rent-btn-outline rent-btn rent-btn-block" href="rent-kyc.php" style="margin-top:10px;">
+                                <i class="fa fa-angle-left"></i> Back to KYC &amp; slot
+                            </a>
                         </aside>
 
                     </div><!-- /.rent-cols -->
 
                     <div class="rent-note" style="margin-top:30px;">
                         <i class="fa fa-info-circle"></i>
-                        <div>You'll receive a request confirmation by SMS &amp; email. Our team then calls you to confirm
-                            the rental and schedule <b>free delivery &amp; setup</b> at your convenience — usually within
-                            2&ndash;4 working days.</div>
+                        <div>After payment: our team reviews your <b>KYC</b> (usually within a few hours), then delivers
+                            &amp; installs in your chosen slot. You can track everything — billing, requests, renewals —
+                            in <b>My Rentals</b>.</div>
                     </div>
 
                 </div>
@@ -153,10 +196,10 @@ $order_ref = 'BR' . date('ymd') . str_pad((string)mt_rand(0, 9999), 4, '0', STR_
             <div class="rent-modal">
                 <button type="button" class="modal-x" data-close aria-label="Close">&times;</button>
                 <div class="tick"><i class="fa fa-check"></i></div>
-                <h3 id="rentConfirmTitle">Rental request confirmed!</h3>
-                <p>Thank you — your rental request has been placed successfully.</p>
+                <h3 id="rentConfirmTitle">Rental booked!</h3>
+                <p>Payment received — your rental order has been placed successfully.</p>
                 <span class="ord-ref">Order ID: <?php echo htmlspecialchars($order_ref); ?></span>
-                <p>Our team will call you shortly to confirm the details.</p>
+                <p>Next: KYC review (a few hours), then free delivery &amp; installation in your chosen slot.</p>
                 <a class="rent-btn rent-btn-block" href="my-rentals.php" style="margin-top:18px;">
                     View My Rentals <i class="fa fa-arrow-right"></i>
                 </a>
@@ -175,6 +218,14 @@ $order_ref = 'BR' . date('ymd') . str_pad((string)mt_rand(0, 9999), 4, '0', STR_
     </div>
 
     <script>
+        /* Payment method selection (mock) */
+        function ckPaySelect(opt) {
+            document.querySelectorAll('#ckPayOpts .rent-pay-opt').forEach(function (o) {
+                o.classList.remove('selected');
+            });
+            opt.classList.add('selected');
+        }
+
         /* Keep mobile / pincode inputs numeric (demo-only convenience) */
         (function () {
             ['ck-mobile', 'ck-pincode'].forEach(function (id) {

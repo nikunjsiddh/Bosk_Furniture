@@ -24,11 +24,14 @@ foreach ([1, 4] as $cid) {
     $cart[] = ['product' => $prod, 'plan' => $plan];
 }
 
-/* ---- totals (rent only) ---- */
+/* ---- totals: monthly rent + refundable deposit (payable now = deposit + 1st month) ---- */
 $rent_total = 0;
+$dep_total  = 0;
 foreach ($cart as $item) {
     $rent_total += $item['plan']['monthly'];
+    $dep_total  += $item['plan']['deposit'];
 }
+$shield_total = (int)round($rent_total * RENT_SHIELD_RATE); // BOSK Shield add-on (10%/mo)
 ?>
 <!DOCTYPE HTML>
 <html class="no-js" lang="en-IN">
@@ -75,6 +78,7 @@ foreach ($cart as $item) {
                                         <h4><?php echo htmlspecialchars($p['name']); ?></h4>
                                         <div class="tags">
                                             <span class="rent-chip"><i class="fa fa-calendar"></i> <?php echo (int)$plan['tenure']; ?>-month plan</span>
+                                            <span class="rent-chip dep"><i class="fa fa-shield"></i> <?php echo rent_money($plan['deposit']); ?> refundable deposit</span>
                                             <span class="rent-chip"><i class="fa fa-truck"></i> Free delivery</span>
                                         </div>
                                         <a class="rent-line-remove"><i class="fa fa-trash-o"></i> Remove</a>
@@ -90,24 +94,42 @@ foreach ($cart as $item) {
                         <aside class="rent-aside">
                             <h3>Order summary</h3>
 
-                            <div class="rent-srow">
-                                <span class="k">Monthly rent</span>
-                                <span class="v"><?php echo rent_money($rent_total); ?></span>
-                            </div>
-                            <div class="rent-srow total">
-                                <span class="k">Total rent / month</span>
-                                <span class="v"><?php echo rent_money($rent_total); ?></span>
+                            <!-- BOSK Shield add-on (cart level) -->
+                            <div class="rent-addon" id="rcShield" onclick="rcShieldToggle()" style="margin-bottom:14px;background:#fff;">
+                                <div class="ic"><i class="fa fa-shield"></i></div>
+                                <div>
+                                    <b>BOSK Shield</b>
+                                    <span>Damage protection for all items</span>
+                                </div>
+                                <div class="price">+<?php echo rent_money($shield_total); ?>/mo</div>
                             </div>
 
-                            <a class="rent-btn rent-btn-block" href="rent-checkout.php" style="margin-top:16px;">
-                                Proceed to Checkout <i class="fa fa-arrow-right"></i>
+                            <div class="rent-srow" style="margin-top:8px;">
+                                <span class="k">Monthly rent</span>
+                                <span class="v" id="rcMonthly"><?php echo rent_money($rent_total); ?></span>
+                            </div>
+                            <div class="rent-srow" id="rcShieldRow" style="display:none;">
+                                <span class="k">BOSK Shield / month</span>
+                                <span class="v"><?php echo rent_money($shield_total); ?></span>
+                            </div>
+                            <div class="rent-srow">
+                                <span class="k">Refundable deposit (one-time)</span>
+                                <span class="v"><?php echo rent_money($dep_total); ?></span>
+                            </div>
+                            <div class="rent-srow total">
+                                <span class="k">Payable now (deposit + 1st month)</span>
+                                <span class="v" id="rcPayNow"><?php echo rent_money($dep_total + $rent_total); ?></span>
+                            </div>
+
+                            <a class="rent-btn rent-btn-block" href="rent-kyc.php" style="margin-top:16px;">
+                                Continue — KYC &amp; Delivery Slot <i class="fa fa-arrow-right"></i>
                             </a>
                             <a class="rent-btn-outline rent-btn rent-btn-block" href="rent.php" style="margin-top:10px;">
                                 <i class="fa fa-angle-left"></i> Continue browsing
                             </a>
 
                             <p style="font-size:11.8px;color:var(--rt-dim);line-height:1.55;text-align:center;margin:14px 0 0;">
-                                Nothing is charged now — confirm your details on the next step.
+                                The deposit is 100% refundable at return. Nothing is charged until the final step.
                             </p>
                         </aside>
 
@@ -115,9 +137,9 @@ foreach ($cart as $item) {
 
                     <!-- next-step note -->
                     <div class="rent-note" style="margin-top:26px;">
-                        <i class="fa fa-truck"></i>
-                        <div>On the next step, just share your <b>delivery details</b> and confirm your rental request.
-                            Our team will call you to arrange free delivery &amp; setup. It takes about a minute.</div>
+                        <i class="fa fa-id-card-o"></i>
+                        <div>Next: a quick <b>KYC &amp; delivery slot</b> step — verify your mobile, upload ID &amp; address
+                            proof and pick a delivery window. It keeps rentals safe for everyone and takes about 2 minutes.</div>
                     </div>
 
                 </div>
@@ -132,6 +154,31 @@ foreach ($cart as $item) {
         <?php include_once "design/pre_loader.php"; ?>
         <?php include_once "design/script.php"; ?>
     </div>
+
+    <script>
+        /* cart summary state (demo, UI only) */
+        var RC = {
+            rent: <?php echo (int)$rent_total; ?>,
+            deposit: <?php echo (int)$dep_total; ?>,
+            shield: <?php echo (int)$shield_total; ?>,
+            shieldOn: false
+        };
+
+        function rcMoney(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+
+        function rcRefresh() {
+            var monthly = RC.rent + (RC.shieldOn ? RC.shield : 0);
+            document.getElementById('rcMonthly').textContent = rcMoney(RC.rent);
+            document.getElementById('rcShieldRow').style.display = RC.shieldOn ? '' : 'none';
+            document.getElementById('rcPayNow').textContent = rcMoney(RC.deposit + monthly);
+        }
+
+        function rcShieldToggle() {
+            RC.shieldOn = !RC.shieldOn;
+            document.getElementById('rcShield').classList.toggle('on', RC.shieldOn);
+            rcRefresh();
+        }
+    </script>
 </body>
 
 </html>

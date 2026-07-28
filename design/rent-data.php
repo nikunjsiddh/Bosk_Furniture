@@ -12,7 +12,19 @@
      plans[] => each: tenure (months), monthly, deposit, save (label|null)
    ========================================================================== */
 
-$RENTAL_CATEGORIES = ['All', 'Sofas', 'Beds', 'Dining', 'Wardrobes', 'Living', 'Study'];
+$RENTAL_CATEGORIES = ['All', 'Sofas', 'Beds', 'Dining', 'Wardrobes', 'Living', 'Study', 'Packages'];
+
+/* Serviceable cities (city-first catalogue, RentoMojo pattern). Demo list. */
+$RENTAL_CITIES = ['Bhavnagar', 'Ahmedabad', 'Surat', 'Rajkot', 'Vadodara', 'Mumbai'];
+
+/* Monthly budget slabs for the catalogue filter (Cityfurnish pattern) */
+$RENTAL_BUDGETS = [
+    ['label' => 'Any budget', 'min' => 0,    'max' => 0],
+    ['label' => 'Under ₹500/mo',  'min' => 0,    'max' => 500],
+    ['label' => '₹500 – ₹1,000/mo', 'min' => 500,  'max' => 1000],
+    ['label' => '₹1,000 – ₹2,000/mo', 'min' => 1000, 'max' => 2000],
+    ['label' => 'Above ₹2,000/mo', 'min' => 2000, 'max' => 999999],
+];
 
 $RENTAL_PRODUCTS = [
     [
@@ -105,6 +117,103 @@ $RENTAL_PRODUCTS = [
     ],
 ];
 
+/* ---- combo packages (1 BHK / Bedroom / WFH — first-class products) -------- */
+
+$RENTAL_PRODUCTS[] = [
+    'id' => 9, 'name' => '1 BHK Starter Package', 'category' => 'Packages',
+    'base_value' => 65000, 'image' => '869486.jpg',
+    'gallery' => ['869486.jpg', '245867.png', '130220.jpg'],
+    'desc' => 'Everything a 1 BHK needs in one plan — 3-seater sofa, queen bed, 4-seater dining set and a coffee table. One delivery, one monthly rent, whole home done.',
+    'combo_items' => ['3-Seater Sofa', 'Queen Bed with Storage', '4-Seater Dining Set', 'Coffee Table'],
+    'plans' => [
+        ['tenure' => 3,  'monthly' => 4499, 'deposit' => 9000, 'save' => null],
+        ['tenure' => 6,  'monthly' => 3699, 'deposit' => 9000, 'save' => 'Save 18%'],
+        ['tenure' => 12, 'monthly' => 2999, 'deposit' => 8000, 'save' => 'Best value'],
+    ],
+];
+$RENTAL_PRODUCTS[] = [
+    'id' => 10, 'name' => 'Bedroom Essentials Package', 'category' => 'Packages',
+    'base_value' => 48000, 'image' => '245867.png',
+    'gallery' => ['245867.png', '902810.jpg', '888379.jpg'],
+    'desc' => 'A queen bed with storage, a 4-door wardrobe and two bedside tables — the complete bedroom, delivered and set up in one go.',
+    'combo_items' => ['Queen Bed with Storage', '4-Door Wardrobe', '2 Bedside Tables'],
+    'plans' => [
+        ['tenure' => 3,  'monthly' => 2899, 'deposit' => 7000, 'save' => null],
+        ['tenure' => 6,  'monthly' => 2399, 'deposit' => 7000, 'save' => 'Save 17%'],
+        ['tenure' => 12, 'monthly' => 1999, 'deposit' => 6000, 'save' => 'Best value'],
+    ],
+];
+$RENTAL_PRODUCTS[] = [
+    'id' => 11, 'name' => 'Work From Home Package', 'category' => 'Packages',
+    'base_value' => 22000, 'image' => '902810.jpg',
+    'gallery' => ['902810.jpg', '888379.jpg', '130220.jpg'],
+    'desc' => 'A proper WFH corner — ergonomic work desk, cushioned chair and a bookshelf. Focus from day one, return it when the project ends.',
+    'combo_items' => ['Work Desk', 'Ergonomic Chair', 'Bookshelf'],
+    'plans' => [
+        ['tenure' => 3,  'monthly' => 1299, 'deposit' => 3000, 'save' => null],
+        ['tenure' => 6,  'monthly' => 1049, 'deposit' => 3000, 'save' => 'Save 19%'],
+        ['tenure' => 12, 'monthly' => 849,  'deposit' => 2500, 'save' => 'Best value'],
+    ],
+];
+
+/* ---- demo merchandising: badges / stock / delivery ETA per product -------- */
+/* badge: Best Seller | Popular | New | Price Drop · in_stock false = "notify me" */
+$RENTAL_MERCH = [
+    1  => ['badge' => 'Best Seller', 'in_stock' => true,  'eta' => '2–4 days'],
+    2  => ['badge' => 'Popular',     'in_stock' => true,  'eta' => '2–4 days'],
+    3  => ['badge' => null,          'in_stock' => true,  'eta' => '3–5 days'],
+    4  => ['badge' => 'Price Drop',  'in_stock' => true,  'eta' => '2–4 days'],
+    5  => ['badge' => null,          'in_stock' => false, 'eta' => null],
+    6  => ['badge' => null,          'in_stock' => true,  'eta' => '3–5 days'],
+    7  => ['badge' => 'New',         'in_stock' => true,  'eta' => '2–4 days'],
+    8  => ['badge' => null,          'in_stock' => true,  'eta' => '2–4 days'],
+    9  => ['badge' => 'Best Seller', 'in_stock' => true,  'eta' => '4–6 days'],
+    10 => ['badge' => null,          'in_stock' => true,  'eta' => '4–6 days'],
+    11 => ['badge' => 'New',         'in_stock' => true,  'eta' => '3–5 days'],
+];
+foreach ($RENTAL_PRODUCTS as &$_rp) {
+    $_m = isset($RENTAL_MERCH[$_rp['id']]) ? $RENTAL_MERCH[$_rp['id']] : ['badge' => null, 'in_stock' => true, 'eta' => '3–5 days'];
+    $_rp['badge']    = $_m['badge'];
+    $_rp['in_stock'] = $_m['in_stock'];
+    $_rp['eta']      = $_m['eta'];
+}
+unset($_rp);
+
+/* ---- BOSK Shield damage-protection add-on (CITYSHIELD pattern) ------------ */
+/* Flat 10% of the monthly rent, demo only. */
+if (!defined('RENT_SHIELD_RATE')) {
+    define('RENT_SHIELD_RATE', 0.10);
+}
+
+/* ---- demo data for the My Rentals dashboard -------------------------------- */
+$MY_RENTALS = [
+    [
+        'ref' => 'BR260401-0231', 'product_id' => 1, 'tenure' => 12,
+        'monthly' => 999, 'deposit' => 3500, 'status' => 'active',
+        'started' => '12 Apr 2026', 'ends' => '11 Apr 2027', 'next_billing' => '12 Jul 2026',
+        'months_done' => 3,
+    ],
+    [
+        'ref' => 'BR260401-0232', 'product_id' => 4, 'tenure' => 6,
+        'monthly' => 1099, 'deposit' => 3800, 'status' => 'renewal_due',
+        'started' => '12 Jan 2026', 'ends' => '11 Jul 2026', 'next_billing' => '11 Jul 2026',
+        'months_done' => 6,
+    ],
+    [
+        'ref' => 'BR251102-0119', 'product_id' => 7, 'tenure' => 3,
+        'monthly' => 749, 'deposit' => 2000, 'status' => 'returned',
+        'started' => '02 Nov 2025', 'ends' => '01 Feb 2026', 'next_billing' => null,
+        'months_done' => 3,
+    ],
+];
+
+/* ---- demo invoices for the dashboard --------------------------------------- */
+$MY_INVOICES = [
+    ['no' => 'INV-2606-118', 'period' => 'Jun 2026', 'ref' => 'BR260401-0231', 'amount' => 999,  'status' => 'paid'],
+    ['no' => 'INV-2606-119', 'period' => 'Jun 2026', 'ref' => 'BR260401-0232', 'amount' => 1099, 'status' => 'paid'],
+    ['no' => 'INV-2607-034', 'period' => 'Jul 2026', 'ref' => 'BR260401-0231', 'amount' => 999,  'status' => 'due'],
+];
+
 /* ---- helpers ------------------------------------------------------------- */
 
 if (!function_exists('rent_img')) {
@@ -147,18 +256,40 @@ if (!function_exists('rent_find')) {
     }
 }
 
+if (!function_exists('rent_city')) {
+    /** Currently selected city (UI demo — remembered in the session). */
+    function rent_city()
+    {
+        global $RENTAL_CITIES;
+        if (isset($_GET['city']) && in_array($_GET['city'], $RENTAL_CITIES, true)) {
+            $_SESSION['rent_city'] = $_GET['city'];
+        }
+        return isset($_SESSION['rent_city']) ? $_SESSION['rent_city'] : $RENTAL_CITIES[0];
+    }
+}
+
+if (!function_exists('rent_badge_class')) {
+    /** CSS modifier for a merchandising badge label. */
+    function rent_badge_class($badge)
+    {
+        $map = ['Best Seller' => 'bs', 'Popular' => 'pop', 'New' => 'new', 'Price Drop' => 'drop'];
+        return isset($map[$badge]) ? $map[$badge] : 'bs';
+    }
+}
+
 if (!function_exists('rent_steps')) {
     /**
      * Render the rental flow progress stepper.
-     * @param int $current 1=Browse 2=Plan 3=Cart 4=Checkout
+     * @param int $current 1=Browse 2=Plan 3=Cart 4=KYC & Slot 5=Pay
      */
     function rent_steps($current)
     {
         $steps = [
-            1 => ['Browse',   'fa-search'],
-            2 => ['Plan',     'fa-calendar'],
-            3 => ['Rent Cart', 'fa-shopping-bag'],
-            4 => ['Checkout', 'fa-check-circle'],
+            1 => ['Browse',     'fa-search'],
+            2 => ['Plan',       'fa-calendar'],
+            3 => ['Rent Cart',  'fa-shopping-bag'],
+            4 => ['KYC & Slot', 'fa-id-card-o'],
+            5 => ['Pay',        'fa-check-circle'],
         ];
         echo '<div class="rent-progress">';
         foreach ($steps as $n => $s) {

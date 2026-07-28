@@ -79,6 +79,23 @@ $page_breadcrumbs = [
                             <h1><?php echo htmlspecialchars($p['name']); ?></h1>
                             <p class="lede"><?php echo htmlspecialchars($p['desc']); ?></p>
 
+                            <?php if (!empty($p['combo_items'])): ?>
+                                <ul class="rent-combo-items" style="margin-bottom:18px;">
+                                    <?php foreach ($p['combo_items'] as $ci): ?>
+                                        <li><?php echo htmlspecialchars($ci); ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
+
+                            <div class="rent-card-meta" style="margin-bottom:18px;">
+                                <?php if (!empty($p['eta'])): ?>
+                                    <span class="rent-chip eta"><i class="fa fa-truck"></i> Delivery in <?php echo htmlspecialchars($p['eta']); ?> · <?php echo htmlspecialchars(rent_city()); ?></span>
+                                <?php endif; ?>
+                                <?php if (!empty($p['badge'])): ?>
+                                    <span class="rent-chip dep"><i class="fa fa-star"></i> <?php echo htmlspecialchars($p['badge']); ?></span>
+                                <?php endif; ?>
+                            </div>
+
                             <!-- plan selector -->
                             <div class="rent-plans-head">
                                 <i class="fa fa-calendar" style="color:var(--rt-accent);"></i> Choose your rental plan
@@ -102,11 +119,25 @@ $page_breadcrumbs = [
                                 <?php endforeach; ?>
                             </div>
 
+                            <!-- BOSK Shield damage-protection add-on -->
+                            <div class="rent-addon" id="rpShield" onclick="rpShieldToggle()" style="margin-bottom:16px;">
+                                <div class="ic"><i class="fa fa-shield"></i></div>
+                                <div>
+                                    <b>Add BOSK Shield damage protection</b>
+                                    <span>Covers accidental damage, spills &amp; scratches beyond normal wear — no deductions from your deposit.</span>
+                                </div>
+                                <div class="price">+<span id="rpShieldAmt"><?php echo rent_money((int)round($defaultPlan['monthly'] * RENT_SHIELD_RATE)); ?></span>/mo</div>
+                            </div>
+
                             <!-- summary box (reflects selected plan) -->
                             <div class="rent-summary-box">
                                 <div class="rent-srow">
                                     <span class="k">Monthly rent</span>
                                     <span class="v" id="rpMonthly"><?php echo rent_money($defaultPlan['monthly']); ?></span>
+                                </div>
+                                <div class="rent-srow" id="rpShieldRow" style="display:none;">
+                                    <span class="k">BOSK Shield (per month)</span>
+                                    <span class="v" id="rpShieldLine">₹0</span>
                                 </div>
                                 <div class="rent-srow">
                                     <span class="k">Refundable deposit</span>
@@ -174,6 +205,32 @@ $page_breadcrumbs = [
             return '₹' + Math.round(n).toLocaleString('en-IN');
         }
 
+        /* current selection state (plan + shield add-on) */
+        var rpShieldOn = false;
+        var RP_SHIELD_RATE = <?php echo json_encode(RENT_SHIELD_RATE); ?>;
+
+        function rpCurrentPlan() {
+            return document.querySelector('#rpPlans .rent-plan.selected') ||
+                document.querySelector('#rpPlans .rent-plan');
+        }
+
+        /* re-compute the summary box from the selected plan + shield state */
+        function rpRefresh() {
+            var plan = rpCurrentPlan();
+            if (!plan) return;
+            var monthly = parseInt(plan.getAttribute('data-monthly'), 10) || 0;
+            var deposit = parseInt(plan.getAttribute('data-deposit'), 10) || 0;
+            var shield = Math.round(monthly * RP_SHIELD_RATE);
+            var moTotal = monthly + (rpShieldOn ? shield : 0);
+
+            document.getElementById('rpMonthly').textContent = rpMoney(monthly);
+            document.getElementById('rpDeposit').textContent = rpMoney(deposit);
+            document.getElementById('rpTotal').textContent = rpMoney(moTotal + deposit);
+            document.getElementById('rpShieldAmt').textContent = rpMoney(shield);
+            document.getElementById('rpShieldLine').textContent = rpMoney(shield);
+            document.getElementById('rpShieldRow').style.display = rpShieldOn ? '' : 'none';
+        }
+
         /* select a plan: highlight it, check its radio, update the summary */
         function rpSelect(plan) {
             document.querySelectorAll('#rpPlans .rent-plan').forEach(function (el) {
@@ -182,14 +239,14 @@ $page_breadcrumbs = [
             plan.classList.add('selected');
             var radio = plan.querySelector('input[type=radio]');
             if (radio) radio.checked = true;
+            rpRefresh();
+        }
 
-            var monthly = parseInt(plan.getAttribute('data-monthly'), 10) || 0;
-            var deposit = parseInt(plan.getAttribute('data-deposit'), 10) || 0;
-            var total = monthly + deposit;
-
-            document.getElementById('rpMonthly').textContent = rpMoney(monthly);
-            document.getElementById('rpDeposit').textContent = rpMoney(deposit);
-            document.getElementById('rpTotal').textContent = rpMoney(total);
+        /* toggle the BOSK Shield add-on */
+        function rpShieldToggle() {
+            rpShieldOn = !rpShieldOn;
+            document.getElementById('rpShield').classList.toggle('on', rpShieldOn);
+            rpRefresh();
         }
     </script>
 </body>
