@@ -47,9 +47,9 @@ $page_breadcrumbs = [
 
                     <!-- breadcrumb -->
                     <div style="font-size:13px;color:var(--rt-dim);margin:18px 0 22px;">
-                        <a href="index.php" style="color:var(--rt-dim);text-decoration:none;">Home</a>
+                        <a href="/" style="color:var(--rt-dim);text-decoration:none;">Home</a>
                         <span style="margin:0 7px;color:var(--rt-line);">&raquo;</span>
-                        <a href="rent.php" style="color:var(--rt-dim);text-decoration:none;">Rent Furniture</a>
+                        <a href="rent" style="color:var(--rt-dim);text-decoration:none;">Rent Furniture</a>
                         <span style="margin:0 7px;color:var(--rt-line);">&raquo;</span>
                         <span style="color:var(--rt-brand);font-weight:600;"><?php echo htmlspecialchars($p['name']); ?></span>
                     </div>
@@ -68,7 +68,7 @@ $page_breadcrumbs = [
                                     <img src="<?php echo rent_img($g); ?>"
                                         class="<?php echo $gi === 0 ? 'active' : ''; ?>"
                                         alt="<?php echo htmlspecialchars($p['name']); ?> view <?php echo $gi + 1; ?>"
-                                        onclick="rpSwap(this, '<?php echo rent_img($g); ?>')">
+                                        onclick="rpSwap(this, '<?php echo rent_img($g); ?>')"<?php echo $gi === 0 ? '' : ' loading="lazy" decoding="async"'; ?>>
                                 <?php endforeach; ?>
                             </div>
                         </div>
@@ -127,10 +127,10 @@ $page_breadcrumbs = [
 
                             <!-- actions -->
                             <div style="margin-top:22px;">
-                                <a class="rent-btn rent-btn-block" href="rent-cart.php">
+                                <a class="rent-btn rent-btn-block" href="rent-cart">
                                     Add to Rental Cart <i class="fa fa-arrow-right"></i>
                                 </a>
-                                <a class="rent-btn rent-btn-outline rent-btn-block" href="rent.php" style="margin-top:12px;">
+                                <a class="rent-btn rent-btn-outline rent-btn-block" href="rent" style="margin-top:12px;">
                                     <i class="fa fa-angle-left"></i> Back to catalogue
                                 </a>
                             </div>

@@ -1,6 +1,6 @@
 <?php
-$page_title       = 'My Wishlist | Bosk Furniture';
-$page_description = 'View and manage your saved furniture favourites in your Bosk Furniture wishlist.';
+$page_title       = 'My Wishlist - Saved Furniture Favourites | Bosk Furniture';
+$page_description = 'View and manage your saved furniture favourites in your Bosk Furniture wishlist - modular kitchens, wardrobes, sofas, beds and more.';
 $page_keywords    = 'wishlist, saved furniture, bosk furniture favourites';
 $page_canonical   = '/wishlist';
 $page_robots      = 'noindex, follow';
@@ -262,7 +262,7 @@ body{
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="index.php">Home</a><span>»</span><span>WISHLIST</span>
+                        <a href="/">Home</a><span>»</span><span>WISHLIST</span>
                     </div>
                 </div>
             </div>
@@ -284,7 +284,7 @@ body{
 
   <div class="product">
     <div class="product-image">
-      <img src="images/interior/p-1.png">
+      <img src="images/interior/p-1.png" loading="lazy" decoding="async">
     </div>
     <div class="product-details">
       <div class="product-title">Dingo Dog Bones</div>
@@ -304,7 +304,7 @@ body{
   </div>
   <div class="product">
     <div class="product-image">
-      <img src="images/interior/p-1.png">
+      <img src="images/interior/p-1.png" loading="lazy" decoding="async">
     </div>
     <div class="product-details">
       <div class="product-title">Dingo Dog Bones</div>
@@ -324,7 +324,7 @@ body{
   </div>
   <div class="product">
     <div class="product-image">
-      <img src="images/interior/p-1.png">
+      <img src="images/interior/p-1.png" loading="lazy" decoding="async">
     </div>
     <div class="product-details">
       <div class="product-title">Dingo Dog Bones</div>
@@ -344,7 +344,7 @@ body{
   </div>
   <div class="product">
     <div class="product-image">
-      <img src="images/interior/p-1.png">
+      <img src="images/interior/p-1.png" loading="lazy" decoding="async">
     </div>
     <div class="product-details">
       <div class="product-title">Dingo Dog Bones</div>
@@ -365,7 +365,7 @@ body{
 
   <div class="product">
     <div class="product-image">
-      <img src="images/interior/p-1.png">
+      <img src="images/interior/p-1.png" loading="lazy" decoding="async">
     </div>
     <div class="product-details">
       <div class="product-title">Nutro™ Adult Lamb and Rice Dog Food</div>

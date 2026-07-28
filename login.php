@@ -130,7 +130,7 @@ $page_robots      = 'noindex, follow';
                 </form>
 
                 <div id="return"></div>
-                <p class="bf-alt">New to Bosk? <a href="register.php">Create an account</a></p>
+                <p class="bf-alt">New to Bosk? <a href="register">Create an account</a></p>
             </div>
 
         </div>

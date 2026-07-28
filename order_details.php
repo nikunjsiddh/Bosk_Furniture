@@ -383,7 +383,7 @@ $page_robots      = 'noindex, nofollow';
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="index.php">Home</a><span>»</span><span><a href="profile.php#orders">My Orders</a></span><span>»</span><span>Order Detail</span>
+                        <a href="/">Home</a><span>»</span><span><a href="profile#orders">My Orders</a></span><span>»</span><span>Order Detail</span>
                     </div>
                 </div>
             </div>
@@ -442,7 +442,7 @@ $page_robots      = 'noindex, nofollow';
               <p class="text-pebble mb-0 w-100 mb-2 mb-md-0"><?php echo $address;?></p> 
             </div>
             <div class="col-12 col-md-3">
-              <a href="invoice.php?astringdata=<?php echo $order_id;?>&astringdata1=<?php echo $encode_user_id;?>"  class="btn btn-primary w-100">Download Invoice</a>
+              <a href="invoice?astringdata=<?php echo $order_id;?>&astringdata1=<?php echo $encode_user_id;?>"  class="btn btn-primary w-100">Download Invoice</a>
             </div>
           </div>
           
@@ -481,7 +481,7 @@ $page_robots      = 'noindex, nofollow';
             ?>
             <div class="row no-gutters mt-3">
               <div class="col-3 col-md-1">
-                <img class="img-fluid pr-3" src="admin/product_image/<?php echo $img1;?>" alt="Bosk Furniture order item" loading="lazy" decoding="async">
+                <img class="img-fluid pr-3" src="admin/product_image/<?php echo $img1;?>" alt="<?php echo htmlspecialchars($pname, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture order item" loading="lazy" decoding="async">
               </div>
               <div class="col-9 col-md-3 pr-0 pr-md-3">
                   
@@ -509,8 +509,8 @@ $page_robots      = 'noindex, nofollow';
               </div>
               
               <div class="col-12 col-md-2 hidden-sm-down">
-                <a href="product.php?astringdata=<?php echo $encode_product_id;?>" class="btn btn-secondary w-100 mb-2">Buy It Again</a>
-                <a href="return_request.php?astringdata=<?php echo $encode_product_id;?>&astringdata1=<?php echo $decoded_user_id;?>&astringdata2=<?php echo $order_id;?>" class="btn btn-secondary w-100">Request a Return</a>
+                <a href="product?astringdata=<?php echo $encode_product_id;?>" class="btn btn-secondary w-100 mb-2">Buy It Again</a>
+                <a href="return_request?astringdata=<?php echo $encode_product_id;?>&astringdata1=<?php echo $decoded_user_id;?>&astringdata2=<?php echo $order_id;?>" class="btn btn-secondary w-100">Request a Return</a>
               </div>
             </div>
             <?php

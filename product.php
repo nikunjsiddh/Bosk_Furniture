@@ -29,7 +29,7 @@ if (isset($_GET['astringdata'])) {
     if ($decoded_id > 0) {
         $pubchk = mysqli_query($con, "select id from products where id='" . $decoded_id . "' and publish_date <= NOW()");
         if (!$pubchk || mysqli_num_rows($pubchk) === 0) {
-            header("Location: shop.php");
+            header("Location: shop");
             exit();
         }
     }
@@ -392,7 +392,7 @@ if (isset($_GET['astringdata'])) {
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="index.php">Home</a><span>»</span><span>PRODUCT</span>
+                        <a href="/">Home</a><span>»</span><span>PRODUCT</span>
                     </div>
                 </div>
             </div>
@@ -471,8 +471,8 @@ if (isset($_GET['astringdata'])) {
                                             <div class="img-display">
                                                 <div class="img-frame">
                                                     <div class="img-showcase">
-                                                        <?php foreach ($gallery as $g) { ?>
-                                                            <img src="admin/product_image/<?php echo $g; ?>" alt="<?php echo $alt_txt; ?>">
+                                                        <?php foreach ($gallery as $gi => $g) { ?>
+                                                            <img src="admin/product_image/<?php echo $g; ?>" alt="<?php echo $alt_txt; ?>"<?php echo $gi === 0 ? '' : ' loading="lazy" decoding="async"'; ?>>
                                                         <?php } ?>
                                                     </div>
                                                 </div>
@@ -482,7 +482,7 @@ if (isset($_GET['astringdata'])) {
                                                 <?php foreach ($gallery as $i => $g) { ?>
                                                     <div class="img-item<?php echo $i === 0 ? ' active' : ''; ?>">
                                                         <a href="#" data-id="<?php echo $i + 1; ?>">
-                                                            <img src="admin/product_image/<?php echo $g; ?>" alt="<?php echo $alt_txt; ?>">
+                                                            <img src="admin/product_image/<?php echo $g; ?>" alt="<?php echo $alt_txt; ?>"<?php echo $i === 0 ? '' : ' loading="lazy" decoding="async"'; ?>>
                                                         </a>
                                                     </div>
                                                 <?php } ?>
@@ -614,7 +614,7 @@ if (isset($_GET['astringdata'])) {
                                     $new_price2=$row2['new_price'];
                                     $tags2=$row2['tags'];
                                 ?>
-                                <a class="bosk-seller" href="product.php?astringdata=<?php echo $row2['id']; ?>">
+                                <a class="bosk-seller" href="product?astringdata=<?php echo $row2['id']; ?>">
                                     <span class="thumb"><img src="admin/product_image/<?php echo $img12;?>" alt="<?php echo htmlspecialchars(isset($row2['pname']) ? $row2['pname'] : 'Related product', ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture" loading="lazy" decoding="async"></span>
                                     <span class="meta">
                                         <h6><?php echo $pname2;?></h6>
@@ -688,7 +688,7 @@ if (isset($_GET['astringdata'])) {
                     <div id="bosk_login_return"></div>
                 </form>
                 <div class="bosk-modal-foot">
-                    New to Bosk Furniture? <a href="register.php">Create now</a>
+                    New to Bosk Furniture? <a href="register">Create now</a>
                 </div>
             </div>
         </div>

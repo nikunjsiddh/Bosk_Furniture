@@ -4,6 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 $page_title       = 'Your Rental Cart | Bosk Furniture on Rent';
 $page_description = 'Review your rental cart — monthly rent and free delivery — then continue to checkout at Bosk Furniture.';
+$page_robots      = 'noindex, follow';
 $page_canonical   = '/rent-cart';
 $page_breadcrumbs = [
     ['name' => 'Home', 'url' => '/'],
@@ -99,10 +100,10 @@ foreach ($cart as $item) {
                                 <span class="v"><?php echo rent_money($rent_total); ?></span>
                             </div>
 
-                            <a class="rent-btn rent-btn-block" href="rent-checkout.php" style="margin-top:16px;">
+                            <a class="rent-btn rent-btn-block" href="rent-checkout" style="margin-top:16px;">
                                 Proceed to Checkout <i class="fa fa-arrow-right"></i>
                             </a>
-                            <a class="rent-btn-outline rent-btn rent-btn-block" href="rent.php" style="margin-top:10px;">
+                            <a class="rent-btn-outline rent-btn rent-btn-block" href="rent" style="margin-top:10px;">
                                 <i class="fa fa-angle-left"></i> Continue browsing
                             </a>
 

@@ -177,7 +177,7 @@ $page_robots      = 'noindex, follow';
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="index.php">Home</a><span>»</span><span>PROFILE</span>
+                        <a href="/">Home</a><span>»</span><span>PROFILE</span>
                     </div>
                 </div>
             </div>
@@ -250,7 +250,7 @@ include_once"connect.php";
                                                 Details</a>
                                             <a href="#password-edit" data-bs-toggle="tab"><i class="fa fa-pencil"></i>
                                                 Change Password</a>
-                                            <a href="logout.php"><i class="fa fa-sign-out"></i>Logout</a>
+                                            <a href="logout"><i class="fa fa-sign-out"></i>Logout</a>
                                         </div>
                                     </div>
                                     <!-- My Account Tab Menu End -->
@@ -266,7 +266,7 @@ include_once"connect.php";
                                                         <p>Hello, <strong>
                                                                 <?php echo$firstname.' '.$lastname;?>
                                                             </strong> (If Not <strong>You
-                                                                !</strong><a href="logout.php" class="logout">
+                                                                !</strong><a href="logout" class="logout">
                                                                 Logout</a>)</p>
                                                     </div>
                                                     <p class="mb-0">From your account dashboard. you can easily check &
@@ -327,11 +327,11 @@ include_once"connect.php";
                                                                     </td>
                                                                     <!--<td>Pending</td>-->
                                                                     <td>$3000</td>
-                                                                    <td><a href="order_details.php?astringdata=<?php echo $order_id;?>&astringdata1=<?php echo $encode_user_id;?>"
+                                                                    <td><a href="order_details?astringdata=<?php echo $order_id;?>&astringdata1=<?php echo $encode_user_id;?>"
                                                                             style="background-color:#532A1A;color:white;"
                                                                             class="btn btn__bg">View</a>
                                                                     </td>
-                                                                    <td><a href="invoice.php?astringdata=<?php echo $order_id;?>&astringdata1=<?php echo $encode_user_id;?>"
+                                                                    <td><a href="invoice?astringdata=<?php echo $order_id;?>&astringdata1=<?php echo $encode_user_id;?>"
                                                                             style="background-color:#532A1A;color:white;"
                                                                             class="btn btn__bg">Download</a>
                                                                     </td>
@@ -701,7 +701,7 @@ include_once"connect.php";
                 <div class="bf-guest-icon"><i class="fa fa-user-o" aria-hidden="true"></i></div>
                 <h3 class="bf-guest-title">Login to View Your Profile</h3>
                 <p class="bf-guest-text">Hello! Please login or create your Bosk Furniture account to view and manage your profile, orders &amp; details.</p>
-                <a href="login.php" class="bf-guest-btn"><i class="fa fa-sign-in" aria-hidden="true"></i> Login / Register</a>
+                <a href="login" class="bf-guest-btn"><i class="fa fa-sign-in" aria-hidden="true"></i> Login / Register</a>
             </div>
         </center>
         <style>

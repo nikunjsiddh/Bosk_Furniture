@@ -20,7 +20,7 @@ if(isset($_GET['astringdata']) && isset($_GET['astringdata1']))
         <title>Invoice | Bosk Furniture Order</title>
         <meta name="description" content="View your Bosk Furniture order invoice.">
         <meta name="robots" content="noindex, nofollow">
-        <link rel="canonical" href="https://www.boskfurniture.com/invoice.php">
+        <link rel="canonical" href="https://www.boskfurniture.com/invoice">
         <link rel="icon" href="images/fevicon.png" type="image/png"> <!-- Favicon-->
         <style>
             @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700|Rubik:400,500,700');
@@ -353,7 +353,7 @@ th .ui-datepicker-week-end {
       </div>
       <div class="col-xs-6 logo-container">
         
-        <img src="images/logo-white.png" alt="your image" width="220" />
+        <img src="images/logo-white.png" alt="Bosk Furniture logo" width="220" />
         <div>
          
         </div>

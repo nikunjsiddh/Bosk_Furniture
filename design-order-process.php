@@ -121,7 +121,7 @@ body {
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="index.php">Home</a><span>»</span><span>How It Works</span>
+                        <a href="/">Home</a><span>»</span><span>How It Works</span>
                     </div>
                 </div>
             </div>
@@ -233,7 +233,7 @@ body {
                     <div class="accordion-item-desc">Your journey with us is reaching its final phase. Our skilled in-house team handles all installations, ensuring your project is completed to perfection. Some settling of the furniture may occur in the weeks following installation, and we provide appropriate after-care services to address any issues. We undertake any necessary adjustments to ensure your utmost satisfaction with your new furniture. Upon completion, we'll issue your 'Balance' invoice, due for payment within the following week.<br/>Thank you for entrusting us with your journey. We hope you adore your new furniture, and we look forward to welcoming you back soon for your next exciting project.</div>
             </div><br/>
             <center>
-            <a href="contact.php"><button type="button" style="background-color:#532A1A !important;color:#ffffff !important;"  class="btn btn-primary btn-lg ">Start Your Project</button></a>
+            <a href="contact"><button type="button" style="background-color:#532A1A !important;color:#ffffff !important;"  class="btn btn-primary btn-lg ">Start Your Project</button></a>
             </center>
             </div>
         </section><hr/>

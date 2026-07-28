@@ -4,6 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 $page_title       = 'Rental Checkout | Bosk Furniture';
 $page_description = 'Confirm your delivery address and place your furniture rental request — our team calls you to arrange free delivery and setup.';
+$page_robots      = 'noindex, follow';
 $page_canonical   = '/rent-checkout';
 $page_breadcrumbs = [
     ['name' => 'Home', 'url' => '/'],
@@ -157,10 +158,10 @@ $order_ref = 'BR' . date('ymd') . str_pad((string)mt_rand(0, 9999), 4, '0', STR_
                 <p>Thank you — your rental request has been placed successfully.</p>
                 <span class="ord-ref">Order ID: <?php echo htmlspecialchars($order_ref); ?></span>
                 <p>Our team will call you shortly to confirm the details.</p>
-                <a class="rent-btn rent-btn-block" href="my-rentals.php" style="margin-top:18px;">
+                <a class="rent-btn rent-btn-block" href="my-rentals" style="margin-top:18px;">
                     View My Rentals <i class="fa fa-arrow-right"></i>
                 </a>
-                <a class="rent-btn-outline rent-btn rent-btn-block" href="rent.php" data-close style="margin-top:10px;">
+                <a class="rent-btn-outline rent-btn rent-btn-block" href="rent" data-close style="margin-top:10px;">
                     Continue browsing
                 </a>
             </div>
