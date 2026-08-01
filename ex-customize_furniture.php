@@ -158,7 +158,7 @@ $page_breadcrumbs = [
                                       $encode_project_id=base64_encode($project_id);
                         ?>
                         <div class="inner-box">
-                            <a href="project-details?astringdata=<?php echo $encode_project_id; ?>" class="recent-16" data-aos="fade-up">
+                            <a href="<?php echo url_project($row1['slug']); ?>" class="recent-16" data-aos="fade-up">
                                 <div class="recent-img16 img-fluid img-center" style="background-image: url(admin/project_image/<?php echo $img1;?>)">
                                 
                                 </div>

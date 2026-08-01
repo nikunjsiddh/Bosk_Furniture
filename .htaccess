@@ -57,6 +57,59 @@
     RewriteCond %{THE_REQUEST} ^[A-Z]+\s([^\s?]+)\.php[?\s] [NC]
     RewriteRule ^ %1 [R=301,L]
 
+    # ============================================================
+    # SLUG ROUTING
+    # Slug URLs are flat (one path segment) because the site's assets
+    # and nav links are relative — a nested /product/<slug> would break
+    # them. Every rule below is guarded by "the .php file does not
+    # exist", so a real page always wins over a slug and adding a new
+    # page can never be shadowed by a product or post of the same name.
+    # ============================================================
+
+    # NOTE: `DirectorySlash Off` lives in blog/.htaccess, not here. A
+    # `blog/` directory exists on disk (blog authoring source), so mod_dir
+    # would 301 /blog to /blog/ and shadow the /blog route below. Scoping the
+    # directive to that one directory keeps /Admin, /css and /images
+    # redirecting to their trailing-slash form as before.
+
+    # 2a) /blog-full-list -> /blog is a 301 issued by blog-full-list.php.
+    #     It is NOT done here: a relative substitution in an R=301 rule
+    #     resolves against the filesystem path when the site is served from a
+    #     sub-folder, producing a redirect to a literal C:/xampp2/... URL.
+
+    # 2b) Legacy ?astringdata parameter URLs -> resolved to slug URLs in PHP.
+    #     Internal rewrite (no R flag) so REQUEST_URI still holds the
+    #     original path, which legacy-redirect.php uses to tell the
+    #     three legacy page types apart.
+    RewriteCond %{QUERY_STRING} (^|&)astringdata2?= [NC]
+    RewriteRule ^(details|product|shop|project-details)/?$ legacy-redirect.php [L]
+
+    # 2c) Blog index
+    RewriteRule ^blog/?$ blog-full-list.php [L]
+
+    # 2d) Blog post:  /blog-<slug>
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME}\.php !-f
+    RewriteRule ^blog-([a-z0-9-]+)/?$ details.php?slug=$1 [L,QSA]
+
+    # 2e) Product:  /product-<slug>
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME}\.php !-f
+    RewriteRule ^product-([a-z0-9-]+)/?$ product.php?slug=$1 [L,QSA]
+
+    # 2e2) Project:  /project-<slug>
+    #      The .php guard keeps /project-details resolving to its own page.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME}\.php !-f
+    RewriteRule ^project-([a-z0-9-]+)/?$ project-details.php?slug=$1 [L,QSA]
+
+    # 2f) Category:  top-level reserved slugs -> shop.php
+    #     These are the primary commercial landing pages, so they get the
+    #     shortest possible path.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME}\.php !-f
+    RewriteRule ^(modular-kitchens|wardrobes|storage-beds|tv-units|sofas|other-comforts)/?$ shop.php?cat_slug=$1 [L,QSA]
+
     # 3) Internally serve /something as /something.php when the .php file exists.
     #    Skipped for /back/ and /Admin/ so those paths still resolve by their real names.
     RewriteCond %{REQUEST_URI} !/back/   [NC]

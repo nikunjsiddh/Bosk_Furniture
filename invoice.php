@@ -5,6 +5,15 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 include_once("connect.php");
+// This page identifies a specific order/invoice/return via query parameters.
+// Without them it previously rendered an empty 200 — a thin page a crawler
+// can index. Send a real 404 instead.
+if (!(isset($_GET['astringdata']) && isset($_GET['astringdata1']))) {
+    http_response_code(404);
+    include __DIR__ . '/404.php';
+    exit;
+}
+
 if(isset($_GET['astringdata']) && isset($_GET['astringdata1']))
 	{
 	    $order_id = mysqli_real_escape_string($con,$_GET['astringdata']);

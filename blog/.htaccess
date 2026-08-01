@@ -1,0 +1,22 @@
+# This directory holds blog AUTHORING SOURCE (markdown drafts and source
+# images), not web content. Nothing on the site links to it.
+#
+# It must not be web-readable: it contains drafts for posts that have not
+# been published yet (Blog-4, Blog-5, Blog-6), and serving the .md source of
+# a published post alongside the real page would be duplicate content.
+#
+# The deny is matched on an extension, so it covers every file in here while
+# leaving the extensionless directory name itself alone. Denying the
+# directory would also reject the /blog URL, because access control resolves
+# from the directory mapping before mod_rewrite routes /blog to
+# blog-full-list.php.
+<FilesMatch "\.[A-Za-z0-9]+$">
+    Require all denied
+</FilesMatch>
+
+# The /blog URL is the blog index, routed to blog-full-list.php by the root
+# .htaccess. Without this, mod_dir would first 301 /blog to /blog/ because
+# this directory exists, and that redirect would shadow the route. Scoped
+# here rather than site-wide so other directories (/Admin, /css, /images)
+# keep their normal trailing-slash redirect.
+DirectorySlash Off

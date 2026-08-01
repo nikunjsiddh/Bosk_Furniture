@@ -19,6 +19,7 @@
    ============================================================ */
 
 include_once __DIR__ . '/connect.php';
+require_once __DIR__ . '/inc/urls.php';
 
 $site_url = 'https://www.boskfurniture.com';
 $today    = date('Y-m-d');
@@ -62,7 +63,7 @@ $static = [
     ['/all_products',                      '0.95', 'daily'],
     ['/all-services',                      '0.85', 'monthly'],
     ['/projects',                          '0.8',  'weekly'],
-    ['/blog-full-list',                    '0.8',  'weekly'],
+    ['/blog',                              '0.8',  'weekly'],
     ['/testimonial',                       '0.7',  'monthly'],
     ['/ex-customize_furniture',            '0.85', 'monthly'],
     ['/design-order-process',              '0.75', 'monthly'],
@@ -77,50 +78,56 @@ foreach ($static as $row) {
 
 // ---- Dynamic content from DB ----
 if (isset($con) && $con) {
-    // Products
-    $q = @mysqli_query($con, "SELECT id, pname, img1 FROM products WHERE publish_date <= NOW() ORDER BY id DESC");
+    // Products — demo/placeholder rows are excluded so they never get indexed
+    // as the real BOSK catalogue.
+    $q = @mysqli_query($con, "SELECT id, pname, slug, img1 FROM products WHERE publish_date <= NOW() AND is_demo = 0 ORDER BY id DESC");
     if ($q) {
         while ($r = mysqli_fetch_assoc($q)) {
-            $loc = $site_url . '/product?astringdata=' . urlencode(base64_encode($r['id']));
+            if (empty($r['slug'])) { continue; }
+            $loc = $site_url . '/' . url_product($r['slug']);
             $img = !empty($r['img1']) ? $site_url . '/admin/product_image/' . $r['img1'] : null;
             add_url($xml, $loc, '0.9', 'weekly', $today, $img, $r['pname']);
         }
     }
 
-    // Categories (clean URL shop)
-    // TRIM() in SQL collapses leading/trailing spaces, and we also de-dupe in
-    // PHP (case-insensitive) so a stray-space category like " LUSCIOUS WARDROBES"
-    // never emits a second duplicate URL alongside "LUSCIOUS WARDROBES".
-    $q2 = @mysqli_query($con, "SELECT DISTINCT TRIM(pcategory) AS cat FROM products WHERE TRIM(IFNULL(pcategory,'')) != '' ORDER BY cat");
+    // Categories — a category with no live products is noindex on the page
+    // itself, so listing it here would contradict that.
+    $q2 = @mysqli_query($con,
+        "SELECT c.slug, COUNT(p.id) AS cnt
+           FROM category c
+           LEFT JOIN products p
+             ON TRIM(LOWER(c.name)) = TRIM(LOWER(p.pcategory))
+            AND p.publish_date <= NOW()
+            AND p.is_demo = 0
+          GROUP BY c.id, c.slug
+          HAVING cnt > 0");
     if ($q2) {
-        $seen_cats = array();
         while ($r = mysqli_fetch_assoc($q2)) {
-            $cat = trim($r['cat']);
-            $key = strtolower($cat);
-            if ($cat === '' || isset($seen_cats[$key])) { continue; }
-            $seen_cats[$key] = true;
-            $loc = $site_url . '/shop?astringdata2=' . urlencode($cat);
-            add_url($xml, $loc, '0.85', 'weekly', $today);
+            if (empty($r['slug'])) { continue; }
+            add_url($xml, $site_url . '/' . url_category($r['slug']), '0.85', 'weekly', $today);
         }
     }
 
     // Projects
-    $q3 = @mysqli_query($con, "SELECT id, project_name, img1 FROM projects ORDER BY id DESC");
+    $q3 = @mysqli_query($con, "SELECT id, project_name, slug, img1 FROM projects ORDER BY id DESC");
     if ($q3) {
         while ($r = mysqli_fetch_assoc($q3)) {
-            $loc = $site_url . '/project-details?astringdata=' . urlencode(base64_encode($r['id']));
+            if (empty($r['slug'])) { continue; }
+            $loc = $site_url . '/' . url_project($r['slug']);
             $img = !empty($r['img1']) ? $site_url . '/admin/project_image/' . $r['img1'] : null;
             add_url($xml, $loc, '0.7', 'monthly', $today, $img, $r['project_name']);
         }
     }
 
-    // Blog
-    $q4 = @mysqli_query($con, "SELECT id, blog_title, img FROM blog WHERE blog_date <= NOW() ORDER BY id DESC");
+    // Blog — real <lastmod> from the publish date rather than "today".
+    $q4 = @mysqli_query($con, "SELECT id, blog_title, slug, img, blog_date FROM blog WHERE blog_date <= NOW() ORDER BY id DESC");
     if ($q4) {
         while ($r = mysqli_fetch_assoc($q4)) {
-            $loc = $site_url . '/details?astringdata=' . urlencode(base64_encode($r['id']));
-            $img = !empty($r['img']) ? $site_url . '/admin/blog_image/' . $r['img'] : null;
-            add_url($xml, $loc, '0.7', 'monthly', $today, $img, $r['blog_title']);
+            if (empty($r['slug'])) { continue; }
+            $loc  = $site_url . '/' . url_blog($r['slug']);
+            $img  = !empty($r['img']) ? $site_url . '/admin/blog_image/' . $r['img'] : null;
+            $lmod = !empty($r['blog_date']) ? date('Y-m-d', strtotime($r['blog_date'])) : $today;
+            add_url($xml, $loc, '0.7', 'monthly', $lmod, $img, $r['blog_title']);
         }
     }
 }

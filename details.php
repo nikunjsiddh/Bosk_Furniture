@@ -5,19 +5,40 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 include_once("connect.php");
+require_once __DIR__ . '/inc/urls.php';
+require_once __DIR__ . '/inc/faq.php';
 
 // Safe defaults so the rest of the page never sees undefined variables.
 $blog_title = '';
 $blogid     = 0;
+$blog_slug  = '';
+$_blog_body = '';
+$_blog_date = '';
+$_blog_img  = '';
 
-if (isset($_GET['astringdata'])) {
+// ---- Resolve the post ---------------------------------------------------
+// Primary key is the slug (/blog-<slug>). The legacy ?astringdata form still
+// resolves, but 301s to the slug URL so both never serve the same content.
+if (isset($_GET['slug']) && $_GET['slug'] !== '') {
+
+    $stmt = mysqli_prepare($con, "SELECT id FROM blog WHERE slug=? AND blog_date <= NOW() LIMIT 1");
+    mysqli_stmt_bind_param($stmt, 's', $_GET['slug']);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $_found_id);
+    if (mysqli_stmt_fetch($stmt)) { $blogid = (int) $_found_id; }
+    mysqli_stmt_close($stmt);
+
+    if ($blogid === 0) {
+        http_response_code(404);
+        include __DIR__ . '/404.php';
+        exit;
+    }
+
+} elseif (isset($_GET['astringdata'])) {
 
     $raw = $_GET['astringdata'];
 
-    // The site links to this page in TWO styles:
-    //   1) plain numeric id   -> details.php?astringdata=1           (blog-full-list.php, related sidebar)
-    //   2) base64-encoded id  -> details.php?astringdata=MQ==        (homepage block in index.php)
-    // Accept both without breaking existing links.
+    // Legacy links exist in TWO styles: plain numeric id, and base64-encoded id.
     if (ctype_digit($raw)) {
         $blogid = (int) $raw;
     } else {
@@ -25,47 +46,112 @@ if (isset($_GET['astringdata'])) {
         $blogid  = ($decoded !== false && ctype_digit($decoded)) ? (int) $decoded : 0;
     }
 
-    // Scheduled publishing: a blog post is only viewable from its publish date onward.
     if ($blogid > 0) {
+        if ($legacy_slug = bosk_slug_for($con, 'blog', $blogid)) {
+            header('Location: ' . bosk_base_path() . url_blog($legacy_slug), true, 301);
+            exit;
+        }
         $pubchk = mysqli_query($con, "select id from blog where id='" . $blogid . "' and blog_date <= NOW()");
         if (!$pubchk || mysqli_num_rows($pubchk) === 0) {
-            header("Location: blog-full-list");
+            header("Location: blog");
             exit();
         }
     }
+}
 
-    if ($blogid > 0) {
-        $cmd3    = "select * from blog where id='" . $blogid . "'";
-        $result3 = mysqli_query($con, $cmd3) or die(mysqli_error($con));
-        while ($row3 = mysqli_fetch_array($result3)) {
-            $blog_title = $row3['blog_title'];
-        }
-    }
+if ($blogid === 0) {
+    http_response_code(404);
+    include __DIR__ . '/404.php';
+    exit;
+}
+
+$cmd3    = "select * from blog where id='" . $blogid . "'";
+$result3 = mysqli_query($con, $cmd3) or die(mysqli_error($con));
+while ($row3 = mysqli_fetch_array($result3)) {
+    $blog_title = $row3['blog_title'];
+    $blog_slug  = isset($row3['slug'])             ? $row3['slug']             : '';
+    $_blog_body = isset($row3['blog_description']) ? $row3['blog_description'] : '';
+    $_blog_date = isset($row3['blog_date'])        ? $row3['blog_date']        : '';
+    $_blog_img  = isset($row3['img'])              ? $row3['img']              : '';
+}
 
 // ---- Dynamic SEO for blog post ----
-$_seo_blog        = isset($blog_title) && $blog_title !== '' ? $blog_title : 'Blog Article';
-$page_title       = $_seo_blog . ' | Bosk Furniture Blog India';
-$page_description = 'Read "' . $_seo_blog . '" on the Bosk Furniture blog - expert furniture tips, interior design ideas and home decor inspiration for Indian homes.';
-$page_keywords    = $_seo_blog . ', furniture blog, interior design tips, bosk furniture blog india';
-$page_canonical   = '/details?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '');
+$_seo_blog  = $blog_title !== '' ? $blog_title : 'Blog Article';
+$_seo_path  = '/' . ($blog_slug !== '' ? url_blog($blog_slug) : 'blog');
+$_seo_url   = 'https://www.boskfurniture.com' . $_seo_path;
+
+// The suffix is only appended when the result still fits in 60 characters —
+// previously it was unconditional and pushed titles to 78.
+$_blog_suffix = ' | BOSK Furniture';
+$page_title   = (strlen($_seo_blog . $_blog_suffix) <= 60) ? $_seo_blog . $_blog_suffix : $_seo_blog;
+
+// Description is taken from the post's own opening lines rather than a
+// template, which Google rewrites.
+$_intro = trim(preg_replace('/\s+/', ' ', strip_tags($_blog_body)));
+$page_description = ($_intro !== '')
+    ? rtrim(substr($_intro, 0, 155), " \t\n\r\0\x0B.,;:") . '.'
+    : 'Practical guidance on modular kitchens, wardrobes and storage furniture for Indian homes, from the BOSK Furniture workshop in Bhavnagar, Gujarat.';
+
+$page_keywords    = $_seo_blog . ', modular furniture guide, interior design india, bosk furniture blog';
+$page_canonical   = $_seo_path;
 $og_type          = 'article';
+if ($_blog_img !== '') {
+    $og_image = 'https://www.boskfurniture.com/admin/blog_image/' . $_blog_img;
+}
 $page_breadcrumbs = [
     ['name' => 'Home',     'url' => '/'],
-    ['name' => 'Blog',     'url' => '/blog-full-list'],
-    ['name' => $_seo_blog, 'url' => '/details?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '')]
+    ['name' => 'Blog',     'url' => '/blog'],
+    ['name' => $_seo_blog, 'url' => $_seo_path]
 ];
-$page_schema = '
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": ' . json_encode($_seo_blog) . ',
-  "author": {"@type":"Organization","name":"Bosk Furniture"},
-  "publisher": {"@type":"Organization","name":"Bosk Furniture","logo":{"@type":"ImageObject","url":"https://www.boskfurniture.com/images/fevicon.png"}},
-  "mainEntityOfPage": "' . htmlspecialchars($page_canonical, ENT_QUOTES, 'UTF-8') . '",
-  "inLanguage": "en-IN"
+
+// ---- BlogPosting + FAQPage JSON-LD --------------------------------------
+$_published = ($_blog_date !== '' && strtotime($_blog_date)) ? date('c', strtotime($_blog_date)) : null;
+
+$_schema_post = [
+    '@context'         => 'https://schema.org',
+    '@type'            => 'BlogPosting',
+    'headline'         => mb_substr($_seo_blog, 0, 110),
+    'url'              => $_seo_url,
+    'mainEntityOfPage' => $_seo_url,
+    'description'      => $page_description,
+    'author'           => ['@id' => 'https://www.boskfurniture.com/#organization'],
+    'publisher'        => ['@id' => 'https://www.boskfurniture.com/#organization'],
+    'inLanguage'       => 'en-IN',
+];
+if ($_published !== null) {
+    $_schema_post['datePublished'] = $_published;
+    $_schema_post['dateModified']  = $_published;
 }
-</script>';
+if ($_blog_img !== '') {
+    $_schema_post['image'] = 'https://www.boskfurniture.com/admin/blog_image/' . $_blog_img;
+}
+
+$page_schema = '
+<script type="application/ld+json">'
+    . json_encode($_schema_post, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+    . '</script>';
+
+// FAQPage is emitted only from Q:/A: pairs that actually appear in the post
+// body, so the markup can never drift from the visible text.
+$_faq = bosk_parse_faq($_blog_body);
+if (count($_faq) > 0) {
+    $_faq_nodes = [];
+    foreach ($_faq as $pair) {
+        $_faq_nodes[] = [
+            '@type'          => 'Question',
+            'name'           => $pair['q'],
+            'acceptedAnswer' => ['@type' => 'Answer', 'text' => $pair['a']],
+        ];
+    }
+    $page_schema .= '
+<script type="application/ld+json">'
+        . json_encode([
+            '@context'   => 'https://schema.org',
+            '@type'      => 'FAQPage',
+            'mainEntity' => $_faq_nodes,
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+        . '</script>';
+}
 ?>
 <!DOCTYPE HTML>
 <html class="no-js" lang="en-IN">
@@ -809,7 +895,7 @@ $page_schema = '
         $word_count   = str_word_count(strip_tags($blog_description));
         $reading_min  = max(1, (int) ceil($word_count / 200));
         $hero_img     = $img ? 'admin/blog_image/' . $img : 'images/bg/about-us.jpg';
-        $share_url    = 'https://www.boskfurniture.com/details?astringdata=' . urlencode((string)$blogid);
+        $share_url    = $_seo_url;
         $share_title  = $blog_title;
         ?>
 
@@ -821,7 +907,7 @@ $page_schema = '
             <div class="article-hero-bg" style="background-image: url('<?php echo htmlspecialchars($hero_img, ENT_QUOTES, 'UTF-8'); ?>');"></div>
             <div class="article-hero-overlay"></div>
             <div class="container article-hero-inner">
-                <a href="blog-full-list" class="article-back" data-reveal="up">
+                <a href="blog" class="article-back" data-reveal="up">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i> Back to Blog
                 </a>
                 <div class="article-hero-content" data-reveal="up">
@@ -842,7 +928,7 @@ $page_schema = '
                 <div class="container">
                     <a href="/">Home</a>
                     <span aria-hidden="true">»</span>
-                    <a href="blog-full-list">Blog</a>
+                    <a href="blog">Blog</a>
                     <span aria-hidden="true">»</span>
                     <span class="current"><?php echo $blog_title ? htmlspecialchars($blog_title, ENT_QUOTES, 'UTF-8') : 'Article'; ?></span>
                 </div>
@@ -873,9 +959,9 @@ $page_schema = '
                             <div class="article-footer">
                                 <div class="article-tags">
                                     <i class="fa fa-tags" aria-hidden="true"></i>
-                                    <a href="blog-full-list">Furniture</a>
-                                    <a href="blog-full-list">Interior</a>
-                                    <a href="blog-full-list">Home Decor</a>
+                                    <a href="blog">Furniture</a>
+                                    <a href="blog">Interior</a>
+                                    <a href="blog">Home Decor</a>
                                 </div>
                                 <div class="article-share">
                                     <span class="share-label">Share</span>
@@ -950,7 +1036,7 @@ $page_schema = '
                                         $isActive = ((int)$rid === (int)$blogid);
                                     ?>
                                     <li class="recent-item<?php echo $isActive ? ' is-active' : ''; ?>">
-                                        <a class="recent-link" href="details?astringdata=<?php echo (int)$rid; ?>">
+                                        <a class="recent-link" href="<?php echo url_blog($row1['slug']); ?>">
                                             <span class="recent-thumb">
                                                 <img src="admin/blog_image/<?php echo htmlspecialchars($rimg, ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($rtitle, ENT_QUOTES, 'UTF-8'); ?>" loading="lazy">
                                             </span>
@@ -964,7 +1050,7 @@ $page_schema = '
                                     </li>
                                     <?php } ?>
                                 </ul>
-                                <a class="widget-cta" href="blog-full-list">
+                                <a class="widget-cta" href="blog">
                                     View All Posts <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -1168,6 +1254,3 @@ $page_schema = '
 </body>
 
 </html>
-<?php
-}
-?>

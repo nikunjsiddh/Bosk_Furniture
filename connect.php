@@ -13,9 +13,13 @@ mysqli_report(MYSQLI_REPORT_OFF);
 // treated as development. Anything else is treated as production.
 // ----------------------------------------------------------------------
 
+// CLI has no HTTP_HOST, so command-line tooling (migrations, sitemap cron)
+// would otherwise always take the production branch. BOSK_DB_ENV=local lets a
+// developer target the XAMPP database explicitly; unset, behaviour is unchanged.
 $__bosk_host = isset($_SERVER['HTTP_HOST']) ? strtolower($_SERVER['HTTP_HOST']) : '';
 
-if ($__bosk_host === 'localhost'
+if (getenv('BOSK_DB_ENV') === 'local'
+    || $__bosk_host === 'localhost'
     || strpos($__bosk_host, 'localhost:') === 0
     || $__bosk_host === '127.0.0.1'
     || strpos($__bosk_host, '127.0.0.1:') === 0) {

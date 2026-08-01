@@ -5,30 +5,69 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 include_once("connect.php");
-if(isset($_GET['astringdata']))
-	{
-	    $project_post_id = mysqli_real_escape_string($con,$_GET['astringdata']);
-	    $decoded_id = base64_decode($project_post_id);
-	    
-	    $cmd3="select * from projects where id='$decoded_id'";
-        $result3=mysqli_query($con,$cmd3) or die(mysqli_error($con));
-        while($row=mysqli_fetch_array($result3))
-        {
-            $project_name=$row['project_name'];
-            // echo $project_name;
+require_once __DIR__ . '/inc/urls.php';
 
-        }
+$project_name = '';
+$project_slug = '';
+$decoded_id   = 0;
+
+// ---- Resolve the project -------------------------------------------------
+// Primary key is the slug (/project-<slug>). The legacy ?astringdata form
+// still resolves, but 301s to the slug URL.
+if (isset($_GET['slug']) && $_GET['slug'] !== '') {
+
+    $stmt = mysqli_prepare($con, "SELECT id FROM projects WHERE slug=? LIMIT 1");
+    mysqli_stmt_bind_param($stmt, 's', $_GET['slug']);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $_found_id);
+    if (mysqli_stmt_fetch($stmt)) { $decoded_id = (int) $_found_id; }
+    mysqli_stmt_close($stmt);
+
+    if ($decoded_id === 0) {
+        http_response_code(404);
+        include __DIR__ . '/404.php';
+        exit;
+    }
+
+} elseif (isset($_GET['astringdata'])) {
+
+    // base64_decode() output was previously interpolated straight into SQL.
+    // Accept it only when it decodes to a plain integer.
+    $maybe      = base64_decode((string)$_GET['astringdata'], true);
+    $decoded_id = ($maybe !== false && ctype_digit($maybe)) ? (int) $maybe : 0;
+
+    if ($decoded_id > 0 && ($legacy_slug = bosk_slug_for($con, 'projects', $decoded_id))) {
+        header('Location: ' . bosk_base_path() . url_project($legacy_slug), true, 301);
+        exit;
+    }
+}
+
+if ($decoded_id === 0) {
+    http_response_code(404);
+    include __DIR__ . '/404.php';
+    exit;
+}
+
+$cmd3    = "select * from projects where id='" . $decoded_id . "'";
+$result3 = mysqli_query($con, $cmd3) or die(mysqli_error($con));
+while ($row = mysqli_fetch_array($result3)) {
+    $project_name = $row['project_name'];
+    $project_slug = isset($row['slug']) ? $row['slug'] : '';
+}
 
 // ---- Dynamic SEO for project ----
-$_seo_proj        = isset($project_name) && $project_name !== '' ? $project_name : 'Project';
-$page_title       = $_seo_proj . ' | Bosk Furniture Interior Design Projects India';
-$page_description = 'Explore the ' . $_seo_proj . ' interior design project by Bosk Furniture - showcasing modular furniture, custom interiors and quality craftsmanship across India.';
+$_seo_proj  = $project_name !== '' ? $project_name : 'Project';
+$_seo_path  = '/' . ($project_slug !== '' ? url_project($project_slug) : 'projects');
+
+$_proj_suffix     = ' | BOSK Furniture Projects';
+$page_title       = (strlen($_seo_proj . $_proj_suffix) <= 60) ? $_seo_proj . $_proj_suffix : $_seo_proj;
+$page_description = 'See the ' . $_seo_proj . ' interior project by BOSK Furniture — made-to-order modular units in marine-grade IS:710 plywood, installed on site in Gujarat.';
 $page_keywords    = $_seo_proj . ', interior design project, modular furniture project, bosk furniture portfolio india';
-$page_canonical   = '/project-details?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '');
+$page_canonical   = $_seo_path;
 $page_breadcrumbs = [
     ['name' => 'Home',     'url' => '/'],
     ['name' => 'Projects', 'url' => '/projects'],
-    ['name' => $_seo_proj, 'url' => '/project-details?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '')]
+    ['name' => $_seo_proj, 'url' => $_seo_path]
 ];
 ?>
 <!DOCTYPE HTML>
@@ -121,11 +160,11 @@ $page_breadcrumbs = [
                                   ?>
                                 <div class="recent-main">
                                     <div class="recent-img">
-                                        <a href="project-details?astringdata=<?php echo $encode_project_id; ?>"><img src="admin/project_image/<?php echo $img1;?>" alt="<?php echo htmlspecialchars($project_name, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture project" loading="lazy" decoding="async"></a>
+                                        <a href="<?php echo url_project($row['slug']); ?>"><img src="admin/project_image/<?php echo $img1;?>" alt="<?php echo htmlspecialchars($project_name, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture project" loading="lazy" decoding="async"></a>
                                     </div>
                                     <div class="info-img">
-                                        <a href="project-details?astringdata=<?php echo $encode_project_id; ?>"><h6><?php echo $project_name;?></h6></a>
-                                        <a style="text-decoration:underline;" href="project-details?astringdata=<?php echo $encode_project_id; ?>"><b>Learn More</b></a>
+                                        <a href="<?php echo url_project($row['slug']); ?>"><h6><?php echo $project_name;?></h6></a>
+                                        <a style="text-decoration:underline;" href="<?php echo url_project($row['slug']); ?>"><b>Learn More</b></a>
                                     </div>
                                 </div><br/>
                                 <?php
@@ -177,7 +216,3 @@ $page_breadcrumbs = [
 </body>
 
 </html>
-<?php
-
-}
-?>

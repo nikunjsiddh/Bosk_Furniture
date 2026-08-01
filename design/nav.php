@@ -246,7 +246,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             <a href="about-us">About Us</a>
                         </li>
                         <li>
-                            <a href="blog-full-list">Blog</a>
+                            <a href="blog">Blog</a>
                         </li>
                         <li>
                             <a href="design-order-process">How We Works</a>

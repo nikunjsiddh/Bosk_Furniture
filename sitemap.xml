@@ -6,7 +6,7 @@
   <url>
     <loc>https://www.boskfurniture.com/</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/"/>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -14,7 +14,7 @@
   <url>
     <loc>https://www.boskfurniture.com/about-us</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/about-us"/>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -22,7 +22,7 @@
   <url>
     <loc>https://www.boskfurniture.com/contact</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/contact"/>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -30,7 +30,7 @@
   <url>
     <loc>https://www.boskfurniture.com/all_products</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/all_products"/>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
@@ -38,7 +38,7 @@
   <url>
     <loc>https://www.boskfurniture.com/all-services</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/all-services"/>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -46,15 +46,15 @@
   <url>
     <loc>https://www.boskfurniture.com/projects</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/projects"/>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://www.boskfurniture.com/blog-full-list</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/blog-full-list"/>
-    <lastmod>2026-07-22</lastmod>
+    <loc>https://www.boskfurniture.com/blog</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/blog"/>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -62,7 +62,7 @@
   <url>
     <loc>https://www.boskfurniture.com/testimonial</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/testimonial"/>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -70,7 +70,7 @@
   <url>
     <loc>https://www.boskfurniture.com/ex-customize_furniture</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/ex-customize_furniture"/>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -78,7 +78,7 @@
   <url>
     <loc>https://www.boskfurniture.com/design-order-process</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/design-order-process"/>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
@@ -86,7 +86,7 @@
   <url>
     <loc>https://www.boskfurniture.com/warranty</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/warranty"/>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -94,7 +94,7 @@
   <url>
     <loc>https://www.boskfurniture.com/warranty_policy</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/warranty_policy"/>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -102,7 +102,7 @@
   <url>
     <loc>https://www.boskfurniture.com/hardware_warranty</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/hardware_warranty"/>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -110,111 +110,15 @@
   <url>
     <loc>https://www.boskfurniture.com/care_and_maintenance_policy</loc>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/care_and_maintenance_policy"/>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <url>
-    <loc>https://www.boskfurniture.com/product?astringdata=OA%3D%3D</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/product?astringdata=OA%3D%3D"/>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://www.boskfurniture.com/admin/product_image/245867.png</image:loc>
-      <image:title>Colorado Gross</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://www.boskfurniture.com/product?astringdata=Ng%3D%3D</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/product?astringdata=Ng%3D%3D"/>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://www.boskfurniture.com/admin/product_image/486254.jpg</image:loc>
-      <image:title>Product 6</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://www.boskfurniture.com/product?astringdata=NQ%3D%3D</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/product?astringdata=NQ%3D%3D"/>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://www.boskfurniture.com/admin/product_image/869486.jpg</image:loc>
-      <image:title>Product 5</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://www.boskfurniture.com/product?astringdata=NA%3D%3D</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/product?astringdata=NA%3D%3D"/>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://www.boskfurniture.com/admin/product_image/130220.jpg</image:loc>
-      <image:title>Product 4</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://www.boskfurniture.com/product?astringdata=Mw%3D%3D</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/product?astringdata=Mw%3D%3D"/>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://www.boskfurniture.com/admin/product_image/217110.jpg</image:loc>
-      <image:title>Product 3</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://www.boskfurniture.com/product?astringdata=Mg%3D%3D</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/product?astringdata=Mg%3D%3D"/>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://www.boskfurniture.com/admin/product_image/902810.jpg</image:loc>
-      <image:title>Product 2</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://www.boskfurniture.com/shop?astringdata2=Comfy+Beds+With+Full+Storage</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/shop?astringdata2=Comfy+Beds+With+Full+Storage"/>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://www.boskfurniture.com/shop?astringdata2=Entertaining+TV+Units</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/shop?astringdata2=Entertaining+TV+Units"/>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://www.boskfurniture.com/shop?astringdata2=LUSCIOUS+WARDROBES</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/shop?astringdata2=LUSCIOUS+WARDROBES"/>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://www.boskfurniture.com/project-details?astringdata=MTU%3D</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-details?astringdata=MTU%3D"/>
-    <lastmod>2026-07-22</lastmod>
+    <loc>https://www.boskfurniture.com/project-kitchen-modular1</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-kitchen-modular1"/>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -224,9 +128,9 @@
   </url>
 
   <url>
-    <loc>https://www.boskfurniture.com/project-details?astringdata=MTQ%3D</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-details?astringdata=MTQ%3D"/>
-    <lastmod>2026-07-22</lastmod>
+    <loc>https://www.boskfurniture.com/project-kitchen-modular2</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-kitchen-modular2"/>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -236,9 +140,9 @@
   </url>
 
   <url>
-    <loc>https://www.boskfurniture.com/project-details?astringdata=MTI%3D</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-details?astringdata=MTI%3D"/>
-    <lastmod>2026-07-22</lastmod>
+    <loc>https://www.boskfurniture.com/project-wardrobe</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-wardrobe"/>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -248,9 +152,9 @@
   </url>
 
   <url>
-    <loc>https://www.boskfurniture.com/project-details?astringdata=MTE%3D</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-details?astringdata=MTE%3D"/>
-    <lastmod>2026-07-22</lastmod>
+    <loc>https://www.boskfurniture.com/project-kitchen-modular4</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-kitchen-modular4"/>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -260,9 +164,9 @@
   </url>
 
   <url>
-    <loc>https://www.boskfurniture.com/project-details?astringdata=OQ%3D%3D</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-details?astringdata=OQ%3D%3D"/>
-    <lastmod>2026-07-22</lastmod>
+    <loc>https://www.boskfurniture.com/project-bed4</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-bed4"/>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -272,9 +176,9 @@
   </url>
 
   <url>
-    <loc>https://www.boskfurniture.com/project-details?astringdata=Ng%3D%3D</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-details?astringdata=Ng%3D%3D"/>
-    <lastmod>2026-07-22</lastmod>
+    <loc>https://www.boskfurniture.com/project-bed2</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-bed2"/>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -284,9 +188,9 @@
   </url>
 
   <url>
-    <loc>https://www.boskfurniture.com/project-details?astringdata=NA%3D%3D</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-details?astringdata=NA%3D%3D"/>
-    <lastmod>2026-07-22</lastmod>
+    <loc>https://www.boskfurniture.com/project-bed1</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-bed1"/>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -296,9 +200,9 @@
   </url>
 
   <url>
-    <loc>https://www.boskfurniture.com/project-details?astringdata=Mw%3D%3D</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-details?astringdata=Mw%3D%3D"/>
-    <lastmod>2026-07-22</lastmod>
+    <loc>https://www.boskfurniture.com/project-kitchen-modular5</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-kitchen-modular5"/>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -308,9 +212,9 @@
   </url>
 
   <url>
-    <loc>https://www.boskfurniture.com/project-details?astringdata=Mg%3D%3D</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-details?astringdata=Mg%3D%3D"/>
-    <lastmod>2026-07-22</lastmod>
+    <loc>https://www.boskfurniture.com/project-hall1</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/project-hall1"/>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -320,8 +224,8 @@
   </url>
 
   <url>
-    <loc>https://www.boskfurniture.com/details?astringdata=MjI%3D</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/details?astringdata=MjI%3D"/>
+    <loc>https://www.boskfurniture.com/blog-custom-vs-readymade-furniture</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/blog-custom-vs-readymade-furniture"/>
     <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -332,9 +236,9 @@
   </url>
 
   <url>
-    <loc>https://www.boskfurniture.com/details?astringdata=MjE%3D</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/details?astringdata=MjE%3D"/>
-    <lastmod>2026-07-22</lastmod>
+    <loc>https://www.boskfurniture.com/blog-marine-plywood-vs-bwr-vs-mr</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/blog-marine-plywood-vs-bwr-vs-mr"/>
+    <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -344,9 +248,9 @@
   </url>
 
   <url>
-    <loc>https://www.boskfurniture.com/details?astringdata=MTk%3D</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/details?astringdata=MTk%3D"/>
-    <lastmod>2026-07-22</lastmod>
+    <loc>https://www.boskfurniture.com/blog-modular-kitchen-cost-gujarat</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.boskfurniture.com/blog-modular-kitchen-cost-gujarat"/>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>

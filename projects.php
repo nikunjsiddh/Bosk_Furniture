@@ -78,7 +78,7 @@ $page_breadcrumbs = [
                     <div class="item col-lg-4 col-sm-6 col-xs-12 landscapes last-item two">
                         <div class="single-portfolio">
                             <div class="portfolio-img mb-3">
-                                 <a href="project-details?astringdata=<?php echo $encode_project_id; ?>"><img src="admin/project_image/<?php echo $img1;?>" alt="<?php echo htmlspecialchars(isset($row1['project_name']) ? $row1['project_name'] : 'Bosk Furniture project', ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture interior project India" loading="lazy" decoding="async" /></a>
+                                 <a href="<?php echo url_project($row1['slug']); ?>"><img src="admin/project_image/<?php echo $img1;?>" alt="<?php echo htmlspecialchars(isset($row1['project_name']) ? $row1['project_name'] : 'Bosk Furniture project', ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture interior project India" loading="lazy" decoding="async" /></a>
                                 <div class="portfolio-view">
                                     <!--<div class="item-wrap">-->
                                     <!--    <a class="img-poppu" href="project-details.php?astringdata=<?php echo $encode_project_id; ?>" data-rel="lightcase:myCollection:slideshow">-->
@@ -89,10 +89,10 @@ $page_breadcrumbs = [
                             </div>
                            
                             <div class="portfolio-text">
-                                <a href="project-details?astringdata=<?php echo $encode_project_id; ?>"><h4><?php echo $project_name; ?></h4></a>
+                                <a href="<?php echo url_project($row1['slug']); ?>"><h4><?php echo $project_name; ?></h4></a>
                             </div>
                         </div>
-                         <a style="text-align:center;font-weight:bolder !important;color:black !important;" href="project-details?astringdata=<?php echo $encode_project_id; ?>"><h4><?php echo $project_name; ?></h4></a>
+                         <a style="text-align:center;font-weight:bolder !important;color:black !important;" href="<?php echo url_project($row1['slug']); ?>"><h4><?php echo $project_name; ?></h4></a>
                     </div>
                     
                     <?php

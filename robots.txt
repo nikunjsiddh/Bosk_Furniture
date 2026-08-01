@@ -17,6 +17,9 @@ Disallow: /revolution/php/
 Disallow: /design/
 Disallow: /connect.php
 Disallow: /sitemap-generator.php
+Disallow: /legacy-redirect.php
+Disallow: /inc/
+Disallow: /tools/
 
 # Account/transactional pages are intentionally NOT disallowed here.
 # Each one already sends its own <meta name="robots" content="noindex, ...">
@@ -56,9 +59,12 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-# Crawl-delay (polite crawling)
-User-agent: *
-Crawl-delay: 1
+# Crawl-delay was removed: Google ignores it outright and Bing honours it,
+# so on a site this size it only slowed Bing down for no benefit.
+
+# NOTE: legacy ?astringdata / ?astringdata2 URLs are deliberately NOT
+# disallowed. They now 301 to their slug URLs, and blocking them would stop
+# Googlebot from ever crawling the page to see that redirect.
 
 # Sitemap location (clean URL — works after .htaccess rewrite)
 Sitemap: https://www.boskfurniture.com/sitemap.xml

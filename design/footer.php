@@ -804,7 +804,7 @@
                         <li><a href="/">Home</a></li>
                         <li><a href="all_products">Shop</a></li>
                         <li><a href="about-us">About Us</a></li>
-                        <li><a href="blog-full-list">Blog</a></li>
+                        <li><a href="blog">Blog</a></li>
                         <li><a href="design-order-process">How it Works</a></li>
                         <li><a href="contact">Contact Us</a></li>
                         <li><a href="profile">My Account</a></li>
@@ -830,7 +830,7 @@
                                 $cat_name = $row['name'];
                         ?>
                         <li>
-                            <a class="bf-cat" href="shop?astringdata2=<?php echo urlencode($cat_name); ?>">
+                            <a class="bf-cat" href="<?php echo url_category($row['slug']); ?>">
                                 <span class="bf-cat-dot" aria-hidden="true"></span>
                                 <span>
                                     <?php echo htmlspecialchars($cat_name, ENT_QUOTES, 'UTF-8'); ?>

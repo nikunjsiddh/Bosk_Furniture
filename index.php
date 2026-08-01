@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 $page_title       = 'Bosk Furniture | Custom Modular Furniture in India';
-$page_description = 'Custom modular kitchens, wardrobes, sofas, beds & interior furniture by Bosk Furniture — premium quality with free shipping across India.';
+$page_description = 'BOSK manufactures custom modular kitchens, wardrobes, storage beds and TV units in marine-grade IS:710 plywood. 7-year warranty. Get a free quote.';
 $page_keywords    = 'bosk furniture, modular furniture india, online furniture store, modular kitchen, wardrobe, sofa, bed, dining set, custom furniture, interior design india';
 $page_canonical   = '/';
 // Let design/seo-meta.php pick the OG image — it falls back to slider/2.jpg
@@ -973,7 +973,7 @@ $page_breadcrumbs = [
                                       $encode_project_id=base64_encode($project_id);
                         ?>
                         <div class="inner-box">
-                            <a href="project-details?astringdata=<?php echo $encode_project_id; ?>"
+                            <a href="<?php echo url_project($row1['slug']); ?>"
                                 class="project-card" data-aos="fade-up">
                                 <div class="project-card-img"
                                     style="background-image: url(admin/project_image/<?php echo $img1;?>)"></div>
@@ -1128,7 +1128,10 @@ $page_breadcrumbs = [
                                          include_once"connect.php";
                                          
                                         //   $cmd2="select * from category ORDER BY name ASC";
-                                          $cmd2="SELECT c.id, c.name, c.img, COUNT(*) AS product_count FROM category c LEFT JOIN products p ON c.name = p.pcategory GROUP BY c.id, c.name ORDER BY c.name ASC;";
+                                          // COUNT(p.id) rather than COUNT(*), so a category with no products
+                                          // reports 0 instead of 1. TRIM on both sides because some product
+                                          // rows carry a stray leading space in `pcategory`.
+                                          $cmd2="SELECT c.id, c.name, c.slug, c.img, COUNT(p.id) AS product_count FROM category c LEFT JOIN products p ON TRIM(LOWER(c.name)) = TRIM(LOWER(p.pcategory)) GROUP BY c.id, c.name, c.slug, c.img ORDER BY c.name ASC;";
                                           $result2=mysqli_query($con,$cmd2) or die(mysqli_error($con));
                                           while($row2=mysqli_fetch_array($result2))
                                           {     
@@ -1147,7 +1150,7 @@ $page_breadcrumbs = [
                                     <div class=service-icon-box><img src="admin/category_image/<?php echo $img;?>"
                                             alt="<?php echo htmlspecialchars($name, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture Category" loading="lazy" decoding="async"></div>
                                     <div class="service-content-box mt-1">
-                                        <h3><a href="shop?astringdata2=<?php echo $row2['name'];?>"><b>
+                                        <h3><a href="<?php echo url_category($row2['slug']); ?>"><b>
                                                     <?php echo $name;?>
                                                 </b></a></h3>
                                         <p>
@@ -1430,7 +1433,7 @@ $page_breadcrumbs = [
                     <!--    <a href="blog-full-list.php" class="button button--wayra button--border-thick button--text-upper button--size-s">View All</a>-->
                     <!--</div>-->
                     <div class="hero-inner btn-class-view-all1" style="">
-                        <a href="blog-full-list" class="btn btn-dark btn-theme-colored btn-xl mt-5">View All</a>
+                        <a href="blog" class="btn btn-dark btn-theme-colored btn-xl mt-5">View All</a>
                     </div>
                 </div>
                 <div class="news-wrap">
@@ -1451,7 +1454,7 @@ $page_breadcrumbs = [
                         ?>
                         <div class="col-xl-3 col-lg-6 col-md-6 col-12 mt-5" data-aos="fade-up">
                             <article class="blog-card">
-                                <a href="details?astringdata=<?php echo $encodeblog_id; ?>" class="blog-card-img">
+                                <a href="<?php echo url_blog($row4['slug']); ?>" class="blog-card-img">
                                     <img src="admin/blog_image/<?php echo $img;?>"
                                         alt="<?php echo htmlspecialchars($blog_title); ?>" loading="lazy" decoding="async">
                                     <span class="blog-date-badge">
@@ -1462,13 +1465,13 @@ $page_breadcrumbs = [
                                     <div class="blog-meta">
                                         <i class="fa fa-user"></i> By Admin
                                     </div>
-                                    <h3><a href="details?astringdata=<?php echo $encodeblog_id; ?>">
+                                    <h3><a href="<?php echo url_blog($row4['slug']); ?>">
                                             <?php echo $blog_title;?>
                                         </a></h3>
                                     <p>
                                         <?php echo strip_tags($blog_description);?>
                                     </p>
-                                    <a href="details?astringdata=<?php echo $encodeblog_id; ?>"
+                                    <a href="<?php echo url_blog($row4['slug']); ?>"
                                         class="blog-read-more">Read more </a>
                                 </div>
                             </article>

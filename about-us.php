@@ -863,7 +863,7 @@ $page_breadcrumbs = [
                                 with a single, clear intention: to give Indian homes <b>customized, quality modular
                                     furniture with a difference</b>. From our manufacturing base in Bhavnagar, Gujarat,
                                 we craft made-to-order wardrobes, beds, TV units, sofas and
-                                <a href="shop?astringdata2=Modular Kitchens">modular kitchens</a> on high-end
+                                <a href="modular-kitchens">modular kitchens</a> on high-end
                                 imported machines &mdash; and deliver them, fully guaranteed, to customers across
                                 India. Every piece is built around <i>your</i> space, taste and budget, not pulled
                                 off a ready-made shelf.
@@ -1059,13 +1059,13 @@ $page_breadcrumbs = [
                                 furniture for the home, fully customizable in size, layout, finish and hardware:</p>
 
                             <ul class="who-chip-list">
-                                <li><a href="shop?astringdata2=LUSCIOUS WARDROBES"><i class="fa fa-archive"
+                                <li><a href="wardrobes"><i class="fa fa-archive"
                                             aria-hidden="true"></i> Luscious Wardrobes</a></li>
-                                <li><a href="shop?astringdata2=Comfy Beds With Full Storage"><i class="fa fa-bed"
+                                <li><a href="storage-beds"><i class="fa fa-bed"
                                             aria-hidden="true"></i> Beds with Storage</a></li>
-                                <li><a href="shop?astringdata2=Entertaining TV Units"><i class="fa fa-tv"
+                                <li><a href="tv-units"><i class="fa fa-tv"
                                             aria-hidden="true"></i> TV Units</a></li>
-                                <li><a href="shop?astringdata2=Modular Kitchens"><i class="fa fa-cutlery"
+                                <li><a href="modular-kitchens"><i class="fa fa-cutlery"
                                             aria-hidden="true"></i> Modular Kitchens</a></li>
                                 <li><a href="shop"><i class="fa fa-couch" aria-hidden="true"></i> Modular Sofas</a>
                                 </li>

@@ -42,7 +42,7 @@
                                 <li><a href="/">Home</a></li>
                                 <li><a href="all_products">Shop</a></li>
                                 <li><a href="about-us">About Us</a></li>
-                                <li><a href="blog-full-list">Blog</a></li>
+                                <li><a href="blog">Blog</a></li>
                                 <li><a href="design-order-process">How It Works</a></li>
                                 <li><a href="contact">Contact Us</a></li>
                                 <li><a href="profile">My Account</a></li>
@@ -82,7 +82,7 @@
                                     </div>
                                     <div class="text">
                                         <h5 style="color:black !important;"><a style="color:black !important;"
-                                                href="shop?astringdata2=<?php echo $row['name'];?>">
+                                                href="<?php echo url_category($row['slug']); ?>">
                                                 <?php echo $name;?>
                                             </a> </h5>
                                         <!--<h4>about 5 days ago</h4>-->

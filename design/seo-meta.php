@@ -20,6 +20,11 @@
                             ['name' => 'About', 'url' => '/about-us'] ]
    ============================================================ */
 
+// Slug URL helpers. Loaded here because this partial runs in the <head> of
+// every front-end page, so url_product()/url_category()/url_blog() are always
+// defined by the time the body renders.
+require_once __DIR__ . '/../inc/urls.php';
+
 // ---- Site-wide canonical brand info (matches live business data) ----
 $site_name        = 'Bosk Furniture';
 $site_legal_name  = 'Bosk Infracon Private Limited';
@@ -264,14 +269,16 @@ if (isset($page_breadcrumbs) && is_array($page_breadcrumbs) && count($page_bread
     "areaServed": "IN",
     "availableLanguage": ["English","Hindi","Gujarati"]
   }],
-  "sameAs": [
-    "https://www.facebook.com/boskfurniture",
-    "https://www.instagram.com/boskfurniture",
-    "https://twitter.com/boskfurniture",
-    "https://www.youtube.com/@boskfurniture",
-    "https://www.linkedin.com/company/bosk-infracon"
-  ]
+  "areaServed": {"@type":"Country","name":"India"}
 }
+<?php /*
+  [CONFIRM] sameAs was removed. It listed five profile URLs
+  (facebook.com/boskfurniture and similar) that do not appear anywhere on
+  the site — the footer icons all point at bare domain roots — so they were
+  most likely guessed rather than verified. Claiming a profile you do not
+  own is a spam signal, and a 404 sameAs is worse than none at all.
+  Send the real profile URLs and they can be added back here verbatim.
+*/ ?>
 </script>
 
 <!-- ===== LOCAL BUSINESS (FurnitureStore) JSON-LD ===== -->
@@ -331,16 +338,14 @@ if (isset($page_breadcrumbs) && is_array($page_breadcrumbs) && count($page_bread
   "name": "<?php echo $e_sitename; ?>",
   "url": "<?php echo $site_url; ?>",
   "publisher": { "@id": "<?php echo $site_url; ?>/#organization" },
-  "inLanguage": "en-IN",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "<?php echo $site_url; ?>/shop?astringdata2={search_term_string}"
-    },
-    "query-input": "required name=search_term_string"
-  }
+  "inLanguage": "en-IN"
 }
+<?php /*
+  SearchAction was removed: it pointed at /shop?astringdata2={term}, which is
+  a category filter rather than a site search, and that URL now 301s to the
+  category slug. Declaring a search endpoint the site does not have produces
+  a broken sitelinks searchbox. Re-add only if a real search page is built.
+*/ ?>
 </script>
 
 <!-- ===== SITE NAVIGATION JSON-LD ===== -->
@@ -353,7 +358,7 @@ if (isset($page_breadcrumbs) && is_array($page_breadcrumbs) && count($page_bread
     "<?php echo $site_url; ?>/",
     "<?php echo $site_url; ?>/all_products",
     "<?php echo $site_url; ?>/about-us",
-    "<?php echo $site_url; ?>/blog-full-list",
+    "<?php echo $site_url; ?>/blog",
     "<?php echo $site_url; ?>/design-order-process",
     "<?php echo $site_url; ?>/contact"
   ]

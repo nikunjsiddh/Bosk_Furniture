@@ -6,42 +6,129 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 include_once("connect.php");
-if(isset($_GET['astringdata2']))
-{
-$categoryname = mysqli_real_escape_string($con,$_GET['astringdata2']);
-$encodedData = str_replace('+', ' ', $_GET['astringdata2']);
-$decodedcategoryname = urldecode($encodedData);
-// echo $decodedcategoryname;
+require_once __DIR__ . '/inc/urls.php';
+
+// ---- Resolve the category ----------------------------------------------
+// Primary key is the slug (/modular-kitchens). The legacy
+// ?astringdata2=<Display Name> form still resolves, but 301s to the slug URL.
+$decodedcategoryname = '';
+$category_slug       = '';
+
+if (isset($_GET['cat_slug']) && $_GET['cat_slug'] !== '') {
+
+    $stmt = mysqli_prepare($con, "SELECT name, slug FROM category WHERE slug=? LIMIT 1");
+    mysqli_stmt_bind_param($stmt, 's', $_GET['cat_slug']);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $_cat_name, $_cat_slug);
+    if (mysqli_stmt_fetch($stmt)) {
+        $decodedcategoryname = trim($_cat_name);
+        $category_slug       = $_cat_slug;
+    }
+    mysqli_stmt_close($stmt);
+
+    if ($category_slug === '') {
+        http_response_code(404);
+        include __DIR__ . '/404.php';
+        exit;
+    }
+
+} elseif (isset($_GET['astringdata2'])) {
+
+    $legacy_name = urldecode(str_replace('+', ' ', $_GET['astringdata2']));
+    $legacy_slug = bosk_category_slug($con, $legacy_name);
+
+    $stmt = mysqli_prepare($con, "SELECT name, slug FROM category WHERE slug=? LIMIT 1");
+    mysqli_stmt_bind_param($stmt, 's', $legacy_slug);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $_cat_name, $_cat_slug);
+    $_hit = mysqli_stmt_fetch($stmt);
+    mysqli_stmt_close($stmt);
+
+    if ($_hit) {
+        header('Location: ' . bosk_base_path() . url_category($_cat_slug), true, 301);
+        exit;
+    }
+    // Unknown legacy category — send it to the shop rather than 404, since
+    // these are live indexed URLs.
+    header('Location: ' . bosk_base_path() . 'all_products', true, 301);
+    exit;
+}
+
+if ($category_slug === '') {
+    http_response_code(404);
+    include __DIR__ . '/404.php';
+    exit;
+}
+
+// Escaped copy for the listing queries further down this page. The display
+// name is compared with TRIM() on both sides because some product rows carry
+// a stray leading space in `pcategory`.
+$categoryname = mysqli_real_escape_string($con, $decodedcategoryname);
+
+// ---- Product count drives indexability ----------------------------------
+$_cat_count = 0;
+$_cat_items = [];
+$_q = mysqli_query($con,
+    "SELECT pname, slug FROM products
+      WHERE TRIM(LOWER(pcategory)) = TRIM(LOWER('" . $categoryname . "'))
+        AND publish_date <= NOW()
+        AND is_demo = 0
+      ORDER BY id DESC");
+if ($_q) {
+    while ($_r = mysqli_fetch_assoc($_q)) {
+        $_cat_count++;
+        $_cat_items[] = [
+            '@type'    => 'ListItem',
+            'position' => $_cat_count,
+            'name'     => $_r['pname'],
+            'url'      => 'https://www.boskfurniture.com/' . url_product($_r['slug']),
+        ];
+    }
+}
 
 // ---- Dynamic SEO meta for this category ----
-$_seo_cat         = htmlspecialchars($decodedcategoryname, ENT_QUOTES, 'UTF-8');
-$page_title       = $_seo_cat . ' - Buy Online at Bosk Furniture India';
-$page_description = 'Shop premium ' . $_seo_cat . ' online at Bosk Furniture. Wide range of designs, guaranteed quality and free shipping across India. Best prices on ' . $_seo_cat . '.';
-$page_keywords    = $_seo_cat . ', buy ' . $_seo_cat . ' online, ' . $_seo_cat . ' india, ' . $_seo_cat . ' price, modular ' . $_seo_cat . ', bosk furniture';
-$page_canonical   = '/shop?astringdata2=' . urlencode($_GET['astringdata2']);
+$_seo_cat   = $decodedcategoryname;
+$_seo_path  = '/' . url_category($category_slug);
+$_seo_url   = 'https://www.boskfurniture.com' . $_seo_path;
+
+// Title must stay under 60 characters; drop the suffix rather than truncate.
+$_cat_suffix      = ' | BOSK Furniture';
+$page_title       = (strlen($_seo_cat . $_cat_suffix) <= 60) ? $_seo_cat . $_cat_suffix : $_seo_cat;
+$page_description = 'Made-to-order ' . $_seo_cat . ' from BOSK Furniture, manufactured in Bhavnagar in marine-grade IS:710 plywood with Hettich hardware and a 7-year warranty.';
+$page_keywords    = $_seo_cat . ', custom ' . $_seo_cat . ', ' . $_seo_cat . ' manufacturer india, modular furniture bhavnagar, bosk furniture';
+$page_canonical   = $_seo_path;
+
+// An empty category page targeting a high-value keyword is worse than no
+// page. It re-indexes automatically as soon as real products are added.
+if ($_cat_count === 0) {
+    $page_robots = 'noindex, follow';
+}
+
 $page_breadcrumbs = [
     ['name' => 'Home',                'url' => '/'],
     ['name' => 'Shop',                'url' => '/all_products'],
-    ['name' => $decodedcategoryname,  'url' => '/shop?astringdata2=' . urlencode($_GET['astringdata2'])]
+    ['name' => $decodedcategoryname,  'url' => $_seo_path]
 ];
-$page_schema = '
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": ' . json_encode($decodedcategoryname . ' - Bosk Furniture') . ',
-  "url": "https://www.boskfurniture.com/shop?astringdata2=' . urlencode($_GET['astringdata2']) . '",
-  "description": ' . json_encode('Browse ' . $decodedcategoryname . ' collection at Bosk Furniture India.') . ',
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.boskfurniture.com/"},
-      {"@type":"ListItem","position":2,"name":"Shop","item":"https://www.boskfurniture.com/all_products"},
-      {"@type":"ListItem","position":3,"name":' . json_encode($decodedcategoryname) . ',"item":"https://www.boskfurniture.com/shop?astringdata2=' . urlencode($_GET['astringdata2']) . '"}
-    ]
-  }
+
+$_schema_cat = [
+    '@context'    => 'https://schema.org',
+    '@type'       => 'CollectionPage',
+    'name'        => $decodedcategoryname . ' | BOSK Furniture',
+    'url'         => $_seo_url,
+    'description' => $page_description,
+    'isPartOf'    => ['@id' => 'https://www.boskfurniture.com/#website'],
+];
+if ($_cat_count > 0) {
+    $_schema_cat['mainEntity'] = [
+        '@type'           => 'ItemList',
+        'numberOfItems'   => $_cat_count,
+        'itemListElement' => $_cat_items,
+    ];
 }
-</script>';
+$page_schema = '
+<script type="application/ld+json">'
+    . json_encode($_schema_cat, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+    . '</script>';
 
 ?>
 <!DOCTYPE HTML>
@@ -781,7 +868,7 @@ hr {
                                 $name=$row['name'];
                                 $img=$row['img'];
                         ?>
-                        <li style="color:white !important;" data-filter=".people"><a class="hi" style="color:#532A1A;" href="shop?astringdata2=<?php echo $row['name'];?>"><?php echo $name;?></a></li>
+                        <li style="color:white !important;" data-filter=".people"><a class="hi" style="color:#532A1A;" href="<?php echo url_category($row['slug']); ?>"><?php echo $name;?></a></li>
                         <?php
                                 }
                         ?>
@@ -795,7 +882,7 @@ hr {
                         <div class="row justify-content-center">
                             <?php
                                 
-                                $cmd3="select * from products where pcategory='$decodedcategoryname' and publish_date <= NOW()";
+                                $cmd3="select * from products where TRIM(LOWER(pcategory))=TRIM(LOWER('$categoryname')) and publish_date <= NOW()";
                                 $result3=mysqli_query($con,$cmd3) or die(mysqli_error($con));
                                 $no_of_rows=(mysqli_num_rows($result3));
                                 // echo $no_of_rows;
@@ -839,16 +926,16 @@ hr {
                                             echo '<span class="product-badge">-' . $discount . '% OFF</span>';
                                         }
                                     ?>
-                                    <a href="product?astringdata=<?php echo $encode_product_id; ?>" class="product-wishlist" title="Add to wishlist" onclick="event.preventDefault();">
+                                    <a href="<?php echo url_product($row3['slug']); ?>" class="product-wishlist" title="Add to wishlist" onclick="event.preventDefault();">
                                         <i class="fa fa-heart-o" aria-hidden="true"></i>
                                     </a>
-                                    <a href="product?astringdata=<?php echo $encode_product_id; ?>">
+                                    <a href="<?php echo url_product($row3['slug']); ?>">
                                        <img src="admin/product_image/<?php echo $img1;?>" alt="<?php echo htmlspecialchars($pname); ?>" loading="lazy" decoding="async">
                                     </a>
-                                    <a href="product?astringdata=<?php echo $encode_product_id; ?>" class="product-quickview">Quick View</a>
+                                    <a href="<?php echo url_product($row3['slug']); ?>" class="product-quickview">Quick View</a>
                                  </div>
                                  <div class="content">
-                                    <h3><a href="product?astringdata=<?php echo $encode_product_id; ?>"><?php echo$pname;?></a></h3>
+                                    <h3><a href="<?php echo url_product($row3['slug']); ?>"><?php echo$pname;?></a></h3>
                                     <hr>
                                    <?php
                                         // include_once"connect.php";
@@ -880,7 +967,7 @@ hr {
                                     </div>
                                     <hr>
                                     <div class="featured-content-list">
-                                       <a  href="product?astringdata=<?php echo $id; ?>" type="button"  data-name="Oxford" style="color:#fff !important;background-color:#532A1A !important;" d class="btn btn-primary">View Details</a>
+                                       <a  href="<?php echo url_product($row3['slug']); ?>" type="button"  data-name="Oxford" style="color:#fff !important;background-color:#532A1A !important;" d class="btn btn-primary">View Details</a>
                                     </div>
                                     <!--<div class="featured-content-list">-->
                                     <!--   <button  name="submit" id="submit"  data-name="Oxford" style="color:#fff !important;background-color:#532A1A !important;" d class="btn btn-primary"> Add to cart</button>-->
@@ -1198,6 +1285,3 @@ if (input !== undefined && btnminus !== undefined && btnplus !== undefined && in
 </body>
 
 </html>
-<?php
-}
-?>

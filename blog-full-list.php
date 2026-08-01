@@ -1,11 +1,23 @@
 <?php
-$page_title       = 'Furniture &amp; Interior Design Blog | Bosk Furniture';
+require_once __DIR__ . '/inc/urls.php';
+
+// /blog is the canonical blog index. The old /blog-full-list path 301s here.
+// Done in PHP rather than .htaccess because a relative substitution in an
+// R=301 rule breaks when the site is served from a sub-folder.
+if (strpos(strtok($_SERVER['REQUEST_URI'], '?'), 'blog-full-list') !== false) {
+    header('Location: ' . bosk_base_path() . 'blog', true, 301);
+    exit;
+}
+
+// Plain "&" — seo-meta.php escapes on output, so a pre-escaped &amp; here
+// would render as &amp;amp; in the title tag.
+$page_title       = 'Furniture & Interior Design Blog | BOSK Furniture';
 $page_description = 'Explore the Bosk Furniture blog for furniture trends, interior design tips, modular kitchen ideas and home decor inspiration for Indian homes.';
 $page_keywords    = 'furniture blog, interior design blog india, modular kitchen ideas, home decor tips, bosk furniture blog';
-$page_canonical   = '/blog-full-list';
+$page_canonical   = '/blog';
 $page_breadcrumbs = [
     ['name' => 'Home', 'url' => '/'],
-    ['name' => 'Blog', 'url' => '/blog-full-list']
+    ['name' => 'Blog', 'url' => '/blog']
 ];
 ?>
 <!DOCTYPE HTML>
@@ -189,7 +201,7 @@ $page_breadcrumbs = [
                     ?>
                     <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up">
                         <article class="blog-card">
-                            <a href="details?astringdata=<?php echo $id; ?>" class="blog-card-img">
+                            <a href="<?php echo url_blog($row['slug']); ?>" class="blog-card-img">
                                 <img src="admin/blog_image/<?php echo $img;?>" alt="<?php echo htmlspecialchars($blog_title); ?>" loading="lazy" decoding="async">
                                 <span class="blog-date-badge"><?php echo ($blog_date ? date('Y-m-d', strtotime($blog_date)) : '');?></span>
                             </a>
@@ -198,10 +210,10 @@ $page_breadcrumbs = [
                                     <i class="fa fa-user"></i> By Admin
                                 </div>
                                 <h3>
-                                    <a href="details?astringdata=<?php echo $id; ?>"><?php echo $blog_title;?></a>
+                                    <a href="<?php echo url_blog($row['slug']); ?>"><?php echo $blog_title;?></a>
                                 </h3>
                                 <p><?php echo strip_tags($blog_description);?></p>
-                                <a href="details?astringdata=<?php echo $id; ?>" class="blog-read-more">Read more </a>
+                                <a href="<?php echo url_blog($row['slug']); ?>" class="blog-read-more">Read more </a>
                             </div>
                         </article>
                     </div>

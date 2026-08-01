@@ -158,17 +158,17 @@ $page_breadcrumbs = [
                         <div class="item">
                             <div class=service-box>
                                 <figure class="img-box">
-                                    <a href="shop?astringdata2=Modular Kitchens"><img src="images/services/s-6.jpg" alt="Modular kitchen design service - Bosk Furniture India" loading="lazy" decoding="async"></a>
+                                    <a href="modular-kitchens"><img src="images/services/s-6.jpg" alt="Modular kitchen design service - Bosk Furniture India" loading="lazy" decoding="async"></a>
                                     <figcaption class="default-overlay-outer">
                                         <div class="inner">
-                                            <div class="content-layer"><a class="this-link btn btn-primary" href="shop?astringdata2=Modular Kitchens">Read more</a> </div>
+                                            <div class="content-layer"><a class="this-link btn btn-primary" href="modular-kitchens">Read more</a> </div>
                                         </div>
                                     </figcaption>
                                 </figure>
                                 <div class="clearfix service-inner-box">
                                     <div class=service-icon-box><img src="images/services/3.png" width="53" alt="Modular kitchen icon" loading="lazy" decoding="async"></div>
                                     <div class=service-content-box>
-                                        <h3><a href="shop?astringdata2=Modular Kitchens">Modular Kitchen</a></h3>
+                                        <h3><a href="modular-kitchens">Modular Kitchen</a></h3>
                                         <p>Made-to-measure modular kitchens with Hettich hardware, water-resistant cores and finishes built for Indian cooking conditions.</p>
                                     </div>
                                 </div>

@@ -5,11 +5,22 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 include_once("connect.php");
+require_once __DIR__ . '/inc/urls.php';
+
+// Without a session this page previously emitted an empty 200 — a thin page
+// that Google can index. Checkout requires an account, so send guests to
+// login instead. 302, because the correct destination depends on session
+// state rather than being a permanent move.
+if (!isset($_SESSION['email'])) {
+    header('Location: ' . bosk_base_path() . 'login', true, 302);
+    exit;
+}
+
 if (isset($_SESSION['email'])) {
     $userEmail = $_SESSION['email'];
     
 $page_title       = 'Secure Checkout | Bosk Furniture';
-$page_description = 'Complete your secure furniture order at Bosk Furniture India with safe payment options and free shipping on eligible items.';
+$page_description = 'Complete your BOSK Furniture order securely.';
 $page_keywords    = 'checkout, secure payment, furniture order, bosk furniture';
 $page_canonical   = '/checkout';
 $page_robots      = 'noindex, follow';

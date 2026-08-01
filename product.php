@@ -4,19 +4,40 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 include_once("connect.php");
+require_once __DIR__ . '/inc/urls.php';
 
 // Safe defaults so the rest of the page never sees undefined variables.
-$pname      = '';
-$decoded_id = 0;
+$pname        = '';
+$decoded_id   = 0;
+$product_slug = '';
+$seo_is_demo  = 0;
 
-if (isset($_GET['astringdata'])) {
+// ---- Resolve the product ------------------------------------------------
+// Primary key is the slug (/product-<slug>). The legacy ?astringdata form is
+// still accepted, but 301s to the slug URL so the old URL never serves a
+// duplicate of the new one.
+if (isset($_GET['slug']) && $_GET['slug'] !== '') {
+
+    $stmt = mysqli_prepare($con, "SELECT id FROM products WHERE slug=? AND publish_date <= NOW() LIMIT 1");
+    mysqli_stmt_bind_param($stmt, 's', $_GET['slug']);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $_found_id);
+    if (mysqli_stmt_fetch($stmt)) { $decoded_id = (int) $_found_id; }
+    mysqli_stmt_close($stmt);
+
+    // An unknown or unpublished slug is a genuine 404 — not a redirect home,
+    // which would tell Google the URL is valid.
+    if ($decoded_id === 0) {
+        http_response_code(404);
+        include __DIR__ . '/404.php';
+        exit;
+    }
+
+} elseif (isset($_GET['astringdata'])) {
 
     $raw = $_GET['astringdata'];
 
-    // The site links to this page in TWO styles:
-    //   1) plain numeric id   -> product.php?astringdata=5     (related-products block, one shop.php button)
-    //   2) base64-encoded id  -> product.php?astringdata=NQ==  (most pages: all_products / shop / order_details)
-    // Accept both without breaking existing links.
+    // Legacy links exist in TWO styles: plain numeric id, and base64-encoded id.
     if (ctype_digit($raw)) {
         $decoded_id = (int) $raw;
     } else {
@@ -24,89 +45,113 @@ if (isset($_GET['astringdata'])) {
         $decoded_id = ($maybe !== false && ctype_digit($maybe)) ? (int) $maybe : 0;
     }
 
-    // Scheduled publishing: a product is only viewable from its Publish Date onward.
-    // Future-dated (or missing) products redirect to the shop instead of showing.
     if ($decoded_id > 0) {
+        if ($legacy_slug = bosk_slug_for($con, 'products', $decoded_id)) {
+            header('Location: ' . bosk_base_path() . url_product($legacy_slug), true, 301);
+            exit;
+        }
+        // No slug yet (migration not run): fall back to the old behaviour.
         $pubchk = mysqli_query($con, "select id from products where id='" . $decoded_id . "' and publish_date <= NOW()");
         if (!$pubchk || mysqli_num_rows($pubchk) === 0) {
             header("Location: shop");
             exit();
         }
     }
+}
 
-    if ($decoded_id > 0) {
-        $cmd3    = "select * from products where id='" . $decoded_id . "'";
-        $result3 = mysqli_query($con, $cmd3) or die(mysqli_error($con));
-        while ($row = mysqli_fetch_array($result3)) {
-            $pname           = $row['pname'];
-            $seo_pcategory   = isset($row['pcategory'])   ? $row['pcategory']   : '';
-            $seo_description = isset($row['description']) ? strip_tags($row['description']) : '';
-            $seo_new_price   = isset($row['new_price'])   ? $row['new_price']   : '';
-            $seo_img1        = isset($row['img1'])        ? $row['img1']        : '';
-            $seo_sku         = isset($row['sku'])         ? $row['sku']         : '';
-            $seo_stock       = isset($row['stock'])       ? $row['stock']       : 0;
-        }
+if ($decoded_id > 0) {
+    $cmd3    = "select * from products where id='" . $decoded_id . "'";
+    $result3 = mysqli_query($con, $cmd3) or die(mysqli_error($con));
+    while ($row = mysqli_fetch_array($result3)) {
+        $pname           = $row['pname'];
+        $product_slug    = isset($row['slug'])        ? $row['slug']        : '';
+        $seo_pcategory   = isset($row['pcategory'])   ? $row['pcategory']   : '';
+        $seo_description = isset($row['description']) ? strip_tags($row['description']) : '';
+        $seo_new_price   = isset($row['new_price'])   ? $row['new_price']   : '';
+        $seo_img1        = isset($row['img1'])        ? $row['img1']        : '';
+        $seo_sku         = isset($row['sku'])         ? $row['sku']         : '';
+        $seo_stock       = isset($row['stock'])       ? $row['stock']       : 0;
+        $seo_is_demo     = isset($row['is_demo'])     ? (int)$row['is_demo'] : 0;
     }
 }
 
 // ---- Dynamic SEO meta from product data ----
 $_seo_pname = isset($pname) && $pname !== '' ? $pname : 'Product';
+$_seo_url   = 'https://www.boskfurniture.com/' . ($product_slug !== '' ? url_product($product_slug) : 'all_products');
+$_seo_path  = '/' . ($product_slug !== '' ? url_product($product_slug) : 'all_products');
 $_seo_short = isset($seo_description) ? substr(trim(preg_replace('/\s+/', ' ', $seo_description)), 0, 155) : '';
 if ($_seo_short === '') {
-    $_seo_short = 'Buy ' . $_seo_pname . ' online at Bosk Furniture - premium quality furniture with free shipping across India.';
+    $_seo_short = 'Made-to-order ' . $_seo_pname . ' by BOSK Furniture in marine-grade IS:710 plywood with Hettich hardware. 7-year warranty. Request a measured quote.';
 }
-$page_title       = $_seo_pname . ' | Buy Online at Bosk Furniture India';
+// Title must stay under 60 characters; drop the suffix rather than truncate the name.
+$_seo_suffix      = ' | BOSK Furniture';
+$page_title       = (strlen($_seo_pname . $_seo_suffix) <= 60) ? $_seo_pname . $_seo_suffix : $_seo_pname;
 $page_description = $_seo_short;
-$page_keywords    = $_seo_pname . ', buy ' . $_seo_pname . ' online, ' . (isset($seo_pcategory) ? $seo_pcategory . ', ' : '') . 'furniture india, bosk furniture';
-$page_canonical   = '/product?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '');
+$page_keywords    = $_seo_pname . ', ' . (isset($seo_pcategory) ? trim($seo_pcategory) . ', ' : '') . 'custom furniture india, bosk furniture';
+$page_canonical   = $_seo_path;
 $og_type          = 'product';
+
+// Placeholder catalogue rows must not rank as the real BOSK range.
+if ($seo_is_demo === 1) {
+    $page_robots = 'noindex, follow';
+}
+
 $page_breadcrumbs = [
     ['name' => 'Home',       'url' => '/'],
     ['name' => 'Shop',       'url' => '/all_products'],
-    ['name' => $_seo_pname,  'url' => '/product?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '')]
+    ['name' => $_seo_pname,  'url' => $_seo_path]
 ];
 if (!empty($seo_img1)) {
     $og_image = 'https://www.boskfurniture.com/admin/product_image/' . $seo_img1;
 }
 
-// Build Product JSON-LD schema
-$_seo_avail = (isset($seo_stock) && $seo_stock > 0) ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock';
+// ---- Product JSON-LD ----
+// An Offer is emitted ONLY when a real price exists — never fabricate price
+// or availability, which Google treats as a structured-data violation.
+$_schema_product = [
+    '@context'    => 'https://schema.org',
+    '@type'       => 'Product',
+    'name'        => $_seo_pname,
+    'url'         => $_seo_url,
+    'image'       => !empty($seo_img1)
+                        ? 'https://www.boskfurniture.com/admin/product_image/' . $seo_img1
+                        : 'https://www.boskfurniture.com/images/og-default.jpg',
+    'description' => $_seo_short,
+    'brand'       => ['@type' => 'Brand', 'name' => 'BOSK Furniture'],
+    'category'    => isset($seo_pcategory) ? trim($seo_pcategory) : 'Furniture',
+    'material'    => 'Marine-grade IS:710 plywood',
+    'manufacturer' => ['@id' => 'https://www.boskfurniture.com/#organization'],
+];
+if (!empty($seo_sku)) {
+    $_schema_product['sku'] = $seo_sku;
+}
+if (!empty($seo_new_price) && (float)$seo_new_price > 0) {
+    $_schema_product['offers'] = [
+        '@type'         => 'Offer',
+        'url'           => $_seo_url,
+        'priceCurrency' => 'INR',
+        'price'         => (string)(float)$seo_new_price,
+        'availability'  => (isset($seo_stock) && $seo_stock > 0)
+                            ? 'https://schema.org/InStock'
+                            : 'https://schema.org/OutOfStock',
+        'itemCondition' => 'https://schema.org/NewCondition',
+        'seller'        => ['@id' => 'https://www.boskfurniture.com/#organization'],
+    ];
+}
 $page_schema = '
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": ' . json_encode($_seo_pname) . ',
-  "image": ' . json_encode(!empty($seo_img1) ? 'https://www.boskfurniture.com/admin/product_image/' . $seo_img1 : 'https://www.boskfurniture.com/images/og-default.jpg') . ',
-  "description": ' . json_encode($_seo_short) . ',
-  "sku": ' . json_encode(isset($seo_sku) ? $seo_sku : '') . ',
-  "brand": {"@type":"Brand","name":"Bosk Furniture"},
-  "category": ' . json_encode(isset($seo_pcategory) ? $seo_pcategory : 'Furniture') . ',
-  "offers": {
-    "@type": "Offer",
-    "url": "https://www.boskfurniture.com/product?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '') . '",
-    "priceCurrency": "INR",
-    "price": ' . json_encode(isset($seo_new_price) ? (string)$seo_new_price : '0') . ',
-    "availability": "' . $_seo_avail . '",
-    "itemCondition": "https://schema.org/NewCondition",
-    "seller": {"@type":"Organization","name":"Bosk Furniture"}
-  }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.boskfurniture.com/"},
-    {"@type":"ListItem","position":2,"name":"Shop","item":"https://www.boskfurniture.com/all_products"},
-    {"@type":"ListItem","position":3,"name":' . json_encode($_seo_pname) . ',"item":"https://www.boskfurniture.com/product?astringdata=' . (isset($_GET['astringdata']) ? urlencode($_GET['astringdata']) : '') . '"}
-  ]
-}
-</script>';
+<script type="application/ld+json">'
+    . json_encode($_schema_product, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+    . '</script>';
 
-// Re-open the original guard so the HTML only renders when astringdata was supplied
-if (isset($_GET['astringdata'])) {
+// No product resolved at all (e.g. a bare /product request) — 404 rather
+// than render an empty shell.
+if ($decoded_id === 0) {
+    http_response_code(404);
+    include __DIR__ . '/404.php';
+    exit;
+}
+
+if ($decoded_id > 0) {
 ?>
 <!DOCTYPE HTML>
 <html class="no-js" lang="en-IN">
@@ -570,8 +615,8 @@ if (isset($_GET['astringdata'])) {
                                             </div>
 
                                             <div class="bosk-trust">
-                                                <div class="t"><i class="fa fa-truck" aria-hidden="true"></i> Free Shipping</div>
-                                                <div class="t"><i class="fa fa-shield" aria-hidden="true"></i> Quality Assured</div>
+                                                <div class="t"><i class="fa fa-truck" aria-hidden="true"></i> Delivered Across India</div>
+                                                <div class="t"><i class="fa fa-shield" aria-hidden="true"></i> 7-Year Warranty</div>
                                                 <div class="t"><i class="fa fa-refresh" aria-hidden="true"></i> Easy Returns</div>
                                             </div>
                                         </div>
@@ -614,7 +659,7 @@ if (isset($_GET['astringdata'])) {
                                     $new_price2=$row2['new_price'];
                                     $tags2=$row2['tags'];
                                 ?>
-                                <a class="bosk-seller" href="product?astringdata=<?php echo $row2['id']; ?>">
+                                <a class="bosk-seller" href="<?php echo url_product($row2['slug']); ?>">
                                     <span class="thumb"><img src="admin/product_image/<?php echo $img12;?>" alt="<?php echo htmlspecialchars(isset($row2['pname']) ? $row2['pname'] : 'Related product', ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture" loading="lazy" decoding="async"></span>
                                     <span class="meta">
                                         <h6><?php echo $pname2;?></h6>

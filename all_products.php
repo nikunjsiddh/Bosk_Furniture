@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 $page_title       = 'Shop All Furniture Online | Bosk Furniture India';
-$page_description = 'Browse the complete Bosk Furniture catalogue — modular kitchens, wardrobes, sofas, beds & dining sets. Premium furniture online, free shipping in India.';
+$page_description = 'Browse the full BOSK range — modular kitchens, wardrobes, storage beds, TV units and sofas. Made to order in marine-grade IS:710 plywood in Bhavnagar.';
 $page_keywords    = 'all furniture, shop furniture online india, modular furniture, sofa, bed, wardrobe, dining table, bosk furniture catalogue';
 $page_canonical   = '/all_products';
 $page_breadcrumbs = [
@@ -883,7 +883,7 @@ $page_breadcrumbs = [
                                 $img=$row['img'];
                         ?>
                 <li style="color:white !important;" data-filter=".people"><a class="hi" style="color:#532A1A;"
-                    href="shop?astringdata2=<?php echo $row['name'];?>">
+                    href="<?php echo url_category($row['slug']); ?>">
                     <?php echo $name;?>
                   </a></li>
                 <?php
@@ -945,19 +945,19 @@ $page_breadcrumbs = [
                                             echo '<span class="product-badge">-' . $discount . '% OFF</span>';
                                         }
                                     ?>
-                          <a href="product?astringdata=<?php echo $encode_product_id; ?>" class="product-wishlist"
+                          <a href="<?php echo url_product($row3['slug']); ?>" class="product-wishlist"
                             title="Add to wishlist" onclick="event.preventDefault();">
                             <i class="fa fa-heart-o" aria-hidden="true"></i>
                           </a>
-                          <a href="product?astringdata=<?php echo $encode_product_id; ?>">
+                          <a href="<?php echo url_product($row3['slug']); ?>">
                             <img src="admin/product_image/<?php echo $img1;?>"
                               alt="<?php echo htmlspecialchars($pname); ?>" loading="lazy" decoding="async">
                           </a>
-                          <a href="product?astringdata=<?php echo $encode_product_id; ?>"
+                          <a href="<?php echo url_product($row3['slug']); ?>"
                             class="product-quickview">Quick View</a>
                         </div>
                         <div class="content">
-                          <h3><a href="product?astringdata=<?php echo $encode_product_id; ?>">
+                          <h3><a href="<?php echo url_product($row3['slug']); ?>">
                               <?php echo$pname;?>
                             </a></h3>
                           <hr>
@@ -996,7 +996,7 @@ $page_breadcrumbs = [
                             </div>
                             <hr>
                             <div class="featured-content-list">
-                              <a href="product?astringdata=<?php echo $encode_product_id; ?>" type="button"
+                              <a href="<?php echo url_product($row3['slug']); ?>" type="button"
                                 data-name="Oxford" style="color:#fff !important;background-color:#532A1A !important;" d
                                 class="btn btn-primary">View Details</a>
                             </div>
