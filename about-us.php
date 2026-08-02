@@ -828,7 +828,7 @@ $page_breadcrumbs = [
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="/">Home</a><span>»</span><span>About Us</span>
+                        <a href="index.php">Home</a><span>»</span><span>About Us</span>
                     </div>
                 </div>
             </div>
@@ -863,7 +863,7 @@ $page_breadcrumbs = [
                                 with a single, clear intention: to give Indian homes <b>customized, quality modular
                                     furniture with a difference</b>. From our manufacturing base in Bhavnagar, Gujarat,
                                 we craft made-to-order wardrobes, beds, TV units, sofas and
-                                <a href="shop?astringdata2=Modular Kitchens">modular kitchens</a> on high-end
+                                <a href="shop.php?astringdata2=Modular Kitchens">modular kitchens</a> on high-end
                                 imported machines &mdash; and deliver them, fully guaranteed, to customers across
                                 India. Every piece is built around <i>your</i> space, taste and budget, not pulled
                                 off a ready-made shelf.
@@ -910,7 +910,7 @@ $page_breadcrumbs = [
                                 <div class="clearfix service-inner-box">
 
                                     <div>
-                                        <h3><a href="all_products">TRULY CUSTOMIZED</a></h3>
+                                        <h3><a href="all_products.php">TRULY CUSTOMIZED</a></h3>
                                         <p>Every piece is crafted exclusively to your taste, so your furniture has
                                             a uniqueness that mass-produced ranges simply can't offer.</p>
                                     </div>
@@ -925,7 +925,7 @@ $page_breadcrumbs = [
                                 <div class="clearfix service-inner-box">
 
                                     <div class=service-content-box>
-                                        <h3><a href="design-order-process">FASTER TURNAROUND</a></h3>
+                                        <h3><a href="design-order-process.php">FASTER TURNAROUND</a></h3>
                                         <p>Our high-end imported machines produce precision modular furniture
                                             quickly, cutting the long waits associated with traditional carpentry.</p>
                                     </div>
@@ -940,7 +940,7 @@ $page_breadcrumbs = [
                                 <div class="clearfix service-inner-box">
 
                                     <div>
-                                        <h3><a href="warranty">GUARANTEED PRODUCTS</a></h3>
+                                        <h3><a href="warranty.php">GUARANTEED PRODUCTS</a></h3>
                                         <p>We stand behind our work with a manufacturing-defect warranty &mdash; so
                                             durable, customized furniture comes with real peace of mind.</p>
                                     </div>
@@ -955,7 +955,7 @@ $page_breadcrumbs = [
                                 <div class="clearfix service-inner-box">
 
                                     <div>
-                                        <h3><a href="all_products">BEST-IN-CLASS FINISHING</a></h3>
+                                        <h3><a href="all_products.php">BEST-IN-CLASS FINISHING</a></h3>
                                         <p>Furniture is machine-crafted with edges sealed in matching-tone edge
                                             bands for a clean, polished, long-lasting finish.</p>
                                     </div>
@@ -970,7 +970,7 @@ $page_breadcrumbs = [
                                 <div class="clearfix service-inner-box">
 
                                     <div>
-                                        <h3><a href="all_products">COST-EFFECTIVE</a></h3>
+                                        <h3><a href="all_products.php">COST-EFFECTIVE</a></h3>
                                         <p>Compare the parameters that matter &mdash; material, hardware, finish and
                                             warranty &mdash; and our crafted furniture works out more economical
                                             than similar products.</p>
@@ -987,7 +987,7 @@ $page_breadcrumbs = [
                                 <div class="clearfix service-inner-box">
 
                                     <div>
-                                        <h3><a href="design-order-process">HYGIENIC, FACTORY-BUILT</a></h3>
+                                        <h3><a href="design-order-process.php">HYGIENIC, FACTORY-BUILT</a></h3>
                                         <p>Your furniture is manufactured in our factory under controlled
                                             conditions; only erection and fitting happen at your premises.</p>
                                     </div>
@@ -1002,7 +1002,7 @@ $page_breadcrumbs = [
                                 <div class="clearfix service-inner-box">
 
                                     <div>
-                                        <h3><a href="design-order-process">HASSLE-FREE INSTALLATION</a></h3>
+                                        <h3><a href="design-order-process.php">HASSLE-FREE INSTALLATION</a></h3>
                                         <p>Because the furniture is made at our factory, there's no mess at home.
                                             Installation on site typically takes just 2&ndash;4 days &mdash; we only
                                             need access to your space for fitting.</p>
@@ -1019,7 +1019,7 @@ $page_breadcrumbs = [
                                 <div class="clearfix service-inner-box">
 
                                     <div>
-                                        <h3><a href="warranty">BUILT FOR DURABILITY</a></h3>
+                                        <h3><a href="warranty.php">BUILT FOR DURABILITY</a></h3>
                                         <p>We build with marine-grade 710 plywood and fit HETTICH hardware &mdash;
                                             from the German company renowned for quality and innovation &mdash; so
                                             your furniture performs for years, not seasons.</p>
@@ -1059,15 +1059,15 @@ $page_breadcrumbs = [
                                 furniture for the home, fully customizable in size, layout, finish and hardware:</p>
 
                             <ul class="who-chip-list">
-                                <li><a href="shop?astringdata2=LUSCIOUS WARDROBES"><i class="fa fa-archive"
+                                <li><a href="shop.php?astringdata2=LUSCIOUS WARDROBES"><i class="fa fa-archive"
                                             aria-hidden="true"></i> Luscious Wardrobes</a></li>
-                                <li><a href="shop?astringdata2=Comfy Beds With Full Storage"><i class="fa fa-bed"
+                                <li><a href="shop.php?astringdata2=Comfy Beds With Full Storage"><i class="fa fa-bed"
                                             aria-hidden="true"></i> Beds with Storage</a></li>
-                                <li><a href="shop?astringdata2=Entertaining TV Units"><i class="fa fa-tv"
+                                <li><a href="shop.php?astringdata2=Entertaining TV Units"><i class="fa fa-tv"
                                             aria-hidden="true"></i> TV Units</a></li>
-                                <li><a href="shop?astringdata2=Modular Kitchens"><i class="fa fa-cutlery"
+                                <li><a href="shop.php?astringdata2=Modular Kitchens"><i class="fa fa-cutlery"
                                             aria-hidden="true"></i> Modular Kitchens</a></li>
-                                <li><a href="shop"><i class="fa fa-couch" aria-hidden="true"></i> Modular Sofas</a>
+                                <li><a href="shop.php"><i class="fa fa-couch" aria-hidden="true"></i> Modular Sofas</a>
                                 </li>
                             </ul>
 
@@ -1075,10 +1075,10 @@ $page_breadcrumbs = [
                                 around your home?</p>
 
                             <div class="who-cta">
-                                <a class="who-btn who-btn-primary" href="all_products">
+                                <a class="who-btn who-btn-primary" href="all_products.php">
                                     Explore Our Range <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                 </a>
-                                <a class="who-btn who-btn-ghost" href="contact">
+                                <a class="who-btn who-btn-ghost" href="contact.php">
                                     Get in Touch
                                 </a>
                             </div>
@@ -1092,7 +1092,7 @@ $page_breadcrumbs = [
                                 <span class="who-img-accent" aria-hidden="true"></span>
                                 <div class="who-img-inner">
                                     <img src="images/bg/1.jpg"
-                                        alt="Customized modular furniture crafted in marine-grade 710 plywood at the BOSK factory" loading="lazy" decoding="async">
+                                        alt="Customized modular furniture crafted in marine-grade 710 plywood at the BOSK factory">
                                 </div>
                                 <span class="who-img-badge">
                                     <i class="fa fa-map-marker" aria-hidden="true"></i> Made in India

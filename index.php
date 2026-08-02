@@ -798,9 +798,9 @@ $page_breadcrumbs = [
                                 </div>
                                 <!--/ End Welcome Text -->
                                 <div class="hero-buttons">
-                                    <a href="about-us" class="btn btn-default btn-theme-colored2 btn-xl">Read
+                                    <a href="about-us.php" class="btn btn-default btn-theme-colored2 btn-xl">Read
                                         More</a>
-                                    <a href="contact" class="btn btn-dark btn-theme-colored btn-xl">Contact Us</a>
+                                    <a href="contact.php" class="btn btn-dark btn-theme-colored btn-xl">Contact Us</a>
                                 </div>
                             </div>
                         </div>
@@ -951,7 +951,7 @@ $page_breadcrumbs = [
                     <h3>Recent</h3>
                     <h2>Projects</h2>
                     <div class="hero-inner btn-class-view-all" style="">
-                        <a href="all_products" class="btn btn-dark btn-theme-colored btn-xl mt-5">View All</a>
+                        <a href="all_products.php" class="btn btn-dark btn-theme-colored btn-xl mt-5">View All</a>
                     </div>
                 </div>
                 <div class="portfolio right-slider">
@@ -973,7 +973,7 @@ $page_breadcrumbs = [
                                       $encode_project_id=base64_encode($project_id);
                         ?>
                         <div class="inner-box">
-                            <a href="project-details?astringdata=<?php echo $encode_project_id; ?>"
+                            <a href="project-details.php?astringdata=<?php echo $encode_project_id; ?>"
                                 class="project-card" data-aos="fade-up">
                                 <div class="project-card-img"
                                     style="background-image: url(admin/project_image/<?php echo $img1;?>)"></div>
@@ -1147,7 +1147,7 @@ $page_breadcrumbs = [
                                     <div class=service-icon-box><img src="admin/category_image/<?php echo $img;?>"
                                             alt="<?php echo htmlspecialchars($name, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture Category" loading="lazy" decoding="async"></div>
                                     <div class="service-content-box mt-1">
-                                        <h3><a href="shop?astringdata2=<?php echo $row2['name'];?>"><b>
+                                        <h3><a href="shop.php?astringdata2=<?php echo $row2['name'];?>"><b>
                                                     <?php echo $name;?>
                                                 </b></a></h3>
                                         <p>
@@ -1198,7 +1198,7 @@ $page_breadcrumbs = [
                                 <h3 _ngcontent-bgi-c3="" class="mt-5">UNIQUENESS</h3>
                                 <p _ngcontent-bgi-c3="">The furniture we craft is exclusively as per your taste & hence
                                     has its own uniqueness.</p><a _ngcontent-bgi-c3="" class="read-more-btn"
-                                    href="about-us">Read More</a>
+                                    href="about-us.php">Read More</a>
                             </div>
                         </div>
                         <div _ngcontent-bgi-c3="" class="col-lg-3 col-sm-6 col-md-6 p-0" data-aos="fade-up">
@@ -1208,7 +1208,7 @@ $page_breadcrumbs = [
                                 <h3 _ngcontent-bgi-c3="" class="mt-5">BEST FINISHING</h3>
                                 <p _ngcontent-bgi-c3="">FINISHING- The furniture is crafted on machines, the edges are
                                     also covered with hot press Edge bands.
-                                </p><a _ngcontent-bgi-c3="" class="read-more-btn" href="about-us">Read More</a>
+                                </p><a _ngcontent-bgi-c3="" class="read-more-btn" href="about-us.php">Read More</a>
                             </div>
                         </div>
                         <div _ngcontent-bgi-c3="" class="col-lg-3 col-sm-6 col-md-6 p-0" data-aos="fade-up">
@@ -1218,7 +1218,7 @@ $page_breadcrumbs = [
                                 <h3 _ngcontent-bgi-c3="" class="mt-5">COST EFFECTIVE</h3>
                                 <p _ngcontent-bgi-c3="">If all the parameters are compared, our crafted furniture should
                                     be economical than other similar products.</p><a _ngcontent-bgi-c3=""
-                                    class="read-more-btn" href="about-us">Read More</a>
+                                    class="read-more-btn" href="about-us.php">Read More</a>
                             </div>
                         </div>
                         <div _ngcontent-bgi-c3="" class="col-lg-3 col-sm-6 col-md-6 p-0" data-aos="fade-up">
@@ -1228,7 +1228,7 @@ $page_breadcrumbs = [
                                 <h3 _ngcontent-bgi-c3="" class="mt-5">HYGIENE</h3>
                                 <p _ngcontent-bgi-c3="">The furniture is being crafted at our factory, only erection and
                                     fitting is to be done at customer’s premises.
-                                </p><a _ngcontent-bgi-c3="" class="read-more-btn" href="about-us">Read More</a>
+                                </p><a _ngcontent-bgi-c3="" class="read-more-btn" href="about-us.php">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -1336,7 +1336,7 @@ $page_breadcrumbs = [
                                 machine can give. Custom-crafted furniture made imported machines can have the perfect
                                 fit and be highly efficient. It can be designed to fit your space to the tee. </p>
                             <div class="inf-btn pro">
-                                <a href="about-us" class="btn btn-pro btn-secondary btn-lg">Read More</a>
+                                <a href="about-us.php" class="btn btn-pro btn-secondary btn-lg">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -1355,7 +1355,7 @@ $page_breadcrumbs = [
                     <!--    <a href="blog-full-list.php" class="button button--wayra button--border-thick button--text-upper button--size-s">View All</a>-->
                     <!--</div>-->
                     <div class="hero-inner btn-class-view-all1" style="">
-                        <a href="testimonial" class="btn btn-dark btn-theme-colored btn-xl mt-5">View All</a>
+                        <a href="testimonial.php" class="btn btn-dark btn-theme-colored btn-xl mt-5">View All</a>
                     </div>
                 </div>
                 <div class="owl-carousel style1">
@@ -1430,7 +1430,7 @@ $page_breadcrumbs = [
                     <!--    <a href="blog-full-list.php" class="button button--wayra button--border-thick button--text-upper button--size-s">View All</a>-->
                     <!--</div>-->
                     <div class="hero-inner btn-class-view-all1" style="">
-                        <a href="blog-full-list" class="btn btn-dark btn-theme-colored btn-xl mt-5">View All</a>
+                        <a href="blog-full-list.php" class="btn btn-dark btn-theme-colored btn-xl mt-5">View All</a>
                     </div>
                 </div>
                 <div class="news-wrap">
@@ -1451,9 +1451,9 @@ $page_breadcrumbs = [
                         ?>
                         <div class="col-xl-3 col-lg-6 col-md-6 col-12 mt-5" data-aos="fade-up">
                             <article class="blog-card">
-                                <a href="details?astringdata=<?php echo $encodeblog_id; ?>" class="blog-card-img">
+                                <a href="details.php?astringdata=<?php echo $encodeblog_id; ?>" class="blog-card-img">
                                     <img src="admin/blog_image/<?php echo $img;?>"
-                                        alt="<?php echo htmlspecialchars($blog_title); ?>" loading="lazy" decoding="async">
+                                        alt="<?php echo htmlspecialchars($blog_title); ?>">
                                     <span class="blog-date-badge">
                                         <?php echo ($blog_date ? date('Y-m-d', strtotime($blog_date)) : '');?>
                                     </span>
@@ -1462,13 +1462,13 @@ $page_breadcrumbs = [
                                     <div class="blog-meta">
                                         <i class="fa fa-user"></i> By Admin
                                     </div>
-                                    <h3><a href="details?astringdata=<?php echo $encodeblog_id; ?>">
+                                    <h3><a href="details.php?astringdata=<?php echo $encodeblog_id; ?>">
                                             <?php echo $blog_title;?>
                                         </a></h3>
                                     <p>
                                         <?php echo strip_tags($blog_description);?>
                                     </p>
-                                    <a href="details?astringdata=<?php echo $encodeblog_id; ?>"
+                                    <a href="details.php?astringdata=<?php echo $encodeblog_id; ?>"
                                         class="blog-read-more">Read more </a>
                                 </div>
                             </article>
@@ -1492,7 +1492,7 @@ $page_breadcrumbs = [
                     for ($pass = 0; $pass < 2; $pass++) {
                         echo '<div class="logo-set"' . ($pass === 1 ? ' aria-hidden="true"' : '') . '>';
                         for ($i = 1; $i <= 10; $i++) {
-                            echo '<img src="images/partners/' . $i . '.png" alt="Partner ' . $i . '" loading="lazy" decoding="async">';
+                            echo '<img src="images/partners/' . $i . '.png" alt="Partner ' . $i . '">';
                         }
                         echo '</div>';
                     }

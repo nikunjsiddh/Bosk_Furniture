@@ -19,7 +19,7 @@ if(isset($_POST['firstname']))
 
 	
 	
-   $cmd="INSERT INTO `user`(`id`, `firstname`, `lastname`, `dob`, `email`, `password`, `joining_date`, `addressline1`, `addressline2`, `pincode`,`country`,`state`,`city`,`phone`,`img`) VALUES ('null','$firstname','$lastname','NA','$email','$password','$currentDate','NA','NA','NA','NA','NA','NA','NA','noimg.jpg')";
+   $cmd="INSERT INTO `user`(`firstname`, `lastname`, `dob`, `email`, `password`, `joining_date`, `addressline1`, `addressline2`, `pincode`,`country`,`state`,`city`,`phone`,`img`) VALUES ('$firstname','$lastname','NA','$email','$password','$currentDate','NA','NA','NA','NA','NA','NA','NA','noimg.jpg')";
 	$result=mysqli_query($con,$cmd) or die(mysqli_error($con));
 	if($result)
             {   

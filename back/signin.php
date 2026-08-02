@@ -15,10 +15,11 @@
 			while($row = mysqli_fetch_array($ex))
 			{
 				$email = $row['email'];
-				$pwd = $row['pwd'];
+				$user_id = $row['id'];
 			}
 			session_start();
 			$_SESSION['email'] = $email;
+			$_SESSION['user_id'] = $user_id;
 		
 			echo "<script>window.location='index.php';</script>";
 		}

@@ -26,6 +26,10 @@ $new_price    = intval($_POST['new_price'] ?? 0);
 $mrp          = intval($_POST['mrp'] ?? 0);
 if ($mrp <= 0) { $mrp = $new_price; }
 $tags         = trim($_POST['tags'] ?? '');
+$listing_type = trim($_POST['listing_type'] ?? 'sale');
+
+$available_for_rent = ($listing_type === 'rent' || $listing_type === 'both') ? 1 : 0;
+$available_for_sale = ($listing_type === 'sale' || $listing_type === 'both') ? 1 : 0;
 
 $allowed = array('jpg', 'jpeg', 'png', 'webp', 'gif');
 
@@ -54,8 +58,8 @@ $img4 = save_image('img4', $allowed);
 $img5 = save_image('img5', $allowed);
 
 $sql = "INSERT INTO products
-            (pname, pcategory, img1, img2, img3, img4, img5, description, publish_date, sku, stock, status, old_price, new_price, mrp, tags)
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            (pname, pcategory, img1, img2, img3, img4, img5, description, publish_date, sku, stock, status, old_price, new_price, mrp, tags, available_for_rent, available_for_sale)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 $stmt = mysqli_prepare($con, $sql);
 if (!$stmt) {
     header("Location: ../product-add.php?added=0");
@@ -63,10 +67,11 @@ if (!$stmt) {
 }
 mysqli_stmt_bind_param(
     $stmt,
-    "ssssssssssiiiiis",
+    "ssssssssssiiiiisii",
     $pname, $pcategory, $img1, $img2, $img3, $img4, $img5,
     $description, $publish_date, $sku, $stock, $status,
-    $old_price, $new_price, $mrp, $tags
+    $old_price, $new_price, $mrp, $tags,
+    $available_for_rent, $available_for_sale
 );
 $ok = mysqli_stmt_execute($stmt);
 mysqli_stmt_close($stmt);

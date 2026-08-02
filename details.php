@@ -29,7 +29,7 @@ if (isset($_GET['astringdata'])) {
     if ($blogid > 0) {
         $pubchk = mysqli_query($con, "select id from blog where id='" . $blogid . "' and blog_date <= NOW()");
         if (!$pubchk || mysqli_num_rows($pubchk) === 0) {
-            header("Location: blog-full-list");
+            header("Location: blog-full-list.php");
             exit();
         }
     }
@@ -821,7 +821,7 @@ $page_schema = '
             <div class="article-hero-bg" style="background-image: url('<?php echo htmlspecialchars($hero_img, ENT_QUOTES, 'UTF-8'); ?>');"></div>
             <div class="article-hero-overlay"></div>
             <div class="container article-hero-inner">
-                <a href="blog-full-list" class="article-back" data-reveal="up">
+                <a href="blog-full-list.php" class="article-back" data-reveal="up">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i> Back to Blog
                 </a>
                 <div class="article-hero-content" data-reveal="up">
@@ -840,9 +840,9 @@ $page_schema = '
             </div>
             <nav class="article-crumb" aria-label="Breadcrumb">
                 <div class="container">
-                    <a href="/">Home</a>
+                    <a href="index.php">Home</a>
                     <span aria-hidden="true">»</span>
-                    <a href="blog-full-list">Blog</a>
+                    <a href="blog-full-list.php">Blog</a>
                     <span aria-hidden="true">»</span>
                     <span class="current"><?php echo $blog_title ? htmlspecialchars($blog_title, ENT_QUOTES, 'UTF-8') : 'Article'; ?></span>
                 </div>
@@ -873,9 +873,9 @@ $page_schema = '
                             <div class="article-footer">
                                 <div class="article-tags">
                                     <i class="fa fa-tags" aria-hidden="true"></i>
-                                    <a href="blog-full-list">Furniture</a>
-                                    <a href="blog-full-list">Interior</a>
-                                    <a href="blog-full-list">Home Decor</a>
+                                    <a href="blog-full-list.php">Furniture</a>
+                                    <a href="blog-full-list.php">Interior</a>
+                                    <a href="blog-full-list.php">Home Decor</a>
                                 </div>
                                 <div class="article-share">
                                     <span class="share-label">Share</span>
@@ -950,7 +950,7 @@ $page_schema = '
                                         $isActive = ((int)$rid === (int)$blogid);
                                     ?>
                                     <li class="recent-item<?php echo $isActive ? ' is-active' : ''; ?>">
-                                        <a class="recent-link" href="details?astringdata=<?php echo (int)$rid; ?>">
+                                        <a class="recent-link" href="details.php?astringdata=<?php echo (int)$rid; ?>">
                                             <span class="recent-thumb">
                                                 <img src="admin/blog_image/<?php echo htmlspecialchars($rimg, ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($rtitle, ENT_QUOTES, 'UTF-8'); ?>" loading="lazy">
                                             </span>
@@ -964,7 +964,7 @@ $page_schema = '
                                     </li>
                                     <?php } ?>
                                 </ul>
-                                <a class="widget-cta" href="blog-full-list">
+                                <a class="widget-cta" href="blog-full-list.php">
                                     View All Posts <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -973,7 +973,7 @@ $page_schema = '
                                 <div class="cta-icon"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
                                 <h5>Need design help?</h5>
                                 <p>Talk to our design team about your space — wardrobes, kitchens, beds and more.</p>
-                                <a href="contact" class="cta-btn">Get in Touch <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                                <a href="contact.php" class="cta-btn">Get in Touch <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </aside>

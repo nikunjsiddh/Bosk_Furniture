@@ -87,6 +87,17 @@
                            
                         </ul>
                     </li>
+                    <li class="collapsed">
+                        <a class="m-link" data-bs-toggle="collapse" data-bs-target="#menu-rent" href="#">
+                        <i class="icofont-refresh fs-5"></i> <span>Rent Module</span> <span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
+                        <!-- Menu: Sub menu ul -->
+                        <ul class="sub-menu collapse" id="menu-rent">
+                            <li><a class="ms-link" href="rent-plans.php">Rental Plans</a></li>
+                            <li><a class="ms-link" href="rent-orders.php">Rental Orders</a></li>
+                            <li><a class="ms-link" href="kyc-queue.php">KYC Queue</a></li>
+                            <li><a class="ms-link" href="rent-payments.php">Payments & Refunds</a></li>
+                        </ul>
+                    </li>
                     <!--<li class="collapsed">-->
                     <!--    <a class="m-link" data-bs-toggle="collapse" data-bs-target="#menu-sale" href="#">-->
                     <!--    <i class="icofont-sale-discount fs-5"></i> <span>Sales Promotion</span> <span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>-->

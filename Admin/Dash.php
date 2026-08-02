@@ -52,6 +52,16 @@ while ($x = mysqli_fetch_assoc($r)) {
     $x['total'] = isset($otot[$x['order_id']]) ? $otot[$x['order_id']] : 0;
     $recent_orders[] = $x;
 }
+
+// ---- Rent Module snapshot (safe — returns 0 if tables absent) ----
+$rent_tables_ok = false;
+$rc = mysqli_query($con, "SHOW TABLES LIKE 'rental_orders'");
+if ($rc && mysqli_num_rows($rc) > 0) { $rent_tables_ok = true; }
+
+$rent_new_orders  = $rent_tables_ok ? (int) dash_scalar($con, "SELECT COUNT(*) FROM rental_orders WHERE status='pending' AND DATE(created_at)=CURDATE()") : 0;
+$rent_active      = $rent_tables_ok ? (int) dash_scalar($con, "SELECT COUNT(*) FROM rental_orders WHERE status IN ('confirmed','active','overdue')") : 0;
+$rent_kyc_pending = $rent_tables_ok ? (int) dash_scalar($con, "SELECT COUNT(*) FROM kyc_verifications WHERE status='pending'") : 0;
+$rent_mrr         = $rent_tables_ok ? (int) dash_scalar($con, "SELECT IFNULL(SUM(total_monthly_rent),0) FROM rental_orders WHERE status IN ('confirmed','active','overdue')") : 0;
 ?>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
@@ -170,7 +180,54 @@ while ($x = mysqli_fetch_assoc($r)) {
                         </div>
                     </div>
 
-                    <!-- Charts row 1 -->
+                    <!-- Rent Module Snapshot cards -->
+                    <?php if ($rent_tables_ok): ?>
+                    <div class="row g-3 mb-3">
+                        <div class="col-12">
+                            <div class="card border-0" style="background:linear-gradient(135deg,#532A1A 0%,#7a4030 100%);border-radius:14px;">
+                                <div class="card-body py-2 px-3 d-flex align-items-center" style="gap:8px;">
+                                    <i class="icofont-refresh text-white fs-5"></i>
+                                    <span class="fw-bold text-white" style="font-size:15px;">Rent Module</span>
+                                    <a href="rent-orders.php" class="btn btn-sm ms-auto" style="background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.3);font-size:12px;">View All Orders</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <a href="rent-orders.php?filter=pending" class="card stat-card bg-white h-100 text-decoration-none">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="stat-icon" style="background:#fff8e1;color:#d98a00;"><i class="icofont-calendar"></i></div>
+                                    <div class="ms-3"><div class="stat-value"><?php echo $rent_new_orders; ?></div><div class="stat-label">New Rentals Today</div></div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <a href="rent-orders.php" class="card stat-card bg-white h-100 text-decoration-none">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="stat-icon" style="background:#e6f7ee;color:#1aa260;"><i class="icofont-home"></i></div>
+                                    <div class="ms-3"><div class="stat-value"><?php echo $rent_active; ?></div><div class="stat-label">Active Rentals</div></div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <a href="kyc-queue.php" class="card stat-card bg-white h-100 text-decoration-none">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="stat-icon" style="background:#fdeef0;color:#e23b3b;"><i class="icofont-id-card"></i></div>
+                                    <div class="ms-3"><div class="stat-value"><?php echo $rent_kyc_pending; ?></div><div class="stat-label">KYC Pending</div></div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <a href="rent-payments.php" class="card stat-card bg-white h-100 text-decoration-none">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="stat-icon" style="background:#eef3ff;color:#3b6fe0;"><i class="icofont-money"></i></div>
+                                    <div class="ms-3"><div class="stat-value">&#8377;<?php echo number_format($rent_mrr); ?></div><div class="stat-label">Monthly Recurring</div></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+
+
                     <div class="row g-3 mb-3">
                         <div class="col-xl-8">
                             <div class="card chart-card h-100">

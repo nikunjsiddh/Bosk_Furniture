@@ -18,20 +18,33 @@ Disallow: /design/
 Disallow: /connect.php
 Disallow: /sitemap-generator.php
 
-# Account/transactional pages are intentionally NOT disallowed here.
-# Each one already sends its own <meta name="robots" content="noindex, ...">
-# (see cart.php, checkout.php, cart1.php, wishlist.php, login.php,
-# register.php, profile.php, order_details.php, invoice.php,
-# return_request.php). Blocking them here too would prevent Googlebot
-# from ever crawling the page to see that noindex tag, which is exactly
-# what causes the "Indexed, though blocked by robots.txt" warning in
-# Search Console. Per Google's own guidance: use noindex OR robots.txt
-# disallow to keep a URL out of the index, never both on the same URL.
-# logout.php is the one exception below — it never renders a page (pure
-# redirect + session destroy), so a noindex meta tag isn't possible and
-# blocking it via robots.txt is the correct, non-conflicting choice.
+# Disallow user account / transactional pages (both clean & .php form)
+Disallow: /cart
+Disallow: /cart1
+Disallow: /cart.php
+Disallow: /cart1.php
+Disallow: /checkout
+Disallow: /checkout.php
+Disallow: /wishlist
+Disallow: /wishlist.php
+Disallow: /login
+Disallow: /login.php
+Disallow: /register
+Disallow: /register.php
 Disallow: /logout
 Disallow: /logout.php
+Disallow: /profile
+Disallow: /profile.php
+Disallow: /order_details
+Disallow: /order_details.php
+Disallow: /invoice
+Disallow: /invoice.php
+Disallow: /return_request
+Disallow: /return_request.php
+
+# Disallow internal query-parameter URLs that produce duplicate content
+Disallow: /*?astringdata1=
+Disallow: /*&astringdata1=
 
 # Allow important resources for proper rendering / mobile-friendly test
 Allow: /css/

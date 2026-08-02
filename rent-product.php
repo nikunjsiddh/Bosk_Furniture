@@ -2,6 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+include_once "connect.php";
 include_once "design/rent-data.php";
 
 $p = rent_find(isset($_GET['id']) ? (int)$_GET['id'] : 1);
@@ -47,9 +48,9 @@ $page_breadcrumbs = [
 
                     <!-- breadcrumb -->
                     <div style="font-size:13px;color:var(--rt-dim);margin:18px 0 22px;">
-                        <a href="/" style="color:var(--rt-dim);text-decoration:none;">Home</a>
+                        <a href="index.php" style="color:var(--rt-dim);text-decoration:none;">Home</a>
                         <span style="margin:0 7px;color:var(--rt-line);">&raquo;</span>
-                        <a href="rent" style="color:var(--rt-dim);text-decoration:none;">Rent Furniture</a>
+                        <a href="rent.php" style="color:var(--rt-dim);text-decoration:none;">Rent Furniture</a>
                         <span style="margin:0 7px;color:var(--rt-line);">&raquo;</span>
                         <span style="color:var(--rt-brand);font-weight:600;"><?php echo htmlspecialchars($p['name']); ?></span>
                     </div>
@@ -68,7 +69,7 @@ $page_breadcrumbs = [
                                     <img src="<?php echo rent_img($g); ?>"
                                         class="<?php echo $gi === 0 ? 'active' : ''; ?>"
                                         alt="<?php echo htmlspecialchars($p['name']); ?> view <?php echo $gi + 1; ?>"
-                                        onclick="rpSwap(this, '<?php echo rent_img($g); ?>')"<?php echo $gi === 0 ? '' : ' loading="lazy" decoding="async"'; ?>>
+                                        onclick="rpSwap(this, '<?php echo rent_img($g); ?>')">
                                 <?php endforeach; ?>
                             </div>
                         </div>
@@ -76,25 +77,11 @@ $page_breadcrumbs = [
                         <!-- RIGHT: info + plan selection -->
                         <div class="rent-pd-info">
                             <div class="rent-card-cat" style="margin-bottom:0;"><?php echo htmlspecialchars($p['category']); ?></div>
+                            <?php if (!empty($p['badge'])): ?>
+                                <span class="rent-card-badge" style="position:static;display:inline-block;margin:6px 0 0;"><?php echo htmlspecialchars($p['badge']); ?></span>
+                            <?php endif; ?>
                             <h1><?php echo htmlspecialchars($p['name']); ?></h1>
                             <p class="lede"><?php echo htmlspecialchars($p['desc']); ?></p>
-
-                            <?php if (!empty($p['combo_items'])): ?>
-                                <ul class="rent-combo-items" style="margin-bottom:18px;">
-                                    <?php foreach ($p['combo_items'] as $ci): ?>
-                                        <li><?php echo htmlspecialchars($ci); ?></li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            <?php endif; ?>
-
-                            <div class="rent-card-meta" style="margin-bottom:18px;">
-                                <?php if (!empty($p['eta'])): ?>
-                                    <span class="rent-chip eta"><i class="fa fa-truck"></i> Delivery in <?php echo htmlspecialchars($p['eta']); ?> · <?php echo htmlspecialchars(rent_city()); ?></span>
-                                <?php endif; ?>
-                                <?php if (!empty($p['badge'])): ?>
-                                    <span class="rent-chip dep"><i class="fa fa-star"></i> <?php echo htmlspecialchars($p['badge']); ?></span>
-                                <?php endif; ?>
-                            </div>
 
                             <!-- plan selector -->
                             <div class="rent-plans-head">
@@ -107,6 +94,7 @@ $page_breadcrumbs = [
                                     <label class="rent-plan<?php echo $isDefault ? ' selected' : ''; ?>"
                                         data-monthly="<?php echo (int)$plan['monthly']; ?>"
                                         data-deposit="<?php echo (int)$plan['deposit']; ?>"
+                                        data-plan-id="<?php echo (int)($plan['id'] ?? 0); ?>"
                                         onclick="rpSelect(this)">
                                         <input type="radio" name="plan" value="<?php echo (int)$plan['tenure']; ?>"<?php echo $isDefault ? ' checked' : ''; ?>>
                                         <?php if (!empty($plan['save'])): ?>
@@ -119,25 +107,11 @@ $page_breadcrumbs = [
                                 <?php endforeach; ?>
                             </div>
 
-                            <!-- BOSK Shield damage-protection add-on -->
-                            <div class="rent-addon" id="rpShield" onclick="rpShieldToggle()" style="margin-bottom:16px;">
-                                <div class="ic"><i class="fa fa-shield"></i></div>
-                                <div>
-                                    <b>Add BOSK Shield damage protection</b>
-                                    <span>Covers accidental damage, spills &amp; scratches beyond normal wear — no deductions from your deposit.</span>
-                                </div>
-                                <div class="price">+<span id="rpShieldAmt"><?php echo rent_money((int)round($defaultPlan['monthly'] * RENT_SHIELD_RATE)); ?></span>/mo</div>
-                            </div>
-
                             <!-- summary box (reflects selected plan) -->
                             <div class="rent-summary-box">
                                 <div class="rent-srow">
                                     <span class="k">Monthly rent</span>
                                     <span class="v" id="rpMonthly"><?php echo rent_money($defaultPlan['monthly']); ?></span>
-                                </div>
-                                <div class="rent-srow" id="rpShieldRow" style="display:none;">
-                                    <span class="k">BOSK Shield (per month)</span>
-                                    <span class="v" id="rpShieldLine">₹0</span>
                                 </div>
                                 <div class="rent-srow">
                                     <span class="k">Refundable deposit</span>
@@ -158,10 +132,20 @@ $page_breadcrumbs = [
 
                             <!-- actions -->
                             <div style="margin-top:22px;">
-                                <a class="rent-btn rent-btn-block" href="rent-cart">
-                                    Add to Rental Cart <i class="fa fa-arrow-right"></i>
+                                <!-- Add to Cart toast feedback -->
+                                <div id="rpCartMsg" style="display:none;padding:10px 14px;border-radius:8px;font-size:13.5px;margin-bottom:12px;font-weight:600;"></div>
+
+                                <button id="rpAddToCart" class="rent-btn rent-btn-block" type="button"
+                                    data-product-id="<?php echo (int)$p['id']; ?>">
+                                    <i class="fa fa-shopping-bag"></i> Add to Rental Cart
+                                </button>
+                                <a class="rent-btn rent-btn-outline rent-btn-block" href="rent-cart.php" style="margin-top:10px;">
+                                    <i class="fa fa-shopping-bag"></i> View Rental Cart
+                                    <?php $cnt = rent_cart_count(); if ($cnt > 0): ?>
+                                        <span style="background:var(--rt-brand);color:#fff;border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;margin-left:6px;"><?php echo $cnt; ?></span>
+                                    <?php endif; ?>
                                 </a>
-                                <a class="rent-btn rent-btn-outline rent-btn-block" href="rent" style="margin-top:12px;">
+                                <a class="rent-btn rent-btn-outline rent-btn-block" href="rent.php" style="margin-top:12px;">
                                     <i class="fa fa-angle-left"></i> Back to catalogue
                                 </a>
                             </div>
@@ -200,35 +184,9 @@ $page_breadcrumbs = [
             thumb.classList.add('active');
         }
 
-        /* format an integer to ₹ + thousands separator (matches rent_money) */
+        /* format an integer to ₹ + thousands separator */
         function rpMoney(n) {
             return '₹' + Math.round(n).toLocaleString('en-IN');
-        }
-
-        /* current selection state (plan + shield add-on) */
-        var rpShieldOn = false;
-        var RP_SHIELD_RATE = <?php echo json_encode(RENT_SHIELD_RATE); ?>;
-
-        function rpCurrentPlan() {
-            return document.querySelector('#rpPlans .rent-plan.selected') ||
-                document.querySelector('#rpPlans .rent-plan');
-        }
-
-        /* re-compute the summary box from the selected plan + shield state */
-        function rpRefresh() {
-            var plan = rpCurrentPlan();
-            if (!plan) return;
-            var monthly = parseInt(plan.getAttribute('data-monthly'), 10) || 0;
-            var deposit = parseInt(plan.getAttribute('data-deposit'), 10) || 0;
-            var shield = Math.round(monthly * RP_SHIELD_RATE);
-            var moTotal = monthly + (rpShieldOn ? shield : 0);
-
-            document.getElementById('rpMonthly').textContent = rpMoney(monthly);
-            document.getElementById('rpDeposit').textContent = rpMoney(deposit);
-            document.getElementById('rpTotal').textContent = rpMoney(moTotal + deposit);
-            document.getElementById('rpShieldAmt').textContent = rpMoney(shield);
-            document.getElementById('rpShieldLine').textContent = rpMoney(shield);
-            document.getElementById('rpShieldRow').style.display = rpShieldOn ? '' : 'none';
         }
 
         /* select a plan: highlight it, check its radio, update the summary */
@@ -239,14 +197,85 @@ $page_breadcrumbs = [
             plan.classList.add('selected');
             var radio = plan.querySelector('input[type=radio]');
             if (radio) radio.checked = true;
-            rpRefresh();
+
+            var monthly = parseInt(plan.getAttribute('data-monthly'), 10) || 0;
+            var deposit = parseInt(plan.getAttribute('data-deposit'), 10) || 0;
+            var total   = monthly + deposit;
+
+            document.getElementById('rpMonthly').textContent = rpMoney(monthly);
+            document.getElementById('rpDeposit').textContent = rpMoney(deposit);
+            document.getElementById('rpTotal').textContent   = rpMoney(total);
         }
 
-        /* toggle the BOSK Shield add-on */
-        function rpShieldToggle() {
-            rpShieldOn = !rpShieldOn;
-            document.getElementById('rpShield').classList.toggle('on', rpShieldOn);
-            rpRefresh();
+        /* Add to Cart — AJAX POST to back/rent-handler.php */
+        document.getElementById('rpAddToCart').addEventListener('click', function () {
+            var btn = this;
+            var selectedPlan = document.querySelector('#rpPlans .rent-plan.selected');
+            if (!selectedPlan) {
+                rpShowMsg('Please select a rental plan first.', 'warn');
+                return;
+            }
+            var planId    = parseInt(selectedPlan.getAttribute('data-plan-id'), 10) || 0;
+            var productId = parseInt(btn.getAttribute('data-product-id'), 10) || 0;
+
+            if (!planId) {
+                /* Demo mode (no DB yet) — just redirect to cart */
+                window.location.href = 'rent-cart.php';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Adding…';
+
+            var fd = new FormData();
+            fd.append('action', 'add_to_cart');
+            fd.append('product_id', productId);
+            fd.append('plan_id', planId);
+            fd.append('qty', 1);
+
+            fetch('back/rent-handler.php', { method: 'POST', body: fd })
+                .then(function (r) { return r.json(); })
+                .then(function (res) {
+                    if (res.ok) {
+                        rpShowMsg('✓ Added to rental cart!', 'ok');
+                        btn.innerHTML = '<i class="fa fa-check"></i> Added to Cart';
+                        setTimeout(function () {
+                            btn.disabled = false;
+                            btn.innerHTML = '<i class="fa fa-shopping-bag"></i> Add to Rental Cart';
+                        }, 2000);
+                    } else {
+                        rpShowMsg(res.msg || 'Could not add item.', 'err');
+                        btn.disabled = false;
+                        btn.innerHTML = '<i class="fa fa-shopping-bag"></i> Add to Rental Cart';
+                    }
+                })
+                .catch(function () {
+                    rpShowMsg('Network error — please try again.', 'err');
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fa fa-shopping-bag"></i> Add to Rental Cart';
+                });
+        });
+
+        function rpShowMsg(text, type) {
+            var el = document.getElementById('rpCartMsg');
+            if (!el) return;
+            el.textContent = text;
+            el.style.display = 'block';
+            if (type === 'ok') {
+                el.style.background = '#e6f7ee';
+                el.style.color      = '#1aa260';
+                el.style.border     = '1px solid #a3d9b8';
+            } else if (type === 'warn') {
+                el.style.background = '#fff8e1';
+                el.style.color      = '#b36d00';
+                el.style.border     = '1px solid #ffd54f';
+            } else {
+                el.style.background = '#fdeef0';
+                el.style.color      = '#c0392b';
+                el.style.border     = '1px solid #f5b7b1';
+            }
+            clearTimeout(el._t);
+            el._t = setTimeout(function () { el.style.display = 'none'; }, 4000);
         }
     </script>
 </body>

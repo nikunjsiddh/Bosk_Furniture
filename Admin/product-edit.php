@@ -26,6 +26,15 @@ $old_price    = $p['old_price'];
 $new_price    = $p['new_price'];
 $mrp          = $p['mrp'];
 $tags         = $p['tags'];
+$avail_rent   = intval($p['available_for_rent'] ?? 0);
+$avail_sale   = intval($p['available_for_sale'] ?? 1);
+
+$listing_type = 'sale';
+if ($avail_rent === 1 && $avail_sale === 1) {
+    $listing_type = 'both';
+} else if ($avail_rent === 1 && $avail_sale === 0) {
+    $listing_type = 'rent';
+}
 ?>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
@@ -171,21 +180,34 @@ $tags         = $p['tags'];
                                     <div class="row g-3">
                                         <div class="col-md-12">
                                             <label class="form-label">Category <span class="req">*</span></label>
-                                            <select name="pcategory" class="form-select">
+                                            <select name="pcategory" class="form-select" required>
+                                                <option value="" disabled>Select a category…</option>
                                                 <?php
-                                                $matched = false;
                                                 $catres = mysqli_query($con, "SELECT name FROM category ORDER BY name");
                                                 while ($c = mysqli_fetch_assoc($catres)) {
-                                                    $sel = (trim($c['name']) === trim($pcategory)) ? 'selected' : '';
-                                                    if ($sel) { $matched = true; }
+                                                    $sel = ($c['name'] === $pcategory) ? 'selected' : '';
                                                     echo '<option value="' . htmlspecialchars($c['name']) . '" ' . $sel . '>' . htmlspecialchars($c['name']) . '</option>';
-                                                }
-                                                // keep current value even if not in category table
-                                                if (!$matched && trim($pcategory) !== '') {
-                                                    echo '<option value="' . htmlspecialchars(trim($pcategory)) . '" selected>' . htmlspecialchars(trim($pcategory)) . ' (current)</option>';
                                                 }
                                                 ?>
                                             </select>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="form-label">Product Type / Listing Mode <span class="req">*</span></label>
+                                            <div class="border rounded p-2 bg-light">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="listing_type" id="type_sale" value="sale" <?php echo $listing_type === 'sale' ? 'checked' : ''; ?>>
+                                                    <label class="form-check-label fw-bold" for="type_sale"><i class="icofont-shopping-cart text-primary"></i> Buy Only</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="listing_type" id="type_rent" value="rent" <?php echo $listing_type === 'rent' ? 'checked' : ''; ?>>
+                                                    <label class="form-check-label fw-bold text-success" for="type_rent"><i class="icofont-key text-success"></i> Rent Only</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="listing_type" id="type_both" value="both" <?php echo $listing_type === 'both' ? 'checked' : ''; ?>>
+                                                    <label class="form-check-label fw-bold text-dark" for="type_both"><i class="icofont-refresh text-dark"></i> Both (Buy & Rent)</label>
+                                                </div>
+                                            </div>
+                                            <small class="text-muted d-block mt-1">"Rent Only" products will NOT show in the regular buy shop.</small>
                                         </div>
                                         <div class="col-md-12">
                                             <label class="form-label">Status</label>

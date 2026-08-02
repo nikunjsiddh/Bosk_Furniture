@@ -224,6 +224,7 @@ $total_categories = count($cat_set);
                                                     <th style="display:none;">Product Id</th>
                                                     <th>Product Name</th>
                                                     <th>Category</th>
+                                                    <th>Type</th>
                                                     <th style="display:none;">Product Description</th>
                                                     <th>Publish Date</th>
                                                     <th style="display:none;">SKU</th>
@@ -249,6 +250,8 @@ $total_categories = count($cat_set);
                                                 $old_price    = $row['old_price'];
                                                 $new_price    = $row['new_price'];
                                                 $tags         = $row['tags'];
+                                                $avail_rent   = intval($row['available_for_rent'] ?? 0);
+                                                $avail_sale   = intval($row['available_for_sale'] ?? 1);
 
                                                 // stock badge class
                                                 if ($stock <= 0)      { $stock_cls = 'stock-out'; }
@@ -262,6 +265,15 @@ $total_categories = count($cat_set);
                                                     <td style="display:none;"><?php echo $id;?></td>
                                                     <td><span class="prod-name" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#expedit<?php echo $id;?>" title="View details"><?php echo $pname;?></span></td>
                                                     <td><span class="cat-badge"><?php echo $pcategory;?></span></td>
+                                                    <td>
+                                                        <?php if ($avail_rent === 1 && $avail_sale === 1): ?>
+                                                            <span class="badge bg-dark"><i class="icofont-refresh"></i> Both</span>
+                                                        <?php elseif ($avail_rent === 1): ?>
+                                                            <span class="badge bg-success"><i class="icofont-key"></i> Rent Only</span>
+                                                        <?php else: ?>
+                                                            <span class="badge bg-primary"><i class="icofont-shopping-cart"></i> Buy Only</span>
+                                                        <?php endif; ?>
+                                                    </td>
                                                     <td style="display:none;"><?php echo $description;?></td>
                                                     <td><span class="date-cell"><?php echo ($publish_date && $publish_date !== '0000-00-00 00:00:00') ? date('d M Y, h:i A', strtotime($publish_date)) : '—';?></span></td>
                                                     <td style="display:none;"><?php echo $sku;?></td>

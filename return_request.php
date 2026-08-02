@@ -45,7 +45,7 @@ $page_robots      = 'noindex, follow';
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="/">Home</a><span>»</span><span>Return Request</span>
+                        <a href="index.php">Home</a><span>»</span><span>Return Request</span>
                     </div>
                 </div>
             </div>

@@ -238,7 +238,7 @@ body{
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="/">Home</a><span>»</span><span>SHOPPING CART</span>
+                        <a href="index.php">Home</a><span>»</span><span>SHOPPING CART</span>
                     </div>
                 </div>
             </div>
@@ -259,7 +259,7 @@ body{
 
   <div class="product">
     <div class="product-image">
-      <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg" loading="lazy" decoding="async">
+      <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
     </div>
     <div class="product-details">
       <div class="product-title">Dingo Dog Bones</div>
@@ -279,7 +279,7 @@ body{
 
   <div class="product">
     <div class="product-image">
-      <img src="https://s.cdpn.io/3/large-NutroNaturalChoiceAdultLambMealandRiceDryDogFood.png" loading="lazy" decoding="async">
+      <img src="https://s.cdpn.io/3/large-NutroNaturalChoiceAdultLambMealandRiceDryDogFood.png">
     </div>
     <div class="product-details">
       <div class="product-title">Nutro™ Adult Lamb and Rice Dog Food</div>
@@ -316,7 +316,7 @@ body{
     </div>
   </div>
       
-      <a href="checkout" class="checkout">Checkout</a>
+      <a href="checkout.php" class="checkout">Checkout</a>
 
 </div>
 </div><br/><br/><br/><br/><br/>

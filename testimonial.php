@@ -34,7 +34,7 @@ $page_breadcrumbs = [
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="/">Home</a><span>»</span><span>Testimonial</span>
+                        <a href="index.php">Home</a><span>»</span><span>Testimonial</span>
                     </div>
                 </div>
             </div>

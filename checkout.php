@@ -389,7 +389,7 @@ button.disabled {
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="/">Home</a><span>»</span><span>CHECKOUT</span>
+                        <a href="index.php">Home</a><span>»</span><span>CHECKOUT</span>
                     </div>
                 </div>
             </div>
@@ -463,7 +463,7 @@ button.disabled {
 							?>
 							
 							<p style="color:red;">"No Address Available,Please Add Address."</p>
-							<button style="background-color:#532A1A;" type="button" class="btn btn-primary btn-lg" value=""><a style="color:white;" href="profile">Add Address</a></button>
+							<button style="background-color:#532A1A;" type="button" class="btn btn-primary btn-lg" value=""><a style="color:white;" href="profile.php">Add Address</a></button>
 							<?php
 							}
 							else{
@@ -471,7 +471,7 @@ button.disabled {
 							
 							<h5 style="color:black;"><b>Shipping Address:</b></h5>
 							<p><?php echo $firstname.' '.$lastname;?>,<br/><?php echo $addressline1;?>,<br/><?php echo $addressline2;?>,<br/><?php echo $city;?>,<?php echo $pincode;?>,<br/><?php echo $state;?>,<br/><?php echo $country;?>.<br/></p>
-							<button style="background-color:#532A1A;" type="button" class="btn btn-primary btn-lg" value=""><i class="fa fa-pencil"></i>&nbsp;&nbsp;<a style="color:white;" href="profile">Change / Edit Address</a></button>
+							<button style="background-color:#532A1A;" type="button" class="btn btn-primary btn-lg" value=""><i class="fa fa-pencil"></i>&nbsp;&nbsp;<a style="color:white;" href="profile.php">Change / Edit Address</a></button>
 							<?php
 							}
 							?>
@@ -519,7 +519,7 @@ button.disabled {
 									    ?>
 										<tr class="cart_item">
 										    <td>
-												<img class="img1" src="admin/product_image/<?php echo $img1;?>" alt="<?php echo htmlspecialchars($pname, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture">
+												<img class="img1" src="admin/product_image/<?php echo $img1;?>">
 											</td>
 											<td class="product-name">
 												<?php echo $pname;?> <strong class="product-quantity"> x <?php echo $quantity;?></strong>
@@ -617,7 +617,7 @@ button.disabled {
     							?>
     							<p style="color:red;">*You Can Not Continue Without Adding The Address,<br/>Please Add Address*</p>
     							<div class="order-button-payment">
-    								<button style="background-color:#532A1A;" type="button" class="btn btn-primary btn-lg" value=""><a style="color:white;" href="profile">Add Address</a></button>
+    								<button style="background-color:#532A1A;" type="button" class="btn btn-primary btn-lg" value=""><a style="color:white;" href="profile.php">Add Address</a></button>
     								</div>
 								<div class="order-button-payment">
 									<button type="submit" value="" class="disabled" disabled>Place order</button>

@@ -7,22 +7,17 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # ============================================================
-    # CANONICAL DOMAIN — always end up at https://www.boskfurniture.com
-    # in a SINGLE 301 hop (never chained http->https->www):
-    #   http://boskfurniture.com      -> https://www.boskfurniture.com  (rule 1)
-    #   https://boskfurniture.com     -> https://www.boskfurniture.com  (rule 1)
-    #   http://www.boskfurniture.com  -> https://www.boskfurniture.com  (rule 2)
-    #   https://www.boskfurniture.com -> (already canonical, no redirect)
-    # Two separate rules (rather than one with mixed AND/OR conditions)
-    # so the logic is unambiguous and each case fires exactly one 301.
-    # ============================================================
-    RewriteCond %{HTTP_HOST} ^boskfurniture\.com$ [NC]
-    RewriteRule ^(.*)$ https://www.boskfurniture.com/$1 [L,R=301]
+    # Force HTTPS (uncomment after SSL is installed)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-    RewriteCond %{HTTPS} off
-    RewriteCond %{HTTP_HOST} ^www\.boskfurniture\.com$ [NC]
-    RewriteRule ^(.*)$ https://www.boskfurniture.com/$1 [L,R=301]
+    # Force non-www (or www) — choose ONE canonical version (uncomment one)
+    # Option A: Force www
+    # RewriteCond %{HTTP_HOST} ^boskfurniture\.com [NC]
+    # RewriteRule ^(.*)$ https://www.boskfurniture.com/$1 [L,R=301]
+    # Option B: Force non-www
+    # RewriteCond %{HTTP_HOST} ^www\.boskfurniture\.com [NC]
+    # RewriteRule ^(.*)$ https://boskfurniture.com/$1 [L,R=301]
 
     # Remove trailing slash from URLs (except real directories)
     RewriteCond %{REQUEST_FILENAME} !-d

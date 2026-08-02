@@ -110,7 +110,7 @@ $page_robots      = 'noindex, follow';
             <!-- Form panel -->
             <div class="bosk-auth-right">
                 <h1>Create Account</h1>
-                <p class="sub">Already a member? <a href="login" style="color:var(--bf-brand);font-weight:600;">Sign in here</a></p>
+                <p class="sub">Already a member? <a href="login.php" style="color:var(--bf-brand);font-weight:600;">Sign in here</a></p>
 
                 <form onsubmit="return register(this);" id="myform" method="post" class="form">
                     <div class="bf-row2">

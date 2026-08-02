@@ -34,7 +34,7 @@ $page_breadcrumbs = [
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="/">Home</a><span>»</span><span>Our Services</span>
+                        <a href="index.php">Home</a><span>»</span><span>Our Services</span>
                     </div>
                 </div>
             </div>
@@ -53,17 +53,17 @@ $page_breadcrumbs = [
                         <div class="item mb-30">
                             <div class=service-box>
                                 <figure class="img-box">
-                                    <a href="all_products"><img src="images/services/s-1.jpg" alt="Residential interior design service - Bosk Furniture India" loading="lazy" decoding="async"></a>
+                                    <a href="all_products.php"><img src="images/services/s-1.jpg" alt="Residential interior design service - Bosk Furniture India" loading="lazy" decoding="async"></a>
                                     <figcaption class="default-overlay-outer">
                                         <div class="inner">
-                                            <div class="content-layer"><a class="this-link btn btn-primary" href="all_products">Read more</a> </div>
+                                            <div class="content-layer"><a class="this-link btn btn-primary" href="all_products.php">Read more</a> </div>
                                         </div>
                                     </figcaption>
                                 </figure>
                                 <div class="clearfix service-inner-box">
                                     <div class=service-icon-box><img src="images/services/2.png" alt="Residential interior icon" loading="lazy" decoding="async"></div>
                                     <div class=service-content-box>
-                                        <h3><a href="all_products">Residential Interior</a></h3>
+                                        <h3><a href="all_products.php">Residential Interior</a></h3>
                                         <p>Custom-crafted home interiors — modular kitchens, wardrobes, beds and living-room furniture made to fit your space exactly.</p>
                                     </div>
                                 </div>
@@ -74,17 +74,17 @@ $page_breadcrumbs = [
                         <div class="item mb-30">
                             <div class=service-box>
                                 <figure class="img-box">
-                                    <a href="all_products"><img src="images/services/s-2.jpg" alt="Commercial interior design service - Bosk Furniture" loading="lazy" decoding="async"></a>
+                                    <a href="all_products.php"><img src="images/services/s-2.jpg" alt="Commercial interior design service - Bosk Furniture" loading="lazy" decoding="async"></a>
                                     <figcaption class="default-overlay-outer">
                                         <div class="inner">
-                                            <div class="content-layer"><a class="this-link btn btn-primary" href="all_products">Read more</a> </div>
+                                            <div class="content-layer"><a class="this-link btn btn-primary" href="all_products.php">Read more</a> </div>
                                         </div>
                                     </figcaption>
                                 </figure>
                                 <div class="clearfix service-inner-box">
                                     <div class=service-icon-box><img src="images/services/15.png" alt="Commercial interior icon" loading="lazy" decoding="async"></div>
                                     <div class=service-content-box>
-                                        <h3><a href="all_products">Commercial Interior</a></h3>
+                                        <h3><a href="all_products.php">Commercial Interior</a></h3>
                                         <p>Showroom, retail and commercial space design with durable factory-finished modular furniture built to handle daily wear.</p>
                                     </div>
                                 </div>
@@ -95,17 +95,17 @@ $page_breadcrumbs = [
                         <div class="item mb-30">
                             <div class=service-box>
                                 <figure class="img-box">
-                                    <a href="all_products"><img src="images/services/s-3.jpg" alt="Office interior design service - Bosk Furniture" loading="lazy" decoding="async"></a>
+                                    <a href="all_products.php"><img src="images/services/s-3.jpg" alt="Office interior design service - Bosk Furniture" loading="lazy" decoding="async"></a>
                                     <figcaption class="default-overlay-outer">
                                         <div class="inner">
-                                            <div class="content-layer"><a class="this-link btn btn-primary" href="all_products">Read more</a> </div>
+                                            <div class="content-layer"><a class="this-link btn btn-primary" href="all_products.php">Read more</a> </div>
                                         </div>
                                     </figcaption>
                                 </figure>
                                 <div class="clearfix service-inner-box">
                                     <div class=service-icon-box><img src="images/services/10.png" width="53" alt="Office interior icon" loading="lazy" decoding="async"></div>
                                     <div class=service-content-box>
-                                        <h3><a href="all_products">Office Interior</a></h3>
+                                        <h3><a href="all_products.php">Office Interior</a></h3>
                                         <p>Productive office layouts — workstations, conference tables, executive cabins and storage units crafted for Indian businesses.</p>
                                     </div>
                                 </div>
@@ -116,17 +116,17 @@ $page_breadcrumbs = [
                         <div class="item smb-30">
                             <div class=service-box>
                                 <figure class="img-box">
-                                    <a href="all_products"><img src="images/services/s-4.jpg" alt="Hospitality interior design service - hotels &amp; restaurants" loading="lazy" decoding="async"></a>
+                                    <a href="all_products.php"><img src="images/services/s-4.jpg" alt="Hospitality interior design service - hotels &amp; restaurants" loading="lazy" decoding="async"></a>
                                     <figcaption class="default-overlay-outer">
                                         <div class="inner">
-                                            <div class="content-layer"><a class="this-link btn btn-primary" href="all_products">Read more</a> </div>
+                                            <div class="content-layer"><a class="this-link btn btn-primary" href="all_products.php">Read more</a> </div>
                                         </div>
                                     </figcaption>
                                 </figure>
                                 <div class="clearfix service-inner-box">
                                     <div class=service-icon-box><img src="images/services/14.png" width="53" alt="Hospitality design icon" loading="lazy" decoding="async"></div>
                                     <div class=service-content-box>
-                                        <h3><a href="all_products">Hospitality Design</a></h3>
+                                        <h3><a href="all_products.php">Hospitality Design</a></h3>
                                         <p>Hotel rooms, restaurants and cafés furnished with premium modular pieces that balance beautiful aesthetics with heavy-use durability.</p>
                                     </div>
                                 </div>
@@ -137,17 +137,17 @@ $page_breadcrumbs = [
                         <div class="item smb-30">
                             <div class=service-box>
                                 <figure class="img-box">
-                                    <a href="all_products"><img src="images/services/s-5.jpg" alt="Modern furniture design service - Bosk Furniture" loading="lazy" decoding="async"></a>
+                                    <a href="all_products.php"><img src="images/services/s-5.jpg" alt="Modern furniture design service - Bosk Furniture" loading="lazy" decoding="async"></a>
                                     <figcaption class="default-overlay-outer">
                                         <div class="inner">
-                                            <div class="content-layer"><a class="this-link btn btn-primary" href="all_products">Read more</a> </div>
+                                            <div class="content-layer"><a class="this-link btn btn-primary" href="all_products.php">Read more</a> </div>
                                         </div>
                                     </figcaption>
                                 </figure>
                                 <div class="clearfix service-inner-box">
                                     <div class=service-icon-box><img src="images/services/1.png" width="53" alt="Modern furniture icon" loading="lazy" decoding="async"></div>
                                     <div class=service-content-box>
-                                        <h3><a href="all_products">Modern Furniture</a></h3>
+                                        <h3><a href="all_products.php">Modern Furniture</a></h3>
                                         <p>Contemporary sofas, dining sets, beds and accent pieces designed for today's Indian homes with clean lines and lasting comfort.</p>
                                     </div>
                                 </div>
@@ -158,17 +158,17 @@ $page_breadcrumbs = [
                         <div class="item">
                             <div class=service-box>
                                 <figure class="img-box">
-                                    <a href="shop?astringdata2=Modular Kitchens"><img src="images/services/s-6.jpg" alt="Modular kitchen design service - Bosk Furniture India" loading="lazy" decoding="async"></a>
+                                    <a href="shop.php?astringdata2=Modular Kitchens"><img src="images/services/s-6.jpg" alt="Modular kitchen design service - Bosk Furniture India" loading="lazy" decoding="async"></a>
                                     <figcaption class="default-overlay-outer">
                                         <div class="inner">
-                                            <div class="content-layer"><a class="this-link btn btn-primary" href="shop?astringdata2=Modular Kitchens">Read more</a> </div>
+                                            <div class="content-layer"><a class="this-link btn btn-primary" href="shop.php?astringdata2=Modular Kitchens">Read more</a> </div>
                                         </div>
                                     </figcaption>
                                 </figure>
                                 <div class="clearfix service-inner-box">
                                     <div class=service-icon-box><img src="images/services/3.png" width="53" alt="Modular kitchen icon" loading="lazy" decoding="async"></div>
                                     <div class=service-content-box>
-                                        <h3><a href="shop?astringdata2=Modular Kitchens">Modular Kitchen</a></h3>
+                                        <h3><a href="shop.php?astringdata2=Modular Kitchens">Modular Kitchen</a></h3>
                                         <p>Made-to-measure modular kitchens with Hettich hardware, water-resistant cores and finishes built for Indian cooking conditions.</p>
                                     </div>
                                 </div>

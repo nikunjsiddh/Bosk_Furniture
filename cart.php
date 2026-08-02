@@ -257,7 +257,7 @@ body{
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="/">Home</a><span>»</span><span>SHOPPING CART</span>
+                        <a href="index.php">Home</a><span>»</span><span>SHOPPING CART</span>
                     </div>
                 </div>
             </div>
@@ -280,7 +280,7 @@ body{
             $no_of_rows=(int)(mysqli_num_rows($result8));
             if($no_of_rows == 0){
                 ?>
-                <center><p class="mb-2" style="font-size:clamp(1.5rem,7vw,3.2rem);line-height:1.25;">Your Cart Is Empty</p><br/><button class="btn btn-primary mb-5" type="submit" style="background-color:#532A1A;"><a style="color:white;" href="shop">Shop Now</a></button></center>
+                <center><p class="mb-2" style="font-size:clamp(1.5rem,7vw,3.2rem);line-height:1.25;">Your Cart Is Empty</p><br/><button class="btn btn-primary mb-5" type="submit" style="background-color:#532A1A;"><a style="color:white;" href="shop.php">Shop Now</a></button></center>
             <?php    
             }else{
                 
@@ -353,7 +353,7 @@ $row3=mysqli_fetch_array($result3);
   <div class="product">
      
     <div class="product-image">
-      <img src="admin/product_image/<?php echo $img1;?>" alt="<?php echo htmlspecialchars($pname, ENT_QUOTES, 'UTF-8'); ?> - Bosk Furniture" loading="lazy" decoding="async">
+      <img src="admin/product_image/<?php echo $img1;?>">
     </div>
     <div class="product-details">
       <div class="product-title"><b><?php echo $pname;?></b></div>
@@ -414,7 +414,7 @@ $row3=mysqli_fetch_array($result3);
     </tr>
   </tbody>
 </table><hr/>
-  <a  type="submit" class="checkout mr-2" href="checkout">checkout</a><br/><br/><br/><br/>
+  <a  type="submit" class="checkout mr-2" href="checkout.php">checkout</a><br/><br/><br/><br/>
     </div>  
       
     </div>
@@ -429,7 +429,7 @@ $row3=mysqli_fetch_array($result3);
 }
 else{
     ?>
-    <center><p class="mb-2" style="font-size:clamp(1.5rem,7vw,3.2rem);line-height:1.25;">Your Cart Is Empty</p><br/><button class="btn btn-primary mb-5" type="submit" style="background-color:#532A1A;"><a style="color:white;" href="login">Login / Register</a></button></center>
+    <center><p class="mb-2" style="font-size:clamp(1.5rem,7vw,3.2rem);line-height:1.25;">Your Cart Is Empty</p><br/><button class="btn btn-primary mb-5" type="submit" style="background-color:#532A1A;"><a style="color:white;" href="login.php">Login / Register</a></button></center>
     <?php
    
 }

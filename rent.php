@@ -27,15 +27,6 @@ include_once "design/rent-data.php";
 
         <div class="rent-scope">
 
-            <!-- ===================== CITY BAR (city-first catalogue) ===================== -->
-            <div class="rent-citybar">
-                <span><i class="fa fa-map-marker"></i> Renting in</span>
-                <button type="button" class="city-btn" onclick="rentCityOpen()">
-                    <?php echo htmlspecialchars(rent_city()); ?> <i class="fa fa-angle-down"></i>
-                </button>
-                <span style="opacity:.75;">Free delivery &amp; setup in your city</span>
-            </div>
-
             <!-- ===================== HERO ===================== -->
             <section class="rent-hero">
                 <div class="rent-hero-inner">
@@ -81,18 +72,12 @@ include_once "design/rent-data.php";
                         </div>
                         <div class="rent-how-step">
                             <span class="n">3</span>
-                            <div class="ic"><i class="fa fa-id-card-o"></i></div>
-                            <h4>Quick KYC &amp; slot</h4>
-                            <p>Verify your mobile, upload ID proof and pick a delivery window.</p>
+                            <div class="ic"><i class="fa fa-check-circle"></i></div>
+                            <h4>Confirm &amp; get it delivered</h4>
+                            <p>Share delivery details and confirm — we deliver &amp; set up free.</p>
                         </div>
                         <div class="rent-how-step">
                             <span class="n">4</span>
-                            <div class="ic"><i class="fa fa-check-circle"></i></div>
-                            <h4>Pay &amp; get it delivered</h4>
-                            <p>Pay the deposit + 1st month — we deliver &amp; set up free.</p>
-                        </div>
-                        <div class="rent-how-step">
-                            <span class="n">5</span>
                             <div class="ic"><i class="fa fa-recycle"></i></div>
                             <h4>Return, extend or buy</h4>
                             <p>At tenure end: return (deposit refunded), extend, or buy the piece.</p>
@@ -120,12 +105,8 @@ include_once "design/rent-data.php";
                             <?php endforeach; ?>
                         </div>
                         <div class="rent-sort">
-                            <select id="rentBudget" aria-label="Filter by monthly budget">
-                                <?php foreach ($RENTAL_BUDGETS as $bi => $b): ?>
-                                    <option value="<?php echo (int)$b['min']; ?>-<?php echo (int)$b['max']; ?>"><?php echo htmlspecialchars($b['label']); ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <span><b id="rentCount"><?php echo count($RENTAL_PRODUCTS); ?></b> items in <?php echo htmlspecialchars(rent_city()); ?></span>
+                            <i class="fa fa-th-large"></i>
+                            <span><b><?php echo count($RENTAL_PRODUCTS); ?></b> items available to rent</span>
                         </div>
                     </div>
 
@@ -134,39 +115,23 @@ include_once "design/rent-data.php";
                         <?php foreach ($RENTAL_PRODUCTS as $p):
                             $from = rent_from_price($p);
                             $minDep = min(array_column($p['plans'], 'deposit'));
-                            $inStock = !empty($p['in_stock']);
                         ?>
-                            <article class="rent-card<?php echo $inStock ? '' : ' oos'; ?>"
-                                data-cat="<?php echo htmlspecialchars($p['category']); ?>"
-                                data-price="<?php echo (int)$from; ?>">
+                            <article class="rent-card" data-cat="<?php echo htmlspecialchars($p['category']); ?>">
                                 <div class="rent-card-img">
                                     <?php if (!empty($p['badge'])): ?>
-                                        <span class="rent-flag <?php echo rent_badge_class($p['badge']); ?>"><?php echo htmlspecialchars($p['badge']); ?></span>
+                                        <span class="rent-card-badge"><?php echo htmlspecialchars($p['badge']); ?></span>
                                     <?php endif; ?>
                                     <span class="rent-card-tag">3 · 6 · 12 mo</span>
                                     <a href="#" class="rent-card-fav" title="Save" onclick="return false;"><i class="fa fa-heart-o"></i></a>
-                                    <a href="rent-product?id=<?php echo $p['id']; ?>">
+                                    <a href="rent-product.php?id=<?php echo $p['id']; ?>">
                                         <img src="<?php echo rent_img($p['image']); ?>" alt="<?php echo htmlspecialchars($p['name']); ?> on rent" loading="lazy">
                                     </a>
-                                    <?php if (!$inStock): ?>
-                                        <div class="rent-oos-overlay">Out of stock — available soon</div>
-                                    <?php endif; ?>
                                 </div>
                                 <div class="rent-card-body">
                                     <div class="rent-card-cat"><?php echo htmlspecialchars($p['category']); ?></div>
                                     <h3 class="rent-card-title">
-                                        <a href="rent-product?id=<?php echo $p['id']; ?>"><?php echo htmlspecialchars($p['name']); ?></a>
+                                        <a href="rent-product.php?id=<?php echo $p['id']; ?>"><?php echo htmlspecialchars($p['name']); ?></a>
                                     </h3>
-                                    <?php if (!empty($p['combo_items'])): ?>
-                                        <ul class="rent-combo-items">
-                                            <?php foreach (array_slice($p['combo_items'], 0, 3) as $ci): ?>
-                                                <li><?php echo htmlspecialchars($ci); ?></li>
-                                            <?php endforeach; ?>
-                                            <?php if (count($p['combo_items']) > 3): ?>
-                                                <li>+ <?php echo count($p['combo_items']) - 3; ?> more</li>
-                                            <?php endif; ?>
-                                        </ul>
-                                    <?php endif; ?>
                                     <div class="rent-card-price">
                                         <span class="from">from</span>
                                         <span class="amt"><?php echo rent_money($from); ?></span>
@@ -174,22 +139,12 @@ include_once "design/rent-data.php";
                                     </div>
                                     <div class="rent-card-meta">
                                         <span class="rent-chip dep"><i class="fa fa-shield"></i> <?php echo rent_money($minDep); ?> refundable</span>
-                                        <?php if ($inStock && !empty($p['eta'])): ?>
-                                            <span class="rent-chip eta"><i class="fa fa-truck"></i> Delivery in <?php echo htmlspecialchars($p['eta']); ?></span>
-                                        <?php else: ?>
-                                            <span class="rent-chip"><i class="fa fa-truck"></i> Free setup</span>
-                                        <?php endif; ?>
+                                        <span class="rent-chip"><i class="fa fa-truck"></i> Free setup</span>
                                     </div>
                                     <div class="rent-card-cta">
-                                        <?php if ($inStock): ?>
-                                            <a href="rent-product?id=<?php echo $p['id']; ?>" class="rent-btn rent-btn-block rent-btn-sm">
-                                                View &amp; Rent <i class="fa fa-angle-right"></i>
-                                            </a>
-                                        <?php else: ?>
-                                            <a href="contact" class="rent-btn rent-btn-outline rent-btn-block rent-btn-sm">
-                                                <i class="fa fa-bell-o"></i> Notify Me
-                                            </a>
-                                        <?php endif; ?>
+                                        <a href="rent-product.php?id=<?php echo $p['id']; ?>" class="rent-btn rent-btn-block rent-btn-sm">
+                                            View &amp; Rent <i class="fa fa-angle-right"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </article>
@@ -203,40 +158,15 @@ include_once "design/rent-data.php";
                         <p>We don't have rentable items in this category right now. Try another category.</p>
                     </div>
 
-                    <!-- trust strip (what's included in every rent) -->
-                    <div class="rent-trust" style="margin-top:34px;">
-                        <div class="tr"><i class="fa fa-truck"></i><div><b>Free delivery &amp; install</b>in 2–5 days</div></div>
-                        <div class="tr"><i class="fa fa-wrench"></i><div><b>Free maintenance</b>repairs on us, always</div></div>
-                        <div class="tr"><i class="fa fa-exchange"></i><div><b>Free relocation</b>we shift it when you move</div></div>
-                        <div class="tr"><i class="fa fa-undo"></i><div><b>Easy closure</b>return · extend · buy anytime</div></div>
-                    </div>
-
-                    <div class="rent-note" style="margin-top:22px;">
+                    <div class="rent-note" style="margin-top:30px;">
                         <i class="fa fa-info-circle"></i>
                         <div>This is the dedicated <b>Rent Furniture</b> catalogue. Buying instead? Visit our
-                            <a href="all_products" style="color:var(--rt-brand);font-weight:600;">Shop</a> for furniture to own.</div>
+                            <a href="all_products.php" style="color:var(--rt-brand);font-weight:600;">Shop</a> for furniture to own.</div>
                     </div>
                 </div>
             </section>
 
         </div><!-- /.rent-scope -->
-
-        <!-- ===================== CITY SELECT MODAL ===================== -->
-        <div class="rent-city-modal" id="rentCityModal" role="dialog" aria-modal="true" aria-labelledby="rentCityTitle">
-            <div class="box">
-                <h3 id="rentCityTitle"><i class="fa fa-map-marker" style="color:var(--rt-accent);"></i> Choose your city</h3>
-                <p>Catalogue, stock and delivery time depend on your city.</p>
-                <div class="rent-city-grid">
-                    <?php foreach ($RENTAL_CITIES as $c): ?>
-                        <a class="rent-city-opt<?php echo $c === rent_city() ? ' selected' : ''; ?>"
-                            href="rent.php?city=<?php echo urlencode($c); ?>#catalogue">
-                            <i class="fa fa-building-o"></i><?php echo htmlspecialchars($c); ?>
-                        </a>
-                    <?php endforeach; ?>
-                </div>
-                <a class="rent-btn rent-btn-outline rent-btn-block rent-btn-sm" style="margin-top:16px;" onclick="rentCityClose();return false;" href="#">Maybe later</a>
-            </div>
-        </div>
 
         <?php include_once "design/footer.php"; ?>
 
@@ -247,57 +177,25 @@ include_once "design/rent-data.php";
     </div>
 
     <script>
-        /* Category + budget filter for the rental catalogue */
+        /* Category filter for the rental catalogue */
         (function () {
             var filters = document.querySelectorAll('#rentFilters .rent-filter');
             var cards = document.querySelectorAll('#rentGrid .rent-card');
             var empty = document.getElementById('rentEmpty');
-            var budget = document.getElementById('rentBudget');
-            var count = document.getElementById('rentCount');
-            var activeCat = 'All';
-
-            function apply() {
-                var range = budget ? budget.value.split('-') : ['0', '0'];
-                var min = parseInt(range[0], 10) || 0;
-                var max = parseInt(range[1], 10) || 0; /* 0 = no upper limit */
-                var shown = 0;
-                cards.forEach(function (c) {
-                    var okCat = (activeCat === 'All' || c.getAttribute('data-cat') === activeCat);
-                    var price = parseInt(c.getAttribute('data-price'), 10) || 0;
-                    var okBudget = (max === 0) || (price >= min && price <= max);
-                    var match = okCat && okBudget;
-                    c.style.display = match ? '' : 'none';
-                    if (match) shown++;
-                });
-                if (empty) empty.style.display = shown ? 'none' : 'block';
-                if (count) count.textContent = shown;
-            }
-
             filters.forEach(function (btn) {
                 btn.addEventListener('click', function () {
                     filters.forEach(function (b) { b.classList.remove('active'); });
                     btn.classList.add('active');
-                    activeCat = btn.getAttribute('data-cat');
-                    apply();
+                    var cat = btn.getAttribute('data-cat');
+                    var shown = 0;
+                    cards.forEach(function (c) {
+                        var match = (cat === 'All' || c.getAttribute('data-cat') === cat);
+                        c.style.display = match ? '' : 'none';
+                        if (match) shown++;
+                    });
+                    if (empty) empty.style.display = shown ? 'none' : 'block';
                 });
             });
-            if (budget) budget.addEventListener('change', apply);
-        })();
-
-        /* City select modal */
-        function rentCityOpen() {
-            var m = document.getElementById('rentCityModal');
-            if (m) { m.classList.add('open'); document.body.style.overflow = 'hidden'; }
-        }
-        function rentCityClose() {
-            var m = document.getElementById('rentCityModal');
-            if (m) { m.classList.remove('open'); document.body.style.overflow = ''; }
-        }
-        (function () {
-            var m = document.getElementById('rentCityModal');
-            if (!m) return;
-            m.addEventListener('click', function (e) { if (e.target === m) rentCityClose(); });
-            document.addEventListener('keydown', function (e) { if (e.key === 'Escape') rentCityClose(); });
         })();
     </script>
 </body>

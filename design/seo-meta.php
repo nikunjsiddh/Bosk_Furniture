@@ -195,7 +195,7 @@ if (isset($page_breadcrumbs) && is_array($page_breadcrumbs) && count($page_bread
 <link rel="icon" type="image/png" href="<?php echo $site_url; ?>/images/fevicon.png">
 <link rel="shortcut icon" type="image/png" href="<?php echo $site_url; ?>/images/fevicon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $site_url; ?>/images/fevicon.png">
-<link rel="manifest" href="<?php echo $site_url; ?>/manifest.json">
+<link rel="manifest" href="manifest.json">
 
 <!-- ===== OPEN GRAPH ===== -->
 <meta property="og:locale" content="en_IN">

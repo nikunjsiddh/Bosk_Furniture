@@ -145,6 +145,24 @@ include_once("connect.php");
                                             </select>
                                         </div>
                                         <div class="col-md-12">
+                                            <label class="form-label">Product Type / Listing Mode <span class="req">*</span></label>
+                                            <div class="border rounded p-2 bg-light">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="listing_type" id="type_sale" value="sale" checked>
+                                                    <label class="form-check-label fw-bold" for="type_sale"><i class="icofont-shopping-cart text-primary"></i> Buy Only</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="listing_type" id="type_rent" value="rent">
+                                                    <label class="form-check-label fw-bold text-success" for="type_rent"><i class="icofont-key text-success"></i> Rent Only</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="listing_type" id="type_both" value="both">
+                                                    <label class="form-check-label fw-bold text-dark" for="type_both"><i class="icofont-refresh text-dark"></i> Both (Buy & Rent)</label>
+                                                </div>
+                                            </div>
+                                            <small class="text-muted d-block mt-1">"Rent Only" products will NOT show in the regular buy shop.</small>
+                                        </div>
+                                        <div class="col-md-12">
                                             <label class="form-label">Status</label>
                                             <select name="status" class="form-select">
                                                 <option value="1" selected>Active / Published</option>

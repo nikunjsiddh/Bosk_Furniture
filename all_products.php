@@ -853,7 +853,7 @@ $page_breadcrumbs = [
       <div class="container">
         <div class="row">
           <div class="col">
-            <a href="/">Home</a><span>»</span><span>PRODUCTS</span>
+            <a href="index.php">Home</a><span>»</span><span>PRODUCTS</span>
           </div>
         </div>
       </div>
@@ -869,7 +869,7 @@ $page_breadcrumbs = [
           <div class="container">
             <div class="filters-group">
               <ul>
-                <li class="active" data-filter="*"><a class="hi2" href="all_products">Show All</a></li>
+                <li class="active" data-filter="*"><a class="hi2" href="all_products.php">Show All</a></li>
 
                 <?php
                         include_once"connect.php";
@@ -883,7 +883,7 @@ $page_breadcrumbs = [
                                 $img=$row['img'];
                         ?>
                 <li style="color:white !important;" data-filter=".people"><a class="hi" style="color:#532A1A;"
-                    href="shop?astringdata2=<?php echo $row['name'];?>">
+                    href="shop.php?astringdata2=<?php echo $row['name'];?>">
                     <?php echo $name;?>
                   </a></li>
                 <?php
@@ -899,7 +899,7 @@ $page_breadcrumbs = [
                   <div class="row justify-content-center">
                     <?php
                                 
-                                $cmd3="select * from products where publish_date <= NOW()";
+                                $cmd3="SELECT * FROM products WHERE (available_for_sale = 1 OR available_for_sale IS NULL) AND (status = 1 OR status IS NULL OR status = '1' OR status = 'active') AND (publish_date IS NULL OR publish_date <= NOW()) ORDER BY id DESC";
                                 $result3=mysqli_query($con,$cmd3) or die(mysqli_error($con));
                                 $no_of_rows=(mysqli_num_rows($result3));
                                 // echo $no_of_rows;
@@ -945,19 +945,19 @@ $page_breadcrumbs = [
                                             echo '<span class="product-badge">-' . $discount . '% OFF</span>';
                                         }
                                     ?>
-                          <a href="product?astringdata=<?php echo $encode_product_id; ?>" class="product-wishlist"
+                          <a href="product.php?astringdata=<?php echo $encode_product_id; ?>" class="product-wishlist"
                             title="Add to wishlist" onclick="event.preventDefault();">
                             <i class="fa fa-heart-o" aria-hidden="true"></i>
                           </a>
-                          <a href="product?astringdata=<?php echo $encode_product_id; ?>">
+                          <a href="product.php?astringdata=<?php echo $encode_product_id; ?>">
                             <img src="admin/product_image/<?php echo $img1;?>"
-                              alt="<?php echo htmlspecialchars($pname); ?>" loading="lazy" decoding="async">
+                              alt="<?php echo htmlspecialchars($pname); ?>">
                           </a>
-                          <a href="product?astringdata=<?php echo $encode_product_id; ?>"
+                          <a href="product.php?astringdata=<?php echo $encode_product_id; ?>"
                             class="product-quickview">Quick View</a>
                         </div>
                         <div class="content">
-                          <h3><a href="product?astringdata=<?php echo $encode_product_id; ?>">
+                          <h3><a href="product.php?astringdata=<?php echo $encode_product_id; ?>">
                               <?php echo$pname;?>
                             </a></h3>
                           <hr>
@@ -996,7 +996,7 @@ $page_breadcrumbs = [
                             </div>
                             <hr>
                             <div class="featured-content-list">
-                              <a href="product?astringdata=<?php echo $encode_product_id; ?>" type="button"
+                              <a href="product.php?astringdata=<?php echo $encode_product_id; ?>" type="button"
                                 data-name="Oxford" style="color:#fff !important;background-color:#532A1A !important;" d
                                 class="btn btn-primary">View Details</a>
                             </div>
