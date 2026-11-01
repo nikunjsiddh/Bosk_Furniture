@@ -18,12 +18,52 @@ If something goes wrong, you can restore the old version.
 - cPanel → **phpMyAdmin** → select your database → **Export** → **Go**
 - This downloads a `.sql` file. Keep it safe.
 
-### 3. Check connect.php credentials
-Your `connect.php` already auto-detects localhost vs live:
-- On localhost (XAMPP) → uses `root` / no password
-- On live server → uses `u583659604_bosk` / `Bosk@1234`
+### 3. Live database password file (one-time setup)
+Your `connect.php` auto-detects localhost vs live:
+- On localhost (XAMPP) → uses `root` / no password. Nothing to set up.
+- On live server → reads the database login from **`config/db.local.php`**.
 
-So **do NOT edit connect.php** — it works on both automatically. Just upload it as-is.
+`config/db.local.php` is **not** in git and **not** in your upload zip, so the
+password never ends up in the code. (`config/.htaccess` also blocks it from
+the browser.) You create it **once** on the server:
+
+1. hPanel → **Databases → Management**: note the **database name** and the
+   **database user** (both start with `u583659604_`). You need the password
+   for that user too. If you don't have it, use **Change password** there
+   (see the security note below).
+2. hPanel → **File Manager** → open `public_html/config`
+3. Click **New File** → name it exactly `db.local.php` → open it → paste:
+   ```php
+   <?php
+   return [
+       'host'     => 'localhost',
+       'user'     => 'PUT_DATABASE_USER_HERE',
+       'password' => 'PUT_DATABASE_PASSWORD_HERE',
+       'database' => 'PUT_DATABASE_NAME_HERE',
+   ];
+   ```
+4. Replace the three `PUT_..._HERE` values with your real ones → **Save**.
+
+Do this **before or right after** you upload the new `connect.php` and
+`Admin/connect.php`. If the file is missing, the live site shows
+*"live database settings are missing"*.
+
+After this, **you never need to edit `connect.php`**. Later uploads don't touch
+`db.local.php`: "Extract → Overwrite All" only replaces files that are inside
+your zip. **Never** send this file to anyone or add it to git.
+
+> **Security: change the database password now.** The old live password was
+> saved in git, so anyone who can see the repository history can read it.
+> In hPanel → **Databases → Management**, find the database user → **Change
+> password** → choose a new strong password (16+ characters, random). Then
+> **immediately** put the new password in `public_html/config/db.local.php`
+> and save. The site gets a database error for the minute between those two
+> steps. If you used the old password anywhere else (hPanel login, email,
+> admin panel), change it there too.
+>
+> Also delete `public_html/Admin/Admin.zip` from the server if it is there.
+> It is an old backup that anyone could download, and it holds an old
+> database password.
 
 ---
 
@@ -177,7 +217,8 @@ Make a 1200x630 image and upload it to `public_html/images/og-default.jpg`
 | **Page shows PHP code as text** | PHP not parsing - check file uploaded as `.php`, not `.txt`. |
 | **"Headers already sent" warning** | Already fixed in the new files - make sure you uploaded the latest `index.php`, `design/nav.php`, `design/nav1.php`. |
 | **Clean URLs give 404** | `mod_rewrite` may be off. In cPanel contact support to enable it, or check the `.htaccess` uploaded correctly. |
-| **Database connection failed** | `connect.php` live credentials may have changed. Check cPanel → MySQL Databases for the correct DB name/user/password. |
+| **"live database settings are missing"** | `public_html/config/db.local.php` doesn't exist or is incomplete. Create it (see "3. Live database password file" above). |
+| **Database connection failed** | The values in `public_html/config/db.local.php` don't match the database. Check hPanel → Databases → Management for the correct DB name/user, and reset the password there if needed. |
 | **Old version still showing** | Clear browser cache (Ctrl+Shift+R) or clear any caching plugin / Cloudflare cache. |
 
 ---
@@ -194,6 +235,8 @@ Make a 1200x630 image and upload it to `public_html/images/og-default.jpg`
 
 - [ ] Backup live files (zip + download)
 - [ ] Backup database (phpMyAdmin export)
+- [ ] `public_html/config/db.local.php` exists on the server (one-time)
+- [ ] Database password changed in hPanel and updated in `db.local.php` (one-time)
 - [ ] Upload all changed files to `public_html`
 - [ ] Confirm `design/seo-meta.php` and `manifest.json` are uploaded (NEW files)
 - [ ] Test homepage loads with no errors

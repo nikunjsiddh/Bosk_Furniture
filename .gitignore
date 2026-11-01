@@ -4,3 +4,6 @@ config/mail.local.php
 # Customer reference images uploaded through the Contact form
 lead_attachments/*
 !lead_attachments/.htaccess
+
+# Live database credentials (see connect.php / HOW-TO-UPLOAD-LIVE.md)
+config/db.local.php
