@@ -1,6 +1,9 @@
 # Local SMTP password override (see config/mail.php)
 config/mail.local.php
 
+# Razorpay API keys (see config/razorpay.php / HOW-TO-UPLOAD-LIVE.md)
+config/razorpay.local.php
+
 # Customer reference images uploaded through the Contact form
 lead_attachments/*
 !lead_attachments/.htaccess

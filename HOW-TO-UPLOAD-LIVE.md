@@ -6,7 +6,7 @@ using cPanel File Manager. An FTP method is also included.
 
 ---
 
-## BEFORE YOU START - 3 Important Things
+## BEFORE YOU START - 4 Important Things
 
 ### 1. Take a backup of the live site (very important!)
 If something goes wrong, you can restore the old version.
@@ -24,6 +24,52 @@ Your `connect.php` already auto-detects localhost vs live:
 - On live server → uses `u583659604_bosk` / `Bosk@1234`
 
 So **do NOT edit connect.php** — it works on both automatically. Just upload it as-is.
+
+### 4. Razorpay payment keys file (one-time setup)
+Online payments at checkout use your Razorpay **Key Id** and **Key Secret**.
+`config/razorpay.php` no longer contains them. It reads them from
+**`config/razorpay.local.php`**, which is **not** in git, so the secret never
+ends up in the code. (`config/.htaccess` also blocks it from the browser.)
+You create it **once** on the server:
+
+1. Razorpay Dashboard (https://dashboard.razorpay.com) → pick **Test mode** or
+   **Live mode** at the top → **Account & Settings → API Keys** →
+   **Regenerate Key** (see the security note below). Copy the new **Key Id**
+   and **Key Secret** right away; Razorpay shows the secret only once.
+   - Key Id starting with `rzp_test_` = test mode (no real money, test cards only)
+   - Key Id starting with `rzp_live_` = real payments
+2. hPanel → **File Manager** → open `public_html/config`
+3. Click **New File** → name it exactly `razorpay.local.php` → open it → paste:
+   ```php
+   <?php
+   return [
+       'key_id'     => 'PUT_KEY_ID_HERE',
+       'key_secret' => 'PUT_KEY_SECRET_HERE',
+       'currency'   => 'INR',
+   ];
+   ```
+4. Replace the two `PUT_..._HERE` values with your real ones → **Save**.
+5. Upload the new `config/razorpay.php` (it has no keys in it any more).
+
+If the file is missing or a key is empty, checkout shows
+*"Online payment is not set up yet (Razorpay keys are missing on the server)"*.
+To switch from test to live payments later, only edit this one file on the
+server: put the Live mode Key Id and Key Secret in it and save.
+
+> **Careful with your computer's copy.** You only need
+> `config/razorpay.local.php` on your computer (XAMPP) if you want to test
+> payments on localhost, and then it should hold **test** keys. If you upload
+> by zipping the whole `bosk` folder, the zip would contain that file and
+> "Overwrite All" would replace the live keys on the server. Before
+> uploading, open `bosk.zip` → `config` → delete `razorpay.local.php` from
+> the zip.
+
+> **Security: regenerate the Razorpay key now.** The old Key Secret was saved
+> in git (in `config/razorpay.php`), so anyone who can see the repository
+> history can read it. Regenerate it in Test mode as in step 1 and put the new
+> Key Id and Key Secret in `public_html/config/razorpay.local.php`. Checkout
+> payments fail for the minute between those two steps. Never put Live mode
+> keys in any file other than `razorpay.local.php` on the server.
 
 ---
 
@@ -179,6 +225,8 @@ Make a 1200x630 image and upload it to `public_html/images/og-default.jpg`
 | **Clean URLs give 404** | `mod_rewrite` may be off. In cPanel contact support to enable it, or check the `.htaccess` uploaded correctly. |
 | **Database connection failed** | `connect.php` live credentials may have changed. Check cPanel → MySQL Databases for the correct DB name/user/password. |
 | **Old version still showing** | Clear browser cache (Ctrl+Shift+R) or clear any caching plugin / Cloudflare cache. |
+| **Checkout says "Online payment is not set up yet"** | `public_html/config/razorpay.local.php` doesn't exist or a key in it is empty. Create it (see "4. Razorpay payment keys file" above). |
+| **Checkout says "Authentication failed"** | The Key Id and Key Secret in `public_html/config/razorpay.local.php` don't match, or are an old (regenerated) pair. Copy both again from Razorpay Dashboard → API Keys, in the same mode (Test or Live). |
 
 ---
 
@@ -195,6 +243,8 @@ Make a 1200x630 image and upload it to `public_html/images/og-default.jpg`
 - [ ] Backup live files (zip + download)
 - [ ] Backup database (phpMyAdmin export)
 - [ ] Upload all changed files to `public_html`
+- [ ] `public_html/config/razorpay.local.php` exists on the server and your upload didn't replace it (one-time)
+- [ ] Razorpay key regenerated and the new Key Id + Key Secret saved in `razorpay.local.php` (one-time)
 - [ ] Confirm `design/seo-meta.php` and `manifest.json` are uploaded (NEW files)
 - [ ] Test homepage loads with no errors
 - [ ] Run `sitemap-generator.php` once
