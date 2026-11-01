@@ -106,18 +106,18 @@ $page_robots      = 'noindex, follow';
                         <div class="my-info">
                             <div class="in1">
                                 <div class="address">
-                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> 95 South Park Ave.</p>
+                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> 5, Aryamaan Complex, Near Meghani Circle, Bhavnagar-364001, Gujarat</p>
                                 </div>
                                 <div class="email">
-                                    <p><i class="fa fa-envelope" aria-hidden="true"></i> info@blanca.com</p>
+                                    <p><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:info@boskfurniture.com" style="color:inherit;overflow-wrap:anywhere;">info@boskfurniture.com</a></p>
                                 </div>
                             </div>
                             <div class="in1">
                                 <div class="phone">
-                                    <p><i class="fa fa-phone" aria-hidden="true"></i> (234) 0200 17813</p>
+                                    <p><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:+918866647777" style="color:inherit;">+91 88666 47777</a></p>
                                 </div>
                                 <div class="whatssap">
-                                    <p><i class="fa fa-whatsapp" aria-hidden="true"></i> (234) 0200 17813</p>
+                                    <p><i class="fa fa-whatsapp" aria-hidden="true"></i> <a href="https://wa.me/919737817777" target="_blank" rel="noopener" style="color:inherit;">+91 97378 17777</a></p>
                                 </div>
                             </div>
                         </div>

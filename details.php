@@ -72,6 +72,7 @@ $page_schema = '
 
 <head>
     <?php include_once"design/header.php";?>
+    <link rel="stylesheet" href="css/lead-form.css?v=20261101">
     <style>
         /* ============================================================ */
         /* ================= BLOG DETAILS - MODERN UI ================= */
@@ -502,15 +503,8 @@ $page_schema = '
             content: "⚠  ";
             color: #c0392b;
         }
-        #return:not(:empty) {
-            margin-top: 18px;
-            padding: 14px 18px;
-            background: #ecf7ed;
-            border: 1.5px solid #b6dfb9;
-            color: #1f6d28;
-            border-radius: 10px;
-            font-size: 14px;
-        }
+        /* Result message: the success / error card comes from css/lead-form.css */
+        #return:empty { display: none; }
         .comment-submit {
             display: inline-flex;
             align-items: center;
@@ -896,6 +890,11 @@ $page_schema = '
                                 <p class="comment-sub">Got thoughts on this article? We'd love to hear what you think.</p>
                             </div>
                             <form onsubmit="return validateAndSubmitComment(this);" id="MyForm" method="post" class="comment-form" novalidate>
+                                <input type="hidden" name="blog_id" value="<?php echo (int) $blogid; ?>">
+                                <div class="bf-hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
+                                    <label for="cm-website">Leave this field empty</label>
+                                    <input type="text" id="cm-website" name="bf_website" tabindex="-1" autocomplete="off">
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6 form-group" data-field="name">
                                         <label for="cf-name">Your Name<span class="req">*</span></label>
@@ -925,7 +924,7 @@ $page_schema = '
                                     </div>
                                 </div>
                             </form>
-                            <div id="return"></div>
+                            <div id="return" aria-live="polite"></div>
                         </section>
                     </div>
 
@@ -992,7 +991,8 @@ $page_schema = '
 
     </div>
     <!-- Wrapper / End -->
-    <script src="js/add/comment.js"></script>
+    <script src="js/add/lead-form.js?v=20261101"></script>
+    <script src="js/add/comment.js?v=20261101"></script>
     <script>
         (function () {
             // 1) Reading progress bar

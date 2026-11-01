@@ -62,6 +62,21 @@ $rent_new_orders  = $rent_tables_ok ? (int) dash_scalar($con, "SELECT COUNT(*) F
 $rent_active      = $rent_tables_ok ? (int) dash_scalar($con, "SELECT COUNT(*) FROM rental_orders WHERE status IN ('confirmed','active','overdue')") : 0;
 $rent_kyc_pending = $rent_tables_ok ? (int) dash_scalar($con, "SELECT COUNT(*) FROM kyc_verifications WHERE status='pending'") : 0;
 $rent_mrr         = $rent_tables_ok ? (int) dash_scalar($con, "SELECT IFNULL(SUM(total_monthly_rent),0) FROM rental_orders WHERE status IN ('confirmed','active','overdue')") : 0;
+
+// ---- Website leads snapshot (Contact / Customize / Blog / Newsletter forms) ----
+require_once __DIR__ . '/../lib/bosk-leads.php';
+$leads_ok        = bosk_leads_prepare_db($con);   // creates the table on first visit
+$lead_sources    = bosk_lead_sources();
+$lead_statuses   = bosk_lead_statuses();
+$lead_unread     = $leads_ok ? bosk_leads_scalar($con, "SELECT COUNT(*) FROM leads WHERE is_read = 0 AND status <> 'spam'") : 0;
+$lead_today      = $leads_ok ? bosk_leads_scalar($con, "SELECT COUNT(*) FROM leads WHERE status <> 'spam' AND created_at >= ?", 's', [(new DateTime('today', new DateTimeZone('Asia/Kolkata')))->format('Y-m-d H:i:s')]) : 0;
+$lead_week       = $leads_ok ? bosk_leads_scalar($con, "SELECT COUNT(*) FROM leads WHERE status <> 'spam' AND created_at >= ?", 's', [bosk_lead_now('-7 days')]) : 0;
+$lead_converted  = $leads_ok ? bosk_leads_scalar($con, "SELECT COUNT(*) FROM leads WHERE status = 'converted'") : 0;
+$recent_leads    = array();
+if ($leads_ok) {
+    $r = mysqli_query($con, "SELECT id, source, name, email, status, is_read, created_at FROM leads WHERE status <> 'spam' ORDER BY id DESC LIMIT 5");
+    while ($r && ($x = mysqli_fetch_assoc($r))) { $recent_leads[] = $x; }
+}
 ?>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
@@ -179,6 +194,88 @@ $rent_mrr         = $rent_tables_ok ? (int) dash_scalar($con, "SELECT IFNULL(SUM
                             </a>
                         </div>
                     </div>
+
+                    <!-- Website Leads snapshot -->
+                    <?php if ($leads_ok): ?>
+                    <div class="row g-3 mb-3">
+                        <div class="col-12">
+                            <div class="card border-0" style="background:linear-gradient(135deg,#6b3823 0%,#532A1A 55%,#3a1c10 100%);border-radius:14px;">
+                                <div class="card-body py-2 px-3 d-flex align-items-center flex-wrap" style="gap:8px;">
+                                    <i class="icofont-inbox text-white fs-5"></i>
+                                    <span class="fw-bold text-white" style="font-size:15px;">Website Leads &amp; Enquiries</span>
+                                    <?php if ($lead_unread > 0): ?>
+                                        <span class="badge rounded-pill" style="background:#ff6b35;font-size:11px;"><?php echo $lead_unread; ?> unread</span>
+                                    <?php endif; ?>
+                                    <a href="leads.php" class="btn btn-sm ms-auto" style="background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.3);font-size:12px;">View All Leads</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <a href="leads.php?status=new" class="card stat-card bg-white h-100 text-decoration-none">
+                                        <div class="card-body d-flex align-items-center">
+                                            <div class="stat-icon" style="background:#fff1e6;color:#d9480f;"><i class="icofont-email"></i></div>
+                                            <div class="ms-3"><div class="stat-value"><?php echo $lead_unread; ?></div><div class="stat-label">Unread Leads</div></div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-6">
+                                    <a href="leads.php" class="card stat-card bg-white h-100 text-decoration-none">
+                                        <div class="card-body d-flex align-items-center">
+                                            <div class="stat-icon" style="background:#eef3ff;color:#3b6fe0;"><i class="icofont-clock-time"></i></div>
+                                            <div class="ms-3"><div class="stat-value"><?php echo $lead_today; ?></div><div class="stat-label">Leads Today</div></div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-6">
+                                    <a href="leads.php" class="card stat-card bg-white h-100 text-decoration-none">
+                                        <div class="card-body d-flex align-items-center">
+                                            <div class="stat-icon" style="background:#f3eefe;color:#8b5cf6;"><i class="icofont-ui-calendar"></i></div>
+                                            <div class="ms-3"><div class="stat-value"><?php echo $lead_week; ?></div><div class="stat-label">Last 7 Days</div></div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-6">
+                                    <a href="leads.php?status=converted" class="card stat-card bg-white h-100 text-decoration-none">
+                                        <div class="card-body d-flex align-items-center">
+                                            <div class="stat-icon" style="background:#e6f7ee;color:#1aa260;"><i class="icofont-trophy"></i></div>
+                                            <div class="ms-3"><div class="stat-value"><?php echo $lead_converted; ?></div><div class="stat-label">Converted</div></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card chart-card h-100">
+                                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                                    <h6 class="chart-title">Latest Enquiries</h6>
+                                    <a href="leads.php" class="btn btn-sm btn-light border">View all</a>
+                                </div>
+                                <div class="card-body py-2">
+                                    <?php if (empty($recent_leads)): ?>
+                                        <p class="text-muted mb-0 py-3">No enquiries yet. New leads from the website will appear here.</p>
+                                    <?php else: foreach ($recent_leads as $ld):
+                                        $lsrc  = isset($lead_sources[$ld['source']]) ? $lead_sources[$ld['source']] : array('label' => $ld['source'], 'icon' => 'icofont-ui-message', 'color' => '#6c757d', 'bg' => '#f1f3f5');
+                                        $lst   = isset($lead_statuses[$ld['status']]) ? $lead_statuses[$ld['status']] : $lead_statuses['new'];
+                                        $lname = $ld['name'] !== '' ? $ld['name'] : $ld['email'];
+                                    ?>
+                                        <a href="leads.php?id=<?php echo (int) $ld['id']; ?>" class="ro-item text-decoration-none" style="gap:10px;">
+                                            <div class="d-flex align-items-center" style="gap:10px;min-width:0;">
+                                                <span class="d-inline-flex align-items-center justify-content-center rounded-circle text-white fw-bold" style="width:36px;height:36px;flex:0 0 36px;font-size:13px;background:<?php echo bosk_lead_avatar_color($ld['email'] !== '' ? $ld['email'] : $ld['name']); ?>;"><?php echo htmlspecialchars(bosk_lead_initials($ld['name'], $ld['email'])); ?></span>
+                                                <div style="min-width:0;">
+                                                    <div class="text-truncate" style="color:#2d2f39;font-weight:<?php echo $ld['is_read'] ? '600' : '800'; ?>;font-size:13.5px;"><?php echo htmlspecialchars($lname); ?></div>
+                                                    <div class="ro-cust"><i class="<?php echo $lsrc['icon']; ?>"></i> <?php echo htmlspecialchars($lsrc['label']); ?> &middot; <?php echo htmlspecialchars(bosk_lead_time_ago($ld['created_at'])); ?></div>
+                                                </div>
+                                            </div>
+                                            <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap;background:<?php echo $lst['bg']; ?>;color:<?php echo $lst['color']; ?>;"><?php echo htmlspecialchars($lst['label']); ?></span>
+                                        </a>
+                                    <?php endforeach; endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endif; ?>
 
                     <!-- Rent Module Snapshot cards -->
                     <?php if ($rent_tables_ok): ?>

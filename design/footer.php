@@ -390,6 +390,11 @@
         color: var(--bf-brand) !important;
     }
 
+    .bf-contact a.bf-mail {
+        font-weight: 600;
+        overflow-wrap: anywhere;
+    }
+
     /* Social block (left column) */
     .bf-social-block {
         margin-top: .9rem;
@@ -769,7 +774,7 @@
                         </li>
                         <li>
                             <i class="fa fa-envelope" aria-hidden="true"></i>
-                            <a href="mailto:boskinfracon@gmail.com">boskinfracon@gmail.com</a>
+                            <a href="mailto:info@boskfurniture.com" class="bf-mail" title="Email Bosk Furniture">info@boskfurniture.com</a>
                         </li>
                         <li>
                             <i class="fa fa-whatsapp" aria-hidden="true"></i>

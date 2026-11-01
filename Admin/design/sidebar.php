@@ -1,5 +1,30 @@
 <!-- sidebar -->
+<?php
+// Unread website enquiries -> badge on "Leads & Enquiries" (0 until the leads table exists)
+$__bosk_unread_leads = 0;
+if (!isset($con) || !$con) {
+    include_once __DIR__ . '/../connect.php';
+}
+if (isset($con) && $con) {
+    $__bosk_lt = @mysqli_query($con, "SHOW TABLES LIKE 'leads'");
+    if ($__bosk_lt && mysqli_num_rows($__bosk_lt) > 0) {
+        $__bosk_lc = @mysqli_query($con, "SELECT COUNT(*) FROM leads WHERE is_read = 0 AND status <> 'spam'");
+        if ($__bosk_lc && ($__bosk_row = mysqli_fetch_row($__bosk_lc))) {
+            $__bosk_unread_leads = (int) $__bosk_row[0];
+        }
+    }
+}
+?>
         <style>
+            /* ===== Leads & Enquiries unread badge ===== */
+            .sidebar .m-link .lead-badge{
+                margin-left:auto;min-width:22px;height:22px;padding:0 7px;border-radius:11px;
+                display:inline-flex;align-items:center;justify-content:center;
+                background:#ff6b35;color:#fff;font-size:11px;font-weight:800;line-height:1;
+                box-shadow:0 0 0 3px rgba(255,107,53,.25);
+            }
+            .sidebar.sidebar-mini .m-link .lead-badge{display:none !important;}
+
             /* ===== Brand logo presentation (expanded sidebar) ===== */
             .sidebar .brand-icon{display:flex;align-items:center;justify-content:center;padding:0;margin-bottom:16px;}
             .sidebar .brand-icon .logo-icon{display:none;}
@@ -38,6 +63,7 @@
                 <!-- Menu: main ul -->
                 <ul class="menu-list flex-grow-1 mt-3">
                     <li><a class="m-link" href="Dash.php"><i class="icofont-home fs-5"></i> <span>Dashboard</span></a></li>
+                    <li><a class="m-link<?php echo basename($_SERVER['PHP_SELF']) === 'leads.php' ? ' active' : ''; ?>" href="leads.php"><i class="icofont-inbox fs-5"></i> <span>Leads &amp; Enquiries</span><span class="lead-badge" title="Unread enquiries"<?php echo $__bosk_unread_leads > 0 ? '' : ' style="display:none;"'; ?>><?php echo $__bosk_unread_leads > 99 ? '99+' : $__bosk_unread_leads; ?></span></a></li>
                     <li class="collapsed">
                         <a class="m-link" data-bs-toggle="collapse" data-bs-target="#menu-product" href="#">
                             <i class="icofont-truck-loaded fs-5"></i> <span>Products</span> <span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>

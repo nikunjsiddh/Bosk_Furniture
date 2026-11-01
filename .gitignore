@@ -1,0 +1,6 @@
+# Local SMTP password override (see config/mail.php)
+config/mail.local.php
+
+# Customer reference images uploaded through the Contact form
+lead_attachments/*
+!lead_attachments/.htaccess

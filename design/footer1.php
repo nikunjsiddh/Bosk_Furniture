@@ -28,7 +28,7 @@
                             <li>
                                 <div class="info">
                                     <i style="margin-top:0.2rem;" class="fa fa-envelope" aria-hidden="true"></i>
-                                    <p class="in-p ti">boskinfracon@gmail.com</p>
+                                    <p class="in-p ti"><a href="mailto:info@boskfurniture.com" style="color:inherit;">info@boskfurniture.com</a></p>
                                 </div>
                             </li>
                         </ul>

@@ -1,25 +1,8 @@
-function modest_customize() {
-    var form = $('#MyForm')[0];
-    var data = new FormData(form);
-    var url = 'back/modest_customize.php';
-    $.ajax({
-        url: url,
-        type: "POST",
-        data: data,
-        contentType: false,
-        cache: false,
-        processData: false,
-		beforeSend: function() {
-            $('#submit').hide();
-            $('.loader').show();
-        },
-        success: function(data) {
-               $('form').trigger("reset");
-               $('#return').fadeIn().html(data);
-			   $('#submit').hide();
-               $('.loader').hide();
-               //alert(data);
-            }
-    });
-    return false;
+/* Customize Furniture form (ex-customize_furniture.php) -> back/modest_customize.php
+   Validation, sending + feedback: js/add/lead-form.js */
+function modest_customize(form) {
+    if (!boskValidateLeadForm(form)) {
+        return false;
+    }
+    return boskSubmitLead(form, 'back/modest_customize.php');
 }

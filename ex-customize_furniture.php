@@ -40,6 +40,7 @@ $page_breadcrumbs = [
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link href="css/menu.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/lead-form.css?v=20261101">
     
     <style>
         /* The old vw-margin hack pulled the View All button up over the
@@ -269,26 +270,32 @@ $page_breadcrumbs = [
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <form  class="contact-form" onsubmit="return modest_customize(this);" id="MyForm" method="post"  novalidate>
-                            
-                           
-                            <div class="form-group">
-                                <input type="text" required class="form-control input-custom input-full" name="name" placeholder="First Name">
+                        <form  class="contact-form bf-lead-basic" onsubmit="return modest_customize(this);" id="MyForm" method="post"  novalidate>
+                            <div class="bf-hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
+                                <label for="cz-website">Leave this field empty</label>
+                                <input type="text" id="cz-website" name="bf_website" tabindex="-1" autocomplete="off">
                             </div>
                             <div class="form-group">
-                                <input type="text" required class="form-control input-custom input-full"  name="email" placeholder="Email">
+                                <input type="text" required class="form-control input-custom input-full" name="name" placeholder="Full Name" aria-label="Full Name" autocomplete="name" maxlength="60">
                             </div>
                             <div class="form-group">
-                                <input type="number" class="form-control input-custom input-full" name="phone" placeholder="Contact Number">
+                                <input type="email" required class="form-control input-custom input-full"  name="email" placeholder="Email" aria-label="Email" autocomplete="email" maxlength="150">
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control textarea-custom input-full" id="ccomment" name="msg" required rows="8" placeholder="Message"></textarea>
+                                <input type="tel" required class="form-control input-custom input-full" name="phone" placeholder="Contact Number (10-digit mobile)" aria-label="Contact Number" autocomplete="tel" inputmode="numeric" maxlength="14">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control textarea-custom input-full" id="ccomment" name="msg" required rows="8" placeholder="Tell us what you would like customised - size, material, finish, budget..." aria-label="Message" maxlength="2000"></textarea>
                             </div>
                             <div class="box bg-3">
                                 <button type="submit" name="submit" id="submit-contact" style="color:white;background-color:#532A1A;border:2px solid #532A1A;" class="mt-5 btn btn-primary btn-lg">Submit</button>
                             </div>
                         </form>
-                        <div id="return"></div>
+                        <div id="return" aria-live="polite"></div>
+                        <div class="cf-direct-mail">
+                            <span class="cf-direct-mail__icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                            <span>Prefer email? Send your requirement to <a href="mailto:info@boskfurniture.com">info@boskfurniture.com</a></span>
+                        </div>
                     </div>
                     <!--<div class="col-md-4 info-touch">-->
                     <!--    <h4>Keep In Touch</h4>-->
@@ -298,7 +305,7 @@ $page_breadcrumbs = [
                     <!--                <p style="line-height:1.3rem;"><i class="fa fa-map-marker" aria-hidden="true"></i>5,Aryamaan Complex,</p><p style="line-height:1.3rem;margin-top:-3.2rem;margin-left:4.0rem;"><br/>Near Meghani Circle,<br/>Sir Patannni Road,<br/>Bhavnagar-364001,<br/>Gujarat,India.</p>-->
                     <!--            </div>-->
                     <!--            <div class="email">-->
-                    <!--                <p><i class="fa fa-envelope" aria-hidden="true"></i>boskinfracon@gmail.com</p>-->
+                    <!--                <p><i class="fa fa-envelope" aria-hidden="true"></i>info@boskfurniture.com</p>-->
                     <!--            </div>-->
                     <!--        </div>-->
                     <!--        <div class="in1">-->
@@ -509,7 +516,8 @@ $page_breadcrumbs = [
 
         <!-- MAIN JS -->
         <script src="js/script.js"></script>
-          <script src="js/add/modest_customize.js"></script>
+        <script src="js/add/lead-form.js?v=20261101"></script>
+        <script src="js/add/modest_customize.js?v=20261101"></script>
     </div>
     <!-- Wrapper / End -->
 </body>

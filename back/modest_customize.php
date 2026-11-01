@@ -1,20 +1,13 @@
 <?php
-	if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['phone']) && isset($_POST['msg'])){
-		$name=$_POST['name'];
-		$email=$_POST['email'];
-		$phone=$_POST['phone'];
-		$msg=$_POST['msg'];
+/* ============================================================
+   Customize Furniture form (ex-customize_furniture.php)
+   ------------------------------------------------------------
+   Saves the enquiry in Admin > Leads & Enquiries, emails the
+   website owner and sends the customer a branded confirmation
+   from info@boskfurniture.com. Answers with JSON.
+   Logic lives in lib/bosk-leads.php (settings: config/mail.php).
+   ============================================================ */
+include_once __DIR__ . '/../connect.php';
+require_once __DIR__ . '/../lib/bosk-leads.php';
 
-		$to='aayuvora123@gmail.com';
-		$subject='Form 99 destinations Website';
-		$message="Name :".$name."\n"."Phone No. :".$phone."\n"."Wrote the following :"."\n".$msg;
-		$headers="From: ".$email;
-
-		if(mail($to, $subject, $message, $headers)){
-			echo "<center><b>Sent Successfully! Thank you"." ".$name.", We will contact you shortly!</center></b>";
-		}
-		else{
-			echo "Something went wrong!";
-		}
-	}
-?>
+bosk_handle_lead_submission($con, 'customize');

@@ -13,6 +13,7 @@ $page_breadcrumbs = [
 
 <head>
     <?php include_once"design/header.php";?>
+    <link rel="stylesheet" href="css/lead-form.css?v=20261101">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -27,6 +28,8 @@ $page_breadcrumbs = [
         "contactPoint": {
           "@type": "ContactPoint",
           "contactType": "customer service",
+          "email": "info@boskfurniture.com",
+          "telephone": "+91-8866647777",
           "areaServed": "IN",
           "availableLanguage": ["English","Hindi"]
         }
@@ -221,16 +224,8 @@ $page_breadcrumbs = [
             transform: none;
         }
 
-        /* Success message */
-        #contact #return:not(:empty) {
-            margin-top: 18px;
-            padding: 14px 18px;
-            background: #ecf7ed;
-            border: 1.5px solid #b6dfb9;
-            color: #1f6d28;
-            border-radius: 10px;
-            font-size: 14px;
-        }
+        /* Result message: the success / error card comes from css/lead-form.css */
+        #contact #return:empty { display: none; }
 
         /* Contact info card */
         #contact .info-touch {
@@ -293,6 +288,7 @@ $page_breadcrumbs = [
         #contact .info-card .info-text a {
             color: #fff;
             text-decoration: none;
+            overflow-wrap: anywhere;
             transition: opacity .25s ease;
         }
         #contact .info-card .info-text a:hover { opacity: .8; }
@@ -344,6 +340,10 @@ $page_breadcrumbs = [
                     <div class="col-lg-8 col-md-7">
                         <div class="contact-form-wrap">
                             <form class="contact-form" onsubmit="return validateAndSubmitContact(this);" id="MyForm" method="post" novalidate>
+                                <div class="bf-hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
+                                    <label for="cf-website">Leave this field empty</label>
+                                    <input type="text" id="cf-website" name="bf_website" tabindex="-1" autocomplete="off">
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group" data-field="name">
@@ -402,7 +402,11 @@ $page_breadcrumbs = [
                                     Send Message
                                 </button>
                             </form>
-                            <div id="return"></div>
+                            <div id="return" aria-live="polite"></div>
+                            <div class="cf-direct-mail">
+                                <span class="cf-direct-mail__icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                                <span>Prefer email? Write to us at <a href="mailto:info@boskfurniture.com">info@boskfurniture.com</a></span>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-5 info-touch">
@@ -419,7 +423,7 @@ $page_breadcrumbs = [
                                 <div class="info-icon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
                                 <div class="info-text">
                                     <span class="info-label">Email</span>
-                                    <a href="mailto:boskinfracon@gmail.com">boskinfracon@gmail.com</a>
+                                    <a href="mailto:info@boskfurniture.com">info@boskfurniture.com</a>
                                 </div>
                             </div>
                             <div class="info-row">
@@ -466,7 +470,8 @@ $page_breadcrumbs = [
 
     </div>
     <!-- Wrapper / End -->
-    <script src="js/add/contact.js"></script>
+    <script src="js/add/lead-form.js?v=20261101"></script>
+    <script src="js/add/contact.js?v=20261101"></script>
     <script>
     (function () {
         const form = document.getElementById('MyForm');

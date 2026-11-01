@@ -16,7 +16,14 @@
 			$row = mysqli_fetch_assoc($ex);
 			$_SESSION['email'] = $row['email'];
 
-			echo "<script>window.location='Dash.php';</script>";
+			// Opened a lead from a notification email before logging in? Go back to it.
+			$next = 'Dash.php';
+			if (!empty($_SESSION['bosk_after_login']) && preg_match('/^leads\.php(\?id=\d+)?$/', $_SESSION['bosk_after_login'])) {
+				$next = $_SESSION['bosk_after_login'];
+			}
+			unset($_SESSION['bosk_after_login']);
+
+			echo "<script>window.location='" . $next . "';</script>";
 		}
 		else
 		{
