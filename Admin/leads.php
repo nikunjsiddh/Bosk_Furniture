@@ -544,8 +544,7 @@ $smtpOn    = bosk_mail_smtp_ready($mailCfg);
                                     <div class="stat-icon" style="background:#e6f7ee;color:#1aa260;"><i class="icofont-trophy"></i></div>
                                     <div class="ms-3">
                                         <div class="stat-value"><?php echo number_format($stats['converted']); ?></div>
-                                        <div class="stat-label">Converted</div>
-                                        <div class="stat-sub"><?php echo (int) $stats['rate']; ?>% conversion rate</div>
+                                        <div class="stat-label" title="Conversion rate: converted leads out of all enquiries (newsletter and spam excluded)">Converted &middot; <span class="stat-sub"><?php echo (int) $stats['rate']; ?>%</span></div>
                                     </div>
                                 </div>
                             </a>
