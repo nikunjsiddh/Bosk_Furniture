@@ -53,9 +53,10 @@
     RewriteRule ^ %1 [R=301,L]
 
     # 3) Internally serve /something as /something.php when the .php file exists.
-    #    Skipped for /back/ and /Admin/ so those paths still resolve by their real names.
+    #    Skipped for /back/ so the AJAX endpoints still resolve by their real names.
+    #    The admin panel is included, so /Admin/Dash opens Dash.php. Admin links
+    #    and form posts that use the real *.php names are unchanged.
     RewriteCond %{REQUEST_URI} !/back/   [NC]
-    RewriteCond %{REQUEST_URI} !/Admin/  [NC]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}\.php -f
